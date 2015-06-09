@@ -72,7 +72,7 @@ define("EMAIL_SMTP_ENCRYPTION", "ssl");
  * Configuration for: password reset email data
  * Set the absolute URL to password_reset.php, necessary for email password reset links
  */
-define("EMAIL_PASSWORDRESET_URL", "http://localhost/GodFood-v2.0/minhaconta/password_reset.php");
+define("EMAIL_PASSWORDRESET_URL", "http://localhost/GodFood/minhaconta/password_reset.php");
 define("EMAIL_PASSWORDRESET_FROM", "cadastro@godfood.com.br");
 define("EMAIL_PASSWORDRESET_FROM_NAME", "Recuperação de Senha");
 define("EMAIL_PASSWORDRESET_SUBJECT", "Recurerar Senha - GodFood");
@@ -82,7 +82,7 @@ define("EMAIL_PASSWORDRESET_CONTENT", "Por favor, clique aqui para resetar sua s
  * Configuration for: verification email data
  * Set the absolute URL to register.php, necessary for email verification links
  */
-define("EMAIL_VERIFICATION_URL", "http://localhost/GodFood-v2.0/minhaconta/confirma.php");
+define("EMAIL_VERIFICATION_URL", "http://localhost/GodFood/minhaconta/confirma.php");
 define("EMAIL_VERIFICATION_FROM", "cadastro@godfood.com.br");
 define("EMAIL_VERIFICATION_FROM_NAME", "Verificação de Email");
 define("EMAIL_VERIFICATION_SUBJECT", "Ativação de conta - GodFood");

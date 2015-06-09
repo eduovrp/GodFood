@@ -109,7 +109,7 @@ function inserir_pedido($ItemTotalPrice, $total_pago, $taxa_entrega, $id_usuario
 try{
 	$sql = "INSERT INTO pedidos (data,valor_total,valor_pago,taxa_entrega,id_usuario,id_restaurante,id_status,id_cidade_entrega,endereco)
 			VALUES(:data, :ItemTotalPrice, :total_pago, :taxa_entrega, :id_usuario,
-					:id_restaurante, 1,
+					:id_restaurante, 4,
 				   	:id_cidade_entrega,:endereco)";
 
 	$cmd = $pdo->prepare($sql);

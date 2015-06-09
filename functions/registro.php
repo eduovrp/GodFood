@@ -100,11 +100,11 @@ function registra_usuario($nome,$cpf,$email,$telefone,$celular,$usuario,$senha,$
         $senha = sha1($_POST['senha']);
         $senha_hash = hash('sha512',$senha);
 
-            $hash_ativar_conta = sha1(uniqid(mt_rand(), true));
+            $hash_ativar_conta = NULL;
             $data =  date("Y-m-d H:i:s");
 
-	$sql = "INSERT INTO usuarios (login,senha,email,nome,cpf,telefone,celular,hash_ativar_conta,ip_registro,data_registro)
-				 VALUES (:login,:senha,:email,:nome,:cpf,:telefone,:celular,:hash_ativar_conta,:ip_registro,:data)";
+	$sql = "INSERT INTO usuarios (login,senha,email,nome,cpf,telefone,celular,usr_ativo,hash_ativar_conta,ip_registro,data_registro)
+				 VALUES (:login,:senha,:email,:nome,:cpf,:telefone,:celular,1,:hash_ativar_conta,:ip_registro,:data)";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('login',$usuario);
@@ -123,9 +123,6 @@ function registra_usuario($nome,$cpf,$email,$telefone,$celular,$usuario,$senha,$
 
     $_SESSION['id_usuario'] = $id_usuario;
 
-    if($id_usuario > 0){
-        sendVerificationEmail($id_usuario, $email, $hash_ativar_conta);
-        }
     }
 }
 
