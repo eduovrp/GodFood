@@ -69,7 +69,7 @@ $dados = busca_dados_endereco($_SESSION['cep']);
 					<div class="row">
 					<div class="col-md-5">
 					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-						<label for="logradouro">LOGRADOURO *</label>
+						<label for="logradouro">LOGRADOURO * (Ex: Rua 14, Avenida Central, Etc..)</label>
 						<input type="text" name="logradouro" required>
 					 </div>
 					 </div>

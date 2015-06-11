@@ -4,9 +4,9 @@ if(!isset($_SESSION))
     session_start();
 }
 date_default_timezone_set('America/Sao_Paulo');
-$dsn = 'mysql:host=localhost;dbname=u288492055_food;charset=utf8';
-$usuario = 'root';
-$pass = '';
+$dsn = 'mysql:host=mysql.hostinger.com.br;dbname=u288492055_food;charset=utf8;SET TIME_ZONE = "-03:00"';
+$usuario = 'u288492055_admin';
+$pass = '3eomu7hl69';
 
 $pdo = new PDO($dsn, $usuario, $pass);
 
@@ -69,10 +69,21 @@ function detalhaPedidosEmAndamento($id_restaurante)
 {
 	global $pdo;
 try{
-	$sql = "SELECT id_pedido, DATE_FORMAT(data,'%d/%m/%Y as %T') as data, valor_total, taxa_entrega, endereco, id_status
-			FROM pedidos WHERE id_restaurante = :id_restaurante
+	$sql = "SELECT p.id_pedido AS id_pedido, 
+			      DATE_FORMAT(p.data,'%d/%m/%Y as %T') AS data, 
+			      p.valor_total AS valor_total, 
+			      p.taxa_entrega AS taxa_entrega, 
+			      p.endereco AS endereco, 
+			      p.id_status AS id_status,
+			      u.nome AS nome_cliente,
+			      u.celular AS celular
+            
+	  	FROM pedidos p
+      	INNER JOIN usuarios u
+      	ON p.id_usuario = u.id_usuario
 
-			ORDER BY data";
+      		WHERE p.id_restaurante = :id_restaurante
+				ORDER BY p.data";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('id_restaurante',$id_restaurante);

@@ -61,6 +61,9 @@ $_SESSION['cep'] = $_POST['cep']; //joga o cep em session para usar futuramente
 
 	<div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
+  <div class="alert alert-danger alert-dismissible" role="alert">
+      <h4>Você está em um ambiente de teste, nenhum pedido será registrado oficialmente nem entregue, caso encontre algum problema, bug ou erro, por favor, entre em contato conosco. Agradecemos sua compreensão.</h4>
+    </div>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">

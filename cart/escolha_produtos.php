@@ -50,7 +50,7 @@ require 'config.php';
 require '../functions/pedidos.php';
 require '../functions/restaurantes.php';
 
-$current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$current_url = base64_encode($url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 if($_POST){
 
     $id = $_POST['id'];
@@ -75,6 +75,9 @@ if($_POST){
         <h1 align="center"><?=$restaurante['nome_fantasia']?></h1>
     </div>
     <br>
+<div class="alert alert-danger alert-dismissible" role="alert">
+      <h4>Você está em um ambiente de teste, nenhum pedido será registrado oficialmente nem entregue, caso encontre algum problema, bug ou erro, por favor, entre em contato conosco. Agradecemos sua compreensão.</h4>
+    </div>
      <div class="products">
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!-- Collapse das Categorias -->

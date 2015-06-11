@@ -5,9 +5,9 @@ if(!isset($_SESSION))
     session_start();
 }
 
-$dsn = 'mysql:host=localhost;dbname=u288492055_food;charset=utf8';
-$usuario = 'root';
-$pass = '';
+$dsn = 'mysql:host=mysql.hostinger.com.br;dbname=u288492055_food;charset=utf8;SET TIME_ZONE = "-03:00"';
+$usuario = 'u288492055_admin';
+$pass = '3eomu7hl69';
 
 $pdo = new PDO($dsn, $usuario, $pass);
 
@@ -1454,6 +1454,54 @@ try{
 	} else {
 		return true;
 	}
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}
+
+function cadastraCidade($nome,$cep)
+{
+	global $pdo;
+try{
+	$busca = "SELECT * FROM cidades_entregas WHERE cep = :cep";
+
+	$verifica = $pdo->prepare($busca);
+	$verifica->bindParam('cep',$cep);
+	$verifica->execute();
+
+	$verifica->fetch();
+
+	if($verifica->rowCount() > 0){
+		$_SESSION['erros'] = "Cidade já cadastrada";
+		return false;
+	} else {
+
+		$sql = "INSERT INTO cidades_entregas (nome, cep) 
+				VALUES (:nome, :cep)";
+
+		$cmd = $pdo->prepare($sql);
+		$cmd->bindParam('nome',$nome);
+		$cmd->bindParam('cep',$cep);
+		$cmd->execute();
+
+		$_SESSION['msg_sucesso'] = "Cidade cadastrada com sucesso";
+	}
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}
+
+function deletaCidadeEntrega($id_cidade_entrega)
+{
+	global $pdo;
+try{
+	$sql = "DELETE FROM cidades_entregas WHERE id_cidade_entrega = :id_cidade_entrega";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('id_cidade_entrega',$id_cidade_entrega);
+	$cmd->execute();
 
 }catch(PDOException $e){
  	 echo $e->getMessage();

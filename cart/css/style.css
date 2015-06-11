@@ -37,7 +37,6 @@ h5 {
   margin-top: 5px;
   font-weight: 600;
 }
-
 .nav > li > a {
   color: #a7b1c2;
   font-weight: 600;
@@ -3913,7 +3912,7 @@ body.modal-open {
 }
 /* ERROR & LOGIN & LOCKSCREEN*/
 .middle-box {
-  max-width: 420px;
+  max-width: 400px;
   z-index: 100;
   margin: 0 auto;
   padding-top: 90px;
@@ -3923,13 +3922,6 @@ body.modal-open {
   z-index: 100;
   color: #16987e;
   margin-left: -45%;
-  padding-top: 90px;
-}
-.middle-box h2{
-  font-size: 200px;
-  max-width: 400px;
-  z-index: 100;
-  color: #16987e;
   padding-top: 90px;
 }
 .middle-box h1.erro{

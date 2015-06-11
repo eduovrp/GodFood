@@ -18,7 +18,7 @@ if(isset($_POST) && isset($_SESSION['id_usuario'])){
 					$_SESSION['id_usuario']
 					);
 	unset($_SESSION['id_usuario']);
-	$_SESSION['msg_sucesso'] = "Cadastro realizado com sucesso.";
+	$_SESSION['msg_sucesso'] = "Cadastro realizado com sucesso, após ativar sua conta, você ja podera acessar sua conta no painel do usuario.";
 	header('Location: index.php');
 } else {
 	$_SESSION['erros'] = 'Erro ao inserir endereço';

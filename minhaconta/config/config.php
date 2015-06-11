@@ -12,10 +12,10 @@
  *          by the way, it's bad style to use "root", but for development it will work.
  * DB_PASS: the password of the above user
  */
-define("DB_HOST", "localhost");
+define("DB_HOST", "mysql.hostinger.com.br");
 define("DB_NAME", "u288492055_food");
-define("DB_USER", "root");
-define("DB_PASS", "");
+define("DB_USER", "u288492055_admin");
+define("DB_PASS", "3eomu7hl69");
 
 /**
  * Configuration for: Cookies
@@ -72,7 +72,7 @@ define("EMAIL_SMTP_ENCRYPTION", "ssl");
  * Configuration for: password reset email data
  * Set the absolute URL to password_reset.php, necessary for email password reset links
  */
-define("EMAIL_PASSWORDRESET_URL", "http://localhost/GodFood/minhaconta/password_reset.php");
+define("EMAIL_PASSWORDRESET_URL", "http://godfood.com.br/minhaconta/reset_pass.php");
 define("EMAIL_PASSWORDRESET_FROM", "cadastro@godfood.com.br");
 define("EMAIL_PASSWORDRESET_FROM_NAME", "Recuperação de Senha");
 define("EMAIL_PASSWORDRESET_SUBJECT", "Recurerar Senha - GodFood");
@@ -82,7 +82,7 @@ define("EMAIL_PASSWORDRESET_CONTENT", "Por favor, clique aqui para resetar sua s
  * Configuration for: verification email data
  * Set the absolute URL to register.php, necessary for email verification links
  */
-define("EMAIL_VERIFICATION_URL", "http://localhost/GodFood/minhaconta/confirma.php");
+define("EMAIL_VERIFICATION_URL", "http://godfood.com.br/minhaconta/confirma.php");
 define("EMAIL_VERIFICATION_FROM", "cadastro@godfood.com.br");
 define("EMAIL_VERIFICATION_FROM_NAME", "Verificação de Email");
 define("EMAIL_VERIFICATION_SUBJECT", "Ativação de conta - GodFood");

@@ -4,9 +4,10 @@ if(!isset($_SESSION))
     session_start();
 }
 
-$dsn = 'mysql:host=localhost;dbname=u288492055_food;charset=utf8';
-$usuario = 'root';
-$pass = '';
+$dsn = 'mysql:host=mysql.hostinger.com.br;dbname=u288492055_food;charset=utf8;SET TIME_ZONE = "-03:00"';
+$usuario = 'u288492055_admin';
+$pass = '3eomu7hl69';
+
 $pdo = new PDO($dsn, $usuario, $pass);
 
 function mostraDadosUltimos8diasTotal()

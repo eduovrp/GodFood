@@ -133,6 +133,7 @@ include 'mensagens_cad.php';
 				<div class="clearfix"> </div>
 				<div class="register-but">
 					   <input type="submit" value="Cadastrar">
+					<a href="index.php" class="btn btn-default btn-lg" title="voltar">Voltar</a>
 					   <div class="clearfix"> </div>
 				   </form>
 				</div>

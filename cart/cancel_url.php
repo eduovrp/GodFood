@@ -66,8 +66,6 @@ if(isset($_GET["token"]))
 				header('Location: error.php');
 
 	}else{
-			$lastid = $_SESSION['last_id'];
-			update_pedido_error($lastid);
 			$_SESSION['erro_pgto'] = 'Erro ao efetuar pagamento, por favor verifique os dados inseridos e tente novamente';
 			header('Location: error.php');
 	}

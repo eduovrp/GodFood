@@ -14,7 +14,7 @@ if ($login->usuarioLogado() == true) {
     require 'functions/functions.php';
     verifica_post();
 
-    $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    $current_url = base64_encode($url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     $_SESSION['return_url'] = $current_url;
     if(isset($_SESSION['restaurante'])){
 ?>

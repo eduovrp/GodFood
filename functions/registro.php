@@ -8,9 +8,10 @@ if(!isset($_SESSION))
    session_start();
  }
 
-$dsn = 'mysql:host=localhost;dbname=u288492055_food;charset=utf8';
-$usuario = 'root';
-$pass = '';
+$dsn = "mysql:host=mysql.hostinger.com.br;dbname=u288492055_food;charset=utf8;TIME_ZONE='-03:00'";
+$usuario = "u288492055_admin";
+$pass = "3eomu7hl69";
+
 
 $pdo = new PDO($dsn, $usuario, $pass);
 
@@ -100,11 +101,11 @@ function registra_usuario($nome,$cpf,$email,$telefone,$celular,$usuario,$senha,$
         $senha = sha1($_POST['senha']);
         $senha_hash = hash('sha512',$senha);
 
-            $hash_ativar_conta = NULL;
+            $hash_ativar_conta = sha1(uniqid(mt_rand(), true));
             $data =  date("Y-m-d H:i:s");
 
-	$sql = "INSERT INTO usuarios (login,senha,email,nome,cpf,telefone,celular,usr_ativo,hash_ativar_conta,ip_registro,data_registro)
-				 VALUES (:login,:senha,:email,:nome,:cpf,:telefone,:celular,1,:hash_ativar_conta,:ip_registro,:data)";
+	$sql = "INSERT INTO usuarios (login,senha,email,nome,cpf,telefone,celular,hash_ativar_conta,ip_registro,data_registro)
+				 VALUES (:login,:senha,:email,:nome,:cpf,:telefone,:celular,:hash_ativar_conta,:ip_registro,:data)";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('login',$usuario);
@@ -123,6 +124,9 @@ function registra_usuario($nome,$cpf,$email,$telefone,$celular,$usuario,$senha,$
 
     $_SESSION['id_usuario'] = $id_usuario;
 
+    if($id_usuario > 0){
+        sendVerificationEmail($id_usuario, $email, $hash_ativar_conta);
+        }
     }
 }
 
@@ -342,17 +346,15 @@ try{
     }
 }
 
-function atualizaDadosCadastrais($nome, $cpf, $email, $celular, $telefone, $id_usuario)
+function atualizaDadosCadastrais($nome, $celular, $telefone, $id_usuario)
 {
     global $pdo;
 try{
-    $sql = "UPDATE usuarios SET nome = :nome, cpf = :cpf, email = :email, celular = :celular,
+    $sql = "UPDATE usuarios SET nome = :nome, celular = :celular,
                 telefone = :telefone WHERE id_usuario = :id_usuario";
 
     $cmd = $pdo->prepare($sql);
     $cmd->bindParam('nome',$nome);
-    $cmd->bindParam('cpf',$cpf);
-    $cmd->bindParam('email',$email);
     $cmd->bindParam('celular',$celular);
     $cmd->bindParam('telefone',$telefone);
     $cmd->bindParam('id_usuario',$id_usuario);
@@ -361,4 +363,110 @@ try{
 }catch(PDOException $e){
      echo $e->getMessage();
     }
+}
+
+function enviaEmailResetSenha($email)
+{
+    global $pdo;
+try{
+    $data =  date("Y-m-d H:i:s");
+    $reset_hash = sha1(uniqid(mt_rand(), true));
+
+    $sql = "UPDATE usuarios SET senha_reset_hash = :reset_hash, senha_reset_timestamp = :data
+                WHERE email = :email";
+
+    $cmd = $pdo->prepare($sql);
+    $cmd->bindParam('reset_hash',$reset_hash);
+    $cmd->bindParam('data',$data);
+    $cmd->bindParam('email',$email);
+    $cmd->execute();
+
+    enviaEmailHash($reset_hash,$email);
+
+}catch(PDOException $e){
+     echo $e->getMessage();
+    }
+}
+
+function enviaEmailHash($reset_hash, $email)
+{
+        $mail = new PHPMailer;
+
+        if (EMAIL_USE_SMTP) {
+            $mail->IsSMTP();
+
+            $mail->SMTPAuth = EMAIL_SMTP_AUTH;
+
+            if (defined(EMAIL_SMTP_ENCRYPTION)) {
+                $mail->SMTPSecure = EMAIL_SMTP_ENCRYPTION;
+            }
+            $mail->Host = EMAIL_SMTP_HOST;
+            $mail->Username = EMAIL_SMTP_USERNAME;
+            $mail->Password = EMAIL_SMTP_PASSWORD;
+            $mail->Port = EMAIL_SMTP_PORT;
+        } else {
+            $mail->IsMail();
+        }
+
+        $mail->From = EMAIL_PASSWORDRESET_FROM;
+        $mail->FromName = EMAIL_PASSWORDRESET_FROM_NAME;
+        $mail->AddAddress($email);
+        $mail->Subject = EMAIL_PASSWORDRESET_SUBJECT;
+
+        $link = EMAIL_PASSWORDRESET_URL.'?email='.urlencode($email).'&verification_code='.urlencode($reset_hash);
+
+        $mail->Body = EMAIL_PASSWORDRESET_CONTENT.' '.$link;
+
+        if(!$mail->Send()) {
+            $_SESSION['erros'] = "Email de verificação não foi enviado! \n" . $mail->ErrorInfo;
+        } else {
+           $_SESSION['msg_sucesso'] = "Enviamos o link de ativação novamente. Caso não receba, procure no Lixo eletronico ou na pasta de Spam. Qualquer problema, por favor não hesite em nos chamar <a href='../contato.php'>clicando aqui</a> ";
+            return true;
+        }
+}
+
+function verificaResetSenha($email, $reset_hash, $senha, $confirma_senha)
+{
+    global $pdo;
+
+try{
+    $verifica = "SELECT email, senha_reset_hash FROM usuarios
+                  WHERE email = :email AND senha_reset_hash = :reset_hash";
+
+    $stmt = $pdo->prepare($verifica);
+    $stmt->bindParam('email', $email);
+    $stmt->bindParam('reset_hash', $reset_hash);
+    $stmt->execute();
+
+    $count = $stmt->fetch();
+
+    if($stmt->rowCount() == 0){
+        $_SESSION['erros'] = "Erro ao recuperar senha, tente novamente, se o erro persistir, entre em contato conosco.";
+    } else {
+
+    if($senha != $confirma_senha){
+        $_SESSION['erros'] = "As senhas não conferem";
+        return false;
+    }
+
+    if($senha == $confirma_senha) {
+
+        $senha = sha1($senha);
+        $senha_hash = hash('sha512',$senha);
+
+     $sql = "UPDATE usuarios SET senha = :senha_hash, senha_reset_hash = NULL
+             WHERE email = :email AND senha_reset_hash = :reset_hash";
+
+     $cmd = $pdo->prepare($sql);
+     $cmd->bindParam('senha_hash',$senha_hash);
+     $cmd->bindParam('email',$email);
+     $cmd->bindParam('reset_hash',$reset_hash);
+     $cmd->execute();
+
+     $_SESSION['msg_sucesso'] = "Senha alterada com sucesso!";
+    }
+}
+    }catch(PDOException $e){
+            echo $e->getMessage();
+        }
 }

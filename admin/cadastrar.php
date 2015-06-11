@@ -157,6 +157,18 @@ if($_POST){
 	 			header('Location: restaurantes.php');
 	 		}
 	 	}
+
+	 	/* Cadastra Cidade */
+	 	
+	 	if(isset($_POST['cadastrarCidade'])){
+	 		if($_SESSION['id_nivel'] == 5){
+	 			cadastraCidade($_POST['cidade'],$_POST['cep']);
+	 			header('Location: cadastrar_cidade.php');
+	 		} else {
+	 			$_SESSION['mensagem'] = "Você não tem permissão para acessar essa pagina!";
+	 			header('Location: index.php');
+	 		}
+	 	}
 	
 
 } else {

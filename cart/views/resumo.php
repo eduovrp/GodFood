@@ -54,6 +54,13 @@ include 'mensagens.php';
 ?>
 
 <div class="animated fadeInRight">
+ <div class="alert alert-danger alert-dismissible" role="alert">
+      <h4>Você está em um ambiente de teste, nenhum pedido será registrado oficialmente nem entregue, caso encontre algum problema, bug ou erro, por favor, entre em contato conosco. Agradecemos sua compreensão. <br> <br>
+Para pagamentos no PayPal, utilize nossa conta teste:
+<br><br> <strong>
+Email: teste@godfood.com.br <br>
+Senha: 12345678 </strong></h4>
+    </div>
 <div id="products-wrapper">
  <h1 align="center">Resumo do Pedido</h1>
  <br>

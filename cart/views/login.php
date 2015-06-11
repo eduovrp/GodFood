@@ -76,14 +76,14 @@ include 'mensagens.php';
 				<p>Se você ja possui uma conta, insira seu usuario e senha para acessar sua conta</p>
 				<form action="view_cart.php" method="POST">
 				  <div>
-					<label for="login"></label>
-					<input type="text" name="login" required>
+					<label for="login">Usuario</label><br>
+					<input type="text" name="login" id="login" required>
 				  </div>
 				  <div>
-					<label for="senha"></label>
-					<input type="password" name="senha" required>
+					<label for="senha">Senha</label><br>
+					<input type="password" name="senha" id="senha" required>
 				  </div>
-				  <a class="forgot" href="#">Esqueceu sua Senha?</a>
+				  <a class="forgot" href="../minhaconta/reset_pass.php">Esqueceu sua Senha?</a>
 				  <input type="submit" value="Login">
 			    </form>
 			   </div>

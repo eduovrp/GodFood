@@ -86,8 +86,8 @@ if($_GET){
 					 </div>
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-						<label for="CPF">CPF *</label>  - digite apenas numeros.
-						<input type="text" name="cpf" id="cpf" maxlength="14" value="<?=$dados['cpf']?>" required>
+						<label for="CPF">CPF *</label>
+						<input type="text" name="cpf" id="cpf" maxlength="14" value="<?=$dados['cpf']?>" required readonly>
 					 </div>
 					 </div>
 					 <div class="col-md-6">

@@ -38,7 +38,7 @@ $erros .= "A mensagem deve ser preenchida.";
 }
 
 if( empty($erros) ){
-$phpmail->SMTPAuth = true;
+$phpmail->SMTPAuth=true;; // Define que a mensagem será SMTP
 $phpmail->Host = "mx2.hostinger.com.br"; // Endereço do servidor SMTP, não altere esse campo.
 $phpmail->SMTPAuth = true; // ativando a autenticação SMTP (obrigatório, não alterar)
 $phpmail->Username = 'contato@godfood.com.br'; // usuário de smtp Usuário do servidor SMTP (endereço de email), altere para suas informações.

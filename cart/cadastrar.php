@@ -57,7 +57,7 @@ include 'mensagens_cad.php';
 	<div class="main">
 	   <div class="container">
 		  <div class="register">
-		  	  <form action="registro.php" id="form_cadastrar" method="POST">
+		  	  <form action="registro.php" method="POST">
 				 <div class="register-top-grid">
 					<h3>INFORMAÇÕES PESSOAIS</h3>
 					<div class="col-md-6">
@@ -87,17 +87,16 @@ include 'mensagens_cad.php';
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 					 	 <label for="celular">CELULAR </label> - digite apenas numeros.
-						 <input type="text" name="celular" id="celular" required placeholder="(17) - 99999-9999">
+						 <input type="text" name="celular" id="celular" placeholder="(__) - _____-____" required>
 					 </div>
 					 </div>
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						 <label for="telefone">TELEFONE </label> - digite apenas numeros.
-						 <input type="text" name="telefone" id="telefone" placeholder="(17) - 9999-9999">
+						 <input type="text" name="telefone" id="telefone" placeholder="(__) - ____-____">
 					 </div>
 					 </div>
-
-					 <h4><strong>Campos com ( * ) são obrigatórios. </strong></h4>
+ <h4><strong>Campos com ( * ) são obrigatórios. </strong></h4>
 					 <div class="clearfix"> </div>
 					 <div class="col-md-12">
 					   <a class="news-letter" href="#">
@@ -138,7 +137,6 @@ include 'mensagens_cad.php';
 		   </div>
 	     </div>
 	    </div>
-
 
 <div class="clearfix"></div>
 				<div class="contact-section" id="contact">

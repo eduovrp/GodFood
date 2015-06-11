@@ -1,8 +1,9 @@
 <?php
 
-$dsn = 'mysql:host=localhost;dbname=u288492055_food;charset=utf8';
-$usuario = 'root';
-$pass = '';
+$dsn = "mysql:host=mysql.hostinger.com.br;dbname=u288492055_food;charset=utf8;TIME_ZONE='-03:00'";
+$usuario = "u288492055_admin";
+$pass = "3eomu7hl69";
+
 $pdo = new PDO($dsn, $usuario, $pass);
 
 function lista_restaurantes($cep)
@@ -224,6 +225,20 @@ try{
 	$cmd->execute();
 
 	return $cmd->fetch();
+
+}catch(PDOException $e){
+    echo $e->getMessage();
+	}
+}
+
+function fechaRestaurantesMadrugaBoladona()
+{
+	global $pdo;
+try{
+	$sql = "UPDATE restaurantes SET status = 'Fechado'";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->execute();
 
 }catch(PDOException $e){
     echo $e->getMessage();

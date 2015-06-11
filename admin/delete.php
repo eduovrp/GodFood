@@ -1,8 +1,6 @@
 <?php
 require 'functions/functions.php';
 
-if($_POST){
-
 	/* Exclui categoria */
 	
 	if(isset($_POST['excluir_categoria'])){
@@ -23,9 +21,6 @@ if($_POST){
 			}
 	}
 
-	var_dump($_POST);
-	var_dump($_SESSION);
-
 	/* Exclui Produto */
 	
 	if(isset($_POST['excluirProduto'])){
@@ -41,4 +36,16 @@ if($_POST){
 		}
 	}
 
-}
+
+	 	/* Deleta Cidade */
+	 	
+	 	if(isset($_GET['id_cidade'])){
+	 		if($_SESSION['id_nivel'] == 5){
+	 			deletaCidadeEntrega($_GET['id_cidade']);
+	 			$_SESSION['msg_sucesso'] = "Cidade excluida com sucesso";
+	 			header('Location: cadastrar_cidade.php');
+	 		} else {
+	 			$_SESSION['mensagem'] = "Você não tem permissão para acessar essa pagina!";
+	 			header('Location: index.php');
+	 		}
+	 	}

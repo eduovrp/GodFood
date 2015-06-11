@@ -29,12 +29,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </script>
 <script type="text/javascript" src="../web/js/easing.js"></script>
 
-		<!--Mascaras -->
-	<script type="text/JavaScript" src="../web/js/jquery.mask.js"></script>
-   <script type="text/javascript">
-  $(document).ready(function(){
-  $('#cep').mask('99999-999');
-});
    </script>
  <script src="../web/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
@@ -42,108 +36,60 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
     <!-- header-section-starts -->
 	<div class="header">
+
 <?php
 include 'includes/menu-top.php';
-if(isset($_SESSION['id_usuario']) && isset($_SESSION['login_status'])){
+include 'mensagens.php';
 require '../functions/registro.php';
- ?>
+
+?>
+
 	<!-- header-section-ends -->
 	<!-- content-section-starts -->
 	<div class="content">
 	<div class="main">
 	   <div class="container">
-	   <br>
-	   <?php include 'mensagens.php'; ?>
 		  <div class="register">
-		  	  <form action="registra_endereco_painel.php" method="POST">
-				 <div class="register-top-grid">
-					<h3>INFORMAÇÕES PARA ENTREGAS</h3>
-					<div class="row">
-					<div class="col-md-5">
-					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-						<label for="logradouro">LOGRADOURO * (Ex: Rua 14, Avenida Central, Etc..)</label>
-						<input type="text" name="logradouro" required>
-					 </div>
-					 </div>
-					 <div class="col-md-1">
-					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-						<label for="numero">NUMERO *</label>
-						<input type="text" name="numero" required>
-					 </div>
-					 </div>
-					 <div class="col-md-3">
-					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-						 <label for="bairro">BAIRRO *</label>
-						 <input type="text" name="bairro" required>
-					 </div>
-					 </div>
-					</div>
-					<div class="row">
-					<div class="col-md-5">
-					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-						 <label for="cidade">CIDADE *</label>
-						 <input type="text" name="cidade"  required>
-					 </div>
-					 </div>
-					 <div class="col-md-1">
-					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-						 <label for="estado">ESTADO * </label>
-						 <input type="text" name="estado"  required>
-					 </div>
-					 </div>
-					 <div class="col-md-3">
-					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-						 <label for="cep">CEP * </label>
-						 <input type="text" name="cep" id="cep" required>
-					 </div>
-					 </div>
-					 </div>
-					 <div class="clearfix"> </div>
-					 <div class="row">
-					 <div class="col-md-6">
-					   <a class="news-letter" href="#">
-						 <label class="checkbox"><input type="checkbox" name="checkbox" checked="" required><i> </i>Concordo com os Termos de Entrega</label>
-					   </a>
-					 </div>
-					 </div>
-				     <div class="register-bottom-grid">
-						    <h3>INFORMAÇÕES COMPLEMENTARES</h3>
-						    </div>
+		  	<?php if(isset($_GET['email']) && isset($_GET['verification_code'])){
+		  		$_SESSION['email'] = $_GET['email'];
+		  		$_SESSION['verification_code'] = $_GET['verification_code'];
+		  		?>
 
-						    <div class="row">
-						    <div class="col-md-4">
-						     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-								<label for="complemento">COMPLEMENTO</label>
-								<input type="text" name="complemento">
-					 		</div>
-					 		</div>
-					 		<div class="col-md-5">
-							 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-								<label for="referencia">REFERENCIA</label>
-								<input type="text" name="referencia">
-							 </div>
-							 </div>
-							 </div>
-					 </div>
-				<div class="clearfix"> </div>
-				<div class="register-but">
-					   <input type="submit" value="Cadastrar Endereço">.
-					   <a href="index.php" class="btn btn-default btn-lg" title="voltar">Voltar</a>
-					   <div class="clearfix"> </div>
+			<form action="reset_senha.php" id="form_cadastrar" method="POST">
+				 <div class="register-top-grid">
+				 	<h3>Recuperação de Senha</h3>
+				 	<br>
+				 	<div class="row">
+					 <div class="col-md-6">
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						 <label for="senha">INSIRA SUA NOVA SENHA *</label>
+						 <input type="password" name="senha" id="senha" required>
+						 <label for="confirma_senha">CONFIRME SUA NOVA SENHA *</label>
+						 <input type="password" name="confirma_senha" id="confirma_senha" required>
+					   	 <input type="submit" value="Enviar">
+					   </div>
+					   </div>
 				   </form>
+			<?php } else { ?>
+		  	  <form action="reset_senha.php" id="form_cadastrar" method="POST">
+				 <div class="register-top-grid">
+				 	<h3>Você receberá um email para confirmação, clique no link recebido para recuperar sua senha.</h3>
+				 	<br>
+				 	<div class="row">
+					 <div class="col-md-6">
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						 <label for="email">INSIRA SEU EMAIL *</label>
+						 <input type="text" name="email" id="email" required>
+					   	 <input type="submit" value="Enviar">
+						<a href="index.php" class="btn btn-default btn-lg" title="voltar">Voltar</a>
+					   </div>
+					   </div>
+				   </form>
+			<?php } ?>
 				</div>
 		   </div>
 	     </div>
 	    </div>
-
-
-<?php } else {
-    $_SESSION['acesso_invalido'] = "Desculpe,
-                Você não tem permissão para ver está pagina!
-                <br>";
-    header('Location: error.php');
-   }
-?>
 
 <div class="clearfix"></div>
 		<div class="contact-section" id="contact">

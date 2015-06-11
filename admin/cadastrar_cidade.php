@@ -13,9 +13,9 @@ if ($login->usuarioLogado() == true) {
     require 'functions/functions.php';
     verifica_post();
 
-    $current_url = base64_encode($url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     $_SESSION['return_url'] = $current_url;
-    if(isset($_SESSION['restaurante'])){
+    if($_SESSION['id_nivel'] == 5){
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@ if ($login->usuarioLogado() == true) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GodFood - Entregas</title>
+    <title>GodFood - Cadastrar Cidade</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -34,8 +34,6 @@ if ($login->usuarioLogado() == true) {
     <link href="css/style.css" rel="stylesheet">
 
  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-
-    <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -44,21 +42,19 @@ if ($login->usuarioLogado() == true) {
 include 'includes/nav.html';
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
 
-$cidades_entrega = busca_cidades_entregas_cadastradas($_SESSION['restaurante']);
-
 $busca_cidades = mostra_cidades();
 
  ?>
         <div id="page-wrapper" class="gray-bg">
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h1>Entregas</h1>
+                    <h1>Cadastrar Cidades</h1>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.php">Inicio</a>
                         </li>
                         <li class="active">
-                            <strong>Entregas</strong>
+                            <strong>Cadastrar Cidades</strong>
                         </li>
                     </ol>
                 </div>
@@ -79,21 +75,17 @@ $busca_cidades = mostra_cidades();
                     <div class="ibox-title">
                         <form action="cadastrar.php" method="POST" accept-charset="utf-8">
                             <div class="input-group">
-                            <div class="col-lg-5">
+                            <div class="col-lg-6">
                             <label for="cidade">Cidade</label>
-                                <select class="form-control" name="cidade" id="cidade">
-                                <?php foreach($busca_cidades as $cidade): ?>
-                                  <option value="<?=$cidade['id_cidade_entrega'];?>"><?=$cidade['nome'];?></option>
-                                <?php endforeach; ?>
-                                </select></div>
+                                <input type="text" name="cidade" id="cidade" class="form-control"></div>
                                 <div class="col-lg-3">
-                                <label for="taxa">Taxa de Entrega</label>
-                                <input type="text" class="form-control" name="taxa" id="taxa"></div>
-                                <script type="text/javascript">$("#taxa").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
+                                <label for="cep">CEP</label>
+                                <input type="text" class="form-control" name="cep" id="cep"></div>
                                 <div class="col-lg-1">
                                 <label for="">.</label>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Cadastrar</button></div>
                             </div>
+                            <input type="hidden" name="cadastrarCidade" value="yep">
                         </form>
                     </div>
                     <div class="ibox-content">
@@ -102,17 +94,15 @@ $busca_cidades = mostra_cidades();
                             <tr>
                                 <th>Cidade</th>
                                 <th>Cep</th>
-                                <th>Taxa de Entrega</th>
                                 <th>#</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach($cidades_entrega as $cidade_entrega): ?>
+                            <?php foreach($busca_cidades as $cidades): ?>
                             <tr>
-                                <td><?=$cidade_entrega['nome'];?></td>
-                                <td><?=$cidade_entrega['cep'];?></td>
-                                <td>R$ <?=$cidade_entrega['taxa'];?></td>
-                                <td><a href="#"<i class="fa fa-pencil-square-o fa-1x"></i> Editar</a></td>
+                                <td><?=$cidades['nome'];?></td>
+                                <td><?=$cidades['cep'];?></td>
+                                <td><a href="delete.php?id_cidade=<?=$cidades['id_cidade_entrega']?>"><i class="fa fa-close fa-1x"></i> Excluir</a></td>
                             </tr>
                             <?php endforeach; ?>
                             </tbody>
@@ -144,13 +134,21 @@ $busca_cidades = mostra_cidades();
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
 
+
+    <script src="js/jquery.mask.js" type="text/javascript"></script>
+        <script type="text/javascript">
+      $(document).ready(function(){
+        $('#cep').mask('99999-999');
+      });
+    </script>
+
 </body>
 
 </html>
 <?php
     } else {
-        $_SESSION['mensagem'] = "Você precisa escolher um restaurante para gerenciar as Entregas";
-        header('Location: restaurantes.php');
+        $_SESSION['erros'] = "Você não tem permissão para acessar essa pagina!";
+        header('Location: index.php');
     }
 } else {
     header('Location: login.php');

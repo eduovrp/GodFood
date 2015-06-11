@@ -1,8 +1,9 @@
 <?php
 
-$dsn = 'mysql:host=localhost;dbname=u288492055_food;charset=utf8';
-$usuario = 'root';
-$pass = '';
+$dsn = "mysql:host=mysql.hostinger.com.br;dbname=u288492055_food;charset=utf8;TIME_ZONE='-03:00'";
+$usuario = "u288492055_admin";
+$pass = "3eomu7hl69";
+
 $pdo = new PDO($dsn, $usuario, $pass);
 
 function mostra_categorias($id_restaurante)
@@ -109,7 +110,7 @@ function inserir_pedido($ItemTotalPrice, $total_pago, $taxa_entrega, $id_usuario
 try{
 	$sql = "INSERT INTO pedidos (data,valor_total,valor_pago,taxa_entrega,id_usuario,id_restaurante,id_status,id_cidade_entrega,endereco)
 			VALUES(:data, :ItemTotalPrice, :total_pago, :taxa_entrega, :id_usuario,
-					:id_restaurante, 4,
+					:id_restaurante, 1,
 				   	:id_cidade_entrega,:endereco)";
 
 	$cmd = $pdo->prepare($sql);
