@@ -1,8 +1,8 @@
 <?php
 
-$dsn = "mysql:host=mysql.hostinger.com.br;dbname=u288492055_food;charset=utf8;TIME_ZONE='-03:00'";
-$usuario = "u288492055_admin";
-$pass = "3eomu7hl69";
+$dsn = "mysql:host=localhost;dbname=u288492055_food;charset=utf8;TIME_ZONE='-03:00'";
+$usuario = "root";
+$pass = "";
 
 $pdo = new PDO($dsn, $usuario, $pass);
 

@@ -50,7 +50,7 @@ require 'config.php';
 require '../functions/pedidos.php';
 require '../functions/restaurantes.php';
 
-$current_url = base64_encode($url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 if($_POST){
 
     $id = $_POST['id'];

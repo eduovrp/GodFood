@@ -27,9 +27,9 @@ private function conexao()
             return true;
         } else {
             try {
-                $dsn = 'mysql:host=mysql.hostinger.com.br;dbname=u288492055_food;charset=utf8';
-                $usuario = 'u288492055_admin';
-                $pass = '3eomu7hl69';
+                $dsn = 'mysql:host=localhost;dbname=u288492055_food;charset=utf8';
+                $usuario = 'root';
+                $pass = '';
                 $this->conexao = new PDO($dsn, $usuario, $pass);
                 return true;
             } catch (PDOException $e) {

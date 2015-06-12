@@ -38,7 +38,7 @@ require 'functions/timeline.php';
 <body>
     <div id="wrapper">
 <?php
-$_SESSION['return_url'] = base64_encode($url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$_SESSION['return_url'] = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
 include 'includes/nav.html';
 date_default_timezone_set('America/Sao_Paulo');
