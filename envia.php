@@ -67,10 +67,15 @@ $phpmail->ClearAttachments();
 
 //Exibe uma mensagem de resultado
 if ($enviado) {
-echo '<h3>E-mail enviado com sucesso! <a href="index.php" title="voltar">Voltar ao Inicio</a></h3> ';
+echo ("<SCRIPT LANGUAGE='JavaScript'>
+    window.alert('E-mail enviado com sucesso, responderemos assim que possivel.')
+    window.location.href='index.php';
+    </SCRIPT>");
 } else {
-echo '<h3>Não foi possível enviar o e-mail. <a href="index.php" title="voltar">Voltar ao Inicio</a> </h3>';
-}
+echo ("<SCRIPT LANGUAGE='JavaScript'>
+    window.alert('Ocorreu um erro ao enviar o e-mail, tente novamente mais tarde.')
+    window.location.href='index.php';
+    </SCRIPT>");}
 } else {
 echo $erros;
 }

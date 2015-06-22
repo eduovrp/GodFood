@@ -381,16 +381,17 @@ try{
  	 echo $e->getMessage();
 	}
 }
-function cadastra_categoria($nome,$id_restaurante)
+function cadastra_categoria($nome,$id_restaurante,$DoisSabor)
 {
 	global $pdo;
 try{
-	$sql = "INSERT INTO categorias (nome,id_restaurante)
-			VALUES (:nome, :id_restaurante)";
+	$sql = "INSERT INTO categorias (nome,id_restaurante,2sabores)
+			VALUES (:nome, :id_restaurante,:DoisSabor)";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('nome',$nome);
 	$cmd->bindParam('id_restaurante',$id_restaurante);
+	$cmd->bindParam('DoisSabor',$DoisSabor);
 	$cmd->execute();
 
 }catch(PDOException $e){
@@ -562,16 +563,17 @@ try{
 	}
 }
 
-function altera_categoria($nome,$id_categoria,$id_restaurante)
+function altera_categoria($nome,$id_categoria,$id_restaurante,$DoisSabor)
 {
 	global $pdo;
 try{
-	$sql = "UPDATE categorias SET nome = :nome
+	$sql = "UPDATE categorias SET nome = :nome, 2sabores = :DoisSabor
 			WHERE id_categoria = :id_categoria AND id_restaurante = :id_restaurante";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('nome',$nome);
 	$cmd->bindParam('id_categoria',$id_categoria);
+	$cmd->bindParam('DoisSabor',$DoisSabor);
 	$cmd->bindParam('id_restaurante',$id_restaurante);
 	$cmd->execute();
 

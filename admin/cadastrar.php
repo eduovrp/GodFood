@@ -10,7 +10,14 @@ if($_POST){
 	/* Cadastra a Categoria */
 
 	if(isset($_SESSION['restaurante']) && isset($_POST['nome_categoria'])) {
-		cadastra_categoria($_POST['nome_categoria'],$_SESSION['restaurante']);
+
+		if(isset($_POST['2sabores'])){
+			$DoisSabor = 'Sim';
+		} else {
+			$DoisSabor = 'Não';
+		}
+		
+		cadastra_categoria($_POST['nome_categoria'],$_SESSION['restaurante'],$DoisSabor);
 		$_SESSION['msg_sucesso'] = "Categoria cadastrada com sucesso";
 		header('Location: categorias.php');
 	}

@@ -5,14 +5,22 @@ if(!isset($_SESSION))
 }
 if($_POST){
 require 'functions/functions.php';
-
+		
+	/* Altera Categoria */
+	
 	if(isset($_POST['nome_categoria'])){
 		if(isset($_SESSION['restaurante'])){
 
 			$verifica = verifica_categoria($_POST['id_categoria'],$_SESSION['restaurante']);
 
 				if($verifica != null ){
-					altera_categoria($_POST['nome_categoria'],$_POST['id_categoria'],$_SESSION['restaurante']);
+					if(isset($_POST['2sabores'])){
+						$DoisSabor = 'Sim';
+					} else {
+						$DoisSabor = 'Não';
+					}
+
+					altera_categoria($_POST['nome_categoria'],$_POST['id_categoria'],$_SESSION['restaurante'],$DoisSabor);
 					$_SESSION['msg_sucesso'] = "Categoria alterada com sucesso!";
 					header('Location: categorias.php');
 
