@@ -69,8 +69,8 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                           <h2 align="center"><?=$restaurante_ativo['nome_fantasia'];?></h2>
                           <form action="cadastrar.php" method="POST" accept-charset="utf-8">
                           <?php if($restaurante_ativo != null){ ?>
-					        <select class="form-control" name="categoria" id="categoria">
-					           <option value="0">Selecione a Categoria</option>
+					        <select class="form-control" name="categoria" id="categoria" required>
+					           <option value="">Selecione a Categoria</option>
 					           <?php
 								foreach($categorias as $categoria): ?>
 									<option value="<?=$categoria['id_categoria'];?>"
@@ -89,6 +89,12 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
     <div class="wrapper wrapper-content animated fadeInRight">
 
         <div class="ibox-content m-b-sm border-bottom">
+            <div class="row">
+            <div class="col-md-11">
+                <h1 align="center"> Cadastrar Produto</h1>
+                <br>
+                </div>
+            </div>
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group">

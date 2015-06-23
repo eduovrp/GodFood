@@ -171,16 +171,16 @@ require 'functions/functions.php';
 			$status = 'Desativados';
 		}
 
-		if(isset($_POST['pesquisaProduto'])){
+		if(strlen($_POST['pesquisaProduto']) > 1){
 			alteraStatusVariosProdutos($_POST['pesquisaProduto'], $_POST['status'], $_SESSION['restaurante']);
 			$_SESSION['msg_sucesso'] = "Todos os produtos com o termo <strong>".$_POST['pesquisaProduto']."</strong> foram <strong>".$status."</strong>";
+			header('Location: produtos.php');
 		} else {
-			$_SESSION['mensagem'] = "Para ativar/desativar varios produtos você precisa pesquisar pelo nome, categoria ou descrição no campo de pesquisa. Para alterar o status de apenas um produto clique em EDITAR na linha do produto desejado."
+			$_SESSION['mensagem'] = "Para ativar/desativar varios produtos você precisa pesquisar pelo nome, categoria ou descrição no campo de pesquisa. Para alterar o status de apenas um produto clique em EDITAR na linha do produto desejado.";
 			header('Location: produtos.php');
 		}
 	}
 	
-
 } else {
 	header('Location: index.php');
 }

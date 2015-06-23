@@ -1512,3 +1512,31 @@ try{
  	 echo $e->getMessage();
 	}
 }
+
+function alteraStatusVariosProdutos($parametro,$status,$id_restaurante)
+{
+
+	$parametro = "%".$parametro."%";
+	global $pdo;
+try{
+	$sql = "UPDATE produtos p 
+			INNER JOIN categorias c
+			ON p.id_categoria = c.id_categoria
+
+				 SET p.status = :status 
+
+				 WHERE p.id_restaurante = :id_restaurante
+					AND p.nome LIKE :parametro 
+						OR p.descricao LIKE :parametro 
+						OR c.nome LIKE :parametro";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('parametro',$parametro);
+	$cmd->bindParam('status',$status);
+	$cmd->bindParam('id_restaurante',$id_restaurante);
+	$cmd->execute();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}

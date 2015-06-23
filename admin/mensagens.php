@@ -7,7 +7,7 @@ if(!isset($_SESSION))
 if(isset($_SESSION['msg_sucesso'])){ ?>
  <div class="alert alert-success alert-dismissible" role="alert">
  <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-      <strong><?= $_SESSION['msg_sucesso'];?> </strong>
+      <?= $_SESSION['msg_sucesso'];?>
     </div>
 <?php
 }

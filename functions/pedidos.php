@@ -36,7 +36,7 @@ try {
 
 			FROM produtos p
 		  	INNER JOIN categorias c
-		  	ON p.id_categoria = c.id_categoria WHERE p.id_categoria = :id_categoria";
+		  	ON p.id_categoria = c.id_categoria WHERE p.id_categoria = :id_categoria AND p.status = 1";
 
 	 $cmd = $pdo->prepare($sql);
 	 $cmd->bindParam('id_categoria',$id_categoria);
