@@ -30,7 +30,11 @@ if ($login->usuarioLogado() == true) {
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style_alternative.css" rel="stylesheet">
+
+    <!-- FooTable -->
+    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+    
 
     <script src="js/jquery.min.js" type="text/javascript"></script>
     <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
@@ -84,56 +88,65 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
             </div>
 
     <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
+
+        <div class="ibox-content m-b-sm border-bottom">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="nome">Nome do Produto</label>
+                            <input type="text" id="nome" name="nome" value="" placeholder="Nome do Produto" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                           <label for="valor">Valor</label>
+                            <input type="text" class="form-control" name="valor" id="valor" id="valor" required>
+                            <script type="text/javascript">$("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="descricao">Descrição</label>
+                            <input type="text" id="descricao" name="descricao" value="" placeholder="Descrição" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label" for="status">Status</label>
+                            <select name="status" id="status" class="form-control">
+                                <option value="1" selected>Ativado</option>
+                                <option value="0">Desativado</option>
+                            </select>
+                        </div>
+                    </div>
+                     <div class="col-sm-1">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
+                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 <?php include 'mensagens.php'; ?>
                <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                            <div class="input-group">
-                            	<div class="col-lg-4">
-                            		<label for="nome">Nome</label>
-                                	<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome do Produto" required> </div>
-                                <div class="col-lg-2">
-                                	<label for="valor">Valor</label>
-                                	<input type="text" class="form-control" name="valor" id="valor" id="valor" required></div>
-                                	<script type="text/javascript">$("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
-                                <div class="col-lg-5">
-                                	<label for="descricao">Descrição</label>
-                                	<input type="text" class="form-control" name="descricao" id="descricao" placeholder="Descrição"></div>
-                                <div class="col-lg-1">
-                                	<label for="">.</label>
-                                	<button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Cadastrar</button></div>
-                        	</div>
-                        </form>
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <form name="form_pesquisa" id="form_pesquisa" method="post" action="">
+                            	<label for="nome">Buscar Produto</label>
+                                <input type="text" class="form-control pesquisa" name="pesquisaProduto" id="pesquisaProduto" value="" placeholder="Pesquise por Nome, Categoria ou Descrição" tabindex="1">
+                        </div>
+                    </div>
+                    <br>
+                    <div id="contentLoading">
+                         <div id="loading"></div>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Categoria</th>
-                                <th>Nome do Produto</th>
-                                <th>Descrição</th>
-                                <th>Valor Unitário</th>
-                                <th>#</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach($produtos as $produto): ?>
-                            <tr>
-                                <td><?=$produto['codigo'];?></td>
-                                <td><?=$produto['categoria'];?></td>
-                                <td><strong><?=$produto['nome_produto'];?></strong></td>
-                                <td class="nome_f"><?=$produto['descricao'];?></td>
-                                <td>R$ <?=number_format($produto['valor_unit'],2,",",".");?></td>
-                                <td><a href="javascript:alterarDadosProduto(<?= $produto['codigo']; ?>)"><i class="fa fa-pencil-square-o fa-1x"></i> Editar</a></td>
-                            </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-
+                       <div id="MostraPesq"></div>
                         </div>
                     </div>
                 </div>
@@ -160,17 +173,74 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
 
-      <form action="alterarDadosProduto.php" method="POST" id="alterarDadosProduto">
-        <input type="hidden" name="id_produto">
-      </form>
+    <script src="js/plugins/footable/footable.all.min.js"></script>
 
-<script>
-     function alterarDadosProduto(id_produto){
-        f = document.getElementById('alterarDadosProduto');
-        f.id_produto.value = id_produto;
-        f.submit();
+    <!-- Page-Level Scripts -->
+<script type="text/javascript">
+        $(document).ready(function() {
+
+            $('.footable').footable();
+
+        });
+ 
+$(document).ready(function(){
+
+    //Aqui a ativa a imagem de load
+    function loading_show(){
+        $('#loading').html("<img src='css/loading.gif'/>").fadeIn('fast');
     }
-</script>
+
+    //Aqui desativa a imagem de loading
+    function loading_hide(){
+        $('#loading').fadeOut('fast');
+    }
+
+    // aqui a fun?o ajax que busca os dados em outra pagina do tipo html, n? ?json
+    function load_dados(valores, page, div)
+    {
+        $.ajax
+            ({
+                type: 'POST',
+                dataType: 'html',
+                url: page,
+                beforeSend: function(){//Chama o loading antes do carregamento
+                      loading_show();
+                },
+                data: valores,
+                success: function(msg)
+                {
+                    loading_hide();
+                    var data = msg;
+                    $(div).html(data).fadeIn();
+                }
+            });
+    }
+
+    //Aqui eu chamo o metodo de load pela primeira vez sem parametros para pode exibir todos
+    load_dados(null, 'PesqProdutos.php', '#MostraPesq');
+
+
+    //Aqui uso o evento key up para começar a pesquisar, se valor for maior q 0 ele faz a pesquisa
+    $('#pesquisaProduto').keyup(function(){
+
+        //o serialize retorna uma string pronta para ser enviada
+        var valores = $('#form_pesquisa').serialize()
+
+        //pegando o valor do campo #pesquisaProduto
+        var $parametro = $(this).val();
+
+        if($parametro.length >= 1)
+        {
+            load_dados(valores, 'PesqProdutos.php', '#MostraPesq');
+        }else
+        {
+            load_dados(null, 'PesqProdutos.php', '#MostraPesq');
+        }
+    });
+
+    });
+    </script>
+
 </body>
 
 </html>

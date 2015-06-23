@@ -127,7 +127,8 @@ require 'functions/functions.php';
 						   $_POST['categoria'],
 						   $valor,
 						   $_POST['descricao'],
-						   $_SESSION['id_produto']);
+						   $_SESSION['id_produto'],
+						   $_POST['status']);
 		$_SESSION['msg_sucesso'] = "Produto alterado com sucesso!";
 		unset($_SESSION['id_produto']);
 		header('Location: produtos.php');

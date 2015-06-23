@@ -407,7 +407,8 @@ try {
 		      		p.id AS codigo,
 					p.valor AS valor_unit,
 		     		c.nome AS categoria,
-          			p.id_restaurante AS cod_restaurante
+          			p.id_restaurante AS cod_restaurante,
+          			p.status AS status
 
 			FROM produtos p
 		  	INNER JOIN categorias c
@@ -425,12 +426,12 @@ try {
  	 echo $e->getMessage();
 	}
 }
-function cadastra_produto($nome,$valor,$descricao,$id_restaurante,$id_categoria)
+function cadastra_produto($nome,$valor,$descricao,$id_restaurante,$id_categoria,$status)
 {
 	global $pdo;
 try{
-	$sql = "INSERT INTO produtos (nome, valor, id_restaurante, descricao, id_categoria)
-					 	  VALUES (:nome, :valor, :restaurante, :descricao, :categoria)";
+	$sql = "INSERT INTO produtos (nome, valor, id_restaurante, descricao, id_categoria, status)
+					 	  VALUES (:nome, :valor, :restaurante, :descricao, :categoria, :status)";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('nome',$nome);
@@ -438,6 +439,7 @@ try{
 	$cmd->bindParam('restaurante',$id_restaurante);
 	$cmd->bindParam('descricao',$descricao);
 	$cmd->bindParam('categoria',$id_categoria);
+	$cmd->bindParam('status',$status);
 	$cmd->execute();
 
 }catch(PDOException $e){
@@ -973,12 +975,12 @@ try{
 	}
 }
 
-function alteraDadosProduto($nome, $id_categoria, $valor, $descricao, $id_produto)
+function alteraDadosProduto($nome, $id_categoria, $valor, $descricao, $id_produto, $status)
 {
 	global $pdo;
 try{
 	$sql = "UPDATE produtos SET nome = :nome, id_categoria = :id_categoria, valor = :valor,
-						descricao = :descricao WHERE id = :id_produto";
+						descricao = :descricao, status = :status WHERE id = :id_produto";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('nome',$nome);
@@ -986,6 +988,7 @@ try{
 	$cmd->bindParam('valor',$valor);
 	$cmd->bindParam('descricao',$descricao);
 	$cmd->bindParam('id_produto',$id_produto);
+	$cmd->bindParam('status',$status);
 	$cmd->execute();
 
 }catch(PDOException $e){

@@ -117,9 +117,16 @@ if($verifica == true){
                            </div>
                            <br>
                            <div class="row">
-                               <div class="col-md-12">
-                                   <label for="descricao">Descrição</label>
-                                    <input type="text" class="form-control" name="descricao" value="<?=$produto['descricao']?>" id="descricao">
+                               <div class="col-md-9">
+                                  <label for="descricao">Descrição</label>
+                                  <input type="text" class="form-control" name="descricao" value="<?=$produto['descricao']?>" id="descricao">
+                               </div>
+                               <div class="col-md-3">
+                               <label for="status">Status</label>
+                                  <select name="status" class="form-control" id="status">
+                                    <option value="1">Ativado</option>
+                                    <option value="0">Desativado</option>
+                                  </select>
                                </div>
                            </div>
 

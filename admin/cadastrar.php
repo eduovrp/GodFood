@@ -37,7 +37,7 @@ if($_POST){
 			$_SESSION['categoria'] = $_POST['categoria'];
 				$valor = str_replace(",",".", $_POST['valor']);
 			 	cadastra_produto($_POST['nome'], $valor, $desc,
-			 						 $_SESSION['restaurante'],$_POST['categoria']);
+			 						 $_SESSION['restaurante'],$_POST['categoria'],$_POST['status']);
 
 			 	$_SESSION['msg_sucesso'] = "Produto cadastrado com sucesso";
 			 	header('Location: produtos.php');
