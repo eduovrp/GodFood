@@ -58,6 +58,9 @@ $niveis = buscaNiveisUsuarios();
                         <li>
                             <a href="index.php">Inicio</a>
                         </li>
+                        <li>
+                            Administrar
+                        </li>
                         <li class="active">
                             <strong>Gerenciar Funcionarios</strong>
                         </li>

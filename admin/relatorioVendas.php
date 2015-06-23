@@ -57,10 +57,13 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
                     <h1>Relatório de Vendas</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.html">Inicio</a>
+                            <a href="index.php">Inicio</a>
+                        </li>
+                        <li>
+                            Relatórios
                         </li>
                         <li class="active">
-                            <strong>Relatório</strong>
+                            <strong>Vendas</strong>
                         </li>
                     </ol>
                 </div>

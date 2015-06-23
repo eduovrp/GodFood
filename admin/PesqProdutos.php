@@ -1,23 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 	<meta charset="UTF-8">
-	    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
+	   
     <link href="css/style_alternative.css" rel="stylesheet">
 
     <!-- FooTable -->
     <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
     
-
-    <script src="js/jquery.min.js" type="text/javascript"></script>
-
-        <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
     <script src="js/plugins/footable/footable.all.min.js"></script>
 
     <!-- Page-Level Scripts -->
@@ -48,7 +38,7 @@ if(!isset($_SESSION))
 	$msg .="		<tr>";
 	$msg .="			<th data-toggle='true'>Nome do Produto</th>";
 	$msg .="			<th data-hide='phone'>Categoria</th>";
-	$msg .="			<th data-hide='all'>Descrição</th>";
+	$msg .="			<th class='desc' data-hide='all'>Descrição</th>";
 	$msg .="			<th data-hide='phone'>Valor</th>";
 	$msg .="			<th data-hide='phone'>Status</th>";
 	$msg .="			<th data-sort-ignore='true'>Ação</th>";

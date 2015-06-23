@@ -55,6 +55,9 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                         <li>
                             <a href="index.php">Inicio</a>
                         </li>
+                        <li>
+                            Gerenciar
+                        </li>
                         <li class="active">
                             <strong>Adicionais</strong>
                         </li>

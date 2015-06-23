@@ -31,12 +31,8 @@ if ($login->usuarioLogado() == true) {
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style_alternative.css" rel="stylesheet">
-
-    <!-- FooTable -->
-    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
     
-
-    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery-2.1.1.js"></script>
     <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
 </head>
 
@@ -58,6 +54,9 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.php">Inicio</a>
+                        </li>
+                        <li>
+                            Gerenciar
                         </li>
                         <li class="active">
                             <strong>Produtos</strong>
@@ -122,7 +121,7 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                      <div class="col-sm-1">
                         <div class="form-group">
                             <label>&nbsp;</label>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
+                            <button type="submit" class="btn btn-primary btn-outline"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
                     </form>
                         </div>
                     </div>
@@ -135,10 +134,21 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                     <div class="row">
-                        <div class="col-lg-12">
-                        <form name="form_pesquisa" id="form_pesquisa" method="post" action="">
-                            	<label for="nome">Buscar Produto</label>
+                        <form name="form_pesquisa" id="form_pesquisa" method="post" action="updates.php">
+                            <div class="col-lg-8">
                                 <input type="text" class="form-control pesquisa" name="pesquisaProduto" id="pesquisaProduto" value="" placeholder="Pesquise por Nome, Categoria ou Descrição" tabindex="1">
+                            </div>
+                            <div class="col-lg-2">
+                                <select name="status" class="form-control">
+                                    <option value="1" selected>Ativar</option>
+                                    <option value="0">Desativar</option>
+                                </select>
+                            </div>
+                        <div class="col-lg-1">
+                        <button type="submit" class="btn btn-warning btn-outline"><i class='fa fa-pencil-square-o fa-1x'></i> Alterar Status </button>
+                        </div>
+                        <input type="hidden" name="alteraStatus" value="yep">
+                        </form>
                         </div>
                     </div>
                     <br>
@@ -153,7 +163,6 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
             </div>
         </div>
      </div>
-     </div>
             <div class="footer">
                 <div>
                     <strong>Copyright &copy;</strong> - GodFood - Delivery  2015
@@ -164,7 +173,6 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
  </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -173,15 +181,8 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
 
-    <script src="js/plugins/footable/footable.all.min.js"></script>
-
     <!-- Page-Level Scripts -->
 <script type="text/javascript">
-        $(document).ready(function() {
-
-            $('.footable').footable();
-
-        });
  
 $(document).ready(function(){
 

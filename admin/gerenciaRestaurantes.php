@@ -67,6 +67,9 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
                         <li>
                             <a href="index.php">Inicio</a>
                         </li>
+                        <li>
+                            Administrar
+                        </li>
                         <li class="active">
                             <strong>Gerenciar Restaurantes</strong>
                         </li>

@@ -49,7 +49,10 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                     <h1>Categorias</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.html">Inicio</a>
+                            <a href="index.php">Inicio</a>
+                        </li>
+                        <li>
+                            Gerenciar
                         </li>
                         <li class="active">
                             <strong>Categorias</strong>
