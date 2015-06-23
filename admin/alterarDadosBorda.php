@@ -77,7 +77,7 @@ $categorias = busca_categorias($_SESSION['restaurante']);
                 <?php include 'mensagens.php';?>
                <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
 
@@ -87,11 +87,11 @@ $categorias = busca_categorias($_SESSION['restaurante']);
                     <div class="ibox-content">
                        <div class="input-group">
                            <div class="row">
-                               <div class="col-md-5">
+                               <div class="col-md-4">
                                    <label for="nome">Nome do Produto</label>
                                     <input type="text" class="form-control" name="nome" id="nome" value="<?=$borda['nome']?>" required>
                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                    <label for="cpf">Categoria</label>
                                     <select name="categoria" class="form-control" disabled="disabled">
                                   <?php foreach($categorias as $categoria): 
@@ -101,11 +101,18 @@ $categorias = busca_categorias($_SESSION['restaurante']);
                                   <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                    <label for="valor">Valor</label>
                                    <?php $valor = str_replace(".",",", $borda['valor']);?>
                                     <input type="text" class="form-control" name="valor" id="valor" value="<?=$valor?>" required>
                                     <script type="text/javascript">$("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
+                               </div>
+                               <div class="col-md-3">
+                               <label for="status">Status</label>
+                                  <select name="status" class="form-control" id="status">
+                                    <option value="1">Ativado</option>
+                                    <option value="0">Desativado</option>
+                                  </select>
                                </div>
                            </div>
                           <br>

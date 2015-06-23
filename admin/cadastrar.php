@@ -140,7 +140,7 @@ if($_POST){
 
 	 	/* Cadastra Borda */
 
-		if(isset($_POST['adicional'])){
+		if(isset($_POST['bordas'])){
 			if(isset($_SESSION['restaurante']) && isset($_POST['categoria'])){
 
 			if($_POST['categoria'] > 0) {
@@ -149,7 +149,7 @@ if($_POST){
 
 				$valor = str_replace(",",".", $_POST['valor']);
 
-			 	cadastraBorda($_POST['nome'], $valor, $_POST['categoria']);
+			 	cadastraBorda($_POST['nome'], $valor, $_POST['categoria'],$_POST['status']);
 
 			 		$_SESSION['categoria'] = $_POST['categoria'];
 			 		$_SESSION['msg_sucesso'] = "Borda recheada cadastrado com sucesso";

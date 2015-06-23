@@ -142,8 +142,9 @@ require 'functions/functions.php';
 		alteraDadosBorda($_SESSION['id_borda'],
 						 $_POST['nome'],
 						 $_POST['categoria'],
-						 $valor);
-		$_SESSION['msg_sucesso'] = "Borda recheada alterada com sucesso!";
+						 $valor,
+						 $_POST['status']);
+		$_SESSION['msg_sucesso'] = "Alterações realizadas com sucesso!";
 		unset($_SESSION['id_borda']);
 		header('Location: bordas.php');
 	}
@@ -178,6 +179,25 @@ require 'functions/functions.php';
 		} else {
 			$_SESSION['mensagem'] = "Para ativar/desativar varios produtos você precisa pesquisar pelo nome, categoria ou descrição no campo de pesquisa. Para alterar o status de apenas um produto clique em EDITAR na linha do produto desejado.";
 			header('Location: produtos.php');
+		}
+	}
+
+	/* Altera Status da Borda usando o campo de pesquisa de bordas.php */
+
+	if(isset($_POST['alteraStatusBorda'])){
+		if($_POST['status'] == 1){
+			$status = 'Ativados';
+		} else {
+			$status = 'Desativados';
+		}
+		
+		if(strlen($_POST['pesquisaBorda']) > 1){
+			alteraStatusVariasBordas($_POST['pesquisaBorda'], $_POST['status'], $_SESSION['restaurante']);
+			$_SESSION['msg_sucesso'] = "Todos os itens com o termo <strong>".$_POST['pesquisaBorda']."</strong> foram <strong>".$status."</strong>";
+			header('Location: bordas.php');
+		} else {
+			$_SESSION['mensagem'] = "Para ativar/desativar varios itens você precisa pesquisar pelo nome ou categoria no campo de pesquisa abaixo. Para alterar o status de apenas um item clique em EDITAR na linha do item desejado.";
+			header('Location: bordas.php');
 		}
 	}
 	
