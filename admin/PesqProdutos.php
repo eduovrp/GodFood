@@ -38,7 +38,7 @@ if(!isset($_SESSION))
 	$msg .="		<tr>";
 	$msg .="			<th data-toggle='true'>Nome do Produto</th>";
 	$msg .="			<th data-hide='phone'>Categoria</th>";
-	$msg .="			<th class='desc' data-hide='all'>Descrição</th>";
+	$msg .="			<th data-hide='all'>Descrição</th>";
 	$msg .="			<th data-hide='phone'>Valor</th>";
 	$msg .="			<th data-hide='phone'>Status</th>";
 	$msg .="			<th data-sort-ignore='true'>Ação</th>";
@@ -78,7 +78,7 @@ if(!isset($_SESSION))
 							foreach ($resultado as $res) {
 
 	$msg .="				<tr>";
-	$msg .="					<td>".$res['nome_produto']."</td>";
+	$msg .="					<td class='bold'>".$res['nome_produto']."</td>";
 	$msg .="					<td>".$res['categoria']."</td>";
 	$msg .="					<td>".$res['descricao']."</td>";
 	$msg .="					<td>R$ ".number_format($res['valor_unit'],2,",",".")."</td>";

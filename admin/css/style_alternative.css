@@ -47,6 +47,9 @@ h5 {
   margin-bottom: 5px;
   margin-top: -5px;
 }
+td.bold{
+  font-weight: 600;
+}
 
 
 .nav > li > a {

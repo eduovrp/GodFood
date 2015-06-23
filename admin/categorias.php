@@ -76,16 +76,19 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                     <div class="ibox-title">
                         <form action="cadastrar.php" method="POST" accept-charset="utf-8">
                         <div class="row">
-                            <div class="col-md-5">
-                            <input type="text" class="form-control" name="nome_categoria" placeholder="Nome da Categoria">
+                            <div class="col-md-6">
+                            <label for="nome_categoria">Nome da Categoria</label>
+                            <input type="text" class="form-control" name="nome_categoria" id="nome_categoria" placeholder="Nome da Categoria">
                             </div>
-                            <div class="col-md-4">
-                            <h3>
-                            <label class="checkb">
-                                <input type="checkbox" class="i-checks" name="2sabores"> Aceitar 2 sabores? </label>
-                            </h3>
+                            <div class="col-md-3">
+                            <label for="2sabores">Aceitar 2 Sabores?</label>
+                            <select name="2sabores" id="2sabores" class="form-control">
+                                <option value="0">Não</option>
+                                <option value="1">Sim</option>
+                            </select>
                             </div>
                             <div class="col-md-2">
+                            <label>&nbsp;</label>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
                             </div>
                             </div>

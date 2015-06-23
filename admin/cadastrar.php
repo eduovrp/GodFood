@@ -11,7 +11,7 @@ if($_POST){
 
 	if(isset($_SESSION['restaurante']) && isset($_POST['nome_categoria'])) {
 
-		if(isset($_POST['2sabores'])){
+		if($_POST['2sabores'] == 1){
 			$DoisSabor = 'Sim';
 		} else {
 			$DoisSabor = 'Não';
