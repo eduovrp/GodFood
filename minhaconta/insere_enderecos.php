@@ -62,19 +62,19 @@ require '../functions/registro.php';
 					<div class="col-md-5">
 					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 						<label for="logradouro">LOGRADOURO * (Ex: Rua 14, Avenida Central, Etc..)</label>
-						<input type="text" name="logradouro" required>
+						<input type="text" name="logradouro" id="logradouro" required>
 					 </div>
 					 </div>
 					 <div class="col-md-1">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						<label for="numero">NUMERO *</label>
-						<input type="text" name="numero" required>
+						<input type="text" name="numero" id="numero" required>
 					 </div>
 					 </div>
 					 <div class="col-md-3">
 					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 						 <label for="bairro">BAIRRO *</label>
-						 <input type="text" name="bairro" required>
+						 <input type="text" name="bairro" id="bairro" required>
 					 </div>
 					 </div>
 					</div>
@@ -82,19 +82,19 @@ require '../functions/registro.php';
 					<div class="col-md-5">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						 <label for="cidade">CIDADE *</label>
-						 <input type="text" name="cidade"  required>
+						 <input type="text" name="cidade" id="cidade"  required>
 					 </div>
 					 </div>
 					 <div class="col-md-1">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						 <label for="estado">ESTADO * </label>
-						 <input type="text" name="estado"  required>
+						 <input type="text" name="estado" id="estado"  required>
 					 </div>
 					 </div>
 					 <div class="col-md-3">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						 <label for="cep">CEP * </label>
-						 <input type="text" name="cep" id="cep" required>
+						 <input type="text" name="cep" id="cep" placeholder="_____-___" required>
 					 </div>
 					 </div>
 					 </div>
@@ -114,13 +114,13 @@ require '../functions/registro.php';
 						    <div class="col-md-4">
 						     <div class="wow fadeInLeft" data-wow-delay="0.4s">
 								<label for="complemento">COMPLEMENTO</label>
-								<input type="text" name="complemento">
+								<input type="text" name="complemento" id="complemento">
 					 		</div>
 					 		</div>
 					 		<div class="col-md-5">
 							 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 								<label for="referencia">REFERENCIA</label>
-								<input type="text" name="referencia">
+								<input type="text" name="referencia" id="referencia">
 							 </div>
 							 </div>
 							 </div>

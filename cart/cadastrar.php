@@ -57,46 +57,47 @@ include 'mensagens_cad.php';
 	<div class="main">
 	   <div class="container">
 		  <div class="register">
-		  	  <form action="registro.php" method="POST">
+		  	  <form action="registro.php" id="form_cadastrar" method="POST">
 				 <div class="register-top-grid">
 					<h3>INFORMAÇÕES PESSOAIS</h3>
 					<div class="col-md-6">
 					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 						<label for="nome">NOME COMPLETO *</label>
-						<input type="text" name="nome" required>
+						<input type="text" name="nome" required tabindex="1">
 					 </div>
 					 </div>
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						<label for="CPF">CPF *</label>  - digite apenas numeros.
-						<input type="text" name="cpf" id="cpf" placeholder="___.___.___-__" maxlength="14" required>
+						<input type="text" name="cpf" id="cpf" placeholder="___.___.___-__" maxlength="14" required tabindex="2">
 					 </div>
 					 </div>
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						 <label for="email">EMAIL *</label>
-						 <input type="text" name="email" placeholder="email@exemplo.com.br" required>
+						 <input type="text" name="email" placeholder="email@exemplo.com.br" required tabindex="3">
 					 </div>
 					 </div>
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						 <label for="cep">CEP *</label> - digite apenas numeros.
-						 <input type="text" name="cep" id="cep" placeholder="_____-___" maxlength="9" required>
+						 <input type="text" name="cep" id="cep" placeholder="_____-___" maxlength="9" required tabindex="4">
 					 </div>
 					 </div>
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 					 	 <label for="celular">CELULAR </label> - digite apenas numeros.
-						 <input type="text" name="celular" id="celular" placeholder="(__) - _____-____" required>
+						 <input type="text" name="celular" id="celular" required placeholder="(17) - 99999-9999" tabindex="5">
 					 </div>
 					 </div>
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						 <label for="telefone">TELEFONE </label> - digite apenas numeros.
-						 <input type="text" name="telefone" id="telefone" placeholder="(__) - ____-____">
+						 <input type="text" name="telefone" id="telefone" placeholder="(17) - 9999-9999" tabindex="6">
 					 </div>
 					 </div>
- <h4><strong>Campos com ( * ) são obrigatórios. </strong></h4>
+
+					 <h4><strong>Campos com ( * ) são obrigatórios. </strong></h4>
 					 <div class="clearfix"> </div>
 					 <div class="col-md-12">
 					   <a class="news-letter" href="#">
@@ -111,26 +112,26 @@ include 'mensagens_cad.php';
 						    <h3>INFORMAÇÕES DE LOGIN</h3>
 						    <div class="col-md-6">
 						     <div class="wow fadeInLeft" data-wow-delay="0.4s">
-								<label for="usuario">USUARIO *</label>
-								<input type="text" name="usuario" required>
+								<label for="usuario">USUARIO * - apenas letras e numeros, sem espaços</label>
+								<input type="text" name="usuario" required pattern="[A-Za-z0-9\s]+$" title="Apenas Letras e Numeros" tabindex="7">
 					 		</div>
 					 		</div>
 					 		<div class="col-md-6">
 							 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-								<label for="senha">SENHA *</label>
-								<input type="password" name="senha" required>
+								<label for="senha">SENHA * (6 ou mais caracteres)</label>
+								<input type="password" name="senha" required pattern=".{6,}" title="Seis ou mais caracteres" tabindex="8">
 							 </div>
 							 </div>
 							 <div class="col-md-6">
 							 <div class="wow fadeInRight" data-wow-delay="0.4s">
-								<label for="confirma_senha">CONFIRME A SENHA *</label>
-								<input type="password" name="confirma_senha" required>
+								<label for="confirma_senha">CONFIRME A SENHA * (6 ou mais caracteres)</label>
+								<input type="password" name="confirma_senha" required pattern=".{6,}" title="Seis ou mais caracteres" tabindex="9">
 							 </div>
 							 </div>
 					 </div>
 				<div class="clearfix"> </div>
 				<div class="register-but">
-					   <input type="submit" value="Cadastrar">
+					   <input type="submit" value="Cadastrar" tabindex="10">
 					   <div class="clearfix"> </div>
 				   </form>
 				</div>

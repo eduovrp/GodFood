@@ -365,6 +365,26 @@ try{
     }
 }
 
+function alteraSenhaUsuario($senha, $id_usuario)
+{
+    global $pdo;
+try{
+
+    $senha1 = sha1($senha);
+    $senha_hash = hash('sha512',$senha1);
+
+    $sql = "UPDATE usuarios SET senha = :senha WHERE id_usuario = :id_usuario";
+
+    $cmd = $pdo->prepare($sql);
+    $cmd->bindParam('senha',$senha_hash);
+    $cmd->bindParam('id_usuario',$id_usuario);
+    $cmd->execute();
+
+}catch(PDOException $e){
+     echo $e->getMessage();
+    }
+}
+
 function enviaEmailResetSenha($email)
 {
     global $pdo;

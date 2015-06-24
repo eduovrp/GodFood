@@ -36,6 +36,14 @@ ul{
 label{
 	margin:0;
 }
+
+input[type="text"]:disabled {
+	cursor: not-allowed;
+}
+
+.margin{
+	padding-left: 15px;
+}
 .header {
 	border-top: 3px solid #9a2529;
 }

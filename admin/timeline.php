@@ -13,6 +13,8 @@ if ($login->usuarioLogado() == true) {
 require 'functions/timeline.php';
 
     verifica_post_tl();
+
+    $_SESSION['return_url'] = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -113,7 +115,6 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 
     
 <?php
-$_SESSION['return_url'] = base64_encode($url="https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
 date_default_timezone_set('America/Sao_Paulo');
 require '../functions/pedidos.php';

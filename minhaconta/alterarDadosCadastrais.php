@@ -86,25 +86,25 @@ if($_GET){
 					 </div>
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-						<label for="CPF">CPF *</label>
-						<input type="text" name="cpf" id="cpf" maxlength="14" value="<?=$dados['cpf']?>" required readonly>
+						<label for="CPF">CPF</label>
+						<input type="text" name="cpf" id="cpf" maxlength="14" value="<?=$dados['cpf']?>" required disabled>
+					 </div>
+					 </div>
+					 <div class="col-md-6">
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+						 <label for="email">EMAIL</label>
+						 <input type="text" name="email" value="<?=$dados['email']?>" required disabled>
 					 </div>
 					 </div>
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-						 <label for="email">EMAIL *</label>
-						 <input type="text" name="email" value="<?=$dados['email']?>" required readonly>
+						 <label for="login">USUARIO</label>
+						 <input type="text" name="login" id="login" value="<?=$dados['login']?>" disabled required>
 					 </div>
 					 </div>
 					 <div class="col-md-6">
-					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-						 <label for="login">USUARIO *</label>
-						 <input type="text" name="login" id="login" value="<?=$dados['login']?>" readonly required>
-					 </div>
-					 </div>
-					 <div class="col-md-6">
-					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-					 	 <label for="celular">CELULAR </label> - digite apenas numeros.
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
+					 	 <label for="celular">CELULAR *</label> - digite apenas numeros.
 						 <input type="text" name="celular" id="celular" value="<?=$dados['celular']?>" required>
 					 </div>
 					 </div>
@@ -114,8 +114,26 @@ if($_GET){
 						 <input type="text" name="telefone" id="telefone" value="<?=$dados['telefone']?>">
 					 </div>
 					 </div>
+					 <br>
+					 	<h3>ALTERAR SENHA</h3>
+					 	<p class="text-muted margin"><strong>Atenção:</strong> Você pode alterar seus dados sem alterar sua senha, assim como pode alterar sua senha sem alterar seus dados cadastrais. <br>
+					 	<strong>obs: </strong>A senha precisa ter 6 ou mais caracteres.</p>
+					 	<br>
+					  <div class="col-md-6">
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						 <label for="senha">NOVA SENHA</label>
+						 <input type="password" name="senha" id="senha">
+					 </div>
+					 </div>
+					  <div class="col-md-6">
+					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+						 <label for="confirma_senha">CONFIRME A NOVA SENHA</label>
+						 <input type="password" name="confirma_senha" id="confirma_senha">
+					 </div>
+					 </div>
 				<div class="register-but">
 					   <input type="submit" value="Atualizar Dados">
+					   <a href="../minhaconta/" class="btn btn-default btn-lg" title="voltar">Voltar</a>
 					   <div class="clearfix"> </div>
 				   </form>
 				</div>
