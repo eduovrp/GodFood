@@ -437,7 +437,7 @@ function busca_adicionais($id_categoria)
 {
 	global $pdo;
 try{
-	$sql = "SELECT * FROM adicionais WHERE id_categoria = :id_categoria";
+	$sql = "SELECT * FROM adicionais WHERE id_categoria = :id_categoria AND status = 1";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('id_categoria',$id_categoria);
@@ -454,7 +454,7 @@ function busca_bordas($id_categoria)
 {
 	global $pdo;
 try{
-	$sql = "SELECT * FROM bordas WHERE id_categoria = :id_categoria";
+	$sql = "SELECT * FROM bordas WHERE id_categoria = :id_categoria AND status = 1";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('id_categoria',$id_categoria);
@@ -471,7 +471,7 @@ function verificaBorda($id_categoria)
 {
 	global $pdo;
 try{
-	$sql = "SELECT * FROM bordas WHERE id_categoria = :id_categoria";
+	$sql = "SELECT * FROM bordas WHERE id_categoria = :id_categoria AND status = 1";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('id_categoria',$id_categoria);
@@ -492,7 +492,7 @@ function verificaAdicional($id_categoria)
 {
 	global $pdo;
 try{
-	$sql = "SELECT * FROM adicionais WHERE id_categoria = :id_categoria";
+	$sql = "SELECT * FROM adicionais WHERE id_categoria = :id_categoria AND status = 1";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('id_categoria',$id_categoria);

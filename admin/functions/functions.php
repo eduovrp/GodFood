@@ -1069,17 +1069,18 @@ try{
 	}
 }
 
-function cadastraAdicional($nome, $valor, $id_categoria)
+function cadastraAdicional($nome, $valor, $id_categoria, $status)
 {
 	global $pdo;
 try{
-	$sql = "INSERT INTO adicionais (nome, valor, id_categoria)
-				VALUES(:nome, :valor, :id_categoria)";
+	$sql = "INSERT INTO adicionais (nome, valor, id_categoria, status)
+				VALUES(:nome, :valor, :id_categoria, :status)";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('nome',$nome);
 	$cmd->bindParam('valor',$valor);
 	$cmd->bindParam('id_categoria',$id_categoria);
+	$cmd->bindParam('status',$status);
 	$cmd->execute();
 
 }catch(PDOException $e){
@@ -1189,11 +1190,11 @@ try{
 	}
 }
 
-function alteraDadosAdicional($id_adicional,$nome,$id_categoria,$valor)
+function alteraDadosAdicional($id_adicional,$nome,$id_categoria,$valor,$status)
 {
 	global $pdo;
 try{
-	$sql = "UPDATE adicionais SET nome = :nome, valor = :valor, id_categoria = :id_categoria
+	$sql = "UPDATE adicionais SET nome = :nome, valor = :valor, id_categoria = :id_categoria, status = :status
 				WHERE id_adicional = :id_adicional";
 
 	$cmd = $pdo->prepare($sql);
@@ -1201,6 +1202,7 @@ try{
 	$cmd->bindParam('valor',$valor);
 	$cmd->bindParam('id_categoria',$id_categoria);
 	$cmd->bindParam('id_adicional',$id_adicional);
+	$cmd->bindParam('status',$status);
 	$cmd->execute();
 
 }catch(PDOException $e){
@@ -1557,6 +1559,34 @@ try{
 
 				 WHERE c.id_restaurante = :id_restaurante
 					AND b.nome LIKE :parametro 
+						OR c.nome LIKE :parametro";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('parametro',$parametro);
+	$cmd->bindParam('status',$status);
+	$cmd->bindParam('id_restaurante',$id_restaurante);
+	$cmd->execute();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}
+
+
+function alteraStatusVariosAdicionais($parametro,$status,$id_restaurante)
+{
+
+	$parametro = "%".$parametro."%";
+	global $pdo;
+try{
+	$sql = "UPDATE adicionais a
+			INNER JOIN categorias c
+			ON a.id_categoria = c.id_categoria
+
+				 SET a.status = :status 
+
+				 WHERE c.id_restaurante = :id_restaurante
+					AND a.nome LIKE :parametro 
 						OR c.nome LIKE :parametro";
 
 	$cmd = $pdo->prepare($sql);

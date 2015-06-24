@@ -36,8 +36,82 @@ if ($login->usuarioLogado() == true) {
 
 <body>
     <div id="wrapper">
+
+             <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                    <span><h2 class="admin">Administração</h2></span>
+<?php if(isset($_SESSION['restaurante'])){
+$restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
+} else {
+    $restaurante_ativo = null;
+}
+$nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
+?>
+
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold nome_fantasia"><?=$restaurante_ativo['nome_fantasia']?></strong>
+                             </span> <span class="text-muted text-xs block">&nbsp;&nbsp;<?= $_SESSION['nome'];?> </span>
+                            <span class="admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$nivelUsuario['sub_nome']?><br></span>
+                             </span>
+                    </div>
+                </li>
+                <li>
+                    <a href="index.php"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
+                </li>
+                <li>
+                    <a href="timeline.php"><i class="fa fa-cutlery"></i> <span class="nav-label">Pedidos</span> </span>
+                <?php
+                    if(isset($_SESSION['restaurante'])){
+                        $count = verificaQtdPedidosNav($_SESSION['restaurante']); ?>
+                    <span class="label label-success pull-right"><?=$count['pedidos'];?></span>
+                <?php } ?>
+                </a>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-plus"></i> <span class="nav-label">Gerenciar</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="categorias.php">Categorias</a></li>
+                        <li><a href="produtos.php">Produtos</a></li>
+                        <li><a href="adicionais.php">Adicionais</a></li>
+                        <li class="active"><a href="bordas.php">Bordas Recheadas</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">Relatórios</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="relatorioVendas.php">Vendas</a></li>
+                    </ul>
+                </li>
+
+                 <li>
+                    <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Administrar</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="gerenciaRestaurantes.php">Restaurante</a></li>
+                        <li><a href="gerenciaFuncionarios.php">Funcionarios</a></li>
+                    </ul>
+                </li>
+                <li>
+                   <a href="cidade_entrega.php"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
+                </li>
+                <?php if($_SESSION['id_nivel'] == 5){ ?>
+                <li>
+                    <a href="cadastrar_cidade.php"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
+                </li>
+                <li>
+                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Resutaurante</span></a>
+                </li>
+                <?php } ?>
+                <li>
+                    <a href="login.php?logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Sair</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    
 <?php
-include 'includes/nav.html';
 $_SESSION['id_borda'] = $_POST['id_borda'];
 if(isset($_SESSION['restaurante'])){
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);

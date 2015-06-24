@@ -1,4 +1,4 @@
-<?php
+           <?php
 if(!isset($_SESSION))
 {
   session_start();
@@ -24,22 +24,95 @@ if ($login->usuarioLogado() == true) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GodFood - Adicionais</title>
+    <title>GodFood - Bordas</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <link href="css/style_alternative.css" rel="stylesheet">
+    
+    <script src="js/jquery-2.1.1.js"></script>
     <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
 </head>
 
 <body>
     <div id="wrapper">
+
+         <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                    <span><h2 class="admin">Administração</h2></span>
+<?php if(isset($_SESSION['restaurante'])){
+$restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
+} else {
+    $restaurante_ativo = null;
+}
+$nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
+?>
+
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold nome_fantasia"><?=$restaurante_ativo['nome_fantasia']?></strong>
+                             </span> <span class="text-muted text-xs block">&nbsp;&nbsp;<?= $_SESSION['nome'];?> </span>
+                            <span class="admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$nivelUsuario['sub_nome']?><br></span>
+                             </span>
+                    </div>
+                </li>
+                <li>
+                    <a href="index.php"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
+                </li>
+                <li>
+                    <a href="timeline.php"><i class="fa fa-cutlery"></i> <span class="nav-label">Pedidos</span> </span>
+                <?php
+                    if(isset($_SESSION['restaurante'])){
+                        $count = verificaQtdPedidosNav($_SESSION['restaurante']); ?>
+                    <span class="label label-success pull-right"><?=$count['pedidos'];?></span>
+                <?php } ?>
+                </a>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-plus"></i> <span class="nav-label">Gerenciar</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="categorias.php">Categorias</a></li>
+                        <li><a href="produtos.php">Produtos</a></li>
+                        <li class="active"><a href="adicionais.php">Adicionais</a></li>
+                        <li><a href="bordas.php">Bordas Recheadas</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">Relatórios</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="relatorioVendas.php">Vendas</a></li>
+                    </ul>
+                </li>
+
+                 <li>
+                    <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Administrar</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="gerenciaRestaurantes.php">Restaurante</a></li>
+                        <li><a href="gerenciaFuncionarios.php">Funcionarios</a></li>
+                    </ul>
+                </li>
+                <li>
+                   <a href="cidade_entrega.php"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
+                </li>
+                <?php if($_SESSION['id_nivel'] == 5){ ?>
+                <li>
+                    <a href="cadastrar_cidade.php"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
+                </li>
+                <li>
+                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Resutaurante</span></a>
+                </li>
+                <?php } ?>
+                <li>
+                    <a href="login.php?logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Sair</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
 <?php
-include 'includes/nav.html';
 
 if(isset($_SESSION['restaurante'])){
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
@@ -67,76 +140,102 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                     <div class="title-action">
                           <div class="col-md-5">
                           <h2 align="center"><?=$restaurante_ativo['nome_fantasia'];?></h2>
-					      </div>
-	                </div>
+                          </div>
+                    </div>
                 </div>
             </div>
 
     <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="ibox-content m-b-sm border-bottom">
             <div class="row">
-                <?php include 'mensagens.php'; ?>
-               <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
-                <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                    <form action="cadastrar.php" method="POST" accept-charset="utf-8">
-                            <div class="input-group">
-                            	<div class="col-lg-5">
-                            		<label for="nome">Nome</label>
-                                	<input type="text" class="form-control" name="nome" id="nome" placeholder="Nome do Adicional" tabindex="1" required> </div>
-                                <div class="col-lg-2">
-                                	<label for="valor">Valor</label>
-                                	<input type="text" class="form-control" name="valor" id="valor" id="valor" tabindex="2" required></div>
-                                	<script type="text/javascript">$("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
-                                <div class="col-lg-4">
-                                	<label for="categoria">Categoria</label>
-                                <select class="form-control" name="categoria" id="categoria" tabindex="3">
-                                    <option value="0">Selecione a Categoria</option>
+            <div class="col-md-11">
+                <h1 align="center"> Cadastrar Adicional</h1>
+                <br>
+                </div>
+            </div>
+            <form action="cadastrar.php" method="POST" accept-charset="utf-8">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label" for="nome">Nome do Ingrediente</label>
+                            <input type="text" id="nome" name="nome" value="" placeholder="Nome do Ingrediente" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                           <label for="valor">Valor</label>
+                            <input type="text" class="form-control" name="valor" id="valor" id="valor" required>
+                            <script type="text/javascript">$("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="categoria">Categoria</label>
+                                <select class="form-control" name="categoria" id="categoria" required>
+                                    <option value="">Selecione a Categoria</option>
                             <?php foreach($categorias as $categoria): ?>
                                     <option value="<?=$categoria['id_categoria'];?>"
                             <?php if(isset($_SESSION['categoria']) && $_SESSION['categoria'] == $categoria['id_categoria']){
                                     echo 'selected';}?>> <?=$categoria['nome'];?></option>
                                 <?php endforeach; ?>
                                 </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label class="control-label" for="status">Status</label>
+                            <select name="status" id="status" class="form-control">
+                                <option value="1" selected>Ativado</option>
+                                <option value="0">Desativado</option>
+                            </select>
+                        </div>
+                    </div>
+                     <div class="col-sm-1">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="btn btn-primary btn-outline"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
+                        <input type="hidden" name="adicional" value="yep">
+                    </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <?php include 'mensagens.php'; ?>
+               <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                    <div class="row">
+                        <form name="form_pesquisa" id="form_pesquisa" method="post" action="updates.php">
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control pesquisa" name="pesquisaAdicional" id="pesquisaAdicional" value="" placeholder="Pesquise por Nome do Ingrediente ou Categoria" tabindex="1">
                             </div>
-                                <div class="col-lg-1">
-                                	<label for="">.</label>
-                                	<button type="submit" class="btn btn-primary" tabindex="4"><i class="fa fa-check fa-1x"></i> Cadastrar</button></div>
-                        	</div>
-                            <input type="hidden" name="adicional" value="yep">
+                            <div class="col-lg-2">
+                                <select name="status" class="form-control">
+                                    <option value="1" selected>Ativar</option>
+                                    <option value="0">Desativar</option>
+                                </select>
+                            </div>
+                        <div class="col-lg-1">
+                        <button type="submit" class="btn btn-warning btn-outline"><i class='fa fa-pencil-square-o fa-1x'></i> Alterar Status </button>
+                        </div>
+                        <input type="hidden" name="alteraStatusAdicional" value="yep">
                         </form>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="contentLoading">
+                         <div id="loading"></div>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Categoria</th>
-                                <th>Nome do Adicional</th>
-                                <th>Valor Unitário</th>
-                                <th>#</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach($adicionais as $adicional): ?>
-                            <tr>
-                                <td><?=$adicional['id_adicional'];?></td>
-                                <td><?=$adicional['categoria'];?></td>
-                                <td><strong><?=$adicional['nome'];?></strong></td>
-                                <td>R$ <?=number_format($adicional['valor'],2,",",".");?></td>
-                                <td><a href="javascript:alterarDadosAdicional(<?= $adicional['id_adicional']; ?>)"><i class="fa fa-pencil-square-o fa-1x"></i> Editar</a></td>
-                            </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-
+                       <div id="MostraPesq"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-     </div>
      </div>
             <div class="footer">
                 <div>
@@ -148,7 +247,6 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
  </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -157,17 +255,67 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
 
-      <form action="alterarDadosAdicional.php" method="POST" id="alterarDadosAdicional">
-        <input type="hidden" name="id_adicional">
-      </form>
+    <!-- Page-Level Scripts -->
+<script type="text/javascript">
+ 
+$(document).ready(function(){
 
-<script>
-     function alterarDadosAdicional(id_adicional){
-        f = document.getElementById('alterarDadosAdicional');
-        f.id_adicional.value = id_adicional;
-        f.submit();
+    //Aqui a ativa a imagem de load
+    function loading_show(){
+        $('#loading').html("<img src='css/loading.gif'/>").fadeIn('fast');
     }
-</script>
+
+    //Aqui desativa a imagem de loading
+    function loading_hide(){
+        $('#loading').fadeOut('fast');
+    }
+
+    // aqui a fun?o ajax que busca os dados em outra pagina do tipo html, n? ?json
+    function load_dados(valores, page, div)
+    {
+        $.ajax
+            ({
+                type: 'POST',
+                dataType: 'html',
+                url: page,
+                beforeSend: function(){//Chama o loading antes do carregamento
+                      loading_show();
+                },
+                data: valores,
+                success: function(msg)
+                {
+                    loading_hide();
+                    var data = msg;
+                    $(div).html(data).fadeIn();
+                }
+            });
+    }
+
+    //Aqui eu chamo o metodo de load pela primeira vez sem parametros para pode exibir todos
+    load_dados(null, 'PesqAdicionais.php', '#MostraPesq');
+
+
+    //Aqui uso o evento key up para começar a pesquisar, se valor for maior q 0 ele faz a pesquisa
+    $('#pesquisaAdicional').keyup(function(){
+
+        //o serialize retorna uma string pronta para ser enviada
+        var valores = $('#form_pesquisa').serialize()
+
+        //pegando o valor do campo #pesquisaAdicional
+        var $parametro = $(this).val();
+
+        if($parametro.length >= 1)
+        {
+            load_dados(valores, 'PesqAdicionais.php', '#MostraPesq');
+        }else
+        {
+            load_dados(null, 'PesqAdicionais.php', '#MostraPesq');
+        }
+    });
+
+    });
+    </script>
+
 </body>
 
 </html>

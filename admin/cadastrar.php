@@ -122,7 +122,7 @@ if($_POST){
 
 				$valor = str_replace(",",".", $_POST['valor']);
 
-			 	cadastraAdicional($_POST['nome'], $valor, $_POST['categoria']);
+			 	cadastraAdicional($_POST['nome'], $valor, $_POST['categoria'], $_POST['status']);
 
 			 		$_SESSION['categoria'] = $_POST['categoria'];
 			 		$_SESSION['msg_sucesso'] = "Adicional cadastrado com sucesso";

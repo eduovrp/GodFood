@@ -36,8 +36,80 @@ if ($login->usuarioLogado() == true) {
 
 <body>
     <div id="wrapper">
+             <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                    <span><h2 class="admin">Administração</h2></span>
+<?php if(isset($_SESSION['restaurante'])){
+$restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
+} else {
+    $restaurante_ativo = null;
+}
+$nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
+?>
+
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold nome_fantasia"><?=$restaurante_ativo['nome_fantasia']?></strong>
+                             </span> <span class="text-muted text-xs block">&nbsp;&nbsp;<?= $_SESSION['nome'];?> </span>
+                            <span class="admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$nivelUsuario['sub_nome']?><br></span>
+                             </span>
+                    </div>
+                </li>
+                <li>
+                    <a href="index.php"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
+                </li>
+                <li>
+                    <a href="timeline.php"><i class="fa fa-cutlery"></i> <span class="nav-label">Pedidos</span> </span>
+                <?php
+                    if(isset($_SESSION['restaurante'])){
+                        $count = verificaQtdPedidosNav($_SESSION['restaurante']); ?>
+                    <span class="label label-success pull-right"><?=$count['pedidos'];?></span>
+                <?php } ?>
+                </a>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-plus"></i> <span class="nav-label">Gerenciar</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="categorias.php">Categorias</a></li>
+                        <li><a href="produtos.php">Produtos</a></li>
+                        <li class="active"><a href="adicionais.php">Adicionais</a></li>
+                        <li><a href="bordas.php">Bordas Recheadas</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">Relatórios</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="relatorioVendas.php">Vendas</a></li>
+                    </ul>
+                </li>
+
+                 <li>
+                    <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Administrar</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="gerenciaRestaurantes.php">Restaurante</a></li>
+                        <li><a href="gerenciaFuncionarios.php">Funcionarios</a></li>
+                    </ul>
+                </li>
+                <li>
+                   <a href="cidade_entrega.php"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
+                </li>
+                <?php if($_SESSION['id_nivel'] == 5){ ?>
+                <li>
+                    <a href="cadastrar_cidade.php"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
+                </li>
+                <li>
+                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Resutaurante</span></a>
+                </li>
+                <?php } ?>
+                <li>
+                    <a href="login.php?logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Sair</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
 <?php
-include 'includes/nav.html';
 $_SESSION['id_adicional'] = $_POST['id_adicional'];
 if(isset($_SESSION['restaurante'])){
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
@@ -77,7 +149,7 @@ $categorias = busca_categorias($_SESSION['restaurante']);
                 <?php include 'mensagens.php';?>
                <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
 
@@ -87,11 +159,11 @@ $categorias = busca_categorias($_SESSION['restaurante']);
                     <div class="ibox-content">
                        <div class="input-group">
                            <div class="row">
-                               <div class="col-md-5">
+                               <div class="col-md-4">
                                    <label for="nome">Nome do Produto</label>
                                     <input type="text" class="form-control" name="nome" id="nome" value="<?=$adicional['nome']?>" required>
                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                    <label for="cpf">Categoria</label>
                                     <select name="categoria" class="form-control" disabled="disabled">
                                   <?php foreach($categorias as $categoria): 
@@ -101,11 +173,18 @@ $categorias = busca_categorias($_SESSION['restaurante']);
                                   <?php endforeach; ?>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                    <label for="valor">Valor</label>
                                    <?php $valor = str_replace(".",",", $adicional['valor']);?>
                                     <input type="text" class="form-control" name="valor" id="valor" value="<?=$valor?>" required>
                                     <script type="text/javascript">$("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
+                               </div>
+                               <div class="col-md-3">
+                               <label for="status">Status</label>
+                                  <select name="status" class="form-control" id="status">
+                                    <option value="1">Ativado</option>
+                                    <option value="0">Desativado</option>
+                                  </select>
                                </div>
                            </div>
                           <br>

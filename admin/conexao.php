@@ -37,8 +37,8 @@
 		public function conectar() {
 			try {
 				$this->pdo = new PDO("mysql:host=localhost;dbname=u288492055_food",
-								"root",
-								"",
+								"u288492055_admin",
+								"3eomu7hl69",
 								array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 			} catch (PDOException $e) {
 				print "Error!: " . $e->getMessage() . "<br/>";

@@ -149,7 +149,7 @@ require 'functions/functions.php';
 		header('Location: bordas.php');
 	}
 	
-	/* Alterar Dados da Borda */
+	/* Alterar Dados do Adicional */
 
 	if(isset($_POST['alterarDadosAdicional'])){
 		$valor = str_replace(",",".", $_POST['valor']);
@@ -157,7 +157,8 @@ require 'functions/functions.php';
 		alteraDadosAdicional($_SESSION['id_adicional'],
 						 $_POST['nome'],
 						 $_POST['categoria'],
-						 $valor);
+						 $valor,
+						 $_POST['status']);
 		$_SESSION['msg_sucesso'] = "Adicional alterado com sucesso!";
 		unset($_SESSION['id_adicional']);
 		header('Location: adicionais.php');
@@ -201,6 +202,24 @@ require 'functions/functions.php';
 		}
 	}
 	
+		/* Altera Status do Adicional usando o campo de pesquisa de adicionais.php */
+
+	if(isset($_POST['alteraStatusAdicional'])){
+		if($_POST['status'] == 1){
+			$status = 'Ativados';
+		} else {
+			$status = 'Desativados';
+		}
+		
+		if(strlen($_POST['pesquisaAdicional']) > 1){
+			alteraStatusVariosAdicionais($_POST['pesquisaAdicional'], $_POST['status'], $_SESSION['restaurante']);
+			$_SESSION['msg_sucesso'] = "Todos os itens com o termo <strong>".$_POST['pesquisaAdicional']."</strong> foram <strong>".$status."</strong>";
+			header('Location: adicionais.php');
+		} else {
+			$_SESSION['mensagem'] = "Para ativar/desativar varios itens você precisa pesquisar pelo nome ou categoria no campo de pesquisa abaixo. Para alterar o status de apenas um item clique em EDITAR na linha do item desejado.";
+			header('Location: adicionais.php');
+		}
+	}
 } else {
 	header('Location: index.php');
 }
