@@ -49,6 +49,7 @@ if(!isset($_SESSION))
 				require 'functions/pesquisas.php';
 
 					$resultado = pesquisaAdicionais($parametro, $_SESSION['restaurante']);
+					
 						//resgata os dados na tabela
 						if(count($resultado)){
 							foreach ($resultado as $res) {

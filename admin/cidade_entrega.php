@@ -166,7 +166,7 @@ $busca_cidades = mostra_cidades();
                                 <input type="text" class="form-control" name="taxa" id="taxa"></div>
                                 <script type="text/javascript">$("#taxa").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
                                 <div class="col-lg-1">
-                                <label for="">.</label>
+                                <label for="">&nbsp;</label>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Cadastrar</button></div>
                             </div>
                         </form>

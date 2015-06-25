@@ -46,32 +46,10 @@ if(!isset($_SESSION))
 	$msg .="	<tbody>";
 
 				//requerimos a classe de conexão
-				require_once('conexao.php');
+				require 'functions/pesquisas.php';
 
-				$restaurante = $_SESSION['restaurante'];
-					try {
-						$pdo = new Conexao();
-						$resultado = $pdo->select("SELECT b.nome AS nome,
-								   b.id_borda AS id_borda,
-							       b.valor AS valor,
-							       c.nome AS categoria,
-							       r.id_restaurante AS id_restaurante,
-							       b.status AS status
+				$resultado = pesquisaBordas($parametro, $_SESSION['restaurante']);
 
-							FROM bordas b
-							INNER JOIN categorias c
-							ON b.id_categoria = c.id_categoria
-							INNER JOIN restaurantes r
-							ON r.id_restaurante = c.id_restaurante WHERE r.id_restaurante = $restaurante
-								AND b.nome LIKE '%$parametro%' OR c.nome LIKE '%$parametro%'
-
-								ORDER BY c.nome");
-
-						$pdo->desconectar();
-
-						}catch (PDOException $e){
-							echo $e->getMessage();
-						}
 						//resgata os dados na tabela
 						if(count($resultado)){
 							foreach ($resultado as $res) {

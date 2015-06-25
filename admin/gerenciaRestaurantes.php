@@ -166,9 +166,11 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                             <div class="input-group">
+                            <?php if($_SESSION['id_nivel'] == 5){ ?>
                                 <div class="col-lg-1">
                                 	<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#cadastraNovo" <?=$disabled?>>Cadastrar Novo</button>
                                 </div>
+                            <?php } ?>
                         	</div>
                         </form>
                     </div>
@@ -223,6 +225,7 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
                 </div>
             </div>
         </div>
+      <?php if($_SESSION['id_nivel'] == 5){ ?>
         <div class="modal inmodal fade" id="cadastraNovo" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -306,7 +309,7 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
                            </div>
                        </div>
                 </div>
-
+            
                 <div class="modal-footer">
                     <input type="hidden" name="cadastrarRestaurante" value="cadastrarRestaurante">
                     <button type="button" class="btn btn-default btn-outline" data-dismiss="modal"><i class="fa fa-arrow-left fa-1x"></i> Cancelar</button>
@@ -316,7 +319,9 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
                 </div>
             </div>
         </div>
+    <?php } ?>
      </div>
+     
      </div>
             <div class="footer">
                 <div>
