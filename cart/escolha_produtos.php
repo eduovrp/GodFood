@@ -10,9 +10,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta charset="UTF-8">
 <title>GodFood - Pedido</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
+
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../web/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Shopping Cart Custon CSS -->
@@ -31,9 +30,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </script>
 <script type="text/javascript" src="../web/js/easing.js"></script>
 
- <script src="../web/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="inspinia/css/ladda.min.css">
 </head>
 <body>
     <!--  -->
@@ -195,8 +194,8 @@ if($_POST){
         <input type="hidden" name="return_url" value="<?=$current_url?>" />
         <input type="hidden" name="categoria_in" value="<?=$cat['id_categoria'];?>">
 
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Adcionar ao Carrinho</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close fa-1x"></i> Cancelar</button>
+                        <button type="submit" class="ladda-button btn btn-primary" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Adcionar ao Carrinho</button>
                     </div>
                 </div>
             </div>
@@ -284,13 +283,24 @@ if($_POST){
   </div>
 </div>
 
-</body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../web/js/jquery.min.js"></script>
+    <script src="../web/js/bootstrap.min.js"></script>
+
     <script src="inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Custom and plugin javascript -->
     <script src="inspinia/js/inspinia.js"></script>
     <script src="inspinia/js/plugins/pace/pace.min.js"></script>
+
+    <script src="inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="inspinia/js/plugins/ladda/ladda.js"></script>
+
+    <script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
 
 
     <script>
@@ -300,6 +310,9 @@ if($_POST){
             });
         });
     </script>
+
+</body>
+
 </html>
 
 <?php } else {

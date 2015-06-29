@@ -18,8 +18,8 @@ if(isset($_POST) && isset($_SESSION['id_usuario'])){
 					$_SESSION['id_usuario']
 					);
 	$_SESSION['msg_sucesso'] = "Endereço Cadastrado com Sucesso.";
-	header('Location: insere_enderecos.php');
+	header('Location: ../minhaconta/');
 } else {
 	$_SESSION['erros'] = 'Erro ao inserir endereço';
-	header('Location: index.php');
+	header('Location: ../minhaconta/');
 }

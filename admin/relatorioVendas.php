@@ -186,7 +186,7 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
                                     <input type="text" class="input-sm form-control" name="end" value="<?=$dataS2?>" />
                                 </div>
                             </div>
-                             <input type="submit" class="btn btn-primary btn-outline" value="Alterar Data">
+                             <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-calendar fa-1x"></i> Alterar Data</button>
                              </form>
                         </div>
 

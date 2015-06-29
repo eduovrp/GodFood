@@ -8,11 +8,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <meta charset="UTF-8">
-<title>GodFood - Delivery</title>
+<title>GodFood - Cadastrar Endereço</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../web/js/jquery.min.js"></script>
+
+<link rel="stylesheet" href="../cart/inspinia/css/ladda.min.css">
+
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
@@ -27,18 +28,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
 	new WOW().init();
 </script>
-
-<script type="text/javascript" src="../web/js/easing.js"></script>
-
-
-		<!--Mascaras -->
-	<script type="text/JavaScript" src="../web/js/jquery.mask.js"></script>
-   <script type="text/javascript">
-  $(document).ready(function(){
-  $('#cep').mask('99999-999');
-});
-   </script>
- <script src="../web/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 </head>
@@ -134,11 +123,13 @@ $dados = busca_dados_endereco($_SESSION['cep']);
 							 </div>
 					 </div>
 				<div class="clearfix"> </div>
-				<div class="register-but">
-					   <input type="submit" value="Cadastrar Endereço">
-					   <a href="index.php" class="btn btn-default btn-lg" title="voltar">Voltar</a>
-					   <div class="clearfix"> </div>
-				   </form>
+				<div class="row">
+					<div class="register-but">
+						   	<button type="submit" class="ladda-button btn btn-cadastrar" data-size="m" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar Endereço</button>
+							<a href="../minhaconta/" class="btn btn-default btn-lg" title="voltar"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+						   <div class="clearfix"> </div>
+					   </form>
+					</div>
 				</div>
 		   </div>
 	     </div>
@@ -278,7 +269,7 @@ unset($_SESSION['cadastrado']);
 					<div class="col-md-3 contact-section-grid nth-grid wow fadeInRight" data-wow-delay="0.4s">
 						<h4>Inscreva-se na nossa Newsletter</h4>
 						<p>E receba todas as Novidades no seu E-mail</p>
-						<form action="subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
+						<form action="../subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
 						<input type="text" class="text" value="" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 						<input type="submit" value="Cadastrar">
 						</form>
@@ -295,5 +286,27 @@ unset($_SESSION['cadastrado']);
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
 	</div>
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../web/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../web/js/easing.js"></script>
+	<script src="../web/js/bootstrap.min.js"></script>
+	
+	<script src="../cart/inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="../cart/inspinia/js/plugins/ladda/ladda.js"></script>
+
+<script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
+
+		<!--Mascaras -->
+	<script type="text/JavaScript" src="../web/js/jquery.mask.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('#cep').mask('99999-999');
+});
+   </script>
 </body>
 </html>

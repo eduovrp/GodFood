@@ -1,8 +1,10 @@
 <?php
 require '../functions/registro.php';
 
-if(verifica_usuario($_GET['id'], $_GET['verification_code'])){
-    header("Location: index.php");
+if($_GET['verification_code']){
+
+	verifica_usuario($_GET['id'], $_GET['verification_code']);
+    header("Location: ../minhaconta/");
 } else {
-    header("Location: index.php");
+    header("Location: ../minhaconta/");
 }

@@ -35,8 +35,6 @@ require 'functions/timeline.php';
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/ladda.min.css">
-
 </head>
 
 <body>
@@ -311,11 +309,11 @@ $pedidosConcluidos = mostraPedidosConcluidos($id_restaurante);
                                                 <?php endforeach; ?>
                                             </div>
         <?php if($detalhePedido['id_status'] == 4){ ?>
-        <a href="javascript:confirmaPedido(<?= $detalhePedido['id_pedido']; ?>)" type="submit button" class="btn btn-block btn-outline btn-primary"><i class="fa fa-check"></i> Confirmar Recebimento do Pedido</a>
+        <a href="javascript:confirmaPedido(<?= $detalhePedido['id_pedido']; ?>)" type="submit button" class="ladda-button btn btn-block btn-outline btn-primary" data-size="s" data-style="zoom-in"><i class="fa fa-check"></i> Confirmar Recebimento do Pedido</a>
         <?php } else if($detalhePedido['id_status'] == 5){ ?>
-        <a href="javascript:alterarStatusEntrega(<?= $detalhePedido['id_pedido']; ?>)" type="submit button" class="btn btn-block btn-outline btn-primary"><i class="fa fa-truck"></i> Pedido Pronto! Mande para a Entrega</a>
+        <a href="javascript:alterarStatusEntrega(<?= $detalhePedido['id_pedido']; ?>)" type="submit button" class="ladda-button btn btn-block btn-outline btn-primary" data-size="s" data-style="zoom-in"><i class="fa fa-truck"></i> Pedido Pronto! Mande para a Entrega</a>
         <?php } else if($detalhePedido['id_status'] == 6){ ?>
-        <a href="javascript:alterarStatusSucesso(<?= $detalhePedido['id_pedido']; ?>)" type="submit button" class="btn btn-block btn-outline btn-primary"><i class="fa fa-check"></i> Pedido entregue com Sucesso</a>
+        <a href="javascript:alterarStatusSucesso(<?= $detalhePedido['id_pedido']; ?>)" type="submit button" class="ladda-button btn btn-block btn-outline btn-primary" data-size="s" data-style="zoom-in"><i class="fa fa-check"></i> Pedido entregue com Sucesso</a>
         <?php } ?>
                                     <br>
                                         </div>
@@ -350,16 +348,6 @@ $pedidosConcluidos = mostraPedidosConcluidos($id_restaurante);
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
-
-    <script src="js/plugins/ladda/spin.js"></script>
-    <script src="js/plugins/ladda/ladda.js"></script>
-
-    <!-- Scripts JS -->
-
-<script type="text/javascript">
-                // Bind normal buttons
-            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
-</script>
 
     <form action="update_pedido.php" method="POST" id="confirmaPedido">
         <input type="hidden" name="idPedido">

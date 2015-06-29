@@ -11,8 +11,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="icon" type="image/png" href="web/images/plate.png" />
 <meta charset="UTF-8">
 <link href="web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="web/js/jquery.min.js"></script>
+
+<link rel="stylesheet" href="cart/inspinia/css/ladda.min.css">
 <!-- Custom Theme files -->
 <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
@@ -27,8 +27,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
 	new WOW().init();
 </script>
-<script type="text/javascript" src="web/js/easing.js"></script>
-<script src="web/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="web/font-awesome-4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -55,10 +53,10 @@ include 'includes/menu-top.php';
 					                 <input type="text" class="text" name="nome" placeholder="Nome" required>
 									 <input type="text" class="text" name="email" placeholder="Email" required>
 									 <input type="text" class="text" name="assunto" placeholder="Assunto" required>
-									 <textarea value="Mensagem" name="mensagem" placeholder="mensagem" required></textarea>
+									 <textarea value="Mensagem" name="mensagem" placeholder="Mensagem" required></textarea>
 									 <div class="clearfix"> </div>
 									 <div class="sub-button wow swing animated" data-wow-delay= "0.1s">
-									 	<input name="submit" type="submit" value="Enviar Mensagem">
+									 	<button name="submit" type="submit" class="ladda-button btn-msg" data-size="m" data-style="zoom-in"><i class="fa fa-envelope-o fa-1x"></i> Enviar Mensagem</button>
 									 </div>
 						          </div>
 						       </form>
@@ -112,5 +110,20 @@ include 'includes/menu-top.php';
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
 	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="web/js/jquery.min.js"></script>
+<script type="text/javascript" src="web/js/easing.js"></script>
+<script src="web/js/bootstrap.min.js"></script>
+
+    <script src="cart/inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="cart/inspinia/js/plugins/ladda/ladda.js"></script>
+
+    <script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
+
+
 </body>
 </html>

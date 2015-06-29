@@ -24,7 +24,7 @@ if ($login->usuarioLogado() == true) {
 <meta charset="UTF-8">
 <title>GodFood - Delivery</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
-<script src="../web/js/jquery-2.1.1.js"></script>
+
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -40,8 +40,7 @@ if ($login->usuarioLogado() == true) {
 <script>
 	new WOW().init();
 </script>
-<script type="text/javascript" src="../web/js/easing.js"></script>
- <script src="../web/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -280,6 +279,11 @@ $endereco_entrega = select_endereco_entrega_detalhes($_POST['id']);
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
 	</div>
+
+<!-- Javascript -->
+	<script src="../web/js/jquery-2.1.1.js"></script>
+	<script type="text/javascript" src="../web/js/easing.js"></script>
+	<script src="../web/js/bootstrap.min.js"></script>
 </body>
 </html>
 

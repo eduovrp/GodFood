@@ -55,7 +55,7 @@ if ($login->usuarioLogado() == true) {
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Senha" name="senha" required>
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b" data-size="s" data-style="zoom-in">Login <i class="fa fa-sign-in fa-1x"></i></button>
+                <button type="submit" class="ladda-button btn btn-primary block full-width m-b" data-size="s" data-style="zoom-in">Login <i class="fa fa-sign-in fa-1x"></i></button>
             </form>
             <p class="m-t"> <small>GodFood - Adminstração &copy; 2015</small> </p>
         </div>

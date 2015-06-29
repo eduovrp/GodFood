@@ -114,7 +114,6 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 
     
 <?php
-$restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
 
 $busca_cidades = mostra_cidades();
 
@@ -131,11 +130,6 @@ $busca_cidades = mostra_cidades();
                             <strong>Cadastrar Cidades</strong>
                         </li>
                     </ol>
-                </div>
-                <div class="col-sm-8">
-                    <div class="title-action">
-                        <h2 align="left"><?=$restaurante_ativo['nome_fantasia'];?></h2>
-                    </div>
                 </div>
             </div>
 

@@ -95,7 +95,7 @@ try{
 
 			FROM tarifas WHERE status = 1
 				GROUP BY DATE_FORMAT(data, '%d/%m')
-					ORDER BY DATE_FORMAT(data, '%d/%m')
+					ORDER BY DATE_FORMAT(data, '%d/%m') DESC
 						LIMIT 8";
 
 	$cmd = $pdo->prepare($sql);
@@ -118,7 +118,7 @@ try{
 
 			FROM tarifas WHERE status = 1 AND id_restaurante = :id_restaurante
 				GROUP BY DATE_FORMAT(data, '%d/%m')
-					ORDER BY DATE_FORMAT(data, '%d/%m')
+					ORDER BY DATE_FORMAT(data, '%d/%m') DESC
 						LIMIT 8";
 
 	$cmd = $pdo->prepare($sql);

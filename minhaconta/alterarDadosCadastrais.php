@@ -11,8 +11,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>GodFood - Delivery</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../web/js/jquery.min.js"></script>
+
+<link rel="stylesheet" href="../cart/inspinia/css/ladda.min.css">
+
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
@@ -27,20 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
 	new WOW().init();
 </script>
-<script type="text/javascript" src="../web/js/easing.js"></script>
 
-
-		<!--Mascaras -->
-<script type="text/JavaScript" src="../web/js/jquery.mask.js"></script>
-   <script type="text/javascript">
-  $(document).ready(function(){
-  $('#cep').mask('99999-999');
-  $('#cpf').mask('999.999.999-99');
-  $('#telefone').mask('(99) - 9999-9999');
-  $('#celular').mask('(99) - 99999-9999');
-});
-   </script>
- <script src="../web/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -131,11 +119,14 @@ if($_GET){
 						 <input type="password" name="confirma_senha" id="confirma_senha">
 					 </div>
 					 </div>
-				<div class="register-but">
-					   <input type="submit" value="Atualizar Dados">
-					   <a href="../minhaconta/" class="btn btn-default btn-lg" title="voltar">Voltar</a>
-					   <div class="clearfix"> </div>
-				   </form>
+				</div>
+				<div class="row">
+					<div class="register-but">
+							<button type="submit" class="ladda-button btn-cadastrar" data-size="m" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Atualizar Dados</button>
+							<a href="../minhaconta/" class="btn btn-default btn-lg" title="voltar"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+						<div class="clearfix"> </div>
+					   </form>
+					</div>
 				</div>
 		   </div>
 	     </div>
@@ -265,7 +256,7 @@ if($_GET){
 					<div class="col-md-3 contact-section-grid nth-grid wow fadeInRight" data-wow-delay="0.4s">
 						<h4>Inscreva-se na nossa Newsletter</h4>
 						<p>E receba todas as Novidades no seu E-mail</p>
-						<form action="subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
+						<form action="../subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
 						<input type="text" class="text" value="" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 						<input type="submit" value="Cadastrar">
 						</form>
@@ -282,5 +273,30 @@ if($_GET){
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
 	</div>
+
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../web/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../web/js/easing.js"></script>
+	<script src="../web/js/bootstrap.min.js"></script>
+
+	<script src="../cart/inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="../cart/inspinia/js/plugins/ladda/ladda.js"></script>
+
+<script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
+
+	<!--Mascaras -->
+	<script type="text/JavaScript" src="../web/js/jquery.mask.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('#cep').mask('99999-999');
+  $('#cpf').mask('999.999.999-99');
+  $('#telefone').mask('(99) - 9999-9999');
+  $('#celular').mask('(99) - 99999-9999');
+});
+   </script>
 </body>
 </html>

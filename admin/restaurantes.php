@@ -95,7 +95,7 @@ $restaurantes = busca_restaurantes();
                 </select>
                 </div>
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Prosseguir <i class="fa fa-arrow-right fa-1x"></i></button>
+                <button type="submit" class="ladda-button btn btn-primary block full-width m-b" data-size="s" data-style="zoom-in">Prosseguir <i class="fa fa-arrow-right fa-1x"></i></button>
             </form>
             <a href="index.php">ir para o inicio</a>
             <p class="m-t"> <small>GodFood - Adminstração &copy; 2015</small> </p>

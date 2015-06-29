@@ -19,9 +19,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta charset="UTF-8">
 <title>GodFood - Resumo do Pedido</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
+
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../web/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Shopping Cart Custon CSS -->
@@ -35,14 +34,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--Animation-->
 <script src="../web/js/wow.min.js"></script>
 <link href="../web/css/animate.css" rel='stylesheet' type='text/css' />
-<script src="../web/js/bootstrap.js"></script>
 <script>
-	new WOW().init();
+    new WOW().init();
 </script>
 <script type="text/javascript" src="../web/js/easing.js"></script>
 
- <script src="../web/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="inspinia/css/ladda.min.css">
 </head>
 <body>
     <!-- header-section-starts -->
@@ -199,10 +198,25 @@ Senha: 12345678 </strong></h4>
  <?php if($restaurante['compra_minima'] > $_SESSION['total']){ ?>
             <a href="#"><input type="button" class="btn" value="Valor de compra inferior ao minimo" disabled="disabled"></a></input>
         <?php } else { ?>
-            <input type="submit" value="Confirmar Pedido e seguir com o Pagamento" name"ok"></input>
+            <button type="submit" class="ladda-button btn btn-primary" data-color="green" data-size="m" data-style="expand-left" name"ok">Confirmar Pedido e seguir com o Pagamento</button>
         <?php } ?>
 
 		</form>
 </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../web/js/jquery.min.js"></script>
+    <script src="../web/js/bootstrap.min.js"></script>
+
+    <script src="inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="inspinia/js/plugins/ladda/ladda.js"></script>
+
+    <script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 15000 } );
+</script>
+
 </body>
 </html>

@@ -10,10 +10,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta charset="UTF-8">
 <title>GodFood - Delivery</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
-<script src="../web/js/jquery.min.js"></script>
-<script src="../web/js/bootstrap.min.js"></script>
+
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
@@ -29,10 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	new WOW().init();
 </script>
 
-<script type="text/javascript" src="../web/js/easing.js"></script>
-
- <script src="../web/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -53,16 +49,24 @@ include 'includes/menu-top.php';
 include 'mensagens.php';
 ?>
           	   </div>
-  <div class='srch-rest-error'>
-				<h4>
+  <div class="menu-minha-conta">
 				<div class="row">
-					<a href="pedidos.php" class="btn btn-warning btn-lg"> Pedidos</a>
+				<ul>
+					<h3>PEDIDOS</h3>
+					<li><a href="#">Ultimos pedidos</a></li>
+					<li><a href="#">Pedidos em aberto</a></li>
+					<li><a href="#">Pedidos Cancelados</a></li>
+					<li><a href="pedidos.php">Ver todos</a></li>
 
-					<a href="insere_enderecos.php" class="btn btn-warning btn-lg">Cadastrar novo Endereço</a>
+					<h3>ENDEREÇOS</h3>
+					<li><a href="insere_enderecos.php">Cadastrar novo endereço</a></li>
+					<li><a href="#">Meus endereços</a></li>
 
-					<a href="alterarDadosCadastrais.php" class="btn btn-warning btn-lg"> Alterar dados Cadastrais</a>
+					<h3>MEU CADASTRO</h3>
+					<li><a href="alterarDadosCadastrais.php">Alterar dados cadastrais</a></li>
+				</ul>
+				
 				</div>
-				</h4>
 		</div>
 	</div>
   </div>
@@ -208,5 +212,10 @@ include 'mensagens.php';
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
 	</div>
+
+
+	<script src="../web/js/jquery.min.js"></script>
+	<script src="../web/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../web/js/easing.js"></script>
 </body>
 </html>

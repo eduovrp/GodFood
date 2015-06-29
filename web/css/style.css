@@ -23,6 +23,13 @@ input[type="button"],input[type="submit"]{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
+button[type="button"],button[type="submit"]{
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
 h1,h2,h3,h4,h5,h6{
 	margin:0;
 }
@@ -39,6 +46,22 @@ label{
 
 input[type="text"]:disabled {
 	cursor: not-allowed;
+}
+.menu-minha-conta{
+	width: 30%;
+	float:; left;
+	height: 400px;
+}
+.menu-minha-conta li{
+	padding-top: 6px;
+	margin-left: 30px;
+	font-size: 16px;
+	font-weight: 600;
+}
+.menu-minha-conta h3{
+	color: #9a2529;
+	font-weight: 600;
+	padding-top: 10px;
 }
 
 .margin{
@@ -495,9 +518,8 @@ input[type="text"]:disabled {
 .service-section-top-row-grid4{
 	padding-top:3.2em;
 }
-.service-section-top-row-grid4 input[type="submit"]{
+.btn-msg{
 	outline: none;
-	border: 3px solid #FFA500;
 	background: #FFA500;
 	color: #fff;
 	font-size: 18px;
@@ -505,8 +527,7 @@ input[type="text"]:disabled {
 	padding: 0.4em 1.3em;
 	border-radius: 5px;
 }
-.service-section-top-row-grid4 input[type="submit"]:hover{
-	border: 3px solid #C92C0E;
+.btn-msg:hover{
 	background:#C92C0E;
 }
 .icon-data p{
@@ -1785,9 +1806,9 @@ ul.women_pagenation li a:hover{
 }
 .register-but{
 	margin-top: -1em;
-	margin-left: 10px;
+	margin-left: 30px;
 }
-.register-but form input[type="submit"] {
+.btn-cadastrar {
 	background:#E24425;
 	color: #FFF;
 	font-size: 1.2em;
@@ -1801,8 +1822,9 @@ ul.women_pagenation li a:hover{
 	border:none;
 	outline:none;
 }
-.register-but input[type="submit"]:hover {
+.btn-cadastrar:hover {
 	background:#9a2529;
+	color: #fff;
 }
 div.register-bottom-grid {
 	margin-top:0em;
