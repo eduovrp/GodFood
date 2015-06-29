@@ -1552,7 +1552,7 @@ i.mail{
 	padding: 0 0 2em 0;
 }
 .login-right span {
-	color: #555;
+	color: #fff;
 	font-size:1em;
 	padding-bottom: 0.2em;
 	display: block;
@@ -1823,6 +1823,27 @@ ul.women_pagenation li a:hover{
 	outline:none;
 }
 .btn-cadastrar:hover {
+	background:#9a2529;
+	color: #fff;
+}
+
+.btn-login {
+	background:#E24425;
+	color: #FFF;
+	font-size: 1.2em;
+	margin-top: -50px;
+	padding: 0.6em 2em;
+	width: 70%;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	text-transform: uppercase;
+	border:none;
+	outline:none;
+}
+.btn-login:hover {
 	background:#9a2529;
 	color: #fff;
 }

@@ -215,7 +215,7 @@ Senha: 12345678 </strong></h4>
 
     <script type="text/javascript">
                 // Bind normal buttons
-            Ladda.bind( 'button[type=submit]', { timeout: 15000 } );
+            Ladda.bind( 'button[type=submit]', { timeout: 20000 } );
 </script>
 
 </body>

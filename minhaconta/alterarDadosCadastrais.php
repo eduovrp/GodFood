@@ -108,7 +108,7 @@ if($_GET){
 					 	<strong>obs: </strong>A senha precisa ter 6 ou mais caracteres.</p>
 					 	<br>
 					  <div class="col-md-6">
-					 <div class="wow fadeInRight" data-wow-delay="0.4s">
+					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 						 <label for="senha">NOVA SENHA</label>
 						 <input type="password" name="senha" id="senha">
 					 </div>
@@ -120,6 +120,7 @@ if($_GET){
 					 </div>
 					 </div>
 				</div>
+			<div class="wow fadeInLeft" data-wow-delay="0.4s">
 				<div class="row">
 					<div class="register-but">
 							<button type="submit" class="ladda-button btn-cadastrar" data-size="m" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Atualizar Dados</button>

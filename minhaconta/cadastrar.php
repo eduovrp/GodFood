@@ -284,7 +284,7 @@ include 'mensagens_cad.php';
 
 <script type="text/javascript">
                 // Bind normal buttons
-            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+            Ladda.bind( 'button[type=submit]', { timeout: 10000 } );
 </script>
 
 		<!--Mascaras -->
