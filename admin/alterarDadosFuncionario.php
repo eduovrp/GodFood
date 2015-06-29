@@ -250,7 +250,6 @@ $niveis = buscaNiveisUsuarios();
                 });
             });
         </script>
-
 </body>
 
 </html>

@@ -35,6 +35,8 @@ require 'functions/timeline.php';
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/ladda.min.css">
+
 </head>
 
 <body>
@@ -348,6 +350,16 @@ $pedidosConcluidos = mostraPedidosConcluidos($id_restaurante);
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+
+    <script src="js/plugins/ladda/spin.js"></script>
+    <script src="js/plugins/ladda/ladda.js"></script>
+
+    <!-- Scripts JS -->
+
+<script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
 
     <form action="update_pedido.php" method="POST" id="confirmaPedido">
         <input type="hidden" name="idPedido">

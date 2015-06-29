@@ -31,6 +31,8 @@ if ($login->usuarioLogado() == true) {
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/ladda.min.css">
+
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -152,7 +154,7 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                         <div class="row">
                             <div class="col-md-6">
                             <label for="nome_categoria">Nome da Categoria</label>
-                            <input type="text" class="form-control" name="nome_categoria" id="nome_categoria" placeholder="Nome da Categoria">
+                            <input type="text" class="form-control" name="nome_categoria" id="nome_categoria" placeholder="Nome da Categoria" required>
                             </div>
                             <div class="col-md-3">
                             <label for="2sabores">Aceitar 2 Sabores?</label>
@@ -163,7 +165,7 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                             </div>
                             <div class="col-md-2">
                             <label>&nbsp;</label>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
+                            <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
                             </div>
                             </div>
                         </form>
@@ -218,7 +220,7 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                                         <form action="delete.php" method="POST" accept-charset="utf-8">
                                          <input type="hidden" name="excluir_categoria" value="<?=$categoria['id_categoria'];?>">
                                             <div class="col-md-offset-4">
-                                            <div class="input-group"><button type="submit" class="btn btn-danger btn-outline"><i class="fa fa-close fa-1x"></i> Excluir Categoria</button></div></div>
+                                            <div class="input-group"><button type="submit" class="ladda-button btn btn-danger btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-close fa-1x"></i> Excluir Categoria</button></div></div>
                                         </form>
                                     </div>
                                 </div>
@@ -251,6 +253,16 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+
+    <script src="js/plugins/ladda/spin.js"></script>
+    <script src="js/plugins/ladda/ladda.js"></script>
+
+    <!-- Scripts JS -->
+
+<script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
 
         <!-- iCheck -->
     <script src="js/icheck.min.js"></script>

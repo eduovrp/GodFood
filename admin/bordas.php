@@ -31,6 +31,8 @@ if ($login->usuarioLogado() == true) {
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style_alternative.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/ladda.min.css">
     
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
@@ -196,7 +198,7 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                      <div class="col-sm-1">
                         <div class="form-group">
                             <label>&nbsp;</label>
-                            <button type="submit" class="btn btn-primary btn-outline"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
+                            <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
                         <input type="hidden" name="bordas" value="yep">
                     </form>
                         </div>
@@ -221,7 +223,7 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                                 </select>
                             </div>
                         <div class="col-lg-1">
-                        <button type="submit" class="btn btn-warning btn-outline"><i class='fa fa-pencil-square-o fa-1x'></i> Alterar Status </button>
+                        <button type="submit" class="ladda-button btn btn-warning btn-outline" data-size="s" data-style="zoom-in"><i class='fa fa-pencil-square-o fa-1x'></i> Alterar Status</button>
                         </div>
                         <input type="hidden" name="alteraStatusBorda" value="yep">
                         </form>
@@ -256,6 +258,16 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+
+    <script src="js/plugins/ladda/spin.js"></script>
+    <script src="js/plugins/ladda/ladda.js"></script>
+
+    <!-- Scripts JS -->
+
+<script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
 
     <!-- Page-Level Scripts -->
 <script type="text/javascript">

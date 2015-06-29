@@ -30,10 +30,10 @@ if ($login->usuarioLogado() == true) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/ladda.min.css">
+
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -151,13 +151,13 @@ $busca_cidades = mostra_cidades();
                             <div class="input-group">
                             <div class="col-lg-6">
                             <label for="cidade">Cidade</label>
-                                <input type="text" name="cidade" id="cidade" class="form-control"></div>
+                                <input type="text" name="cidade" id="cidade" class="form-control" required></div>
                                 <div class="col-lg-3">
                                 <label for="cep">CEP</label>
-                                <input type="text" class="form-control" name="cep" id="cep"></div>
+                                <input type="text" class="form-control" name="cep" id="cep" required></div>
                                 <div class="col-lg-1">
                                 <label for="">&nbsp;</label>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Cadastrar</button></div>
+                                <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar</button></div>
                             </div>
                             <input type="hidden" name="cadastrarCidade" value="yep">
                         </form>
@@ -207,6 +207,15 @@ $busca_cidades = mostra_cidades();
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+
+    <script src="js/plugins/ladda/spin.js"></script>
+    <script src="js/plugins/ladda/ladda.js"></script>
+
+    <!-- Scripts JS -->
+
+<script type="text/javascript">
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
 
 
     <script src="js/jquery.mask.js" type="text/javascript"></script>

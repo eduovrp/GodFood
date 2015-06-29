@@ -26,6 +26,8 @@ if ($login->usuarioLogado() == true) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/ladda.min.css">
+
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -53,7 +55,7 @@ if ($login->usuarioLogado() == true) {
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Senha" name="senha" required>
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Login <i class="fa fa-sign-in fa-1x"></i></button>
+                <button type="submit" class="btn btn-primary block full-width m-b" data-size="s" data-style="zoom-in">Login <i class="fa fa-sign-in fa-1x"></i></button>
             </form>
             <p class="m-t"> <small>GodFood - Adminstração &copy; 2015</small> </p>
         </div>
@@ -62,6 +64,16 @@ if ($login->usuarioLogado() == true) {
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/plugins/ladda/spin.js"></script>
+    <script src="js/plugins/ladda/ladda.js"></script>
+
+    <!-- Scripts JS -->
+
+<script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
 
 </body>
 

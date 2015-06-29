@@ -168,7 +168,7 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
                             <div class="input-group">
                             <?php if($_SESSION['id_nivel'] == 5){ ?>
                                 <div class="col-lg-1">
-                                	<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#cadastraNovo" <?=$disabled?>>Cadastrar Novo</button>
+                                	<button type="submit" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#cadastraNovo" <?=$disabled?>>Cadastrar Novo</button>
                                 </div>
                             <?php } ?>
                         	</div>
@@ -336,7 +336,7 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
 
         <!--Mascaras -->
     <script type="text/JavaScript" src="js/jquery.mask.js"></script>

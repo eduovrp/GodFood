@@ -42,6 +42,8 @@ verifica_post();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/ladda.min.css">
+
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -103,6 +105,16 @@ $restaurantes = busca_restaurantes();
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/plugins/ladda/spin.js"></script>
+    <script src="js/plugins/ladda/ladda.js"></script>
+
+    <!-- Scripts JS -->
+
+<script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
 
 </body>
 

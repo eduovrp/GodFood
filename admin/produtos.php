@@ -202,7 +202,7 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                      <div class="col-sm-1">
                         <div class="form-group">
                             <label>&nbsp;</label>
-                            <button type="submit" class="btn btn-primary btn-outline"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
+                            <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
                     </form>
                         </div>
                     </div>
@@ -226,7 +226,7 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                                 </select>
                             </div>
                         <div class="col-lg-1">
-                        <button type="submit" class="ladda-button btn btn-warning btn-outline" data-size="s" data-style="expand-left"><span class="ladda-label">Alterar Status</span></button>
+                        <button type="submit" class="ladda-button btn btn-warning btn-outline" data-size="s" data-style="zoom-in"><i class='fa fa-pencil-square-o fa-1x'></i> Alterar Status</button>
                         </div>
                         <input type="hidden" name="alteraStatus" value="yep">
                         </form>

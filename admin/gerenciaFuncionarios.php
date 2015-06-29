@@ -159,7 +159,7 @@ $niveis = buscaNiveisUsuarios();
                     <div class="ibox-title">
                             <div class="input-group">
                                 <div class="col-lg-1">
-                                	<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#cadastraNovo">Cadastrar Novo</button>
+                                	<button type="submit" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#cadastraNovo">Cadastrar Novo</button>
                                 </div>
                         	</div>
                         </form>

@@ -30,11 +30,12 @@ if ($login->usuarioLogado() == true) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/ladda.min.css">
+
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-
+    <script src="js/jquery.min.js" type="text/javascript"></script>
     <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
 </head>
 
@@ -167,7 +168,7 @@ $busca_cidades = mostra_cidades();
                                 <script type="text/javascript">$("#taxa").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
                                 <div class="col-lg-1">
                                 <label for="">&nbsp;</label>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Cadastrar</button></div>
+                                <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar</button></div>
                             </div>
                         </form>
                     </div>
@@ -187,7 +188,7 @@ $busca_cidades = mostra_cidades();
                                 <td><?=$cidade_entrega['nome'];?></td>
                                 <td><?=$cidade_entrega['cep'];?></td>
                                 <td>R$ <?=$cidade_entrega['taxa'];?></td>
-                                <td><a href="#"<i class="fa fa-pencil-square-o fa-1x"></i> Editar</a></td>
+                                <td><a href="#"><i class="fa fa-pencil-square-o fa-1x"></i> Editar</a></td>
                             </tr>
                             <?php endforeach; ?>
                             </tbody>
@@ -218,6 +219,16 @@ $busca_cidades = mostra_cidades();
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+
+    <script src="js/plugins/ladda/spin.js"></script>
+    <script src="js/plugins/ladda/ladda.js"></script>
+
+    <!-- Scripts JS -->
+
+<script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+</script>
 
 </body>
 
