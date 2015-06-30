@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php if(isset($_SESSION['id_usuario'])){ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,6 +38,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <?php
 include 'includes/menu-top.php';
+require '../functions/account.php';
+require '../functions/pedidos.php';
+$data = buscaDatasUltimoPedido($_SESSION['id_usuario']);
+
+$detalhes = detalhes_pedido($data['id_pedido']);
+
+$itens = lista_itens_pedido($data['id_pedido']);
+
+include 'includes/account_verif.php';
+
  ?>
 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 	<div class="content">
@@ -50,8 +61,8 @@ include 'mensagens.php';
 				<div class="row">
 				<ul>
 					<h3>PEDIDOS</h3>
-					<li><a href="#">Ultimo pedido</a></li>
-					<li><a href="#">Pedidos em aberto</a></li>
+					<li><a href="../minhaconta/">Ultimo pedido</a></li>
+					<li><a href="#">Pedidos Concluidos</a></li>
 					<li><a href="#">Pedidos Cancelados</a></li>
 					<li><a href="pedidos.php">Ver todos</a></li>
 
@@ -66,33 +77,76 @@ include 'mensagens.php';
 		</div>
 
 		<div class="minha-conta-content">
-			<h3>Pedido: 6554</h3>
-			<p>Acompanhe seu pedido abaixo</p>
+			<h2>Pedido: <?=$data['id_pedido']?></h2>
+			<p>Acompanhe seu ultimo pedido abaixo</p>
 
 			<div class="ultimo-pedido">
 				<div class="row">
 					<div class="col-md-3">
 						<h3>Pedido</h3>
-						<p>30/06/2015 às 10:54</p>
+						<p><?=$data_pedido;?></p>
 					</div>
 					<div class="col-md-3">
 						<h3>Pagamento</h3>
-						<p>30/06/2015 às 10:54</p>
+						<p><?=$data_pgto;?></p>
 					</div>
 					<div class="col-md-3">
 						<h3>Preparo</h3>
-						<p>30/06/2015 às 10:54</p>
+						<p><?=$data_preparo;?></p>
 					</div>
 					<div class="col-md-3">
 						<h3>Entrega</h3>
-						<p>30/06/2015 às 10:54</p>
+						<p><?=$data_entrega;?></p>
 					</div>
 				</div>
+				<div class="row">
+					<ul>
+						<li class="progress <?=$ok1?>"></li>
+						<li class="progress <?=$ok2?>"></li>
+						<li class="progress <?=$ok3?>"></li>
+						<li class="progress <?=$ok4?>"></li>
+					</ul>
+				</div>
+				<div class="row">
+					<br>
+					<h4><strong>Status:</strong> <?=$data['status']?></h4>
+				</div>
 			</div>
-			<div class="ultimo-pedido-datas">
-			</div>
+	<div class="row">
+	<br>
+	<table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>Nome do Produto</th>
+	        <th>Qtd</th>
+	        <th>Adicional</th>
+	        <th>Borda Recheada</th>
+	        <th>Valor Unitario</th>
+	        <th>Subtotal</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	     <?php
+	     $total = 0;
+		foreach($itens as $item): ?>
+	      <tr>
+	        <td><?=$item['nome']." (".$item['categoria'].")";?></td>
+	        <td><?=$item['qtd'];?></td>
+	        <td><?=$item['adicional'];?></td>
+	        <td><?=$item['borda'];?></td>
+	        <td><?=number_format($item['valor'],2,",",".");?></td>
+	        <td><?=number_format($item['subtotal'],2,",",".");?></td>
+	        <?php $total = $total + $item['subtotal']; ?>
+	      </tr>
+	    <?php endforeach;
+		 ?>
+	    </tbody>
+	  </table>
+	  	<div class="detalhes-pedido-footer">
+	  		<p>Total dos itens: R$ <?=number_format($total,2,",",".");?></p>
+	  	</div>
+	</div>
 		</div>
-
 	</div>
   </div>
 </div>
@@ -244,3 +298,4 @@ include 'mensagens.php';
 	<script type="text/javascript" src="../web/js/easing.js"></script>
 </body>
 </html>
+<?php } ?>

@@ -26,6 +26,7 @@ if ($login->usuarioLogado() == true) {
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
 
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
@@ -42,6 +43,7 @@ if ($login->usuarioLogado() == true) {
 </script>
 
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <!-- header-section-starts -->
@@ -49,64 +51,87 @@ if ($login->usuarioLogado() == true) {
 
 <?php
 include 'includes/menu-top.php';
+require '../functions/account.php';
+require '../functions/pedidos.php';
+$data = buscaDatasUltimoPedido($_SESSION['id_usuario']);
+
+$detalhes = detalhes_pedido($_POST['id_pedido']);
+
+$itens = lista_itens_pedido($_POST['id_pedido']);
+
+include 'includes/account_verif.php';
+
  ?>
-	<!-- header-section-ends -->
-	<!-- content-section-starts -->
-	<div class="content">
+<div class="wow fadeInLeft" data-wow-delay="0.4s">
 	<div class="container">
 		<div class="login-page">
+          	   </div>
+  		<div class="menu-minha-conta">
+				<div class="row">
+				<ul>
+					<h3>PEDIDOS</h3>
+					<li><a href="../minhaconta/">Ultimo pedido</a></li>
+					<li><a href="#">Pedidos Concluidos</a></li>
+					<li><a href="#">Pedidos Cancelados</a></li>
+					<li><a href="pedidos.php">Ver todos</a></li>
 
-                <div class="clearfix"></div>
-                <br>
-	<?php
-include 'mensagens.php';
+					<h3>ENDEREÇOS</h3>
+					<li><a href="insere_enderecos.php">Cadastrar novo endereço</a></li>
+					<li><a href="#">Meus endereços</a></li>
 
-require '../functions/pedidos.php';
+					<h3>MEU CADASTRO</h3>
+					<li><a href="alterarDadosCadastrais.php">Alterar dados cadastrais</a></li>
+				</ul>
+				</div>
+		</div>
 
-$itens = lista_itens_pedido($_POST['id']);
+		<div class="minha-conta-content">
+			<h2>Pedido: <?=$data['id_pedido']?></h2>
+			<p>Acompanhe seu ultimo pedido abaixo</p>
 
-$detalhes = detalhes_pedido($_POST['id']);
-
-$endereco_entrega = select_endereco_entrega_detalhes($_POST['id']);
-?>
-
-<div class="wow fadeInLeft" data-wow-delay="0.4s">
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-<div class="panel panel-default">
-	   <table class="table table-bordered table-hover">
+			<div class="ultimo-pedido">
+				<div class="row">
+					<div class="col-md-3">
+						<h3>Pedido</h3>
+						<p><?=$data_pedido;?></p>
+					</div>
+					<div class="col-md-3">
+						<h3>Pagamento</h3>
+						<p><?=$data_pgto;?></p>
+					</div>
+					<div class="col-md-3">
+						<h3>Preparo</h3>
+						<p><?=$data_preparo;?></p>
+					</div>
+					<div class="col-md-3">
+						<h3>Entrega</h3>
+						<p><?=$data_entrega;?></p>
+					</div>
+				</div>
+				<div class="row">
+					<ul>
+						<li class="progress <?=$ok1?>"></li>
+						<li class="progress <?=$ok2?>"></li>
+						<li class="progress <?=$ok3?>"></li>
+						<li class="progress <?=$ok4?>"></li>
+					</ul>
+				</div>
+				<div class="row">
+					<br>
+					<h4><strong>Status:</strong> <?=$data['status']?></h4>
+				</div>
+			</div>
+	<div class="row">
+	<br>
+	<table class="table table-hover">
 	    <thead>
 	      <tr>
-	        <th><h3>Restaurante</h3></th>
-	        <th><h3>Status do Pedido</h3></th>
-	        <th><h3>Endereço de Entrega</h3></th>
-
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr>
-	        <td><?=$detalhes['nome'];?></td>
-	        <td><h4><?=$detalhes['status'];?></h4></td>
-	        <td>
-	        <?php
-	        echo $endereco_entrega['endereco'];
-	        ?>
-	        </td>
-	      </tr>
-	    </tbody>
-	  </table>
-      </div>
-<br>
-<br>
-  <div class="panel panel-default">
-	   <table class="table table-hover">
-	    <thead>
-	      <tr>
-	        <td><h3>Nome do Produto</h3></td>
-	        <td align="center"><h3>Quantidade</h3></td>
-	        <td align="center"><h3>Adicional</h3></td>
-	        <td align="center"><h3>Borda Recheada</h3></td>
-	        <td align="center"><h3>Valor Unitario</h3></td>
-	        <td align="center"><h3>Subtotal</h3></td>
+	        <th>Nome do Produto</th>
+	        <th>Qtd</th>
+	        <th>Adicional</th>
+	        <th>Borda Recheada</th>
+	        <th>Valor Unitario</th>
+	        <th>Subtotal</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -115,29 +140,26 @@ $endereco_entrega = select_endereco_entrega_detalhes($_POST['id']);
 		foreach($itens as $item): ?>
 	      <tr>
 	        <td><?=$item['nome']." (".$item['categoria'].")";?></td>
-	        <td align="center"><?=$item['qtd'];?></td>
-	        <td align="center"><?=$item['adicional'];?></td>
-	        <td align="center"><?=$item['borda'];?></td>
-	        <td align="center"><?=number_format($item['valor'],2,",",".");?></td>
-	        <td align="center"><?=number_format($item['subtotal'],2,",",".");?></td>
+	        <td><?=$item['qtd'];?></td>
+	        <td><?=$item['adicional'];?></td>
+	        <td><?=$item['borda'];?></td>
+	        <td><?=number_format($item['valor'],2,",",".");?></td>
+	        <td><?=number_format($item['subtotal'],2,",",".");?></td>
 	        <?php $total = $total + $item['subtotal']; ?>
 	      </tr>
 	    <?php endforeach;
 		 ?>
 	    </tbody>
 	  </table>
+	  	<div class="detalhes-pedido-footer">
+	  		<p>Total dos itens: R$ <?=number_format($total,2,",",".");?></p>
+	  	</div>
+	  	<a href="pedidos.php" class="btn btn-default">Voltar</a>
+		</div>
+
       </div>
-    </div>
-        <div align="right">
-    	<h4>Total dos Produtos: <?=number_format($total,2,",",".");?></h4>
-    	<br>
-    	<h3>Total do Pedido: <?=number_format($detalhes['total_pago'],2,",",".");?></h3>
-    	<span>(Valor referente total dos produtos + taxa de entrega + taxa de serviço)</span>
-    </div>
-    <h3><a href="pedidos.php" type="button" class="btn btn-danger btn-lg btn-outline">Voltar</a></h3>
+	</div>
   </div>
- </div>
-</div>
 <div class="clearfix"></div>
 		<div class="contact-section" id="contact">
 			<div class="container">
@@ -280,13 +302,12 @@ $endereco_entrega = select_endereco_entrega_detalhes($_POST['id']);
 		</div>
 	</div>
 
-<!-- Javascript -->
-	<script src="../web/js/jquery-2.1.1.js"></script>
-	<script type="text/javascript" src="../web/js/easing.js"></script>
+
+	<script src="../web/js/jquery.min.js"></script>
 	<script src="../web/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../web/js/easing.js"></script>
 </body>
 </html>
-
 <?php
 } else {
     header('Location: index.php');

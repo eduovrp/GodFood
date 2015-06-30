@@ -153,7 +153,7 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
     </div>
   </div>
 </div>
-  <h3><a href="index.php">Voltar</a></h3>
+  <h3><a href="../minhaconta/">Voltar</a></h3>
 
 </div>
 </div>
@@ -299,7 +299,7 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
 		</div>
 	</div>
 	<form action="detalhes_pedido.php" method="POST" id="formEnviarId">
-		<input type="hidden" name="id">
+		<input type="hidden" name="id_pedido">
 	</form>
 
 
@@ -316,9 +316,9 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
 </script>
 
 <script>
-	function enviarId(id){
+	function enviarId(id_pedido){
 		f = document.getElementById('formEnviarId');
-		f.id.value = id;
+		f.id_pedido.value = id_pedido;
 		f.submit();
 	}
 </script>

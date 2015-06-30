@@ -198,7 +198,7 @@ Senha: 12345678 </strong></h4>
  <?php if($restaurante['compra_minima'] > $_SESSION['total']){ ?>
             <a href="#"><input type="button" class="btn" value="Valor de compra inferior ao minimo" disabled="disabled"></a></input>
         <?php } else { ?>
-            <button type="submit" class="ladda-button btn btn-primary" data-color="green" data-size="m" data-style="expand-left" name"ok">Confirmar Pedido e seguir com o Pagamento</button>
+            <button type="submit" class="ladda-button btn btn-primary" data-color="mint" data-size="m" data-style="expand-left" name"ok">Confirmar Pedido e seguir com o Pagamento</button>
         <?php } ?>
 
 		</form>
@@ -214,8 +214,21 @@ Senha: 12345678 </strong></h4>
     <script src="inspinia/js/plugins/ladda/ladda.js"></script>
 
     <script type="text/javascript">
-                // Bind normal buttons
-            Ladda.bind( 'button[type=submit]', { timeout: 20000 } );
+        // Bind progress buttons and simulate loading progress
+			Ladda.bind( 'button[type=submit]', {
+				callback: function( instance ) {
+					var progress = 0;
+					var interval = setInterval( function() {
+						progress = Math.min( progress + Math.random() * 0.1, 1 );
+						instance.setProgress( progress );
+
+						if( progress === 1 ) {
+							instance.stop();
+							clearInterval( interval );
+						}
+					}, 400 );
+				}
+			} );
 </script>
 
 </body>
