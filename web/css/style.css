@@ -48,9 +48,9 @@ input[type="text"]:disabled {
 	cursor: not-allowed;
 }
 .menu-minha-conta{
-	width: 30%;
+	width: 25%;
 	float:; left;
-	height: 400px;
+	height: 500px;
 }
 .menu-minha-conta li{
 	padding-top: 6px;
@@ -62,6 +62,25 @@ input[type="text"]:disabled {
 	color: #9a2529;
 	font-weight: 600;
 	padding-top: 10px;
+}
+.minha-conta-content{
+	width: 70%;
+	margin-top: -500px;
+	float: right;
+	height: 450px;
+}
+.minha-conta-content h3{
+	font-family: serif;
+	font-size: 34px;
+	font-weight: 600;
+}
+.minha-conta-content p{
+	padding: 10px;
+	font-size: 16px;
+}
+.ultimo-pedido{
+	padding-top: 50px;
+	padding-bottom: 20px;
 }
 
 .margin{
@@ -1697,7 +1716,7 @@ ul.women_pagenation li a:hover{
 	margin-top: -3px;
 }
 .register-top-grid span, .register-bottom-grid span {
-	color:#555;
+	color:#fff;
 	font-size: 1.1em;
 	padding-bottom: 0.2em;
 	display: block;
@@ -1720,6 +1739,7 @@ ul.women_pagenation li a:hover{
 	font-size: 1.2em;
 	padding: 0.6em;
 }
+
 .checkbox {
 	margin-bottom: 4px;
 	padding-left: 27px;

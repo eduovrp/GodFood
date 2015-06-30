@@ -4,8 +4,10 @@ require '../functions/registro.php';
 
 if(isset($_POST['email'])){
 	enviaEmailResetSenha($_POST['email']);
-	$_SESSION['msg_sucesso'] = "Quase lá, verifique seu e-mail para recuperar sua senha.";
-	header('Location: index.php');
+	if(!isset($_SESSION['erros'])){
+		$_SESSION['msg_sucesso'] = "Quase lá, verifique seu e-mail para recuperar sua senha.";
+	}
+	header('Location: ../minhaconta/');
 }
 
 if(isset($_SESSION['verification_code']) && isset($_SESSION['email']) && isset($_POST['senha'])){
@@ -17,6 +19,6 @@ if(isset($_SESSION['erros'])){
 	} else {
 	unset($_SESSION['email']);
 	unset($_SESSION['verification_code']);
-	header('Location: index.php');
+	header('Location: ../minhaconta/');
 	}
 }

@@ -42,18 +42,15 @@ include 'includes/menu-top.php';
 	<div class="content">
 	<div class="container">
 		<div class="login-page">
-
-                <div class="clearfix"></div>
-                <br>
 	<?php
 include 'mensagens.php';
 ?>
           	   </div>
-  <div class="menu-minha-conta">
+  		<div class="menu-minha-conta">
 				<div class="row">
 				<ul>
 					<h3>PEDIDOS</h3>
-					<li><a href="#">Ultimos pedidos</a></li>
+					<li><a href="#">Ultimo pedido</a></li>
 					<li><a href="#">Pedidos em aberto</a></li>
 					<li><a href="#">Pedidos Cancelados</a></li>
 					<li><a href="pedidos.php">Ver todos</a></li>
@@ -65,9 +62,37 @@ include 'mensagens.php';
 					<h3>MEU CADASTRO</h3>
 					<li><a href="alterarDadosCadastrais.php">Alterar dados cadastrais</a></li>
 				</ul>
-				
 				</div>
 		</div>
+
+		<div class="minha-conta-content">
+			<h3>Pedido: 6554</h3>
+			<p>Acompanhe seu pedido abaixo</p>
+
+			<div class="ultimo-pedido">
+				<div class="row">
+					<div class="col-md-3">
+						<h3>Pedido</h3>
+						<p>30/06/2015 às 10:54</p>
+					</div>
+					<div class="col-md-3">
+						<h3>Pagamento</h3>
+						<p>30/06/2015 às 10:54</p>
+					</div>
+					<div class="col-md-3">
+						<h3>Preparo</h3>
+						<p>30/06/2015 às 10:54</p>
+					</div>
+					<div class="col-md-3">
+						<h3>Entrega</h3>
+						<p>30/06/2015 às 10:54</p>
+					</div>
+				</div>
+			</div>
+			<div class="ultimo-pedido-datas">
+			</div>
+		</div>
+
 	</div>
   </div>
 </div>
