@@ -18,7 +18,7 @@ if(isset($_SESSION['erro_pgto']) || isset($_SESSION['acesso_invalido'])){
     <title>GodFood - ERRO!</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../web/font-awesome-4.3.0/css/font-awesome.css" rel="stylesheet">
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">

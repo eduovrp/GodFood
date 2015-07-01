@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
 /*
  *
  *   INSPINIA - Responsive Admin Theme
@@ -36,6 +36,9 @@ h4,
 h5 {
   margin-top: 5px;
   font-weight: 600;
+}
+.erro404{
+  font-size: 150px;
 }
 .nav > li > a {
   color: #a7b1c2;
