@@ -51,9 +51,11 @@ require '../functions/restaurantes.php';
 $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 if(isset($_POST['id_restaurante'])){
 
+if(isset($_SESSION['id_restaurante'])){
     if(isset($_POST['id_restaurante']) != $_SESSION['id_restaurante']){
         unset($_SESSION['products']);
     }
+}
 
     $id_restaurante = $_POST['id_restaurante'];
     $_SESSION['id_restaurante'] = $_POST['id_restaurante'];

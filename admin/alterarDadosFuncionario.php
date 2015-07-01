@@ -12,6 +12,12 @@ $login = new Login();
 if ($login->usuarioLogado() == true) {
     require 'functions/functions.php';
     if(isset($_POST['id_funcionario'])){
+
+    if($_SESSION['id_nivel'] < 4){
+      $disabled = 'disabled="disabled"';
+    } else {
+      $disabled = "";
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -178,7 +184,7 @@ $niveis = buscaNiveisUsuarios();
                                </div>
                                 <div class="col-md-6">
                                    <label for="nivel">Nivel</label>
-                                    <select name="nivel" class="form-control">
+                                    <select name="nivel" class="form-control" <?=$disabled?>>
                                   <?php foreach($niveis as $nivel): 
                                     if($nivel['id_nivel'] == $funcionario['id_nivel']){ 
                                     $selected = "selected"; } else { $selected = ""; } ?>
@@ -212,16 +218,18 @@ $niveis = buscaNiveisUsuarios();
                         </div>
                     </div>
                 </div>
-              </div>
-     </div>
+                </div>
+        </div>
+   </div>
+</div>
             <div class="footer">
                 <div>
                     <strong>Copyright &copy;</strong> - GodFood - Delivery  2015
                 </div>
             </div>
 
-        </div>
- </div>
+        
+
 
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>

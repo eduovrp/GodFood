@@ -101,6 +101,7 @@ function mostraPedidosConcluidos($id_restaurante)
 	global $pdo;
 try{
 	$sql = "SELECT id_pedido, DATE_FORMAT(data,'%d/%m/%Y às %T') as data,
+					DATE_FORMAT(data_entrega,'%d/%m/%Y às %T') as data_concluido,
 					data_entrega,
 					data_pgto,
 					valor_total, endereco, id_status

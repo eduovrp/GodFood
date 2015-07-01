@@ -870,6 +870,17 @@ function cadastraFuncionario($nome,$cpf,$telefone,$id_nivel,$usuario,$senha,$id_
 
 	global $pdo;
 try{
+
+	$verifica = "SELECT * FROM funcionarios WHERE usuario = :usuario";
+
+	$ver = $pdo->prepare($verifica);
+	$ver->bindParam('usuario',$usuario);
+	$ver->execute();
+
+	if($ver->rowCount() >= 1){
+		$_SESSION['erros'] = "Usuário ja cadastrado, por favor, escolha outro.";
+	} else {
+
 	$sql = "INSERT INTO funcionarios (nome, cpf, telefone, usuario, senha, id_nivel, id_restaurante, data)
 			VALUES (:nome, :cpf, :telefone, :usuario, :senha_hash, :id_nivel, :id_restaurante, :data)";
 
@@ -883,6 +894,9 @@ try{
 	$cmd->bindParam('id_restaurante',$id_restaurante);
 	$cmd->bindParam('data',$data);
 	$cmd->execute();
+
+	$_SESSION['msg_sucesso'] = "Funcionario cadastrado com sucesso.";
+}
 
 }catch(PDOException $e){
  	 echo $e->getMessage();

@@ -2,7 +2,7 @@
 
 date_default_timezone_set('America/Sao_Paulo');
 
-$_SESSION['diaAnt'] = (date('d') - 1);
+$_SESSION['diaAnt'] = date('d', strtotime("-1 days"));;
 
 $totalUsuarios = totalUsuarios();
 

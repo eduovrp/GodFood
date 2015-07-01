@@ -105,7 +105,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                     <a href="cadastrar_cidade.php"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
                 </li>
                 <li>
-                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Resutaurante</span></a>
+                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Restaurante</span></a>
                 </li>
                 <?php } ?>
                 <li>
@@ -159,12 +159,13 @@ $niveis = buscaNiveisUsuarios();
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
+                    <?php if($_SESSION['id_nivel'] >= 3){ ?>
                             <div class="input-group">
                                 <div class="col-lg-1">
-                                	<button type="submit" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#cadastraNovo">Cadastrar Novo</button>
+                                	<button type="button" class="btn btn-primary btn-outline" data-toggle="modal" data-target="#cadastraNovo">Cadastrar Novo</button>
                                 </div>
                         	</div>
-                        </form>
+                    <?php } ?>
                     </div>
                     <div class="ibox-content">
                         <table class="table table-hover table-striped">
@@ -199,7 +200,8 @@ $niveis = buscaNiveisUsuarios();
                 </div>
             </div>
         </div>
-        <div class="modal inmodal fade" id="cadastraNovo" tabindex="-1" role="dialog"  aria-hidden="true">
+<?php if($_SESSION['id_nivel'] >= 3){ ?>
+    <div class="modal inmodal fade" id="cadastraNovo" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -254,11 +256,12 @@ $niveis = buscaNiveisUsuarios();
                     <input type="hidden" name="cadastrarFuncionario" value="cadastrarFuncionario">
                     <button type="button" class="btn btn-default btn-outline" data-dismiss="modal"><i class="fa fa-arrow-left fa-1x"></i> Cancelar</button>
                     <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
-                    </div>
+                </div>
                     </form>
                 </div>
             </div>
         </div>
+<?php } ?>
      </div>
   </div>
             <div class="footer">

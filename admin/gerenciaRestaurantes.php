@@ -174,7 +174,6 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
                                 </div>
                             <?php } ?>
                         	</div>
-                        </form>
                     </div>
                     <div class="ibox-content">
                         <table class="table table-hover table-striped">
@@ -211,12 +210,17 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
                                 <td><?=$restaurante['cidade'];?></td>
                                 <td><?=substr($restaurante['hora_abert'],0,-3).' até '.substr($restaurante['hora_fech'],0,-3)?></td>
                                 <td><?='R$ '.number_format($restaurante['compra_minima'],2,",",".")?></td>
-                                <?php if($restaurante['fav'] > 0){ ?>
+                              
+                              <?php if($restaurante['fav'] > 0){ ?>
                                 <td><i class="fa fa-star"></i></td>
-                                <?php } else{ ?>
+                              <?php } else{ ?>
                                 <td><i class="fa fa-star-o"></i></td>
-                                <?php } ?>
+                              <?php } 
+                                if($_SESSION['id_nivel'] >= 4){ ?>
                                 <td><a href="javascript:alterarDadosRestaurante(<?= $restaurante['id_restaurante']; ?>)"><i class="fa fa-pencil-square-o fa-1x"></i> Editar</a></td>
+                              <?php } else{  ?>
+                                <td><a href="#" onClick='alert("Desculpe, você não tem permissão para alterar os dados do restaurante.")'><i class="fa fa-pencil-square-o fa-1x"></i> Editar</a></td>
+                              <?php } ?>
                             </tr>
                             <?php endforeach; ?>
                             </tbody>
@@ -227,8 +231,8 @@ $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
                 </div>
             </div>
         </div>
-      <?php if($_SESSION['id_nivel'] == 5){ ?>
-        <div class="modal inmodal fade" id="cadastraNovo" tabindex="-1" role="dialog"  aria-hidden="true">
+  <?php if($_SESSION['id_nivel'] == 5){ ?>
+      <div class="modal inmodal fade" id="cadastraNovo" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

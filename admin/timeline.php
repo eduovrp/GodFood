@@ -194,7 +194,7 @@ $pedidosConcluidos = mostraPedidosConcluidos($id_restaurante);
                                             <table class="table table-striped table-hover">
                                             <thead>
                                                 <tr class="client-link-head">
-                                                    <td>Data do Pedido</td>
+                                                    <td>Data da Entrega</td>
                                                     <td>Valor</td>
                                                     <td> </td>
                                                     <td>Tempo</td>
@@ -206,7 +206,7 @@ $pedidosConcluidos = mostraPedidosConcluidos($id_restaurante);
                                 $diff = s_datediff('i',$pedidoConcluido['data_pgto'], $pedidoConcluido['data_entrega']);
                                 ?>
                                                 <tr data-toggle="tab" href="#pedido-<?=$pedidoConcluido['id_pedido']; ?>" class="client-link">
-                                                    <td><?=$pedidoConcluido['data']; ?></td>
+                                                    <td><?=$pedidoConcluido['data_concluido']; ?></td>
                                                     <td><?="R$ " . number_format($pedidoConcluido['valor_total'],2,",","."); ?></td>
                                                     <td><i class="fa fa-clock-o"></i></td>
                                                     <td><?=round($diff)." minutos <br>"; ?></td>

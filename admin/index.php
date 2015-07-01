@@ -286,7 +286,7 @@ include 'includes/function_index.php';
                         </div>
                     </div>
                 </div>
-
+            </div>
 
             <?php } else { ?>
                     <div class="col-lg-6">
@@ -317,8 +317,6 @@ include 'includes/function_index.php';
                     </div>
                 </div>
             <?php } ?>
-
-
         </div>
 
 

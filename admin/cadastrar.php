@@ -107,7 +107,6 @@ if($_POST){
 							 $_POST['usuario'],
 							 $_POST['senha'],
 							 $_SESSION['restaurante']);
-		$_SESSION['msg_sucesso'] = "Funcrionario cadastrado com sucesso!";
 		header('Location: gerenciaFuncionarios.php');
 	}
 
