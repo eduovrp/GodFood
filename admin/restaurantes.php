@@ -38,7 +38,7 @@ verifica_post();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>GodFood | Restaurantes</title>
-
+    <link rel="icon" type="image/png" href="../web/images/plate.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 

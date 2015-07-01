@@ -100,7 +100,7 @@ function mostraPedidosConcluidos($id_restaurante)
 {
 	global $pdo;
 try{
-	$sql = "SELECT id_pedido, DATE_FORMAT(data,'%d/%m/%Y as %T') as data,
+	$sql = "SELECT id_pedido, DATE_FORMAT(data,'%d/%m/%Y às %T') as data,
 					data_entrega,
 					data_pgto,
 					valor_total, endereco, id_status
@@ -108,7 +108,7 @@ try{
 			FROM pedidos
 			WHERE id_status = 7 AND id_restaurante = :id_restaurante
 
-			ORDER BY data DESC
+			ORDER BY data_entrega DESC
 				LIMIT 30";
 
 	$cmd = $pdo->prepare($sql);
