@@ -110,7 +110,7 @@ $dados = busca_dados_endereco($_SESSION['cep']);
 					 <div class="row">
 					 <div class="col-md-6">
 					   <a class="news-letter" href="#">
-						 <label class="checkbox"><input type="checkbox" name="checkbox" checked="" required><i> </i>Concordo com os Termos de Entrega</label>
+						 <label class="checkbox"><input type="checkbox" name="checkbox" checked="" required><i> </i>Concordo com os <a href="../termos-de-entrega.php" target="_blank" class="termos-a"> Termos de Entrega</a></label>
 					   </a>
 					 </div>
 					 </div>

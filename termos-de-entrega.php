@@ -84,12 +84,13 @@ include 'includes/menu-top.php';
 
         		<h3>5. RESTITUIÇÕES DE VALORES</h3>
         		<p>
-        			<strong>6.1</strong> Para estabelecer contato entre godfood.com.br e o USUÁRIO fica disponibilizado o endereço eletrônico deste <a href="contato.php">link</a>, sendo certo que o USUÁRIO se obriga, igualmente, a manter em seu cadastro endereço eletrônico atual por intermédio do qual se farão as comunicações a ele dirigidas pelo godfood.com.br, desde logo emprestando-se validade jurídica e efetividade a esse meio eletrônico de troca de informações recíprocas. <br>
+        			<strong>5.1</strong> O USUARIO pode requerir uma restituição de valor quando um PEDIDO for considerado CANCELADO pelo sistema porém o pagamento foi realizado com SUCESSO.<br>
+        			<strong>5.2</strong> O USUARIO declara estar ciente que o mesmo não será restituido de qualquer valor, seja PARCIAL ou INTEGRAL quando o mesmo INSERIR, ENVIAR, ALTERAR suas INFORMAÇÕES PESSOAIS ou INFORMAÇÔES PARA ENTREGA onde o RESTAURANTE não consiga realizar a entrega ou de alguma forma BURLAR o sistema, inserindo no mesmo dados incorretos ou inconsistentes. <br>
         		</p>
 
-        		<h3>7. ACEITAÇÃO DO TERMO DE ENTREGA</h3>
+        		<h3>6. ACEITAÇÃO DO TERMO DE ENTREGA</h3>
         		<p>
-        			<strong>7.1</strong> O USUÁRIO declara ter lido, entendido e que aceita todas as regras, condições e obrigações estabelecidas no presente TERMO. <br>
+        			<strong>6.1</strong> O USUÁRIO declara ter lido, entendido e que aceita todas as regras, condições e obrigações estabelecidas no presente TERMO. <br>
         		</p>
         	</div>
     </div>

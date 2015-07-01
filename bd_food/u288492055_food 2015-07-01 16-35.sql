@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Jun-2015 às 17:36
+-- Generation Time: 01-Jul-2015 às 21:32
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -31,33 +31,36 @@ CREATE TABLE IF NOT EXISTS `adicionais` (
   `nome` varchar(60) NOT NULL,
   `valor` decimal(8,2) NOT NULL,
   `id_categoria` int(11) NOT NULL,
+  `status` char(1) CHARACTER SET latin1 NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_adicional`),
   KEY `fk_adicioanais_categorias` (`id_categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- Extraindo dados da tabela `adicionais`
 --
 
-INSERT INTO `adicionais` (`id_adicional`, `nome`, `valor`, `id_categoria`) VALUES
-(1, 'Cheddar', '0.50', 9),
-(2, 'Bacon', '0.50', 9),
-(3, 'Catupiry', '0.50', 9),
-(4, 'Calabreza', '0.50', 9),
-(5, 'Queijo', '0.50', 9),
-(6, 'Lombo', '0.50', 9),
-(7, 'Palmito', '0.50', 9),
-(8, 'Cheddar', '3.00', 10),
-(9, 'Catupiry', '2.50', 10),
-(10, 'Cheddar', '3.00', 10),
-(11, 'Catupiry', '2.50', 10),
-(12, 'Calabresa', '3.50', 10),
-(15, 'Catupiry', '2.00', 13),
-(16, 'Cheddar', '2.50', 13),
-(17, 'Calabresa', '2.50', 13),
-(20, 'Catupiry', '4.00', 11),
-(21, 'Cheddar', '4.50', 11),
-(22, 'Calabresa', '4.50', 11);
+INSERT INTO `adicionais` (`id_adicional`, `nome`, `valor`, `id_categoria`, `status`) VALUES
+(1, 'Cheddar', '0.50', 9, '1'),
+(2, 'Bacon', '0.50', 9, '1'),
+(3, 'Catupiry', '0.50', 9, '1'),
+(4, 'Calabreza', '0.50', 9, '1'),
+(5, 'Queijo', '0.50', 9, '1'),
+(6, 'Lombo', '0.50', 9, '1'),
+(7, 'Palmito', '0.50', 9, '1'),
+(8, 'Cheddar', '3.00', 10, '1'),
+(9, 'Catupiry', '2.50', 10, '1'),
+(10, 'Bacon', '3.00', 10, '1'),
+(11, 'Tomate', '1.50', 10, '1'),
+(12, 'Calabresa', '3.50', 10, '1'),
+(15, 'Catupiry', '2.00', 13, '1'),
+(16, 'Cheddar', '2.50', 13, '1'),
+(17, 'Calabresa', '2.50', 13, '1'),
+(20, 'Catupiry', '4.00', 11, '1'),
+(21, 'Cheddar', '4.50', 11, '1'),
+(22, 'Calabresa', '4.50', 11, '1'),
+(23, 'Queijo', '4.00', 11, '1'),
+(24, 'Tomate', '0.50', 9, '1');
 
 -- --------------------------------------------------------
 
@@ -70,30 +73,32 @@ CREATE TABLE IF NOT EXISTS `bordas` (
   `nome` varchar(60) NOT NULL,
   `valor` decimal(6,2) NOT NULL,
   `id_categoria` int(11) NOT NULL,
+  `status` char(1) CHARACTER SET latin1 NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_borda`),
   KEY `fk_bordas_categorias` (`id_categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Extraindo dados da tabela `bordas`
 --
 
-INSERT INTO `bordas` (`id_borda`, `nome`, `valor`, `id_categoria`) VALUES
-(1, 'Cheddar', '3.00', 10),
-(2, 'Catupiry', '2.50', 10),
-(3, 'Calabresa', '3.50', 10),
-(4, 'Goiabada', '2.50', 10),
-(5, 'Doce de Leite', '2.50', 10),
-(6, 'Catupiry', '2.00', 13),
-(7, 'Cheddar', '2.50', 13),
-(8, 'Calabresa', '2.50', 13),
-(9, 'Goiabada ', '2.00', 13),
-(10, 'Doce de leite', '2.00', 13),
-(11, 'Catupiry', '4.00', 11),
-(12, 'Cheddar', '4.50', 11),
-(13, 'Calabresa', '4.50', 11),
-(14, 'Goiabada', '4.00', 11),
-(15, 'Doce de Leite', '4.00', 11);
+INSERT INTO `bordas` (`id_borda`, `nome`, `valor`, `id_categoria`, `status`) VALUES
+(1, 'Cheddar', '3.00', 10, '1'),
+(2, 'Catupiry', '2.50', 10, '0'),
+(3, 'Calabresa', '3.50', 10, '1'),
+(4, 'Goiabada', '2.50', 10, '1'),
+(5, 'Doce de Leite', '2.50', 10, '1'),
+(6, 'Catupiry', '2.00', 13, '1'),
+(7, 'Cheddar', '2.50', 13, '1'),
+(8, 'Calabresa', '2.50', 13, '1'),
+(9, 'Goiabada ', '2.00', 13, '1'),
+(10, 'Doce de leite', '2.00', 13, '1'),
+(11, 'Catupiry', '4.00', 11, '1'),
+(12, 'Cheddar', '4.50', 11, '1'),
+(13, 'Calabresa', '4.50', 11, '1'),
+(14, 'Goiabada', '4.00', 11, '1'),
+(15, 'Doce de Leite', '4.00', 11, '1'),
+(16, 'Brigadeiro', '4.00', 12, '0');
 
 -- --------------------------------------------------------
 
@@ -108,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `categorias` (
   `2sabores` char(3) CHARACTER SET latin1 NOT NULL DEFAULT 'Não',
   PRIMARY KEY (`id_categoria`),
   KEY `fk_categorias_restaurantes` (`id_restaurante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Extraindo dados da tabela `categorias`
@@ -191,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `enderecos` (
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_endereco`),
   KEY `fk_com_usuarios` (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
 
 --
 -- Extraindo dados da tabela `enderecos`
@@ -211,7 +216,15 @@ INSERT INTO `enderecos` (`id_endereco`, `logradouro`, `numero`, `bairro`, `compl
 (14, 'Av. Navarro de Andrade', '347', 'Centro', '', '', 'SP', 'Santa Fé do Sul', '15775-000', 41),
 (15, 'Av. Ana rocha de oliveira', '548', 'Centro', '', '', 'SP', 'Três Fronteiras', '15770-000', 41),
 (16, 'Avenida Presidente Vargas', '173', 'Centro', '', '', 'SP', 'Três Fronteitas', '15775-000', 42),
-(17, 'Rua Dos Eucaliptos', '90', 'Jardim Universitário 2', '', '', 'SP', 'Santa Fé do Sul', '15775-000', 43);
+(17, 'Rua Dos Eucaliptos', '90', 'Jardim Universitário 2', '', '', 'SP', 'Santa Fé do Sul', '15775-000', 43),
+(18, 'Rua Jose Claudio Fogaça', '875', 'Centro', '', '', 'SP', 'Santa Fe do Sul', '15775-000', 44),
+(19, 'Rua Jose Claudio Fogaça', '875', 'Centro', '', '', 'SP', 'Três Fronteiras', '15770-000', 44),
+(20, 'Rua 7 de Setembro', '222', 'São Francisco', '', '', 'SP', 'Santa Fé do Sul', '15775-000', 45),
+(21, 'Av. Teste', '554', 'Centro', '', '', 'SP', 'Jales', '15700-000', 41),
+(22, 'Rua dos Testes 2', '8855', 'Centro', '', '', 'SP', 'Fernandópolis', '15600-000', 41),
+(23, 'Rua dos Testes', '123', 'Jd Rafael', '', '', 'SP', 'Três Fronteiras', '15770-000', 41),
+(24, 'Av. das Tretas', '669', 'Mamilos', '', '', 'SP', 'Três Fronteiras', '15770-000', 41),
+(25, 'Rua das Avenidas', '338', 'Alameda', 'Perto do negocio la', 'sim', 'SP', 'Três Fronteiras', '15770-000', 41);
 
 -- --------------------------------------------------------
 
@@ -227,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `entregas_restaurantes` (
   PRIMARY KEY (`id_entrega`),
   KEY `fk_entrega_cidade` (`id_cidade_entrega`),
   KEY `fk_entrega_restaurantes` (`id_restaurante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- Extraindo dados da tabela `entregas_restaurantes`
@@ -235,10 +248,11 @@ CREATE TABLE IF NOT EXISTS `entregas_restaurantes` (
 
 INSERT INTO `entregas_restaurantes` (`id_entrega`, `id_cidade_entrega`, `id_restaurante`, `taxa`) VALUES
 (22, 1, 5, '0.00'),
-(23, 2, 5, '5.00'),
-(24, 3, 5, '6.00'),
+(23, 2, 5, '2.00'),
+(24, 3, 5, '3.00'),
 (25, 4, 5, '3.00'),
-(26, 6, 5, '1.00');
+(26, 6, 5, '1.00'),
+(27, 1, 6, '0.00');
 
 -- --------------------------------------------------------
 
@@ -279,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `funcionarios` (
   PRIMARY KEY (`id_funcionario`),
   KEY `fk_funcionarios_restaurantes` (`id_restaurante`),
   KEY `fk_funcionarios_niveis` (`id_nivel`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `funcionarios`
@@ -289,7 +303,8 @@ INSERT INTO `funcionarios` (`id_funcionario`, `nome`, `cpf`, `telefone`, `usuari
 (1, 'Funcionario Teste', '612.818.181-81', '(15) - 15151-5151', 'teste', '176b9dd7906dd9919b94aa17686d282628daee473bfe3576677959e87a8320d4f15c33fc5e1a98be9d44d789b828164ee748706b7c758db58d706cdb6cea692c', 2, 5, '2015-05-20 18:59:36'),
 (2, 'Proprietario Teste', '848.484.844-54', '(15) - 81801-8181', 'proprietario', '176b9dd7906dd9919b94aa17686d282628daee473bfe3576677959e87a8320d4f15c33fc5e1a98be9d44d789b828164ee748706b7c758db58d706cdb6cea692c', 4, 5, '2015-05-20 19:02:14'),
 (3, 'teste1', '128.372.183-71', '(15) - 8181-8181', 'teste1', '176b9dd7906dd9919b94aa17686d282628daee473bfe3576677959e87a8320d4f15c33fc5e1a98be9d44d789b828164ee748706b7c758db58d706cdb6cea692c', 3, 8, '2015-05-25 19:19:01'),
-(4, 'Teste', '312.932.198-38', '(17) - 8888-8888', 'teste3', 'b6c39372ed94b613747bb6ad156cfdfaeb4b2302b77097f8a2aabb58efedb679146f13dbf18f5bf2fd01f2f61945d7b42f8684dff598849fbc150779005ad18f', 2, 5, '2015-06-10 00:24:07');
+(4, 'Teste', '312.932.198-38', '(17) - 8888-8888', 'teste3', 'b6c39372ed94b613747bb6ad156cfdfaeb4b2302b77097f8a2aabb58efedb679146f13dbf18f5bf2fd01f2f61945d7b42f8684dff598849fbc150779005ad18f', 2, 5, '2015-06-10 00:24:07'),
+(5, 'teste2', '123.812.738-21', '', 'teste2', '176b9dd7906dd9919b94aa17686d282628daee473bfe3576677959e87a8320d4f15c33fc5e1a98be9d44d789b828164ee748706b7c758db58d706cdb6cea692c', 4, 6, '2015-06-24 01:14:22');
 
 -- --------------------------------------------------------
 
@@ -311,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `itens_pedido` (
   PRIMARY KEY (`id_item_pedido`),
   KEY `fk_itens_pedido` (`id_pedido`),
   KEY `fk_itens_produtos` (`id_produto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=105 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=138 ;
 
 --
 -- Extraindo dados da tabela `itens_pedido`
@@ -364,7 +379,40 @@ INSERT INTO `itens_pedido` (`id_item_pedido`, `id_pedido`, `id_produto`, `qtd`, 
 (101, 54, 8, 1, NULL, 'Nenhum', NULL, 'Não', '', '17.00'),
 (102, 54, 6, 1, 10, 'Cheddar', 5, 'Doce de Leite', '', '24.50'),
 (103, 54, 4, 1, NULL, 'Nenhum', NULL, 'Não', 'sem tomate', '19.00'),
-(104, 55, 13, 1, 22, 'Calabresa', 11, 'Catupiry', '', '38.00');
+(104, 55, 13, 1, 22, 'Calabresa', 11, 'Catupiry', '', '38.00'),
+(105, 56, 16, 10, 1, 'Cheddar', NULL, 'Não', '', '2.30'),
+(106, 56, 13, 1, NULL, 'Nenhum', 14, 'Goiabada', '', '33.50'),
+(107, 57, 13, 3, 22, 'Calabresa', 12, 'Cheddar', '', '38.50'),
+(108, 57, 18, 1, 1, 'Cheddar', NULL, 'Não', '', '2.80'),
+(109, 58, 10, 1, 20, 'Catupiry', 14, 'Goiabada', '', '30.50'),
+(110, 59, 10, 1, NULL, 'Nenhum', NULL, 'Não', '', '22.50'),
+(111, 59, 4, 1, 11, 'Tomate', 3, 'Calabresa', '', '24.00'),
+(112, 60, 10, 1, NULL, 'Nenhum', NULL, 'Não', '', '22.50'),
+(113, 61, 4, 1, NULL, 'Nenhum', NULL, 'Não', '', '19.00'),
+(114, 62, 14, 1, NULL, 'Nenhum', NULL, 'Não', '', '25.50'),
+(115, 63, 10, 1, 22, 'Calabresa', 11, 'Catupiry', '', '31.00'),
+(116, 64, 14, 1, NULL, 'Nenhum', NULL, 'Não', '', '25.50'),
+(117, 64, 17, 3, 6, 'Lombo', NULL, 'Não', '', '2.80'),
+(118, 65, 16, 1, NULL, 'Nenhum', NULL, 'Não', '', '1.80'),
+(119, 65, 10, 1, NULL, 'Nenhum', NULL, 'Não', '', '22.50'),
+(120, 66, 4, 1, NULL, 'Nenhum', NULL, 'Não', '', '19.00'),
+(121, 66, 7, 1, NULL, 'Nenhum', NULL, 'Não', '', '16.00'),
+(122, 67, 14, 1, NULL, 'Nenhum', NULL, 'Não', '', '25.50'),
+(123, 68, 4, 1, 10, 'Bacon', 5, 'Doce de Leite', '', '24.50'),
+(124, 69, 14, 1, NULL, 'Nenhum', NULL, 'Não', '', '25.50'),
+(125, 70, 14, 1, NULL, 'Nenhum', NULL, 'Não', '', '25.50'),
+(126, 70, 16, 1, 4, 'Calabreza', NULL, 'Não', '', '2.30'),
+(127, 71, 10, 1, NULL, 'Nenhum', NULL, 'Não', '', '22.50'),
+(128, 72, 8, 1, 11, 'Tomate', 5, 'Doce de Leite', '', '21.00'),
+(129, 73, 4, 1, NULL, 'Nenhum', NULL, 'Não', '', '19.00'),
+(130, 73, 17, 1, NULL, 'Nenhum', NULL, 'Não', '', '2.30'),
+(131, 74, 10, 1, NULL, 'Nenhum', NULL, 'Não', '', '22.50'),
+(132, 75, 17, 2, NULL, 'Nenhum', NULL, 'Não', '', '2.30'),
+(133, 75, 4, 3, NULL, 'Nenhum', NULL, 'Não', '', '19.00'),
+(134, 75, 16, 1, NULL, 'Nenhum', NULL, 'Não', '', '1.80'),
+(135, 75, 5, 1, NULL, 'Nenhum', NULL, 'Não', '', '19.00'),
+(136, 75, 10, 1, NULL, 'Nenhum', NULL, 'Não', '', '22.50'),
+(137, 75, 15, 1, NULL, 'Nenhum', NULL, 'Não', '', '25.50');
 
 -- --------------------------------------------------------
 
@@ -456,7 +504,7 @@ CREATE TABLE IF NOT EXISTS `pedidos` (
   KEY `fk_pedidos_cidade_entrega` (`id_cidade_entrega`),
   KEY `fk_pedidos_enderecos` (`endereco`(255)),
   KEY `fk_status_pedidos` (`id_status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=76 ;
 
 --
 -- Extraindo dados da tabela `pedidos`
@@ -492,7 +540,27 @@ INSERT INTO `pedidos` (`id_pedido`, `data`, `valor_total`, `valor_pago`, `taxa_e
 (52, '2015-06-09 15:28:30', '41.60', '44.50', '5.00', 2, 5, 1, 2, 'Rua José Claudio Fogaça, 875 - Centro / Três Fronteiras - SP', NULL, NULL, NULL, NULL, NULL),
 (53, '2015-06-09 19:59:46', '26.50', '29.40', '0.00', 2, 5, 7, 1, 'Rua 15, 115 - Centro / Santa Fé do Sul - SP', '2015-06-09 20:00:13', '2015-06-09 20:00:45', '2015-06-09 20:01:00', '2015-06-09 20:01:10', NULL),
 (54, '2015-06-09 21:12:49', '60.50', '63.40', '0.00', 41, 5, 7, 2, 'Av. Ana rocha de oliveira, 548 - Centro / Três Fronteiras - SP', '2015-06-09 21:13:21', '2015-06-09 21:17:02', '2015-06-09 21:17:40', '2015-06-09 21:17:53', NULL),
-(55, '2015-06-10 15:41:40', '38.00', '40.90', '0.00', 42, 5, 7, 1, 'Avenida Presidente Vargas, 173 - Centro / Três Fronteitas - SP', '2015-06-10 15:43:54', '2015-06-10 15:46:25', '2015-06-10 16:50:57', '2015-06-10 16:51:09', NULL);
+(55, '2015-06-10 15:41:40', '38.00', '40.90', '0.00', 42, 5, 7, 1, 'Avenida Presidente Vargas, 173 - Centro / Três Fronteitas - SP', '2015-06-10 15:43:54', '2015-06-10 15:46:25', '2015-06-10 16:50:57', '2015-06-10 16:51:09', NULL),
+(56, '2015-06-18 17:29:52', '56.50', '59.40', '0.00', 44, 5, 7, 2, 'Rua Jose Claudio Fogaça, 875 - Centro / Três Fronteiras - SP', '2015-06-18 17:30:28', '2015-06-18 17:31:34', '2015-06-18 17:31:42', '2015-06-18 17:31:52', NULL),
+(57, '2015-06-19 10:50:42', '123.30', '126.20', '5.00', 44, 5, 7, 2, 'Rua Jose Claudio Fogaça, 875 - Centro / Três Fronteiras - SP', '2015-06-19 10:51:43', '2015-06-19 10:55:06', '2015-06-19 10:55:12', '2015-06-19 10:55:20', NULL),
+(58, '2015-06-29 16:22:47', '32.50', '35.40', '2.00', 41, 5, 1, 2, 'Av. Ana rocha de oliveira, 548 - Centro / Três Fronteiras - SP', NULL, NULL, NULL, NULL, NULL),
+(59, '2015-06-29 16:24:25', '46.50', '49.40', '0.00', 41, 5, 7, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', '2015-06-29 16:24:47', '2015-06-29 16:25:02', '2015-06-29 16:27:43', '2015-06-29 16:28:18', NULL),
+(60, '2015-06-29 18:11:32', '22.50', '25.40', '0.00', 41, 5, 7, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', '2015-06-29 18:12:42', '2015-06-30 18:05:03', '2015-06-30 18:09:15', '2015-06-30 18:09:30', NULL),
+(61, '2015-06-29 18:13:32', '19.00', '21.90', '0.00', 41, 5, 1, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', NULL, NULL, NULL, NULL, NULL),
+(62, '2015-06-29 18:19:06', '25.50', '28.40', '0.00', 41, 5, 7, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', '2015-06-29 18:19:45', '2015-06-30 18:05:01', '2015-06-30 18:09:17', '2015-06-30 18:09:32', NULL),
+(63, '2015-06-29 18:20:01', '33.00', '35.90', '2.00', 41, 5, 7, 2, 'Av. Ana rocha de oliveira, 548 - Centro / Três Fronteiras - SP', '2015-06-29 18:20:34', '2015-06-30 18:04:59', '2015-06-30 18:09:19', '2015-06-30 18:09:33', NULL),
+(64, '2015-06-29 18:20:59', '33.90', '36.80', '0.00', 41, 5, 7, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', '2015-06-29 18:21:20', '2015-06-30 18:04:56', '2015-06-30 18:09:21', '2015-06-30 18:09:35', NULL),
+(65, '2015-06-29 18:26:37', '24.30', '27.20', '0.00', 41, 5, 7, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', '2015-06-29 18:27:14', '2015-06-30 18:04:12', '2015-06-30 18:04:22', '2015-06-30 18:04:33', NULL),
+(66, '2015-06-30 18:08:15', '35.00', '37.90', '0.00', 41, 5, 7, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', '2015-06-30 18:08:39', '2015-06-30 18:09:07', '2015-06-30 18:09:23', '2015-06-30 18:09:37', NULL),
+(67, '2015-06-30 18:10:15', '27.50', '30.40', '2.00', 41, 5, 3, 2, 'Av. Ana rocha de oliveira, 548 - Centro / Três Fronteiras - SP', NULL, NULL, NULL, NULL, '2015-06-30 23:10:37'),
+(68, '2015-06-30 18:16:58', '24.50', '27.40', '0.00', 41, 5, 7, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', '2015-06-30 18:17:16', '2015-06-30 18:17:50', '2015-06-30 18:20:55', '2015-06-30 18:21:25', NULL),
+(69, '2015-06-30 18:34:03', '27.50', '30.40', '2.00', 41, 5, 7, 2, 'Av. Ana rocha de oliveira, 548 - Centro / Três Fronteiras - SP', '2015-06-30 18:34:40', '2015-06-30 18:57:10', '2015-06-30 18:57:15', '2015-06-30 18:57:22', NULL),
+(70, '2015-06-30 18:35:00', '27.80', '30.70', '0.00', 41, 5, 7, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', '2015-06-30 18:35:25', '2015-06-30 18:57:12', '2015-06-30 18:57:16', '2015-06-30 18:57:19', NULL),
+(71, '2015-06-30 18:40:38', '24.50', '27.40', '2.00', 41, 5, 3, 2, 'Av. Ana rocha de oliveira, 548 - Centro / Três Fronteiras - SP', NULL, NULL, NULL, NULL, '2015-06-30 23:41:34'),
+(72, '2015-06-30 18:42:41', '21.00', '23.90', '0.00', 41, 5, 3, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', NULL, NULL, NULL, NULL, '2015-06-30 23:42:57'),
+(73, '2015-06-30 19:24:19', '23.30', '26.20', '2.00', 41, 5, 7, 2, 'Av. Ana rocha de oliveira, 548 - Centro / Três Fronteiras - SP', '2015-06-30 19:24:52', '2015-06-30 19:27:04', '2015-06-30 19:27:06', '2015-06-30 19:27:10', NULL),
+(74, '2015-06-30 22:57:26', '22.50', '25.40', '0.00', 41, 5, 7, 1, 'Av. Navarro de Andrade, 347 - Centro / Santa Fé do Sul - SP', '2015-06-30 22:57:51', '2015-07-01 13:38:28', '2015-07-01 13:38:30', '2015-07-01 13:38:33', NULL),
+(75, '2015-07-01 00:31:26', '132.40', '135.30', '2.00', 41, 5, 7, 2, 'Rua das Avenidas, 338 - Alameda / Três Fronteiras - SP', '2015-07-01 00:32:01', '2015-07-01 13:38:15', '2015-07-01 13:38:18', '2015-07-01 13:38:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -527,12 +595,12 @@ INSERT INTO `produtos` (`id`, `nome`, `valor`, `id_restaurante`, `descricao`, `i
 (10, 'Americana', '22.50', 5, 'mussarela, presunto, tomate e azeitona', 11, '1'),
 (11, 'Aliche', '26.00', 5, 'mussarela, aliche, tomate e azeitona', 11, '1'),
 (12, 'Calabresa', '21.00', 5, 'calabresa e cebola', 11, '1'),
-(13, 'Frango Especial', '29.50', 5, 'mussarela, frango desfiado, bacon, milho, tomate e azeitona', 11, '0'),
-(14, 'Brigadeiro', '25.50', 5, 'leite condensado, chocolate derretido e chocolate granulado', 12, '1'),
+(13, 'Frango Especial', '29.50', 5, 'mussarela, frango desfiado, bacon, milho, tomate e azeitona', 11, '1'),
+(14, 'Brigadeiro', '25.50', 5, 'leite condensado, mussarela, chocolate e chocolate granulado', 12, '1'),
 (15, 'Pretígio', '25.50', 5, ' leite condensado, mussarela e goiabada', 12, '1'),
 (16, 'Lombo c/ Catupiry', '1.80', 5, 'lombo e catupiry', 9, '1'),
 (17, 'Portuguesa', '2.30', 5, 'mussarela, presunto, milho, ervilha ovo e tomate', 9, '1'),
-(18, 'Bacon Especial', '2.30', 5, 'mussarela, bacon, palmito e catupiry', 9, '0'),
+(18, 'Bacon Especial', '2.30', 5, 'mussarela, bacon, palmito e catupiry', 9, '1'),
 (19, 'Mista', '10.80', 5, 'mussarela, provolone, lombo canadense, calabresa, tomate, azeitona e alho frito', 13, '1'),
 (20, 'Moda da Casa', '8.20', 5, 'mussarela, calabresa, tomate, milho, ervilha, ovo, palmito, azeitona e cebola', 13, '1'),
 (21, 'Portuguesa especial', '12.80', 5, 'mussarela, provolone, presunto, lombo canadense, calabresa, ervilha, tomate, ovo palmito e azeitona', 13, '1'),
@@ -546,13 +614,13 @@ INSERT INTO `produtos` (`id`, `nome`, `valor`, `id_restaurante`, `descricao`, `i
 (35, 'Coca-Cola 2L', '6.50', 5, '-', 18, '1'),
 (36, '4 Queijos', '28.50', 8, '4 Queijos diferentes mas parecem iguais', 19, '1'),
 (37, 'Frango c/ Catupiry', '26.50', 8, 'Frango com Catupiry', 19, '1'),
-(38, 'Caipira ', '28.00', 8, 'Frango, bacon, catupiry, mussarela e alho', 19, '0'),
-(39, 'Suco de Laranja 1L', '6.50', 8, '-', 18, '1'),
+(38, 'Caipira ', '28.00', 8, 'Frango, bacon, catupiry, mussarela e alho', 19, '1'),
+(39, 'Suco de Laranja 1L', '6.50', 8, '-', 18, '0'),
 (40, 'Suco de Maracujá 500ml', '3.50', 8, '-', 18, '1'),
-(41, 'Brócolis com Bacon', '27.00', 8, 'Presunto, Queijo, Brócolis, Tomate e Bacon', 19, '0'),
+(41, 'Brócolis com Bacon', '27.00', 8, 'Presunto, Queijo, Brócolis, Tomate e Bacon', 19, '1'),
 (42, 'Pizza de Berinjela', '29.00', 5, 'Berinjela e Carne Moida', 11, '1'),
 (43, 'Guaravita 2L', '4.90', 5, '-', 18, '1'),
-(44, 'Morango com Chocolate', '29.00', 5, 'Chocolate derretido com pedaços de morango por cima', 12, '1');
+(44, 'Cotuba 600ml', '2.00', 5, '-', 18, '1');
 
 -- --------------------------------------------------------
 
@@ -603,6 +671,7 @@ INSERT INTO `restaurantes` (`id_restaurante`, `tipo`, `tempo_entrega`, `razao_so
 CREATE TABLE IF NOT EXISTS `status_pgto` (
   `id_status` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(256) NOT NULL,
+  `status_reduzido` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id_status`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
@@ -610,17 +679,17 @@ CREATE TABLE IF NOT EXISTS `status_pgto` (
 -- Extraindo dados da tabela `status_pgto`
 --
 
-INSERT INTO `status_pgto` (`id_status`, `nome`) VALUES
-(1, 'Aguardando Confirmação de Pagamento'),
-(2, 'Pagamento não confirmado pela operadora de crédito'),
-(3, 'Pedido cancelado, Erro ao efetuar o pagamento'),
-(4, 'Pagamento Confirmado, aguarde'),
-(5, 'Pedido recebido pelo restaurante, aguarde enquanto preparamos sua refeição'),
-(6, 'Seu pedido ja foi preparado e encontra-se em transporte para entrega'),
-(7, 'Pedido entregue com sucesso! Obrigado pela preferência :)'),
-(8, 'Ocorreu um erro ao preparar sua refeição, por favor entre em contato conosco o mais rapido possivel'),
-(9, 'Pedido cancelado por inconsistência nos dados, por favor entre em contato conosco o mais rapido possivel'),
-(10, 'Atenção: Seu pagamento está pendente em nosso sistema, acesse sua conta no paypal e verifique');
+INSERT INTO `status_pgto` (`id_status`, `nome`, `status_reduzido`) VALUES
+(1, 'Aguardando Confirmação de Pagamento', 'Aguardando Confirmação de Pagamento.'),
+(2, 'Pagamento não confirmado pela operadora de crédito', 'Pagamento não confirmado.'),
+(3, 'Pedido cancelado, Erro ao efetuar o pagamento', 'Pedido cancelado, Erro ao efetuar o pagamento.'),
+(4, 'Pagamento Confirmado, aguarde', 'Pagamento Confirmado, aguarde.'),
+(5, 'Pedido recebido pelo restaurante, aguarde enquanto preparamos sua refeição', 'Pedido recebido pelo restaurante, aguarde.'),
+(6, 'Seu pedido ja foi preparado e encontra-se em transporte para entrega', 'Seu pedido ja foi preparado e encontra-se em transporte.'),
+(7, 'Pedido entregue com sucesso! Obrigado pela preferência, esperamos seu retorno em breve :)', 'Pedido entregue com sucesso! Obrigado pela preferência.'),
+(8, 'Ocorreu um erro ao preparar sua refeição, por favor entre em contato conosco o mais rapido possivel', 'Ocorreu um erro ao preparar sua refeição.'),
+(9, 'Pedido cancelado por inconsistência nos dados, por favor entre em contato conosco o mais rapido possivel', 'Pedido cancelado por inconsistência nos dados'),
+(10, 'Atenção: Seu pagamento está pendente em nosso sistema, acesse sua conta no paypal e verifique', 'Seu pagamento está pendente em nosso sistema.');
 
 -- --------------------------------------------------------
 
@@ -633,7 +702,7 @@ CREATE TABLE IF NOT EXISTS `subscribes` (
   `email` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id_subs`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=40 ;
 
 --
 -- Extraindo dados da tabela `subscribes`
@@ -648,6 +717,7 @@ INSERT INTO `subscribes` (`id_subs`, `email`) VALUES
 (30, 'joilsomen@hotmail.com'),
 (32, 'leticinha_donatoni@hotmail.com'),
 (24, 'marcosfernando7@gmail.com'),
+(34, 'matheus.sfs95@gmail.com'),
 (33, 'nathalia.esteves1996@hotmail.com'),
 (3, 'stripersduuh@hotmail.com'),
 (28, 'teste@godfood.com.br'),
@@ -679,7 +749,7 @@ CREATE TABLE IF NOT EXISTS `tarifas` (
   PRIMARY KEY (`id_tarifa`),
   KEY `fk_pedidos_tarifas` (`id_pedido`),
   KEY `fk_tarifas_restaurantes` (`id_restaurante`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
 
 --
 -- Extraindo dados da tabela `tarifas`
@@ -715,7 +785,27 @@ INSERT INTO `tarifas` (`id_tarifa`, `id_restaurante`, `id_pedido`, `data`, `vTot
 (54, 5, 52, '2015-06-09 15:28:30', '44.50', '36.60', '34.59', '6.46', '7.01', '3.45', '9.91', 0, '6.40', '0.60', '9'),
 (55, 5, 53, '2015-06-09 22:59:47', '29.40', '26.50', '21.82', '5.10', '4.68', '2.48', '7.58', 1, '6.40', '0.60', '9'),
 (56, 5, 54, '2015-06-10 00:12:55', '63.40', '60.50', '50.58', '8.16', '9.92', '4.66', '12.82', 1, '6.40', '0.60', '9'),
-(57, 5, 55, '2015-06-10 18:43:28', '40.90', '38.00', '31.55', '6.13', '6.45', '3.22', '9.35', 1, '6.40', '0.60', '9');
+(57, 5, 55, '2015-06-10 18:43:28', '40.90', '38.00', '31.55', '6.13', '6.45', '3.22', '9.35', 1, '6.40', '0.60', '9'),
+(58, 5, 56, '2015-06-18 20:29:58', '59.40', '56.50', '47.20', '7.80', '9.30', '4.40', '12.20', 1, '6.40', '0.60', '9'),
+(59, 5, 57, '2015-06-19 13:51:12', '126.20', '118.30', '103.71', '13.81', '19.59', '8.68', '22.49', 1, '6.40', '0.60', '9'),
+(60, 5, 58, '2015-06-29 16:22:47', '35.40', '30.50', '26.90', '5.64', '5.61', '2.87', '8.51', 0, '6.40', '0.60', '9'),
+(61, 5, 59, '2015-06-29 16:24:47', '49.40', '46.50', '38.74', '6.90', '7.76', '3.76', '10.66', 1, '6.40', '0.60', '9'),
+(62, 5, 60, '2015-06-29 18:12:42', '25.40', '22.50', '18.44', '4.74', '4.07', '2.23', '6.97', 1, '6.40', '0.60', '9'),
+(63, 5, 61, '2015-06-29 18:13:33', '21.90', '19.00', '15.47', '4.42', '3.53', '2.00', '6.43', 0, '6.40', '0.60', '9'),
+(64, 5, 62, '2015-06-29 18:19:45', '28.40', '25.50', '20.97', '5.01', '4.53', '2.42', '7.43', 1, '6.40', '0.60', '9'),
+(65, 5, 63, '2015-06-29 18:20:34', '35.90', '31.00', '27.32', '5.68', '5.68', '2.90', '8.58', 1, '6.40', '0.60', '9'),
+(66, 5, 64, '2015-06-29 18:21:20', '36.80', '33.90', '28.08', '5.77', '5.82', '2.96', '8.72', 1, '6.40', '0.60', '9'),
+(67, 5, 65, '2015-06-29 18:27:14', '27.20', '24.30', '19.96', '4.90', '4.34', '2.34', '7.24', 1, '6.40', '0.60', '9'),
+(68, 5, 66, '2015-06-30 18:08:39', '37.90', '35.00', '29.01', '5.86', '5.99', '3.03', '8.89', 1, '6.40', '0.60', '9'),
+(69, 5, 67, '2015-06-30 18:10:15', '30.40', '25.50', '22.67', '5.19', '4.84', '2.55', '7.74', 0, '6.40', '0.60', '9'),
+(70, 5, 68, '2015-06-30 18:17:16', '27.40', '24.50', '20.13', '4.92', '4.37', '2.35', '7.27', 1, '6.40', '0.60', '9'),
+(71, 5, 69, '2015-06-30 18:34:40', '30.40', '25.50', '22.67', '5.19', '4.84', '2.55', '7.74', 1, '6.40', '0.60', '9'),
+(72, 5, 70, '2015-06-30 18:35:25', '30.70', '27.80', '22.92', '5.22', '4.88', '2.56', '7.78', 1, '6.40', '0.60', '9'),
+(73, 5, 71, '2015-06-30 18:40:38', '27.40', '22.50', '20.13', '4.92', '4.37', '2.35', '7.27', 0, '6.40', '0.60', '9'),
+(74, 5, 72, '2015-06-30 18:42:41', '23.90', '21.00', '17.17', '4.60', '3.83', '2.13', '6.73', 0, '6.40', '0.60', '9'),
+(75, 5, 73, '2015-06-30 19:24:52', '26.20', '21.30', '19.11', '4.81', '4.19', '2.28', '7.09', 1, '6.40', '0.60', '9'),
+(76, 5, 74, '2015-06-30 22:57:51', '25.40', '22.50', '18.44', '4.74', '4.07', '2.23', '6.97', 1, '6.40', '0.60', '9'),
+(77, 5, 75, '2015-07-01 00:32:01', '135.30', '130.40', '111.41', '14.63', '20.99', '9.26', '23.89', 1, '6.40', '0.60', '9');
 
 -- --------------------------------------------------------
 
@@ -747,7 +837,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `cpf_UNIQUE` (`cpf`),
   KEY `fk_usuarios_niveis` (`id_nivel`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -760,9 +850,12 @@ INSERT INTO `usuarios` (`id_usuario`, `login`, `senha`, `email`, `nome`, `cpf`, 
 (34, 'teste', 'aa382912594903549b16f6c6aeef58020972330df8183ccadc6b267c5efee6b7b3260ec020e9e3a5140bfcd9d61ebdbdc152b6c0a41173b704e7f74ed99a1ffc', 'eduovrp@godfood.com.br', 'Eduardo Lopes', '222.222.222-22', '', '(17) - 99764-0291', 1, 1, NULL, NULL, NULL, NULL, 0, NULL, '2015-06-04 17:01:51', '187.10.35.158'),
 (38, 'jrsimensato', '50e61808ed28c0b0be9ada99c3e0b51e0d30aecccd823472a1ec9f1aec87c0ed70188cf3d5c314f8f2855a4f17fac56908584af2e9688f6a99a1f16ebd9763ae', 'juniorsimensato@outlook.com', 'onivaldo simensato junior', '400.219.628-39', '(17) - 3442-5882', '(17) - 99625-4065', 1, 1, NULL, NULL, NULL, NULL, 0, NULL, '2015-08-06 15:18:34', '177.234.146.154'),
 (40, 'joilso', '507b1d0a3252b0f2f1ed99b3ae07c4538009991dd708aa8a094614ce4892cad5d6ba349514773dc20589e875aa992ebb516d8a56d39fb1dbafbb5d210f28b1f0', 'joilsomen@hotmail.com', 'Joilso Meira Novais', '039.000.801-00', '(17) - 3641-2099', '(17) - 99109-2211', 1, 1, NULL, NULL, NULL, NULL, 0, NULL, '2015-06-09 23:49:20', '177.234.146.154'),
-(41, 'eduovrp', 'aa382912594903549b16f6c6aeef58020972330df8183ccadc6b267c5efee6b7b3260ec020e9e3a5140bfcd9d61ebdbdc152b6c0a41173b704e7f74ed99a1ffc', 'eduovrp@hotmail.com', 'Eduardo Lopes', '367.584.768-39', '', '(17) - 99764-0291', 5, 1, NULL, NULL, '2015-06-10 22:19:51', NULL, 0, NULL, '2015-06-10 00:09:58', '177.234.146.154'),
+(41, 'eduovrp', 'aa382912594903549b16f6c6aeef58020972330df8183ccadc6b267c5efee6b7b3260ec020e9e3a5140bfcd9d61ebdbdc152b6c0a41173b704e7f74ed99a1ffc', 'eduovrp@gmail.com', 'Eduardo Lopes', '367.584.768-39', '', '(17) - 99764-0291', 5, 1, NULL, NULL, '2015-06-10 22:19:51', NULL, 0, NULL, '2015-06-10 00:09:58', '177.234.146.154'),
 (42, 'le_yee', '8e6d54edb1c1fd0b83a2d631ce21e71a81585780da28203a581fde1a1acbf64efe3c85e3047d53c6d82d924e27e07c40f4875dab5c3db44f8efab29fba12286a', 'leticinha_donatoni@hotmail.com', 'Letícia Donatoni Marim', '368.782.268-05', '(17) - 3691-1283', '(17) - 99702-2833', 1, 1, NULL, NULL, NULL, NULL, 0, NULL, '2015-06-10 18:28:32', '177.234.146.154'),
-(43, 'Nathalia Esteves', '42da7425fa9c6ad72042a2dea2c762578f74bedd84424ae41df27e6967e9c99e5867bf69d23d58089f3a101670111df6d0d9fcee8341dd35e973264db824babe', 'nathalia.esteves1996@hotmail.com', 'Nathalia Silva Esteves', '456.825.288-16', '(17) - 3631-0841', '(17) - 99604-2539', 1, 0, 'daf10525e2bf19f3ba25fdf1efb1d41943f95e45', NULL, NULL, NULL, 0, NULL, '2015-06-10 18:50:15', '177.234.146.154');
+(43, 'Nathalia Esteves', '42da7425fa9c6ad72042a2dea2c762578f74bedd84424ae41df27e6967e9c99e5867bf69d23d58089f3a101670111df6d0d9fcee8341dd35e973264db824babe', 'nathalia.esteves1996@hotmail.com', 'Nathalia Silva Esteves', '456.825.288-16', '(17) - 3631-0841', '(17) - 99604-2539', 1, 0, 'daf10525e2bf19f3ba25fdf1efb1d41943f95e45', NULL, NULL, NULL, 0, NULL, '2015-06-10 18:50:15', '177.234.146.154'),
+(44, 'guiilopes', 'b6f255c0d564ff7ba293811b13c0f8028928c43f67842696567b44d7067322fd6c608fe1b36999a0c0a09a63ebe1ab80d19e37cde9ed201ce770439a1b73186c', 'guii-lopes@hotmail.com', 'GUILHERME LOPES', '394.742.068-48', '', '(17) - 99151-4510', 1, 1, NULL, NULL, NULL, NULL, 0, NULL, '2015-06-18 20:27:33', '187.10.35.8'),
+(45, 'math', '232ba70f52d7e8d1eb0b16e284d111748755480bb99c1d3cd6a856458f13f457ae18170aa33505619390f85638f618708efdc08fe6e636a1400ec2a843c54346', 'matheus.sfs95@gmail.com', 'Matheus Augusto Santana da Silva', '455.621.928-02', '', '(17) - 99623-9953', 5, 1, NULL, NULL, NULL, NULL, 0, NULL, '2015-06-24 04:51:16', '201.93.18.103'),
+(47, 'teste5', '176b9dd7906dd9919b94aa17686d282628daee473bfe3576677959e87a8320d4f15c33fc5e1a98be9d44d789b828164ee748706b7c758db58d706cdb6cea692c', 'eduovrp@hotmail.com', 'Teste5', '018.548.028-44', '', '(17) - 99764-0291', 1, 1, NULL, '4a52bd55e5ac5926d63a1c5be7f3eb1f3c332b87', '2015-06-30 16:54:04', NULL, 0, NULL, '2015-06-24 11:23:51', '187.11.172.251');
 
 --
 -- Constraints for dumped tables
