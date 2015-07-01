@@ -4,6 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+
 <?php
 if(!isset($_SESSION))
 {
@@ -17,20 +18,17 @@ $login = new Login();
 // ... verifica se o usuario está logado
 if ($login->usuarioLogado() == true) {
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>GodFood - Delivery</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
-<link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
-<link rel="stylesheet" href="../cart/inspinia/css/ladda.min.css">
+<link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfont-->
@@ -43,7 +41,8 @@ if ($login->usuarioLogado() == true) {
 	new WOW().init();
 </script>
 
- <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <!-- header-section-starts -->
@@ -51,24 +50,37 @@ if ($login->usuarioLogado() == true) {
 
 <?php
 include 'includes/menu-top.php';
- ?>
-	<!-- header-section-ends -->
-	<!-- content-section-starts -->
-	<div class="content">
-	<div class="container">
-		<div class="login-page">
-
-                <div class="clearfix"></div>
-                <br>
-	<?php
-include 'mensagens.php';
-
 require '../functions/pedidos.php';
+
+$current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$_SESSION['return_url'] = $current_url;
 
 $pedidos_l5 = lista_pedidos_limit5($_SESSION['id_usuario']);
 
 $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
 ?>
+
+<div class="wow fadeInLeft" data-wow-delay="0.4s">
+	<div class="container">
+		<br><br>
+  		<div class="menu-minha-conta">
+				<div class="row">
+				<ul>
+					<h3>PEDIDOS</h3>
+					<li><a href="../minhaconta/">Ultimo pedido</a></li>
+					<li><a href="pedidos.php">Ver todos</a></li>
+
+					<h3>ENDEREÇOS</h3>
+					<li><a href="cadastrar_enderecos.php">Cadastrar novo endereço</a></li>
+					<li><a href="#">Meus endereços</a></li>
+
+					<h3>MEU CADASTRO</h3>
+					<li><a href="alterarDadosCadastrais.php">Alterar dados cadastrais</a></li>
+				</ul>
+				</div>
+		</div>
+
+<div class="minha-conta-content">
 
 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -85,27 +97,22 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
 	      <table class="table table-hover">
 	    <thead>
 	      <tr>
-
-	        <td align="center"><strong><h3>Pedido</h3></strong></td>
-	        <td align="center"><strong><h3>Data</h3></strong></td>
-	        <td align="center"><strong><h3>Status</h3></strong></td>
-	        <td align="center"><strong><h3>Valor Total</h3></strong></td>
-	        <td align="center"><strong><h3>Detalhes</h3></strong></td>
-
+	        <th>Pedido</th>
+	        <th>Data</th>
+	        <th>Status</th>
+	        <th>Valor Total</th>
+	        <th>Detalhes</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 	     <?php
 		foreach($pedidos_l5 as $pedido): ?>
 	      <tr>
-	        <td align="center"><?=$pedido['num_pedido'];?></td>
-	        <td align="center"><?=$pedido['data'];?></td>
-	        <td><strong><?=$pedido['status'];?></strong></td>
-	        <td align="center"><?= number_format($pedido['valor_total'],2,",",".");?></td>
-	        <div class="list-group">
-			<td>
-			<a href="javascript:enviarId(<?= $pedido['num_pedido']; ?>)" class="list-group-item">Ver Detalhes</a></td>
-			</div>
+	        <td><?=$pedido['num_pedido'];?></td>
+	        <td><?=$pedido['data'];?></td>
+	        <td><?=$pedido['status_reduzido']?></td>
+	        <td><?= number_format($pedido['valor_total'],2,",",".");?></td>
+			<td><a href="javascript:enviarId(<?= $pedido['num_pedido']; ?>)" class="list-group-item">Ver Detalhes</a></td>
 	      </tr>
 	    <?php endforeach;
 		 ?>
@@ -141,7 +148,7 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
 	      <tr>
 	        <td><?=$tpedido['num_pedido'];?></td>
 	        <td><?=$tpedido['data'];?></td>
-	        <td><?=$tpedido['status'];?></td>
+	        <td><?=$tpedido['status_reduzido']?></td>
 	        <td><?= number_format($tpedido['valor_total'],2,",",".");?></td>
 			<td><a href="javascript:enviarId(<?= $tpedido['num_pedido']; ?>)" type="submit">Ver Detalhes</a></td>
 	      </tr>
@@ -153,12 +160,12 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
     </div>
   </div>
 </div>
-  <h3><a href="../minhaconta/">Voltar</a></h3>
-
-</div>
-</div>
+      </div>
+	</div>
+  </div>
+  <br><br>
 <div class="clearfix"></div>
-	<div class="contact-section" id="contact">
+		<div class="contact-section" id="contact">
 			<div class="container">
 				<div class="contact-section-grids">
 					<div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
@@ -298,22 +305,15 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
 	</div>
-	<form action="detalhes_pedido.php" method="POST" id="formEnviarId">
-		<input type="hidden" name="id_pedido">
-	</form>
 
 
 	<script src="../web/js/jquery.min.js"></script>
-	<script type="text/javascript" src="../web/js/easing.js"></script>
 	<script src="../web/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../web/js/easing.js"></script>
 
-	<script src="../cart/inspinia/js/plugins/ladda/spin.js"></script>
-    <script src="../cart/inspinia/js/plugins/ladda/ladda.js"></script>
-
-<script type="text/javascript">
-                // Bind normal buttons
-            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
-</script>
+	<form action="detalhes_pedido.php" method="POST" id="formEnviarId">
+		<input type="hidden" name="id_pedido">
+	</form>
 
 <script>
 	function enviarId(id_pedido){

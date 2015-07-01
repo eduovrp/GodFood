@@ -34,7 +34,7 @@ if(isset($_SESSION['sucesso_pgto'])){
         <h3 class="font-bold"><?= $_SESSION['sucesso_pgto'];?></h3>
 
         <div class="error-desc">
-            Você pode acompanhar seu pedido acessando sua conta no painel do usuario, ou clicando <a href="../minhaconta/pedidos.php">aqui!</a><br/>
+            Você pode acompanhar seu pedido acessando sua conta no painel do usuario, ou clicando <a href="../minhaconta/">aqui!</a><br/>
             <br><a href="../" type="button" class="btn btn-outline btn-primary">Voltar ao Inicio</a>
         </div>
     </div>

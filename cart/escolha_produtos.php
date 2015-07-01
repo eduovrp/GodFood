@@ -28,7 +28,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
     new WOW().init();
 </script>
-<script type="text/javascript" src="../web/js/easing.js"></script>
 
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 
@@ -50,19 +49,23 @@ require '../functions/pedidos.php';
 require '../functions/restaurantes.php';
 
 $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-if($_POST){
+if(isset($_POST['id_restaurante'])){
 
-    $id = $_POST['id'];
-    $_SESSION['id'] = $_POST['id'];
+    if(isset($_POST['id_restaurante']) != $_SESSION['id_restaurante']){
+        unset($_SESSION['products']);
+    }
+
+    $id_restaurante = $_POST['id_restaurante'];
+    $_SESSION['id_restaurante'] = $_POST['id_restaurante'];
+} else {
+    if(isset($_SESSION['id_restaurante'])){
+        $id_restaurante = $_SESSION['id_restaurante'];
+    }
 }
-            if(isset($_SESSION['id'])){
-                $id = $_SESSION['id'];
-                $_SESSION['id_restaurante'] = $id;
-                }
-    if(isset($id)){
 
-        $categorias = mostra_categorias($id);
-        $restaurante = mostra_infos_restaurante($id,$_SESSION['cep']);
+if(isset($id_restaurante)){
+        $categorias = mostra_categorias($id_restaurante);
+        $restaurante = mostra_infos_restaurante($id_restaurante,$_SESSION['cep']);
         $_SESSION['taxa_servico'] = $restaurante['taxa_servico']; // taxa de serviço
         $_SESSION['taxa'] = $restaurante['taxa']; // entrega
         $_SESSION['compra_minima'] = $restaurante['compra_minima']; // valor da compra minima
@@ -221,10 +224,10 @@ if($_POST){
     if(isset($_SESSION["products"]))
     {
         $total = 0;
-        echo '<ol>';
+        echo '<ol class="shopping-cart-itens">';
         foreach ($_SESSION["products"] as $cart_itm): ?>
             <li class="cart-itm">
-                <span class="remove-itm"><a href="cart_update.php?removep=<?=$cart_itm['code']?>&return_url=<?=$current_url?>">&times;</a></span>
+                <span class="remove-itm"><a href="cart_update.php?removep=<?=$cart_itm['code']?>&return_url=<?=$current_url?>" class="btn btn-default btn-sm"><i class="fa fa-trash-o fa-1x"></i></a></span>
                 <h3><?=$cart_itm['name']?></h3>
                     <div class="p-qty">Quantidade : <?=$cart_itm['qtd']?></div>
                     <div class="p-adic"><strong>Adicional</strong> : <?=$cart_itm['adicional']?> , <strong>Borda</strong> : <?=$cart_itm['borda']?></div>
@@ -263,29 +266,173 @@ if($_POST){
                 <p><strong>Total: R$ <?=number_format($grandTotal,2,",",".");?></strong> <br></p>
 
         </div>
-
-        <span class="empty-cart"><a href="cart_update.php?removep=<?=$cart_itm["code"]?>&emptycart=1&return_url=<?=$current_url?>"><input type="button" class="esvaziar" value="Esvaziar Carrinho"></a></input></span>
-
+            <br>
+        <span class="remove-itm"><a href="cart_update.php?removep=<?=$cart_itm["code"]?>&emptycart=1&return_url=<?=$current_url?>" class="btn btn-danger btn-md">Esvaziar Carrinho <i class="fa fa-trash-o fa-1x"></i></a></span>
+        <br><br><br>
         <?php if($restaurante['compra_minima'] > $total){ ?>
-            <a href="#"><input type="button" class="btn btn-block" value="Prosseguir" disabled="disabled"></a></input>
+        <br>
+            <a href="#" class="btn btn-lg btn-warning btn-block disabled">Valor inferior ao minimo <i class="fa fa-exclamation-triangle"></i></a>
 
         <?php } else { ?>
-            <a href="view_cart.php"><input type="button" class="btn btn-block" value="Prosseguir"></a></input>
+        <br>
+            <a href="view_cart.php" class="btn btn-lg btn-success btn-block">Ver resumo do pedido <i class="fa fa-check"></i></a>
         <?php } ?>
 
     <?php }else{ ?>
 
         <h4>:( Seu carrinho está vazio</h4>
             <h5 align="center">Que tal escolher algo gostoso para comer?</h5>
-
+                <br>
 <?php }?>
     </div>
   </div>
 </div>
+<div class="clearfix"> </div>
+<br>
+    <div class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-section-grids">
+                    <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+                        <h4>A Empresa</h4>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Sobre
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Politica de Privacidade
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Termos de Uso
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Entenda como funciona
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+                        <h4>Nossos Parceiros</h4>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Empresa 1
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Empresa 2
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Empresa 3
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Empresa 4
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+                        <h4>Siga-me os bons</h4>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-facebook fa-inverse"></i>
+                                    </span>Facebook
+                                </a>
+                            </li>
+                        </ul>
+                            <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-instagram fa-inverse"></i>
+                                    </span>Instagram
+                                </a>
+                            </li>
+                        </ul>
+                            <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-twitter fa-inverse"></i>
+                                    </span>Twitter
+                                </a>
+                            </li>
+                        </ul>
+                            <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-youtube fa-inverse"></i>
+                                    </span>Youtube
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 contact-section-grid nth-grid wow fadeInRight" data-wow-delay="0.4s">
+                        <h4>Inscreva-se na nossa Newsletter</h4>
+                        <p>E receba todas as Novidades no seu E-mail</p>
+                        <form action="../subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
+                        <input type="text" class="text" value="" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                        <input type="submit" value="Cadastrar">
+                        </form>
+                        </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    <!-- content-section-ends -->
+    <!-- footer-section-starts -->
+    <div class="footer">
+        <div class="container">
+            <p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
+        </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../web/js/jquery.min.js"></script>
     <script src="../web/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../web/js/easing.js"></script>
 
     <script src="inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -299,7 +446,7 @@ if($_POST){
 
     <script type="text/javascript">
                 // Bind normal buttons
-            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+            Ladda.bind( 'button[type=submit]', { timeout: 10000 } );
 </script>
 
 

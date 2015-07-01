@@ -6,6 +6,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 <?php
+if(isset($_POST['id_pedido'])){
+
 if(!isset($_SESSION))
 {
   session_start();
@@ -50,10 +52,13 @@ if ($login->usuarioLogado() == true) {
 	<div class="header">
 
 <?php
+$current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$_SESSION['return_url'] = $current_url;
+
 include 'includes/menu-top.php';
 require '../functions/account.php';
 require '../functions/pedidos.php';
-$data = buscaDatasUltimoPedido($_SESSION['id_usuario']);
+$data = buscaDatasPedido($_POST['id_pedido']);
 
 $detalhes = detalhes_pedido($_POST['id_pedido']);
 
@@ -71,12 +76,10 @@ include 'includes/account_verif.php';
 				<ul>
 					<h3>PEDIDOS</h3>
 					<li><a href="../minhaconta/">Ultimo pedido</a></li>
-					<li><a href="#">Pedidos Concluidos</a></li>
-					<li><a href="#">Pedidos Cancelados</a></li>
 					<li><a href="pedidos.php">Ver todos</a></li>
 
 					<h3>ENDEREÇOS</h3>
-					<li><a href="insere_enderecos.php">Cadastrar novo endereço</a></li>
+					<li><a href="cadastrar_enderecos.php">Cadastrar novo endereço</a></li>
 					<li><a href="#">Meus endereços</a></li>
 
 					<h3>MEU CADASTRO</h3>
@@ -87,7 +90,7 @@ include 'includes/account_verif.php';
 
 		<div class="minha-conta-content">
 			<h2>Pedido: <?=$data['id_pedido']?></h2>
-			<p>Acompanhe seu ultimo pedido abaixo</p>
+			<p>Acompanhe seu pedido abaixo</p>
 
 			<div class="ultimo-pedido">
 				<div class="row">
@@ -154,9 +157,9 @@ include 'includes/account_verif.php';
 	  	<div class="detalhes-pedido-footer">
 	  		<p>Total dos itens: R$ <?=number_format($total,2,",",".");?></p>
 	  	</div>
-	  	<a href="pedidos.php" class="btn btn-default">Voltar</a>
+	  	<a href="pedidos.php" class="btn btn-default btn-lg"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+	  	<br><br>
 		</div>
-
       </div>
 	</div>
   </div>
@@ -284,7 +287,7 @@ include 'includes/account_verif.php';
 					<div class="col-md-3 contact-section-grid nth-grid wow fadeInRight" data-wow-delay="0.4s">
 						<h4>Inscreva-se na nossa Newsletter</h4>
 						<p>E receba todas as Novidades no seu E-mail</p>
-						<form action="subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
+						<form action="../subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
 						<input type="text" class="text" value="" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 						<input type="submit" value="Cadastrar">
 						</form>
@@ -311,5 +314,6 @@ include 'includes/account_verif.php';
 <?php
 } else {
     header('Location: index.php');
+  }
 }
 ?>

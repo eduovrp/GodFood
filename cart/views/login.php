@@ -66,7 +66,7 @@ include 'mensagens.php';
 			   <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
 			  	 <h3>NOVO POR AQUI?</h3>
 				 <p>Começe criando sua conta é rápido e fácil, após isso você ja podera pedir varios pratos no conforto da sua casa.</p>
-				 <a class="acount-btn" href="cadastrar.php"><i class="fa fa-user-plus"></i> &nbsp;&nbsp;Cadastre-se</a>
+				 <a class="acount-btn" href="../minhaconta/cadastrar.php"><i class="fa fa-user-plus"></i> &nbsp;&nbsp;Cadastre-se</a>
 			   </div>
 			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 			  	<h3>INFORMAÇÕES DE LOGIN</h3>

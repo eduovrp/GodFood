@@ -37,8 +37,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
 include 'includes/menu-top.php';
 include 'mensagens_cad.php';
-if(isset($_SESSION['id_usuario']) && isset($_SESSION['cadastrado'])){
+
+if(isset($_SESSION['id_usuario']) && isset($_SESSION['login_status'])){
+
 require '../functions/registro.php';
+
+if(isset($_SESSION['return_url'])){
+
+    $return_url = base64_decode($_SESSION["return_url"]);
+    unset($_SESSION['return_url']);
+
+}else{
+    $return_url = "../minhaconta/";
+}
 
 if(isset($_SESSION['cep'])){
 $dados = busca_dados_endereco($_SESSION['cep']);
@@ -126,7 +137,7 @@ $dados = busca_dados_endereco($_SESSION['cep']);
 				<div class="row">
 					<div class="register-but">
 						   	<button type="submit" class="ladda-button btn btn-cadastrar" data-size="m" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar Endereço</button>
-							<a href="../minhaconta/" class="btn btn-default btn-lg" title="voltar"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+							<a href="<?=$return_url?>" class="btn btn-default btn-lg" title="voltar"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
 						   <div class="clearfix"> </div>
 					   </form>
 					</div>
@@ -298,7 +309,7 @@ unset($_SESSION['cadastrado']);
 
 <script type="text/javascript">
                 // Bind normal buttons
-            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
+            Ladda.bind( 'button[type=submit]', { timeout: 10000 } );
 </script>
 
 		<!--Mascaras -->

@@ -4,6 +4,16 @@ if(!isset($_SESSION))
   session_start();
 }
 header("Content-Type: text/html; charset=utf-8", true);
+
+if(isset($_SESSION['return_url'])){
+
+    $return_url = base64_decode($_SESSION["return_url"]);
+    unset($_SESSION['return_url']);
+
+}else{
+    $return_url = "../minhaconta/";
+}
+
 require '../functions/registro.php';
 if(isset($_POST) && isset($_SESSION['id_usuario'])){
 
@@ -17,10 +27,9 @@ if(isset($_POST) && isset($_SESSION['id_usuario'])){
 					$_POST['cep'],
 					$_SESSION['id_usuario']
 					);
-	unset($_SESSION['id_usuario']);
-	$_SESSION['msg_sucesso'] = "Cadastro realizado com sucesso, após ativar sua conta, você ja podera acessar sua conta no painel do usuario.";
-	header('Location: ../minhaconta/');
+	$_SESSION['msg_sucesso'] = "Endereço cadastrado com sucesso.";
+	header('Location: '.$return_url);
 } else {
 	$_SESSION['erros'] = 'Erro ao inserir endereço';
-	header('Location: ../minhaconta/');
+	header('Location: '.$return_url);
 }

@@ -4,7 +4,7 @@ body {
 }
 #products-wrapper {
 	padding: 15px 0;
-	width: 1200px;
+	width: 95%;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -16,6 +16,7 @@ body {
 }
 .products {
 	width: 55%;
+	padding-left: 4%;
 	float:left;
 	margin-right: 10px;
 }
@@ -55,8 +56,7 @@ h4.panel-title{
 .shopping-cart .taxa p{
 	padding-top: 4px;
 	padding-bottom: 4px;
-	width: 40%;
-	margin-left: 60%;
+	float right;
 	text-align: right;
 	border-bottom: 1px solid #D3D3D3;
 	font-size: 13px;
@@ -119,12 +119,17 @@ h4.panel-title{
 
 /*** shopping cart **/
 .shopping-cart{
-	width: 450px;
+	width: 33%;
 	float: left;
 	border:1px solid #666;
 	background: #FFF;
 	padding: 10px;
 	border-radius: 5px;
+}
+.shopping-cart-itens{
+	min-height: 150px;
+	max-height: 300px;
+	overflow: auto;
 }
 .shopping-cart h2 {
 	background: #f3f3f4;
@@ -166,24 +171,17 @@ h4.panel-title{
 .shopping-cart .remove-itm, .view-cart .remove-itm{
 	font-size: 22px;
 	float: right;
-	background: #F2F8F7;
 	padding: 4px;
 	line-height: 8px;
 	border-radius: 3px;
 }
-.shopping-cart .remove-itm:hover, .view-cart .remove-itm:hover{
-	background: #C4C4C4;
-
-}
 .shopping-cart .remove-itm a, .view-cart .remove-itm a{
-	color: #C4C4C4;
-	text-shadow: 1px 1px 1px #ECECEC;
-	text-decoration:none;
+	font-size: 17px;
+	padding-left: 7px;
+	padding-right: 7px;
+	padding-bottom: 2px;
+	padding-top: 2px;
 }
-.shopping-cart .remove-itm a, .view-cart .remove-itm a:hover{
-	color: #fff;
-}
-
 .check-out-txt{
 	float:right;
 	border:1px solid #666;
@@ -201,10 +199,10 @@ h4.panel-title{
 /*** view cart **/
 .view-cart {
 	width: 55%;
+	min-height: 450px;
 	float: left;
 	border-right: 1px solid #696969;
 	background: #FFF;
-	padding: 10px;
 }
 .view-cart .p-price{
 	float: right;
@@ -225,9 +223,8 @@ h4.panel-title{
 	margin-left: 10px;
 }
 .view-cart .product-info{
-	width:60%;
+	width:100%;
 }
-
 .view-cart .product-info h3{
 	font-size: 16px;
 	font-weight: bold;
@@ -272,9 +269,10 @@ h4.panel-title{
 
 .enderecos{
 	width: 43%;
-	float: right;
+	min-height: 450px;
+	float: left;
 	background: #FFF;
-	padding: 10px;
+	margin-left: 10px;
 }
 
 .enderecos h2 {
@@ -316,6 +314,17 @@ h4.panel-title{
 }
 .view-cart-final input[type="button"]:hover{
 	background: #5BBD50;
+}
+.radio{
+	border: 1px solid #EDEDED;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 25px; 
+}
+.enderecos h1{
+	font-family: 'Lobster Two', cursive;
+	font-size: 3.5em;
+	font-weight: 700;
 }
 
 .contact-box {

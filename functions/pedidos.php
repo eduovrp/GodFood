@@ -249,8 +249,9 @@ function lista_pedidos_limit5($id_usuario)
 	global $pdo;
 try{
 	$sql = "SELECT p.id_pedido as num_pedido,
-			       DATE_FORMAT(p.data,'%d %b %Y - %T') as data,
+			       DATE_FORMAT(p.data,'%d/%m/%Y às %T') as data,
 			       sp.nome as status,
+			       sp.status_reduzido as status_reduzido,
 			       p.valor_pago as valor_total
 
 			FROM pedidos p
@@ -278,6 +279,7 @@ try{
 	$sql = "SELECT p.id_pedido as num_pedido,
 			       DATE_FORMAT(p.data,'%d %b %Y - %T') as data,
 			       sp.nome as status,
+			       sp.status_reduzido as status_reduzido,
 			       p.valor_pago as valor_total
 
 			FROM pedidos p

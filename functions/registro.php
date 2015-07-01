@@ -130,22 +130,6 @@ function registra_usuario($nome,$cpf,$email,$telefone,$celular,$usuario,$senha,$
     }
 }
 
-function insere_subscribe($email)
-{
-    global $pdo;
-try{
-	$sql = "INSERT INTO subscribes (email)
-				 VALUES (:email)";
-
-	$cmd = $pdo->prepare($sql);
-	$cmd->BindParam('email',$email);
-	$cmd->execute();
-
-}catch(PDOException $e){
- 	 echo $e->getMessage();
-    }
-}
-
 function verifica_usuario($id_usuario, $hash_ativar_conta)
 {
 	global $pdo;

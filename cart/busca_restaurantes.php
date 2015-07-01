@@ -11,10 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>GodFood - Restaurantes</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../web/js/jquery.min.js"></script>
-<!-- Custom Theme Files - INSPINIA -->
-<!-- Custom Theme files -->
+
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 
 <!-- Custom Theme files -->
@@ -29,9 +26,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
 	new WOW().init();
 </script>
-<script type="text/javascript" src="../web/js/easing.js"></script>
- <script src="../web/js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 </head>
 <body>
     <!-- header-section-starts -->
@@ -44,15 +40,24 @@ if(!isset($_SESSION))
  {
    session_start();
  }
-unset($_SESSION["products"]);
-if($_POST){
+
+if(isset($_POST['cep'])){
 	$cep = $_POST['cep'];
+	setcookie ('cep', $cep, (time() + (3 * 24 * 3600)), "/");
+	$_SESSION['cep'] = $_POST['cep']; //joga o cep em session para usar futuramente
+} else {
+	if(isset($_SESSION['cep'])){
+		$cep = $_SESSION['cep'];
+	}
+}
+
+if(isset($cep)){
 $restaurantes = verificaRestauranteCep($cep); // verifica se existe restaurante no cep digitado
 $restaurantesAberto = lista_restaurantes($cep); //faz a pesquisa usando o cep
 $restaurantesFechado = lista_restaurantes_fechados($cep); //~~~
 $restFechFav = lista_restaurantes_fechados_fav($cep);
 $restAbertFav = lista_restaurantes_abert_fav($cep);
-$_SESSION['cep'] = $_POST['cep']; //joga o cep em session para usar futuramente
+
 } else {
 	$restaurantes = null;
 }
@@ -332,7 +337,7 @@ $_SESSION['cep'] = $_POST['cep']; //joga o cep em session para usar futuramente
 					<div class="col-md-3 contact-section-grid nth-grid wow fadeInRight" data-wow-delay="0.4s">
 						<h4>Inscreva-se na nossa Newsletter</h4>
 						<p>E receba todas as Novidades no seu E-mail</p>
-						<form action="subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
+						<form action="../subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
 						<input type="text" class="text" value="" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 						<input type="submit" value="Cadastrar">
 						</form>
@@ -349,15 +354,20 @@ $_SESSION['cep'] = $_POST['cep']; //joga o cep em session para usar futuramente
 		</div>
 	</div>
 	<form action="escolha_produtos.php" method="POST" id="formVerCardapio">
-		<input type="hidden" name="id">
+		<input type="hidden" name="id_restaurante">
 	</form>
 <script>
-	function verCardapio(id){
+	function verCardapio(id_restaurante){
 		f = document.getElementById('formVerCardapio');
-		f.id.value = id;
+		f.id_restaurante.value = id_restaurante;
 		f.submit();
 	}
 </script>
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../web/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../web/js/easing.js"></script>
+	<script src="../web/js/bootstrap.min.js"></script>
 
     <script src="inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -365,7 +375,6 @@ $_SESSION['cep'] = $_POST['cep']; //joga o cep em session para usar futuramente
     <!-- Custom and plugin javascript -->
     <script src="inspinia/js/inspinia.js"></script>
     <script src="inspinia/js/plugins/pace/pace.min.js"></script>
-
 
     <script>
         $(document).ready(function(){

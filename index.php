@@ -6,11 +6,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 <?php 
- if(!isset($_SESSION))
+if(!isset($_SESSION))
     {
         session_start();
     }
- ?>
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,12 +31,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="web/css/animate.css" rel='stylesheet' type='text/css' />
 <script>
 	new WOW().init();
-</script>
-
-<script>
-    function sucesso(){
-    	alert("Cadastro Realizado com sucesso");
-    }
 </script>
 <link rel="stylesheet" href="web/font-awesome-4.3.0/css/font-awesome.min.css">
 <!-- Chosen -->
@@ -73,8 +67,10 @@ $cidades = selectCidadesEntregas();
 							    <div class="input-group">
 							<select data-placeholder="Pesquise sua cidade" class="chosen-select" name="cep" tabindex="1">
 					            <option value=""></option>
-					            <?php foreach($cidades as $cidade): ?>
-					              <option value="<?=$cidade['cep']?>"><?=$cidade['nome'].", ".$cidade['cep'];?></option>
+					            <?php foreach($cidades as $cidade):?>
+					              <option value="<?=$cidade['cep']?>" 
+								<?php if(isset($_COOKIE['cep']) && $_COOKIE['cep'] == $cidade['cep']){ echo 'selected';} ?>
+					              ><?=$cidade['nome'].", ".$cidade['cep'];?></option>
 					            <?php endforeach; ?>
 					        </select>
 							        <button class="btn btn-danger" type="submit"><i class="fa fa-search fa-2x"></i></button>
@@ -102,7 +98,7 @@ $cidades = selectCidadesEntregas();
 				</div>
 				<div class="ordering-section-grids">
 					<div class="col-md-3 ordering-section-grid">
-						<div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+						<div class="ordering-section-grid-process wow bounceInRight" data-wow-delay="0.4s">
 							<i class="one"></i><br>
 							<i class="one-icon"></i>
 							<p>Escolha <span>seu restaurante</span></p>
@@ -110,7 +106,7 @@ $cidades = selectCidadesEntregas();
 						</div>
 					</div>
 					<div class="col-md-3 ordering-section-grid">
-						<div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+						<div class="ordering-section-grid-process wow bounceInLeft" data-wow-delay="0.4s">
 							<i class="two"></i><br>
 							<i class="two-icon"></i>
 							<p>Faça  <span>seu prato</span></p>
@@ -118,7 +114,7 @@ $cidades = selectCidadesEntregas();
 						</div>
 					</div>
 					<div class="col-md-3 ordering-section-grid">
-						<div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+						<div class="ordering-section-grid-process wow bounceInUp" data-wow-delay="0.4s">
 							<i class="three"></i><br>
 							<i class="three-icon"></i>
 							<p>Pague online</p>
@@ -126,7 +122,7 @@ $cidades = selectCidadesEntregas();
 						</div>
 					</div>
 					<div class="col-md-3 ordering-section-grid">
-						<div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+						<div class="ordering-section-grid-process wow bounceInDown" data-wow-delay="0.4s">
 							<i class="four"></i><br>
 							<i class="four-icon"></i>
 							<p>Aproveite <span>sua comida </span></p>
@@ -300,7 +296,7 @@ $cidades = selectCidadesEntregas();
 					<div class="col-md-3 contact-section-grid nth-grid wow fadeInRight" data-wow-delay="0.4s">
 						<h4>Inscreva-se na nossa Newsletter</h4>
 						<p>E receba todas as Novidades no seu E-mail</p>
-						<form action="subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
+						<form action="subscribe.php" method="POST" accept-charset="utf-8" >
 						<input type="text" class="text" value="" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 						<input type="submit" value="Cadastrar">
 						</form>
@@ -321,18 +317,13 @@ $cidades = selectCidadesEntregas();
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="web/js/jquery.min.js"></script>
 <script src="web/js/bootstrap.min.js"></script>
-
 <script type="text/javascript" src="web/js/easing.js"></script>
 
 <script src="web/chosen/chosen.jquery.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     var config = {
-      '.chosen-select'           : {},
-      '.chosen-select-deselect'  : {allow_single_deselect:true},
-      '.chosen-select-no-single' : {disable_search_threshold:10},
-      '.chosen-select-no-results': {no_results_text:'Oops, cidade não encontrada!'},
-      '.chosen-select-width'     : {width:"95%"}
+      '.chosen-select'			 : {no_results_text:'Desculpe, nada foi encontrado com'}
     }
     for (var selector in config) {
       $(selector).chosen(config[selector]);
