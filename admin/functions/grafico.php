@@ -18,7 +18,7 @@ try{
 			FROM pedidos WHERE id_status = 7
 
 		GROUP BY DATE_FORMAT(data, '%Y-%m-%d')
-  			ORDER BY data DESC
+  			ORDER BY DATE_FORMAT(data, '%Y-%m-%d') DESC
   				LIMIT 8";
 
 	$cmd = $pdo->prepare($sql);
@@ -39,7 +39,7 @@ try{
 			FROM pedidos WHERE id_restaurante = :id_restaurante AND id_status = 7
 
 		GROUP BY DATE_FORMAT(data, '%Y-%m-%d')
-  			ORDER BY data DESC
+  			ORDER BY DATE_FORMAT(data, '%Y/%m/%d') DESC
   				LIMIT 8";
 
 	$cmd = $pdo->prepare($sql);
@@ -95,7 +95,7 @@ try{
 
 			FROM tarifas WHERE status = 1
 				GROUP BY DATE_FORMAT(data, '%d/%m')
-					ORDER BY DATE_FORMAT(data, '%d/%m') DESC
+					ORDER BY DATE_FORMAT(data, '%Y/%m/%d') DESC
 						LIMIT 8";
 
 	$cmd = $pdo->prepare($sql);
@@ -118,7 +118,7 @@ try{
 
 			FROM tarifas WHERE status = 1 AND id_restaurante = :id_restaurante
 				GROUP BY DATE_FORMAT(data, '%d/%m')
-					ORDER BY DATE_FORMAT(data, '%d/%m') DESC
+					ORDER BY DATE_FORMAT(data, '%Y/%m/%d') DESC
 						LIMIT 8";
 
 	$cmd = $pdo->prepare($sql);

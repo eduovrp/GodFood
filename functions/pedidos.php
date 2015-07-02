@@ -242,6 +242,10 @@ function unsets()
 	unset($_SESSION["paypal_products"]);
 	unset($_SESSION['id']);
 	unset($_SESSION['id_restaurante']);
+	unset($_SESSION['total']);
+	unset($_SESSION['taxa_servico']);
+	unset($_SESSION['compra_minima']);
+	unset($_SESSION['taxa']);
 }
 
 function lista_pedidos_limit5($id_usuario)

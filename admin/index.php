@@ -56,7 +56,7 @@ $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
 $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 ?>
 
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold nome_fantasia"><?=$restaurante_ativo['nome_fantasia']?></strong>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="nome_fantasia"><?=$restaurante_ativo['nome_fantasia']?></strong>
                              </span> <span class="text-muted text-xs block">&nbsp;&nbsp;<?= $_SESSION['nome'];?> </span>
                             <span class="admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$nivelUsuario['sub_nome']?><br></span>
                              </span>
@@ -372,8 +372,6 @@ include 'includes/graficos.php';
         f.submit();
     }
 </script>
-
-<?php include 'includes/pesquisaPedidosMenu.php'; ?>
 </body>
 </html>
 <?php

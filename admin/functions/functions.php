@@ -84,7 +84,7 @@ function totalPedidosDoDia()
 		global $pdo;
 try{
 	$sql = "SELECT count(id_pedido) as pedidos_dia FROM pedidos
-			WHERE day(data) = day(now())";
+				WHERE DATE_FORMAT(data,'%d/%m/%Y') = DATE_FORMAT(now(),'%d/%m/%Y')";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->execute();
@@ -101,7 +101,8 @@ function totalPedidosDoDiaR($id_restaurante)
 		global $pdo;
 try{
 	$sql = "SELECT count(id_pedido) as pedidos_dia FROM pedidos
-				WHERE day(data) = day(now()) AND id_restaurante = :id_restaurante";
+				WHERE DATE_FORMAT(data,'%d/%m/%Y') = DATE_FORMAT(now(),'%d/%m/%Y')
+				 AND id_restaurante = :id_restaurante";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('id_restaurante',$id_restaurante);
@@ -139,7 +140,7 @@ function verificaDiaUltimoPedido($diaAnt)
 try{
 
 	$sql = "SELECT count(id_pedido) as pedDiaAnt FROM pedidos
-			WHERE day(data) = :diaAnt";
+			WHERE DATE_FORMAT(data,'%d/%m') = :diaAnt";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('diaAnt',$diaAnt);
@@ -151,8 +152,8 @@ try{
 		return $cmd->fetch();
 		} else{
 
-		$_SESSION['diaAnt'] = $_SESSION['diaAnt'] - 1;
-		$countDia = (date('d') - $_SESSION['diaAnt']);
+		$_SESSION['diaAnt'] = date('d/m', strtotime("-1 days",strtotime($_SESSION['diaAnt'])));
+		$countDia = (date('d/m') - $_SESSION['diaAnt']);	
 
 			if($countDia <= 10){
 				verificaDiaUltimoPedido($_SESSION['diaAnt']);
@@ -175,7 +176,7 @@ function verificaDiaUltimoPedidoR($diaAnt,$id_restaurante)
 try{
 
 	$sql = "SELECT count(id_pedido) as pedDiaAnt FROM pedidos
-			WHERE day(data) = :diaAnt AND id_restaurante = :id_restaurante";
+			WHERE DATE_FORMAT(data,'%d/%m') = :diaAnt AND id_restaurante = :id_restaurante";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('diaAnt',$diaAnt);
@@ -188,8 +189,8 @@ try{
 		return $cmd->fetch();
 		} else{
 
-		$_SESSION['diaAnt'] = $_SESSION['diaAnt'] - 1;
-		$countDia = (date('d') - $_SESSION['diaAnt']);
+		$_SESSION['diaAnt'] = date('d/m', strtotime("-1 days",strtotime($_SESSION['diaAnt'])));
+		$countDia = (date('d/m') - $_SESSION['diaAnt']);
 
 			if($countDia <= 10){
 				verificaDiaUltimoPedidoR($_SESSION['diaAnt'],$id_restaurante);
@@ -209,7 +210,7 @@ function mostraQtdPedidosUltimoDia($diaAnt)
 try{
 
 	$sql = "SELECT count(id_pedido) as pedDiaAnt FROM pedidos
-			WHERE day(data) = :diaAnt";
+			WHERE DATE_FORMAT(data,'%d/%m') = :diaAnt";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('diaAnt',$diaAnt);
@@ -228,7 +229,7 @@ function mostraQtdPedidosUltimoDiaR($diaAnt,$id_restaurante)
 try{
 
 	$sql = "SELECT count(id_pedido) as pedDiaAnt FROM pedidos
-			WHERE day(data) = :diaAnt AND id_restaurante = :id_restaurante";
+			WHERE DATE_FORMAT(data,'%d/%m') = :diaAnt AND id_restaurante = :id_restaurante";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('diaAnt',$diaAnt);

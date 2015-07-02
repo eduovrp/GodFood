@@ -2,8 +2,7 @@
 
 date_default_timezone_set('America/Sao_Paulo');
 
-$_SESSION['diaAnt'] = date('d', strtotime("-1 days"));;
-
+$_SESSION['diaAnt'] = date('d/m', strtotime("-1 days"));
 $totalUsuarios = totalUsuarios();
 
 if(isset($_SESSION['restaurante'])){

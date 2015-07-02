@@ -73,6 +73,7 @@ span.admin{
 }
 .nav > li.active > a {
   color: #ffffff;
+  font-size: 14px;
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus {
@@ -182,7 +183,7 @@ span.admin{
   font-size: 12px;
 }
 .nav-header {
-  padding: 33px 25px;
+  padding: 33px 13px;
   background: url("patterns/header-profile.png") no-repeat;
 }
 .pace-done .nav-header {
