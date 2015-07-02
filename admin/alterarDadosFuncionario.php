@@ -165,7 +165,7 @@ $niveis = buscaNiveisUsuarios();
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                     <form action="updates.php" method="POST">
-                      <h2>Alteração de cadastro</h2>
+                      <h2>Alteração de dados</h2>
                     </div>
                     <div class="ibox-content">
                        <div class="input-group">

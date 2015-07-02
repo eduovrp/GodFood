@@ -104,7 +104,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                    <a href="cidade_entrega.php"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
                 </li>
                 <?php if($_SESSION['id_nivel'] == 5){ ?>
-                <li>
+                <li class="active">
                     <a href="pesquisa-pedidos.php"><i class="fa fa-search"></i> <span class="nav-label">Pesquisar Pedido </span></a>
                 </li>
                 <li>
@@ -165,7 +165,7 @@ include 'includes/verificaDatasRelatorio.php';
                     <div class="ibox-title">
                     <div class="row">
                         <form name="form_pesquisa" id="form_pesquisa" method="post" action="updates.php">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <input type="text" class="form-control pesquisa" name="pesquisaPedido" id="pesquisaPedido" value="" placeholder="Pesquise por numero, status ou restaurante" tabindex="1">
                             </div>
                             <div class="col-lg-3">

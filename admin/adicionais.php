@@ -29,10 +29,10 @@ if ($login->usuarioLogado() == true) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/ladda.min.css">
+
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style_alternative.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/ladda.min.css">
     
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/jquery.maskMoney.js" type="text/javascript"></script>

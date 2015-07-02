@@ -74,7 +74,7 @@ if($res['status'] == 2 || $res['status'] == 3 || $res['status'] == 9){
 } else{
 	$msg .="					<td><span class='label label-primary'>Em andamento</span></td>";
 }
-	$msg .="					<td><a href='javascript:alterarDadosPedido(".$res['id_pedido'].")'><i class='fa fa-pencil-square-o fa-1x'></i> Editar</a></td>";
+	$msg .="					<td><a href='javascript:detalhesPedido(".$res['id_pedido'].")'><i class='fa fa-search-plus fa-1x'></i> Detalhar</a></td>";
 	$msg .="				</tr>";
 							}
 						}else{
@@ -96,13 +96,13 @@ if($res['status'] == 2 || $res['status'] == 3 || $res['status'] == 9){
 	echo $msg;
 ?>
 
-      <form action="alterarDadosPedido.php" method="POST" id="alterarDadosPedido">
+      <form action="detalhesPedido.php" method="POST" id="detalhesPedido">
         <input type="hidden" name="id_pedido">
       </form>
 
     <script>
-     function alterarDadosPedido(id_pedido){
-        f = document.getElementById('alterarDadosPedido');
+     function detalhesPedido(id_pedido){
+        f = document.getElementById('detalhesPedido');
         f.id_pedido.value = id_pedido;
         f.submit();
     }

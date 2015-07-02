@@ -11,7 +11,7 @@ $login = new Login();
 // ... verifica se o usuario está logado
 if ($login->usuarioLogado() == true) {
     require 'functions/functions.php';
-    if(isset($_POST['id_produto'])){
+    if(isset($_POST['id_pedido'])){
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,7 @@ if ($login->usuarioLogado() == true) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GodFood - Alterar Dados</title>
+    <title>GodFood - Detalhar Pedido</title>
     <link rel="icon" type="image/png" href="../web/images/plate.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -29,17 +29,14 @@ if ($login->usuarioLogado() == true) {
     <link rel="stylesheet" href="css/ladda.min.css">
     
     <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
+    <link href="css/style_alternative.css" rel="stylesheet">
 
 </head>
 
 <body>
     <div id="wrapper">
 
-             <nav class="navbar-default navbar-static-side" role="navigation">
+    <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
@@ -71,11 +68,11 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                 <?php } ?>
                 </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="#"><i class="fa fa-plus"></i> <span class="nav-label">Gerenciar</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="categorias.php">Categorias</a></li>
-                        <li class="active"><a href="produtos.php">Produtos</a></li>
+                        <li><a href="produtos.php">Produtos</a></li>
                         <li><a href="adicionais.php">Adicionais</a></li>
                         <li><a href="bordas.php">Bordas Recheadas</a></li>
                     </ul>
@@ -98,7 +95,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                    <a href="cidade_entrega.php"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
                 </li>
                 <?php if($_SESSION['id_nivel'] == 5){ ?>
-                <li>
+                <li class="active">
                     <a href="pesquisa-pedidos.php"><i class="fa fa-search"></i> <span class="nav-label">Pesquisar Pedido </span></a>
                 </li>
                 <li>
@@ -117,35 +114,29 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 
     
 <?php
-$_SESSION['id_produto'] = $_POST['id_produto'];
+$_SESSION['id_pedido'] = $_POST['id_pedido'];
 if(isset($_SESSION['restaurante'])){
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
-
 } else {
     $restaurante_ativo = null;
 }
 
-$produto = mostraDadosProduto($_POST['id_produto']);
-$categorias = busca_categorias($_SESSION['restaurante']);
+require 'functions/pedidos.php';
+$detalhes = detalhaPedido($_POST['id_pedido']);
+$itens = lista_itens_pedido($_POST['id_pedido']);
 
-$verifica = verificaProdutoVendido($_POST['id_produto']);
-
-if($verifica == true){
-  $disabled = 'disabled';
-} else {
-  $disabled = "";
-}
- ?>
+include 'includes/timeline_verif.php';
+?>
         <div id="page-wrapper" class="gray-bg">
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h1>Alterar Dados</h1>
+                    <h1>Detalhes do Pedido</h1>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.php">Inicio</a>
                         </li>
                         <li class="active">
-                            <strong>Alterar Dados</strong>
+                            <strong>Detalhar Pedido</strong>
                         </li>
                     </ol>
                 </div>
@@ -160,67 +151,121 @@ if($verifica == true){
 
     <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
-                <?php include 'mensagens.php';?>
                <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-
-                    <form action="updates.php" method="POST">
-                      <h2>Alteração de dados</h2>
+                      <h2>Detalhes - Pedido n° <?=$detalhes['id_pedido']?></h2>
                     </div>
                     <div class="ibox-content">
-                       <div class="input-group">
-                           <div class="row">
-                               <div class="col-md-5">
-                                   <label for="nome">Nome do Produto</label>
-                                    <input type="text" class="form-control" name="nome" id="nome" value="<?=$produto['nome']?>" required>
+                      <div class="row">
+                        <div class="col-md-12">
+                               <div class="col-md-6">
+                                   <label for="">Endereço de Entrega</label>
+                                    <h4><?=$detalhes['endereco']?></h4>
                                </div>
                                 <div class="col-md-4">
-                                   <label for="cpf">Categoria</label>
-                                    <select name="categoria" class="form-control" <?=$disabled?>>
-                                  <?php foreach($categorias as $categoria): 
-                                  if($categoria['id_categoria'] == $produto['id_categoria']){ 
-                                    $selected = "selected"; } else { $selected = ""; } ?>
-                                      <option value="<?=$categoria['id_categoria']?>" <?=$selected?>><?=$categoria['nome']?></option>
-                                  <?php endforeach; ?>
-                                    </select>
+                                   <label for="">Restaurante</label>
+                                    <h4><?=$detalhes['restaurante']?></h4>
                                 </div>
-                                <div class="col-md-3">
-                                   <label for="valor">Valor</label>
-                                   <?php $valor = str_replace(".",",", $produto['valor']);?>
-                                    <input type="text" class="form-control" name="valor" id="valor" value="<?=$valor?>" required>
-                                    <script type="text/javascript">$("#valor").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
+                                <div class="col-md-2">
+                                <label for="">Valor Pago</label>
+                                <h4><?=$detalhes['valor_pago']?></h4>
                                </div>
-                           </div>
-                           <br>
-                           <div class="row">
-                               <div class="col-md-9">
-                                  <label for="descricao">Descrição</label>
-                                  <input type="text" class="form-control" name="descricao" value="<?=$produto['descricao']?>" id="descricao">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                               <div class="col-md-6">
+                                   <label for="">Nome</label>
+                                    <p><?=$detalhes['usuario']?></p>
                                </div>
-                               <div class="col-md-3">
-                               <label for="status">Status</label>
-                                  <select name="status" class="form-control" id="status">
-                                    <option value="1">Ativado</option>
-                                    <option value="0">Desativado</option>
-                                  </select>
+                                <div class="col-md-4">
+                                   <label for="">E-mail</label>
+                                    <p><?=$detalhes['email']?></p>
+                                </div>
+                                <div class="col-md-2">
+                                <label for="">Telefone</label>
+                                <p><?=$detalhes['celular']?></p>
                                </div>
-                           </div>
-
+                        </div>
+                      </div>
+        <div class="row">
+              <div class="ultimo-pedido">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-3">
+                          <h3>Pedido</h3>
+                          <p><?=$data_pedido;?></p>
+                        </div>
+                        <div class="col-md-3">
+                          <h3>Pagamento</h3>
+                          <p><?=$data_pgto;?></p>
+                        </div>
+                        <div class="col-md-3">
+                          <h3>Preparo</h3>
+                          <p><?=$data_preparo;?></p>
+                        </div>
+                        <div class="col-md-3">
+                          <h3>Entrega</h3>
+                          <p><?=$data_entrega;?></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <ul>
+                          <li class="progress <?=$ok1?>"></li>
+                          <li class="progress <?=$ok2?>"></li>
+                          <li class="progress <?=$ok3?>"></li>
+                          <li class="progress <?=$ok4?>"></li>
+                        </ul>
+                      </div>
+                      <div class="row">
+                        <br>
+                        <h4><strong>Status:</strong> <?=$detalhes['status']?></h4>
+                      </div>
+                    </div>
+                <div class="row">
+                <br>
+                <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Nome do Produto</th>
+                        <th>Qtd</th>
+                        <th>Adicional</th>
+                        <th>Borda Recheada</th>
+                        <th>Valor Unitario</th>
+                        <th>Subtotal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     <?php
+                     $total = 0;
+                  foreach($itens as $item): ?>
+                      <tr>
+                        <td><?=$item['nome']." (".$item['categoria'].")";?></td>
+                        <td><?=$item['qtd'];?></td>
+                        <td><?=$item['adicional'];?></td>
+                        <td><?=$item['borda'];?></td>
+                        <td><?=number_format($item['valor'],2,",",".");?></td>
+                        <td><?=number_format($item['subtotal'],2,",",".");?></td>
+                        <?php $total = $total + $item['subtotal']; ?>
+                      </tr>
+                    <?php endforeach;
+                   ?>
+                    </tbody>
+                  </table>
+                    <div class="detalhes-pedido-footer">
+                      <p>Total dos itens: R$ <?=number_format($total,2,",",".");?></p>
+                    </div>
+                  </div>
+                      </div>
                           <br>
-                        <div align="right">
-                          <input type="hidden" name="alterarDadosProduto" value="alterar">
-                            <a href="javascript:excluirProduto(<?= $produto['id']; ?>)" type="button" class="btn btn-danger btn-lg" <?=$disabled?>><i class="fa fa-close fa-1x"></i> Excluir</a>
-                            &nbsp;&nbsp;
-                            <a href="produtos.php" type="button" class="btn btn-default btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
-                            &nbsp;&nbsp;
-                            <button type="submit" class="btn btn-primary btn-lg btn-outline"><i class="fa fa-check fa-1x"></i> Atualizar</button>
-                          </form>
-                          </div>
-                       </div>
-
+                  <div class="col-md-6 col-md-offset-3">
+                      <div align="center">
+                            <a href="pesquisa-pedidos.php" type="button" class="btn btn-default btn-lg btn-block btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+                      </div>
+                  </div>
                         </div>
                     </div>
                 </div>
@@ -228,6 +273,7 @@ if($verifica == true){
             </div>
           </div>
         </div>
+      </div>
             <div class="footer">
                 <div>
                     <strong>Copyright &copy;</strong> - GodFood - Delivery  2015
@@ -241,7 +287,6 @@ if($verifica == true){
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
@@ -257,22 +302,13 @@ if($verifica == true){
             Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
 </script>
 
-  <script>
+    <!-- iCheck -->
+    <script src="js/icheck.min.js"></script>
+<script>
+
       $("form").submit(function() {
         $("select").removeAttr("disabled");
       });
-  </script>
-
-    <form action="delete.php" method="POST" id="excluirProduto">
-        <input type="hidden" name="id_produto">
-        <input type="hidden" name="excluirProduto" value="sim">
-    </form>
-<script>
-     function excluirProduto(id_produto){
-        f = document.getElementById('excluirProduto');
-        f.id_produto.value = id_produto;
-        f.submit();
-    }
 </script>
 
 </body>

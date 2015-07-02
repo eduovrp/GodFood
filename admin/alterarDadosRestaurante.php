@@ -170,7 +170,7 @@ if($restaurante['fav'] > 0){
                     <div class="ibox-title">
 
                     <form action="updates.php" method="POST">
-                      <h2>Alteração de cadastro
+                      <h2>Alteração de dados
                         <label class="checkb">
                           <input type="checkbox" class="i-checks" name="fav" <?=$checked?> <?=$disabled?>> Favorito </label>
                       </h2>
