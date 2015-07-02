@@ -36,6 +36,8 @@ if(!isset($_SESSION))
 <!-- Chosen -->
 <link rel="stylesheet" href="web/chosen/chosen.css">
 <link rel="stylesheet" href="web/css/pace.css">
+
+<link rel="stylesheet" href="web/css/superslides.css">
 </head>
 <body>
     <!-- header-section-starts -->
@@ -49,22 +51,22 @@ $cidades = selectCidadesEntregas();
 ?>
 
 		</div>
-		<div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
-		    <div class="container">
-				<div class="banner-info">
+		<div class="wow fadeInUp" data-wow-delay="0.4s" id="Home">
+				<div id="slides">
+					    <div class="slides-container">
+					      <img src="images/banner.jpg" alt="Pizza">
+					      <img src="images/banner1.jpg" alt="Sushi">
+					      <img src="images/banner2.jpg" alt="Lanche">
+					    </div>
+					    <div align="center" class="form-index">
+						<div class="banner-info">
 					<div class="banner-info-head text-center wow fadeInLeft" data-wow-delay="0.5s">
 						<h1>OS MELHORES RESTAURANTES NO ALCANCE DO SEU CLICK</h1>
 						<div class="line">
 							<h2> Faça Pedidos Online</h2>
 						</div>
 					</div>
-					<div class="form-list wow fadeInRight" data-wow-delay="0.5s">
 						<form action="cart/busca_restaurantes.php" method="POST" name="fcep" id="fcep">
-						  <ul class="navmain">
-						  <div align="center">
-							<div class="row">
-							  <div class="col-lg-11">
-							    <div class="input-group">
 							<select data-placeholder="Pesquise sua cidade" class="chosen-select" name="cep" tabindex="1">
 					            <option value=""></option>
 					            <?php foreach($cidades as $cidade):?>
@@ -73,16 +75,15 @@ $cidades = selectCidadesEntregas();
 					              ><?=$cidade['nome'].", ".$cidade['cep'];?></option>
 					            <?php endforeach; ?>
 					        </select>
-							        <button class="btn btn-danger" type="submit"><i class="fa fa-search fa-2x"></i></button>
-							    </div><!-- /input-group -->
-							  </div><!-- /.col-lg-6 -->
-							 </div>
-						     </ul>
+					<button class="btn btn-danger" type="submit"><i class="fa fa-search fa-2x"></i></button>
 						</form>
-						</div>
-
-				</div>
-			</div>
+					    </div>
+					  </div>
+				<nav class="slides-navigation">
+					      <a href="#" class="next"><i class="fa fa-angle-right fa-4x"></i></a>
+					      <a href="#" class="prev"><i class="fa fa-angle-left fa-4x"></i></a>
+					    </nav>
+			
 		</div>
 	</div>
 	<!-- header-section-ends -->
@@ -320,8 +321,17 @@ $cidades = selectCidadesEntregas();
 <script type="text/javascript" src="web/js/easing.js"></script>
 <script type="text/javascript" src="web/js/pace.min.js"></script>
 
-<script src="web/chosen/chosen.jquery.js" type="text/javascript"></script>
+<script src="web/js/jquery.superslides.min.js"></script>
 
+<script>
+    $('#slides').superslides({
+      animation: 'fade',
+      play: 5000
+    });
+
+</script>
+
+<script src="web/chosen/chosen.jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
     var config = {
       '.chosen-select'			 : {no_results_text:'Desculpe, nada foi encontrado com'}
@@ -330,6 +340,7 @@ $cidades = selectCidadesEntregas();
       $(selector).chosen(config[selector]);
     }
 </script>
+
     <script src="web/js/konami.js"></script>
     <script src="web/js/bacon.js"></script>
 <script>
