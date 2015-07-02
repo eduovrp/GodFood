@@ -41,6 +41,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="inspinia/css/ladda.min.css">
+
+<link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
 </head>
 <body>
     <!-- header-section-starts -->
@@ -356,6 +358,8 @@ Senha: 12345678 </strong></h4>
 
     <script src="inspinia/js/plugins/ladda/spin.js"></script>
     <script src="inspinia/js/plugins/ladda/ladda.js"></script>
+
+    <script src="../web/js/pace.min.js"></script>
 
     <script type="text/javascript">
         // Bind progress buttons and simulate loading progress

@@ -113,3 +113,58 @@ try{
  	 echo $e->getMessage();
 	}
 }
+
+function buscaStatusPagamento()
+{
+	global $pdo;
+try{
+	$sql = "SELECT * FROM status_pgto";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->execute();
+
+	return $cmd->fetchAll();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}
+
+function pesquisaPedidos($parametro, $data1, $data2)
+{
+	global $pdo;
+try{
+	$parametro2 = $parametro;
+	$parametro = "%".$parametro."%";
+	
+
+	$sql = "SELECT p.id_pedido AS id_pedido,
+				   DATE_FORMAT(p.data,'%d/%m/%Y às %T') AS data_pedido,
+				   p.valor_pago AS valor_pago,
+				   p.id_status AS status,
+				   p.endereco AS endereco,
+				   r.nome_fantasia AS restaurante
+
+			FROM pedidos p
+			INNER JOIN status_pgto sp
+			ON p.id_status = sp.id_status
+			INNER JOIN restaurantes r
+			ON p.id_restaurante = r.id_restaurante
+			WHERE  p.data >= :data1 AND p.data <= :data2 AND sp.status_reduzido LIKE :parametro
+				OR p.data >= :data1 AND p.data <= :data2 AND r.nome_fantasia LIKE :parametro
+				OR p.id_pedido = :parametro2
+					ORDER BY p.id_pedido DESC";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('data1',$data1);
+	$cmd->bindParam('data2',$data2);
+	$cmd->bindParam('parametro',$parametro);
+	$cmd->bindParam('parametro2',$parametro2);
+	$cmd->execute();
+
+	return $cmd->fetchAll();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}

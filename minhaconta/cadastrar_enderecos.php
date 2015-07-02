@@ -28,7 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
 	new WOW().init();
 </script>
-
+<link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -303,6 +303,7 @@ unset($_SESSION['cadastrado']);
 	<script src="../web/js/jquery.min.js"></script>
 	<script type="text/javascript" src="../web/js/easing.js"></script>
 	<script src="../web/js/bootstrap.min.js"></script>
+	<script src="../web/js/pace.min.js"></script>
 	
 	<script src="../cart/inspinia/js/plugins/ladda/spin.js"></script>
     <script src="../cart/inspinia/js/plugins/ladda/ladda.js"></script>

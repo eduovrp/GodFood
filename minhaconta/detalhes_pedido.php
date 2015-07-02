@@ -45,7 +45,7 @@ if ($login->usuarioLogado() == true) {
 </script>
 
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
-
+<link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
 </head>
 <body>
     <!-- header-section-starts -->
@@ -309,6 +309,7 @@ include 'includes/account_verif.php';
 	<script src="../web/js/jquery.min.js"></script>
 	<script src="../web/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../web/js/easing.js"></script>
+	<script src="../web/js/pace.min.js"></script>
 </body>
 </html>
 <?php

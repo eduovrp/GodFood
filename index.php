@@ -35,7 +35,7 @@ if(!isset($_SESSION))
 <link rel="stylesheet" href="web/font-awesome-4.3.0/css/font-awesome.min.css">
 <!-- Chosen -->
 <link rel="stylesheet" href="web/chosen/chosen.css">
-
+<link rel="stylesheet" href="web/css/pace.css">
 </head>
 <body>
     <!-- header-section-starts -->
@@ -318,6 +318,7 @@ $cidades = selectCidadesEntregas();
 <script src="web/js/jquery.min.js"></script>
 <script src="web/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="web/js/easing.js"></script>
+<script type="text/javascript" src="web/js/pace.min.js"></script>
 
 <script src="web/chosen/chosen.jquery.js" type="text/javascript"></script>
 

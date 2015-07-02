@@ -1,4 +1,4 @@
-<?php
+           <?php
 if(!isset($_SESSION))
 {
   session_start();
@@ -11,11 +11,12 @@ $login = new Login();
 // ... verifica se o usuario está logado
 if ($login->usuarioLogado() == true) {
     require 'functions/functions.php';
+    require 'functions/pesquisas.php';
+
     verifica_post();
 
     $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     $_SESSION['return_url'] = $current_url;
-    if(isset($_SESSION['restaurante'])){
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,18 +26,20 @@ if ($login->usuarioLogado() == true) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GodFood - Entregas</title>
+    <title>GodFood - Pesquisa de Pedidos</title>
     <link rel="icon" type="image/png" href="../web/images/plate.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/ladda.min.css">
-
+    
     <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <link href="css/style_alternative.css" rel="stylesheet">
+    
+    <script src="js/jquery-2.1.1.js"></script>
     <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
+
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 </head>
 
 <body>
@@ -97,7 +100,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                         <li><a href="gerenciaFuncionarios.php">Funcionarios</a></li>
                     </ul>
                 </li>
-                <li class="active">
+                <li>
                    <a href="cidade_entrega.php"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
                 </li>
                 <?php if($_SESSION['id_nivel'] == 5){ ?>
@@ -120,89 +123,93 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 
     
 <?php
-
+if(isset($_SESSION['restaurante'])){
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
+} else {
+    $restaurante_ativo = NULL;
+}
 
-$cidades_entrega = busca_cidades_entregas_cadastradas($_SESSION['restaurante']);
-
-$busca_cidades = mostra_cidades();
-
+$status = buscaStatusPagamento();
+include 'includes/verificaDatasRelatorio.php';
  ?>
         <div id="page-wrapper" class="gray-bg">
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h1>Entregas</h1>
+                    <h1>Pedidos</h1>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.php">Inicio</a>
                         </li>
                         <li class="active">
-                            <strong>Entregas</strong>
+                            <strong>Pesquisar Pedidos</strong>
                         </li>
                     </ol>
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <h2 align="left"><?=$restaurante_ativo['nome_fantasia'];?></h2>
-                    </div>
+                          <div class="col-md-5">
+                          <h2 align="center"><?=$restaurante_ativo['nome_fantasia'];?></h2>
+					      </div>
+	                </div>
                 </div>
             </div>
 
     <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
+
                 <?php include 'mensagens.php'; ?>
-               <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <form action="cadastrar.php" method="POST" accept-charset="utf-8">
-                            <div class="input-group">
-                            <div class="col-lg-5">
-                            <label for="cidade">Cidade</label>
-                                <select class="form-control" name="cidade" id="cidade">
-                                <?php foreach($busca_cidades as $cidade): ?>
-                                  <option value="<?=$cidade['id_cidade_entrega'];?>"><?=$cidade['nome'];?></option>
-                                <?php endforeach; ?>
-                                </select></div>
-                                <div class="col-lg-3">
-                                <label for="taxa">Taxa de Entrega</label>
-                                <input type="text" class="form-control" name="taxa" id="taxa"></div>
-                                <script type="text/javascript">$("#taxa").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});</script>
-                                <div class="col-lg-1">
-                                <label for="">&nbsp;</label>
-                                <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar</button></div>
+                    <div class="row">
+                        <form name="form_pesquisa" id="form_pesquisa" method="post" action="updates.php">
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control pesquisa" name="pesquisaPedido" id="pesquisaPedido" value="" placeholder="Pesquise por numero, status ou restaurante" tabindex="1">
                             </div>
+                            <div class="col-lg-3">
+                                <select name="status" class="form-control" required>
+                                    <option value="" selected>Selecione o Status</option>
+                                <?php foreach ($status as $st): ?>
+                                    <option value="<?=$st['id_status']?>"><?=$st['status_reduzido']?></option>
+                                <?php endforeach; ?>
+                                </select>
+                            </div>
+                        <div class="col-lg-1">
+                        <button type="submit" class="ladda-button btn btn-warning btn-outline" data-size="s" data-style="zoom-in"><i class='fa fa-pencil-square-o fa-1x'></i> Alterar Status</button>
+                        </div>
+                        <input type="hidden" name="alteraStatusPedidos" value="yep">
                         </form>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="contentLoading">
+                         <div id="loading"></div>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <tr>
-                                <th>Cidade</th>
-                                <th>Cep</th>
-                                <th>Taxa de Entrega</th>
-                                <th>#</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach($cidades_entrega as $cidade_entrega): ?>
-                            <tr>
-                                <td><?=$cidade_entrega['nome'];?></td>
-                                <td><?=$cidade_entrega['cep'];?></td>
-                                <td>R$ <?=$cidade_entrega['taxa'];?></td>
-                                <td><a href="#"><i class="fa fa-pencil-square-o fa-1x"></i> Editar</a></td>
-                            </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-
+                    <div class="row">
+                    <form action="pesquisa-pedidos.php" method="POST">
+                        <div class="col-md-4 col-md-offset-6">
+                            <div class="form-group" id="data">
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="input-sm form-control" name="start" value="<?=$dataS1?>"/>
+                                    <span class="input-group-addon">até</span>
+                                    <input type="text" class="input-sm form-control" name="end" value="<?=$dataS2?>" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                             <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-calendar fa-1x"></i> Alterar Data</button>
+                        </form>
+                        </div>
+                    </div>
+                       <div id="MostraPesq"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-     </div>
      </div>
             <div class="footer">
                 <div>
@@ -214,7 +221,6 @@ $busca_cidades = mostra_cidades();
  </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
@@ -233,14 +239,82 @@ $busca_cidades = mostra_cidades();
             Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
 </script>
 
+    <!-- Data picker -->
+   <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+   <script type="text/javascript">
+        $('#data .input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true
+            });
+   </script>
+
+<script type="text/javascript">
+
+ 
+$(document).ready(function(){
+
+    //Aqui a ativa a imagem de load
+    function loading_show(){
+        $('#loading').html("<img src='css/loading.gif'/>").fadeIn('fast');
+    }
+
+    //Aqui desativa a imagem de loading
+    function loading_hide(){
+        $('#loading').fadeOut('fast');
+    }
+
+    // aqui a fun?o ajax que busca os dados em outra pagina do tipo html, n? ?json
+    function load_dados(valores, page, div)
+    {
+        $.ajax
+            ({
+                type: 'POST',
+                dataType: 'html',
+                url: page,
+                beforeSend: function(){//Chama o loading antes do carregamento
+                      loading_show();
+                },
+                data: valores,
+                success: function(msg)
+                {
+                    loading_hide();
+                    var data = msg;
+                    $(div).html(data).fadeIn();
+                }
+            });
+    }
+
+    //Aqui eu chamo o metodo de load pela primeira vez sem parametros para pode exibir todos
+    load_dados(null, 'PesqPedidos.php', '#MostraPesq');
+
+
+    //Aqui uso o evento key up para começar a pesquisar, se valor for maior q 0 ele faz a pesquisa
+    $('#pesquisaPedido').keyup(function(){
+
+        //o serialize retorna uma string pronta para ser enviada
+        var valores = $('#form_pesquisa').serialize()
+
+        //pegando o valor do campo #pesquisaPedidos
+        var $parametro = $(this).val();
+
+        if($parametro.length >= 1)
+        {
+            load_dados(valores, 'PesqPedidos.php', '#MostraPesq');
+        }else
+        {
+            load_dados(null, 'PesqPedidos.php', '#MostraPesq');
+        }
+    });
+
+    });
+    </script>
+
 </body>
 
 </html>
 <?php
-    } else {
-        $_SESSION['mensagem'] = "Você precisa escolher um restaurante para gerenciar as Entregas";
-        header('Location: restaurantes.php');
-    }
 } else {
     header('Location: login.php');
 }

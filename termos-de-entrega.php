@@ -10,13 +10,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta charset="UTF-8">
 <title>GodFood - Termos de Entrega</title>
 <link rel="icon" type="image/png" href="web/images/plate.png" />
-<script src="web/js/jquery.min.js"></script>
-<script src="web/js/bootstrap.min.js"></script>
+
 <link href="web/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
 <!-- Custom Theme files -->
 <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfont-->
@@ -29,11 +27,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	new WOW().init();
 </script>
 
-<script type="text/javascript" src="web/js/easing.js"></script>
-
- <script src="web/js/bootstrap.min.js"></script>
  <link rel="stylesheet" href="web/font-awesome-4.3.0/css/font-awesome.min.css">
-
+<link rel="stylesheet" href="web/css/pace.css">
 </head>
 <body>
     <!-- header-section-starts -->
@@ -239,5 +234,13 @@ include 'includes/menu-top.php';
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
 	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="web/js/jquery.min.js"></script>
+<script src="web/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="web/js/easing.js"></script>
+<script src="web/js/pace.min.js"></script>
+
+
 </body>
 </html>

@@ -42,7 +42,7 @@ if ($login->usuarioLogado() == true) {
 </script>
 
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
-
+<link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
 </head>
 <body>
     <!-- header-section-starts -->
@@ -310,6 +310,7 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
 	<script src="../web/js/jquery.min.js"></script>
 	<script src="../web/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../web/js/easing.js"></script>
+	<script src="../web/js/pace.min.js"></script>
 
 	<form action="detalhes_pedido.php" method="POST" id="formEnviarId">
 		<input type="hidden" name="id_pedido">

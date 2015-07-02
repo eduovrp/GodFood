@@ -103,10 +103,13 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                 </li>
                 <?php if($_SESSION['id_nivel'] == 5){ ?>
                 <li>
+                    <a href="pesquisa-pedidos.php"><i class="fa fa-search"></i> <span class="nav-label">Pesquisar Pedido </span></a>
+                </li>
+                <li>
                     <a href="cadastrar_cidade.php"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
                 </li>
                 <li>
-                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Resutaurante</span></a>
+                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Restaurante</span></a>
                 </li>
                 <?php } ?>
                 <li>
@@ -177,13 +180,13 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
                                         <?=$dadosR['cidade']?><br>
                                         <?=$dadosR['fone']?>
                                     </address>
-                                    <form action="relatorioVendas.php" method="POST">
+                    <form action="relatorioVendas.php" method="POST">
                         <div class="col-md-offset-4">
                             <div class="form-group" id="data">
                                 <div class="input-daterange input-group" id="datepicker">
-                                    <input type="text" class="input-sm form-control" name="start" value="<?=$dataS1?>"/>
+                                    <input type="text" class="input-sm form-control" name="start" required value="<?=$dataS1?>"/>
                                     <span class="input-group-addon">até</span>
-                                    <input type="text" class="input-sm form-control" name="end" value="<?=$dataS2?>" />
+                                    <input type="text" class="input-sm form-control" name="end" required value="<?=$dataS2?>" />
                                 </div>
                             </div>
                              <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-calendar fa-1x"></i> Alterar Data</button>

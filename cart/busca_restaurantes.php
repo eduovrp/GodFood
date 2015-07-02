@@ -26,7 +26,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script>
 	new WOW().init();
 </script>
-
+<link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -374,7 +374,7 @@ $restAbertFav = lista_restaurantes_abert_fav($cep);
 
     <!-- Custom and plugin javascript -->
     <script src="inspinia/js/inspinia.js"></script>
-    <script src="inspinia/js/plugins/pace/pace.min.js"></script>
+    <script src="../web/js/pace.min.js"></script>
 
     <script>
         $(document).ready(function(){
