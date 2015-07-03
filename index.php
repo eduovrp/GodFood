@@ -17,6 +17,9 @@ if(!isset($_SESSION))
 <meta charset="UTF-8">
 <title>GodFood - Delivery</title>
 <link rel="icon" type="image/png" href="web/images/plate.png" />
+<script src="web/js/jquery.min.js"></script>
+<script src="web/js/mobile.js"></script>
+
 	<link href="web/css/bootstrap.css" rel="stylesheet">
 <!-- Custom Theme files -->
 <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -323,16 +326,9 @@ $banners = buscaBannersIndex();
 	</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="web/js/jquery.min.js"></script>
 <script src="web/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="web/js/easing.js"></script>
 <script type="text/javascript" src="web/js/pace.min.js"></script>
-
-<script type="text/javascript">
-	if ($(window).width() < 600){
-		window.location.href='mindex.php';
-	}
-</script>
 
 <script src="web/js/jquery.superslides.min.js"></script>
 
