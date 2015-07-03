@@ -13,6 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../web/css/contact-box.css" rel="stylesheet" type="text/css" media="all" />
 
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">

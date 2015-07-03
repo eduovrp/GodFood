@@ -277,7 +277,7 @@ if($restaurante['fav'] > 0){
                           <input type="hidden" name="alterarDadosRestaurante" value="alterar">
                             <a href="gerenciaRestaurantes.php" type="button" class="btn btn-danger btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
                             &nbsp;&nbsp;
-                            <button type="submit" class="btn btn-primary btn-lg btn-outline"><i class="fa fa-check fa-1x"></i> Atualizar</button>
+                            <button type="submit" class="btn ladda-button btn-primary btn-lg btn-outline" data-size="m" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Atualizar</button>
                           </form>
                           </div>
                        </div>

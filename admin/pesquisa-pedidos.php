@@ -170,29 +170,9 @@ include 'includes/verificaDatasRelatorio.php';
                             <div class="col-lg-6">
                                 <input type="text" class="form-control pesquisa" name="pesquisaPedido" id="pesquisaPedido" value="" placeholder="Pesquise por numero, status ou restaurante" tabindex="1">
                             </div>
-                            <div class="col-lg-3">
-                                <select name="status" class="form-control" required>
-                                    <option value="" selected>Selecione o Status</option>
-                                <?php foreach ($status as $st): ?>
-                                    <option value="<?=$st['id_status']?>"><?=$st['status_reduzido']?></option>
-                                <?php endforeach; ?>
-                                </select>
-                            </div>
-                        <div class="col-lg-1">
-                        <button type="submit" class="ladda-button btn btn-warning btn-outline" data-size="s" data-style="zoom-in"><i class='fa fa-pencil-square-o fa-1x'></i> Alterar Status</button>
-                        </div>
-                        <input type="hidden" name="alteraStatusPedidos" value="yep">
                         </form>
-                        </div>
-                    </div>
-                    <br>
-                    <div id="contentLoading">
-                         <div id="loading"></div>
-                    </div>
-                    <div class="ibox-content">
-                    <div class="row">
-                    <form action="pesquisa-pedidos.php" method="POST">
-                        <div class="col-md-4 col-md-offset-6">
+                        <form action="pesquisa-pedidos.php" method="POST">
+                        <div class="col-md-4">
                             <div class="form-group" id="data">
                                 <div class="input-daterange input-group" id="datepicker">
                                     <input type="text" class="input-sm form-control" name="start" value="<?=$dataS1?>"/>
@@ -204,7 +184,14 @@ include 'includes/verificaDatasRelatorio.php';
                         <div class="col-md-2">
                              <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-calendar fa-1x"></i> Alterar Data</button>
                         </form>
+
                         </div>
+                    </div>
+                    <br>
+                    <div id="contentLoading">
+                         <div id="loading"></div>
+                    </div>
+                    <div class="ibox-content">
                     </div>
                        <div id="MostraPesq"></div>
                         </div>
