@@ -1,9 +1,5 @@
-           <?php
-if(!isset($_SESSION))
-{
-  session_start();
-}
-header("Content-Type: text/html; charset=utf-8", true);
+<?php
+
 require 'classes/Login.php';
 
 $login = new Login();
@@ -15,6 +11,8 @@ if ($login->usuarioLogado() == true) {
 
     $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     $_SESSION['return_url'] = $current_url;
+
+    if(isset($_SESSION['restaurante'])){
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,7 +45,9 @@ if ($login->usuarioLogado() == true) {
                 <li class="nav-header">
                     <div class="dropdown profile-element">
                     <span><h2 class="admin">Administração</h2></span>
-<?php if(isset($_SESSION['restaurante'])){
+<?php 
+
+if(isset($_SESSION['restaurante'])){
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
 } else {
     $restaurante_ativo = null;
@@ -119,13 +119,19 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 
     
 <?php
-if(isset($_SESSION['restaurante'])){
-$restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
+
 $produtos = lista_produtos($_SESSION['restaurante']);
 $categorias = mostra_categorias($_SESSION['restaurante']);
 
  ?>
         <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                </nav>
+            </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Produtos</h1>

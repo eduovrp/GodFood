@@ -73,7 +73,6 @@ include 'includes/menu-top.php';
 				      						<address>
 											 <p><strong>email: </strong> <a href="mail-to: suporte@godfood.com.br">suporte@godfood.com.br</a></p>
 											 <p><strong>Telefone: </strong> +55 17 - 997640291</p>
-									   		<p>Rua 15, n° 345 - Centro</p>
 									   		<p>Santa Fé do Sul - SP</p>
 
 							   			</address>

@@ -42,7 +42,7 @@ verifica_post();
 <body>
     <div id="wrapper">
 
-             <nav class="navbar-default navbar-static-side" role="navigation">
+    <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
@@ -118,12 +118,20 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
         </div>
     </nav>
 
-    
 <?php
 include 'includes/function_index.php';
 ?>
 
         <div id="page-wrapper" class="gray-bg">
+        
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                </nav>
+            </div>    
+
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
                     <div class="col-lg-3">

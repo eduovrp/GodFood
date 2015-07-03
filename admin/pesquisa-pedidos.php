@@ -1,4 +1,4 @@
-           <?php
+<?php
 if(!isset($_SESSION))
 {
   session_start();
@@ -123,16 +123,18 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 
     
 <?php
-if(isset($_SESSION['restaurante'])){
-$restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
-} else {
-    $restaurante_ativo = NULL;
-}
 
 $status = buscaStatusPagamento();
 include 'includes/verificaDatasRelatorio.php';
  ?>
         <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                </nav>
+            </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Pedidos</h1>

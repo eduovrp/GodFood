@@ -131,6 +131,13 @@ $detalhesPedidos = detalhaPedidosEmAndamento($id_restaurante);
 $pedidosConcluidos = mostraPedidosConcluidos($id_restaurante);
  ?>
         <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                </nav>
+            </div>
         <div class="wrapper wrapper-content  animated fadeInRight">
             <div class="row">
                 <div class="col-sm-8">

@@ -43,7 +43,10 @@ ul{
 label{
 	margin:0;
 }
-
+.cep{
+	height: 40px;
+	font-size: 20px;
+}
 input[type="text"]:disabled {
 	cursor: not-allowed;
 }
@@ -125,6 +128,9 @@ span.erro{
 	border-top: 1px solid #A9A9A9;
 	padding-top: 5px;
 	padding-bottom: 5px;
+}
+.chosen-select{
+	width:400px;
 }
 .form-index{
 	z-index: 5;
@@ -223,10 +229,7 @@ span.erro{
 .input-group input[type="text"]{
 	height: 60px;
 }
-.chosen-select{
-	float: left;
-	width:450px;
-}
+
 .input-group button.btn-danger[type="submit"] {
 	border-radius: 5px;
 }
@@ -299,7 +302,7 @@ span.erro{
 	font-size:22px;
 	font-weight:700;
 }
-.ordering-section{
+.ordering-section {
 	padding:4em 0;
 	background-color: #f0f0f0;
 	margin-top: -6%;
@@ -1415,7 +1418,8 @@ h2.resp-accordion:hover{
 		margin-top: 9px;
 	}
 	.banner-info-head h1{
-	font-size:1.7em;
+	font-size:1.9em;
+	font-weight: 600;
 	}
 	.sap_tabs{
 		padding-top:0;
@@ -2144,28 +2148,8 @@ address {
     box-sizing: border-box;
     margin-bottom: 19px;
 }
-.prev {
-	background: url(../images/prevnext.png) 0 bottom no-repeat;
-	display: block;
-	position: absolute;
-	right: 42px;
-	top: 15%;
-	width: 32px;
-	z-index: 999;
-	height: 30px;
-}
 .prev:hover {
 	background-position: 0 0;
-}
-.next {
-	background: url(../images/prevnext.png) right bottom no-repeat;
-	display: block;
-	z-index: 999;
-	position: absolute;
-	right: 10px;
-	top: 15%;
-	width: 32px;
-	height: 30px;
 }
 .next:hover {
 	background-position: right 0;
@@ -2591,6 +2575,9 @@ address {
 }
 
 @media screen and (max-width:1024px){
+	.form-control{
+		width: 70%;
+	}
 	.line {
 		background: url(../images/line.png) no-repeat -29px 17px;
 	}
@@ -2820,7 +2807,7 @@ address {
 		border-top: 2px solid #9a2529;
 	}
 	.banner-info-head h1 {
-		font-size: 2em;
+		font-size: 2.3em;
 	}
 	.line h2 {
 		font-size: 1.85em;
@@ -2962,6 +2949,7 @@ address {
 	}
 	.ordering-section {
 		padding: 2em 0 0 0;
+		margin-top: -8%;
 	}
 	.ordering-section-grid-process span {
 		font-size: 15px;
@@ -3247,7 +3235,7 @@ address {
 		font-size: 17.45px;
 	}
 	.banner-info-head h1 {
-		font-size: 1.7em;
+		font-size: 2.2em;
 	}
 	.line h2 {
 		font-size: 1.5em;
@@ -3309,7 +3297,7 @@ address {
 		font-size: 1em;
 	}
 	.banner-info-head h1 {
-		font-size: 1.5em;
+		font-size: 1.9em;
 	}
 	.line h2 {
 		font-size: 1.3em;
@@ -3349,6 +3337,7 @@ address {
 	}
 	.ordering-section {
 		padding: 1.5em 0 0 0;
+		margin-top: -10%;
 	}
 	.ordering-section-grid-process {
 		left: 28.5%;
@@ -3550,12 +3539,20 @@ address {
 		margin-bottom: 1.2em;
 	}
 }
+ @media screen and (max-width:530px){
+	.ordering-section {
+		margin-top: -12%;
+	}
+}
 
 /* CELULAR */
 
  @media screen and (max-width:480px){
 	.container {
 		width: 100%;
+	}
+	.ordering-section {
+		margin-top: -14%;
 	}
 	.ordering-section-grid-process label {
 		display: none;
@@ -3677,7 +3674,7 @@ address {
 		font-size: 1.4em;
 	}
 	.banner-info-head h1 {
-		font-size: 1.8em;
+		font-size: 1.9em;
 		font-weight: 500px;
 	}
 	.line h2 {
@@ -3822,6 +3819,9 @@ address {
 	}
 }
 @media screen and (max-width:460px){
+	.ordering-section {
+		margin-top: -15.5%;
+	}
 	.nth-grid{
 		margin-top: -190px;
 	}
@@ -3842,6 +3842,9 @@ address {
 	}
 }
 @media screen and (max-width: 400px){
+	.ordering-section {
+		margin-top: -17%;
+	}
 	.top-menu ul li a {
 		font-size: 15px;
 	}
@@ -3859,6 +3862,11 @@ address {
 	.ordering-section-grid-process i.one,.ordering-section-grid-process i.two,
     .ordering-section-grid-process i.three,.ordering-section-grid-process i.four{
 		margin: 0 0 0 0.8em;
+	}
+}
+ @media screen and (max-width:360px){
+.ordering-section {
+		margin-top: -19%;
 	}
 }
  @media screen and (max-width:320px){

@@ -71,7 +71,7 @@ include 'includes/menu-top.php';
         		<h3>3. OBRIGAÇÕES DO USUÁRIO</h3>
         		<p>
         			<strong>3.1</strong> Efetuado com sucesso o CADASTRO do USUÁRIO, este se obriga a não divulgar a terceiros login e senha de acesso, nem permitir o uso de tais informações por terceiros, responsabilizando-se pelas consequências do uso de login e senha de sua titularidade. <br>
-					<strong>3.2</strong> É obrigação do USUÁRIO fornecer informações cadastrais totalmente verídicas e exatas, responsabilizando-se exclusiva e integralmente (em todas as searas jurídicas) por todo o conteúdo por si informado no item CADASTRO, mantendo atualizado e confirmado o endereço para entrega dos produtos encomendados. <br>
+					<strong>3.2</strong> É obrigação do USUÁRIO fornecer informações cadastrais totalmente verídicas e exatas, responsabilizando-se exclusiva e integralmente (em todas as searas jurídicas) por todo o conteúdo por si informado no item CADASTRO e no item CADASTRO DE ENDEREÇOS, mantendo atualizado e confirmado o endereço para entrega dos produtos encomendados. <br>
 					<strong>3.3</strong> O USUÁRIO se obriga, também, a pagar integralmente o preço dos produtos por si solicitados ou encomendados ao RESTAURANTE e efetivamente a si entregues, seja pela modalidade on-line, seja por qualquer outra forma, diretamente ao portador dos produtos encomendados por meio deste site (dinheiro, cheque, tickets, etc.). <br>
 					<strong>3.4</strong> O USUÁRIO que seja menor de 18 anos de idade está ciente de que não poderá encomendar e adquirir, em qualquer hipótese, produtos alcoólicos, responsabilizando-se pela correta informação de sua idade no item CADASTRO. <br>
 					<strong>3.5</strong> O USUÁRIO concorda com o uso das informações de avaliações e feedbacks do serviços dos RESTAURANTES e do godfood, conforme descrito nos TERMOS DE PRIVACIDADE do godfood. <br>
@@ -83,20 +83,27 @@ include 'includes/menu-top.php';
 					<strong>4.2</strong> Proteger, por meio de armazenamento em servidores ou quaisquer outros meios magnéticos de alta segurança, a confidencialidade de todas as informações e cadastros relativos aos USUÁRIOS, assim como valores atinentes às operações financeiras advindas da operacionalização dos serviços previstos no presente TERMO. Contudo, não responderá pela reparação de prejuízos que possam ser derivados de apreensão e cooptação de dados por parte de terceiros que, rompendo os sistemas de segurança, consigam acessar essas informações. <br>
         		</p>
 
-        		<h3>5. MODIFICAÇÕES DESTE TERMO</h3>
+        		<h3>5. RESTITUIÇÕES DE VALORES</h3>
         		<p>
-        			<strong>5.1</strong> O presente TERMO DE USO poderá, a qualquer tempo, ter seu conteúdo, ou parte dele, modificados para adequações e inserções, tudo com vistas ao aprimoramento dos serviços disponibilizados. <br>
-					<strong>5.2</strong> As novas condições entrarão em vigência assim que sua veiculada no site, sendo possível ao USUÁRIO manifestar oposição a quaisquer dos termos modificados, desde que o faça por escrito, através do site godfood.com.br, o que gerará o cancelamento de seu CADASTRO. <br>
+        			<strong>5.1</strong> O USUARIO pode requerir uma restituição de valor quando um PEDIDO for considerado CANCELADO pelo sistema porém o pagamento foi realizado com SUCESSO.<br>
+        			<strong>5.2</strong> Para restituições, o USUARIO deve entrar em contato o mais rapido possivel <a href="contato.php">clicando aqui</a> e nos informando sobre o ocorrido o mais detalhado possivel.
+        			<strong>5.2</strong> O USUARIO declara estar ciente que o mesmo não será restituido de qualquer valor, seja PARCIAL ou INTEGRAL quando o mesmo INSERIR, ENVIAR, ALTERAR suas INFORMAÇÕES PESSOAIS ou INFORMAÇÔES PARA ENTREGA onde o RESTAURANTE não consiga realizar a entrega ou de alguma forma BURLAR o sistema, inserindo dados incorretos ou inconsistentes. <br>
         		</p>
 
-        		<h3>6. CANAL DE COMUNICAÇÃO</h3>
+        		<h3>6. MODIFICAÇÕES DESTE TERMO</h3>
         		<p>
-        			<strong>6.1</strong> Para estabelecer contato entre godfood.com.br e o USUÁRIO fica disponibilizado o endereço eletrônico deste <a href="contato.php">link</a>, sendo certo que o USUÁRIO se obriga, igualmente, a manter em seu cadastro endereço eletrônico atual por intermédio do qual se farão as comunicações a ele dirigidas pelo godfood.com.br, desde logo emprestando-se validade jurídica e efetividade a esse meio eletrônico de troca de informações recíprocas. <br>
+        			<strong>6.1</strong> O presente TERMO DE USO poderá, a qualquer tempo, ter seu conteúdo, ou parte dele, modificados para adequações e inserções, tudo com vistas ao aprimoramento dos serviços disponibilizados. <br>
+					<strong>6.2</strong> As novas condições entrarão em vigência assim que sua veiculada no site, sendo possível ao USUÁRIO manifestar oposição a quaisquer dos termos modificados, desde que o faça por escrito, através do site godfood.com.br, o que gerará o cancelamento de seu CADASTRO. <br>
+        		</p>
+
+        		<h3>7. CANAL DE COMUNICAÇÃO</h3>
+        		<p>
+        			<strong>7.1</strong> Para estabelecer contato entre godfood.com.br e o USUÁRIO fica disponibilizado o endereço eletrônico deste <a href="contato.php">link</a>, sendo certo que o USUÁRIO se obriga, igualmente, a manter em seu cadastro endereço eletrônico atual por intermédio do qual se farão as comunicações a ele dirigidas pelo godfood.com.br, desde logo emprestando-se validade jurídica e efetividade a esse meio eletrônico de troca de informações recíprocas. <br>
         		</p>
 
         		<h3>7. ACEITAÇÃO DO TERMO DE USO</h3>
         		<p>
-        			<strong>7.1</strong> O USUÁRIO declara ter lido, entendido e que aceita todas as regras, condições e obrigações estabelecidas no presente TERMO. <br>
+        			<strong>8.1</strong> O USUÁRIO declara ter lido, entendido e que aceita todas as regras, condições e obrigações estabelecidas no presente TERMO. <br>
         		</p>
         	</div>
     </div>

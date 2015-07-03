@@ -121,7 +121,6 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 
     
 <?php
-$restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
 $dadosR = mostraDadosRestaurante($_SESSION['restaurante']);
 
 include 'includes/verificaDatasRelatorio.php';
@@ -131,6 +130,13 @@ $taxa_entrega = buscaTaxaEntregaRelatorio($data1,$data2,$_SESSION['restaurante']
 $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
  ?>
         <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                </nav>
+            </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Relatório de Vendas</h1>

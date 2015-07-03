@@ -115,11 +115,6 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
     
 <?php
 $_SESSION['id_pedido'] = $_POST['id_pedido'];
-if(isset($_SESSION['restaurante'])){
-$restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
-} else {
-    $restaurante_ativo = null;
-}
 
 require 'functions/pedidos.php';
 $detalhes = detalhaPedido($_POST['id_pedido']);
@@ -128,6 +123,13 @@ $itens = lista_itens_pedido($_POST['id_pedido']);
 include 'includes/timeline_verif.php';
 ?>
         <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                </nav>
+            </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Detalhes do Pedido</h1>

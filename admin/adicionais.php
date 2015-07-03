@@ -15,6 +15,8 @@ if ($login->usuarioLogado() == true) {
 
     $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
     $_SESSION['return_url'] = $current_url;
+
+    if(isset($_SESSION['restaurante'])){
 ?>
 <!DOCTYPE html>
 <html>
@@ -119,13 +121,19 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 
 <?php
 
-if(isset($_SESSION['restaurante'])){
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
 $adicionais = lista_adicionais($_SESSION['restaurante']);
 $categorias = mostra_categorias($_SESSION['restaurante']);
 
  ?>
         <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                </nav>
+            </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Adicionais</h1>

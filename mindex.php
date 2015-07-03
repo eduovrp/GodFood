@@ -17,10 +17,13 @@ if(!isset($_SESSION))
 <meta charset="UTF-8">
 <title>GodFood - Delivery</title>
 <link rel="icon" type="image/png" href="web/images/plate.png" />
-	<link href="web/css/bootstrap.css" rel="stylesheet">
+
+<link rel="stylesheet" href="cart/inspinia/css/ladda.min.css">
+
+	<link href="web/css/bootstrap.css" rel="stylesheet">	
+
 <!-- Custom Theme files -->
 <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfont-->
@@ -71,25 +74,20 @@ $banners = buscaBannersIndex();
 					</div>
 						<form action="cart/busca_restaurantes.php" method="POST" name="fcep" id="fcep">
 					<div class="row">
-						<div class="col-md-6 col-md-offset-3">
-							<select data-placeholder="Pesquise sua cidade" class="chosen-select" name="cep" tabindex="1">
-					            <option value=""></option>
-					            <?php foreach($cidades as $cidade):?>
-					              <option value="<?=$cidade['cep']?>" 
-								<?php if(isset($_COOKIE['cep']) && $_COOKIE['cep'] == $cidade['cep']){ echo 'selected';} ?>
-					              ><?=$cidade['nome'].", ".$cidade['cep'];?></option>
-					            <?php endforeach; ?>
-					        </select>
-					       <button class="btn btn-danger" type="submit"><i class="fa fa-search fa-2x"></i></button>
+						<div class="col-md-4 col-md-offset-4">
+							<input type="tel" name="cep" id="cep" placeholder="Pesquise por cep" class="form-control cep" required>
+							<br>
+							<button class="ladda-button btn btn-danger" type="submit" data-size="m" data-style="zoom-in"><i class="fa fa-search fa-2x"> Pesquisar</i></button>
+						</div>
+					       
 					    </div>
-				</div>
+						</div>
 						</form>
 					    </div>
-					  </div>
 				<nav class="slides-navigation">
 					      <a href="#" class="next"><i class="fa fa-angle-right fa-4x"></i></a>
 					      <a href="#" class="prev"><i class="fa fa-angle-left fa-4x"></i></a>
-					    </nav>
+				</nav>
 			
 		</div>
 	</div>
@@ -322,16 +320,26 @@ $banners = buscaBannersIndex();
 		</div>
 	</div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="web/js/jquery.min.js"></script>
-<script src="web/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="web/js/easing.js"></script>
-<script type="text/javascript" src="web/js/pace.min.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="web/js/jquery.min.js"></script>
+	<script src="web/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="web/js/easing.js"></script>
+	<script type="text/javascript" src="web/js/pace.min.js"></script>
 
+    <script src="cart/inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="cart/inspinia/js/plugins/ladda/ladda.js"></script>
+
+    		<!--Mascaras -->
+	<script type="text/JavaScript" src="web/js/jquery.mask.js"></script>
 <script type="text/javascript">
-	if ($(window).width() < 600){
-		window.location.href='mindex.php';
-	}
+	$(document).ready(function(){
+	  	$('#cep').mask('99999-999');
+	});
+</script>
+
+    <script type="text/javascript">
+                // Bind normal buttons
+            Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
 </script>
 
 <script src="web/js/jquery.superslides.min.js"></script>
