@@ -69,18 +69,8 @@ $restAbertFav = lista_restaurantes_abert_fav($cep);
   <div class="alert alert-danger alert-dismissible" role="alert">
       <h4>Você está em um ambiente de teste, nenhum pedido será registrado oficialmente nem entregue, caso encontre algum problema, bug ou erro, por favor, entre em contato conosco. Agradecemos sua compreensão.</h4>
     </div>
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default">
-  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h2>
-          Restaurantes Abertos
-      </h2>
-    </div>
-    </a>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-      <div class="col-md-12">
+<div class="row">
+  <div class="col-md-12">
 	<?php foreach($restAbertFav as $abertFav): ?>
 
       <div class="col-md-6">
@@ -130,9 +120,8 @@ $restAbertFav = lista_restaurantes_abert_fav($cep);
             </div>
 	<?php endforeach;?>
 	</div>
-      </div>
-    </div>
-  </div>
+</div>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
     <div class="panel-heading" role="tab" id="headingTwo">
