@@ -33,6 +33,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
 <link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="inspinia/css/ladda.min.css">
+
+<link href="inspinia/css/iCheck/custom.css" rel="stylesheet">
 </head>
 <body>
     <!--  -->
@@ -97,6 +99,7 @@ if(isset($id_restaurante)){
     </div>
     </a>
     <?php
+
     if(isset($_SESSION['categoria_in'])){
         if($_SESSION['categoria_in'] == $cat['id_categoria'] ){
             $categoria_in = 'in';
@@ -192,14 +195,20 @@ if(isset($id_restaurante)){
                          <input type="text" class="form-control" id="obs" name="obs" placeholder="Ex: Retirar Tomate, Retirar Milho, etc">
                      </div>
                  </div>
-                    </div>
+            <?php if($cat['2sabores'] == 'Sim'){ ?>
+                 <br><br>
+                <h4>
+                    <label class="checkb"><input type="checkbox" class="i-checks" name="doisSabores"> Quero <?=$produto['categoria']?> com 02 Sabores!</label>
+                </h4>  
+            <?php } ?> 
+                 </div>
+                    
                     <div class="modal-footer">
 <!--Input Hidden + botão submit  -->
         <input type="hidden" name="codigo" value="<?= $produto['codigo']?>" />
         <input type="hidden" name="type" value="add" />
         <input type="hidden" name="return_url" value="<?=$current_url?>" />
         <input type="hidden" name="categoria_in" value="<?=$cat['id_categoria'];?>">
-
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close fa-1x"></i> Cancelar</button>
                         <button type="submit" class="ladda-button btn btn-primary" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Adcionar ao Carrinho</button>
                     </div>
@@ -449,8 +458,21 @@ if(isset($id_restaurante)){
 
     <script type="text/javascript">
                 // Bind normal buttons
-            Ladda.bind( 'button[type=submit]', { timeout: 10000 } );
+            Ladda.bind( 'button[type=submit]', { timeout: 15000 } );
 </script>
+
+    <!-- iCheck -->
+    <script src="js/icheck.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
+
+</body>
 
 
     <script>

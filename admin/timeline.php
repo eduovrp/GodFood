@@ -271,7 +271,7 @@ $pedidosConcluidos = mostraPedidosConcluidos($id_restaurante);
                                         $itensPedido = lista_itens_pedido($detalhePedido['id_pedido']);
                                             foreach ($itensPedido as $item): ?>
                                             	<tr>
-                                                    <td><?=$item['nome'] . " (".$item['categoria'].")";?></td>
+                                                    <td><?=$item['produto'] . " (".$item['categoria'].")";?></td>
                                                     <td align="center"><?=$item['qtd'];?></td>
                                                     <td align="right">R$ <?=number_format($item['valor'],2,",",".");?></td>
                                                 </tr>
@@ -304,9 +304,7 @@ $pedidosConcluidos = mostraPedidosConcluidos($id_restaurante);
                                                         <i class="fa fa-cutlery"></i>
                                                     </div>
                                                     <div class="vertical-timeline-content">
-                                                        <p><strong><?=$item['nome'] . " (".$item['categoria'].")";?></strong> <br>
-                                                        <?= $item['descricao'];?>
-                                                        </p>
+                                                        <p><strong><?=$item['produto'] . " (".$item['categoria'].")";?></strong> </p>
                                                         <span class="vertical-date small text-muted"><strong> Adicional: <?=$item['adicional'];?></strong></span>
                                                         <br>
                                                         <span class="vertical-date small text-muted"><strong> Borda Recheada: <?=$item['borda'];?></strong></span>

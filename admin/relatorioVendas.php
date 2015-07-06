@@ -215,11 +215,9 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
                                     </thead>
                                     <tbody>
                                 <?php $subtotal = 0;
-                                 foreach ($vendas as $venda):
-                                    $categoria = mostraCategoriaProduto($venda['id_produto']);
-                                    ?>
+                                 foreach ($vendas as $venda): ?>
                                     <tr>
-                                        <td class="left"><strong><?=$venda['nome']." (".$categoria['categoria'].")"; ?></strong></td>
+                                        <td class="left"><strong><?=$venda['produto']." (".$venda['categoria'].")"; ?></strong></td>
                                         <td><?=$venda['qtd']?></td>
                                     <?php $countAdic = buscaDadosAdicVendidos($data1, $data2, $venda['id_produto']);
                                         if($countAdic['qtd'] < 1){

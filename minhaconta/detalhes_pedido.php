@@ -142,7 +142,7 @@ include 'includes/account_verif.php';
 	     $total = 0;
 		foreach($itens as $item): ?>
 	      <tr>
-	        <td><?=$item['nome']." (".$item['categoria'].")";?></td>
+	        <td><?=$item['produto']." (".$item['categoria'].")";?></td>
 	        <td><?=$item['qtd'];?></td>
 	        <td><?=$item['adicional'];?></td>
 	        <td><?=$item['borda'];?></td>

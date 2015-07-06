@@ -1,10 +1,13 @@
 <?php
 header("Content-Type: text/html; charset=utf-8", true);
+
 if(!isset($_SESSION))
  {
    session_start();
  }
+
 date_default_timezone_set('America/Sao_Paulo');
+
 require "config.php";
 include "paypal.class.php";
 require '../functions/pedidos.php';
@@ -32,21 +35,15 @@ if(!isset($_POST['endereco'])){
 	$paypal_data ='';
 	$ItemTotalPrice = 0;
 
-    foreach($_POST['item'] as $key=>$itm)
+
+    foreach($_SESSION['products'] as $key=>$itm)
     {
-        $product_code 	= filter_var($itm['code'], FILTER_SANITIZE_STRING);
-        $id_adicional 	= filter_var($itm['cod_adic'], FILTER_SANITIZE_STRING);
-        $id_borda	 	= filter_var($itm['cod_borda'], FILTER_SANITIZE_STRING);
 
-		$produtos = select_resumo_pedido($product_code);
-		$adicional = select_add_adicionais($id_adicional);
-		$borda = select_add_bordas($id_borda);
+		$valor = ($itm['valor'] + $itm['valor_borda'] + $itm['valor_adicional']);
 
-		$valor = ($produtos['valor'] + $adicional['valor'] + $borda['valor']);
+		$desc = 'Adicional: '.$itm['adicional'].', Borda: '.$itm['borda'].'';
 
-		$desc = 'Adicional: '.$itm['adic'].', Borda: '.$itm['borda'].'';
-
-        $paypal_data .= '&L_PAYMENTREQUEST_0_NAME'.$key.'='.urlencode($produtos['nome']);
+        $paypal_data .= '&L_PAYMENTREQUEST_0_NAME'.$key.'='.urlencode($itm['name']);
         $paypal_data .= '&L_PAYMENTREQUEST_0_NUMBER'.$key.'='.urlencode($itm['code']);
         $paypal_data .= '&L_PAYMENTREQUEST_0_DESC'.$key.'='.urlencode($desc);
         $paypal_data .= '&L_PAYMENTREQUEST_0_AMT'.$key.'='.urlencode($valor);
@@ -59,25 +56,41 @@ if(!isset($_POST['endereco'])){
         $ItemTotalPrice = $ItemTotalPrice + $subtotal;
 
 		//create items for session
-		$paypal_product['items'][] = array('itm_name'=>$produtos['nome'],
-											'itm_adic'=>$itm['adic'],
+		$paypal_product['items'][] = array('itm_name'=>$itm['name'],
+											'itm_adic'=>$itm['adicional'],
 											'itm_borda'=>$itm['borda'],
 											'itm_price'=>$valor,
 											'itm_code'=>$itm['code'],
 											'itm_qty'=>$itm['qtd']
 											);
 
+		if($itm['cod_borda'] == 0){
+			$itm['cod_borda'] = NULL;
+		}
+			if($itm['cod_adicional'] == 0){
+				$itm['cod_adicional'] = NULL;
+			}
+
+	$itens_pedido[] = array('id_categoria'=>$itm['id_categoria'],
+						  'produto'=>$itm['name'],
+						  'qtd'=>$itm['qtd'],
+						  'id_adicional'=>$itm['cod_adicional'],
+						  'adicional'=>$itm['adicional'],
+						  'id_borda'=>$itm['cod_borda'],
+						  'borda'=>$itm['borda'],
+						  'obs'=>$itm['obs'],
+						  'valor'=>$valor);
+
     }
+
+   
     $GrandTotal = ($ItemTotalPrice + $TotalTaxAmount + $HandalingCost + $InsuranceCost + $ShippinCost + $ShippinDiscount);
 
     $cidade_entrega = select_id_cidade_entrega($_SESSION['cep']);
 
     $id_cidade_entrega = $cidade_entrega['id_cidade_entrega'];
 
-    if(isset($_SESSION["products"]))
-	{
-
-		$endereco = select_endereco_entrega($_POST['endereco']);
+    	$endereco = select_endereco_entrega($_POST['endereco']);
 
 		$endereco_entrega = $endereco['logradouro'].', '.$endereco['numero'].' - '.
 	        $endereco['bairro'].' / '. $endereco['cidade'].' - '.$endereco['estado'];
@@ -86,44 +99,15 @@ if(!isset($_POST['endereco'])){
 				inserir_pedido($vTotalPedido, $GrandTotal, $ShippinCost, $_SESSION['id_usuario'],
 				  	$_SESSION['id_restaurante'], $id_cidade_entrega, $endereco_entrega);
 
-	$id_pedido = $_SESSION['last_id'];
+						$id_pedido = $_SESSION['last_id'];
 
-		 foreach($_POST['item'] as $itm){
-
-		$product_code 	= filter_var($itm['code'], FILTER_SANITIZE_STRING);
-        $id_adicional 	= filter_var($itm['cod_adic'], FILTER_SANITIZE_STRING);
-        $id_borda	 	= filter_var($itm['cod_borda'], FILTER_SANITIZE_STRING);
-
-		$produtos = select_resumo_pedido($product_code);
-		$adicional = select_add_adicionais($id_adicional);
-		$borda = select_add_bordas($id_borda);
-
-		$valor = ($produtos['valor'] + $adicional['valor'] + $borda['valor']);
-
-		if($itm['cod_borda'] == 0){
-			$itm['cod_borda'] = NULL;
-		}
-		if($itm['cod_adic'] == 0){
-			$itm['cod_adic'] = NULL;
-		}
-
-
-	$itens_pedido[] = array('itm_code'=>$itm['code'],
-						  'itm_qty'=>$itm['qtd'],
-						  'cod_adic'=>$itm['cod_adic'],
-						  'itm_adic'=>$itm['adic'],
-						  'cod_borda'=>$itm['cod_borda'],
-						  'itm_borda'=>$itm['borda'],
-						  'itm_obs'=>$itm['obs'],
-						  'itm_valor'=>$valor);
-		}
-	}
-	insere_itens_pedido($id_pedido,$itens_pedido);
+	insere_itens_pedido($id_pedido, $itens_pedido);
 
 	$vPedido = ($GrandTotal - $HandalingCost - $ShippinCost);
 	$tarifas_rest = buscaTarifasRestaurante($_SESSION['id_restaurante']);
 	$taxa_pgto = $tarifas_rest['taxa_paypal'];
 	$taxa_adm = $tarifas_rest['taxa_adm'];
+
 	tarifas($_SESSION['id_restaurante'],$id_pedido,$vPedido,$taxa_pgto,$taxa_adm,$HandalingCost,$ShippinCost);
 		unset($_SESSION["products"]);
 

@@ -37,12 +37,36 @@ if(isset($_POST["type"]) && $_POST["type"]=='add')
 		$borda['nome'] = 'Não';
 		$borda['valor'] = '0';
 	}
-		//prepare array for the session variable
-		$new_product = array(array('name'=>$produtos['nome'], 'code'=>$codigo, 'qtd'=>$qtd,
-			'valor'=>$produtos['valor'], 'adicional'=>$adicional['nome'],
-			'valor_adicional'=>$adicional['valor'], 'cod_adicional'=>$cod_adicional,
-			'borda'=>$borda['nome'], 'valor_borda'=>$borda['valor'], 'cod_borda'=>$cod_borda, 
-			'obs'=>$obs));
+
+		if(isset($_POST['doisSabores'])){
+			if(!isset($_SESSION['doisSabores'])){
+
+				$produtos['nome'] = '1/2 '.$produtos['nome'].' / ';
+				$produtos['descricao'] = '1/2 '.$produtos['descricao'].' / ';
+
+				$new_product = array('name'=>$produtos['nome'], 'code'=>$codigo, 
+					'descricao'=>$produtos['descricao'], 'qtd'=>$qtd,
+					'valor'=>$produtos['valor'], 'adicional'=>$adicional['nome'],
+					'valor_adicional'=>$adicional['valor'], 'cod_adicional'=>$cod_adicional,
+					'borda'=>$borda['nome'], 'valor_borda'=>$borda['valor'], 'cod_borda'=>$cod_borda, 
+					'obs'=>$obs, 'codigo1'=>$codigo, 'codigo2'=>null, 'id_categoria'=>$_POST['categoria_in'],
+					'doisSabor'=>'sim');
+
+				$_SESSION['doisSabores'] = $new_product;
+				$_SESSION['id_categoria'] = $_POST['categoria_in'];
+				$_SESSION['codigo1'] = $codigo;
+				header('Location: complete-product.php');
+		}
+			} else {
+
+			$new_product = array(array('name'=>$produtos['nome'], 'code'=>$codigo,
+					'descricao'=>$produtos['descricao'], 'qtd'=>$qtd,
+					'valor'=>$produtos['valor'], 'adicional'=>$adicional['nome'],
+					'valor_adicional'=>$adicional['valor'], 'cod_adicional'=>$cod_adicional,
+					'borda'=>$borda['nome'], 'valor_borda'=>$borda['valor'], 'cod_borda'=>$cod_borda, 
+					'obs'=>$obs, 'codigo1'=>null, 'codigo2'=>null, 'id_categoria'=>$_POST['categoria_in'],
+					'doisSabor'=>'nao'));
+		
 		if(isset($_SESSION["products"])) //if we have the session
 		{
 			$found = false; //set found item to false
@@ -58,19 +82,35 @@ if(isset($_POST["type"]) && $_POST["type"]=='add')
 							$obs = $cart_itm['obs'];
 						}
 
-					$product[] = array('name'=>$cart_itm["name"], 'code'=>$cart_itm["code"], 'qtd'=>$qtd,
+						if(isset($cart_itm['doisSabor'])){
+							$codigo1 = $cart_itm['codigo1'];
+							$codigo2 = $cart_itm['codigo2'];
+							$id_categoria = $cart_itm['id_categoria'];
+							$doisSabor = $cart_itm['doisSabores'];
+						} else {
+							$codigo1 = NULL;
+							$codigo2 = NULL;
+							$id_categoria = NULL;
+							$doisSabor = NULL;
+						}
+
+					$product[] = array('name'=>$cart_itm["name"], 'code'=>$cart_itm["code"],
+					 'descricao'=>$produtos['descricao'], 'qtd'=>$qtd,
 					 'valor'=>$cart_itm["valor"], 'adicional'=>$adicional['nome'],
 					 'valor_adicional'=>$adicional['valor'], 'cod_adicional'=>$cod_adicional,
 					 'borda'=>$borda['nome'], 'valor_borda'=>$borda['valor'], 'cod_borda'=>$cod_borda,
-					 'obs'=>$obs);
+					 'obs'=>$obs, 'codigo1'=>$codigo1, 'codigo2'=>$codigo2, 'id_categoria'=>$id_categoria,
+					 'doisSabor'=>$doisSabor);
 					$found = true;
 				}else{
 					//item doesn't exist in the list, just retrive old info and prepare array for session var
-					$product[] = array('name'=>$cart_itm["name"], 'code'=>$cart_itm["code"], 'qtd'=>$cart_itm["qtd"],
+					$product[] = array('name'=>$cart_itm["name"], 'code'=>$cart_itm["code"],
+					 'descricao'=>$cart_itm['descricao'], 'qtd'=>$cart_itm["qtd"],
 					 'valor'=>$cart_itm["valor"], 'adicional'=>$cart_itm['adicional'],
 					 'valor_adicional'=>$cart_itm['valor_adicional'], 'cod_adicional'=>$cart_itm['cod_adicional'], 
 					 'borda'=>$cart_itm['borda'], 'valor_borda'=>$cart_itm['valor_borda'], 'cod_borda'=>$cart_itm['cod_borda'], 
-					 'obs'=>$cart_itm['obs']);
+					 'obs'=>$cart_itm['obs'], 'codigo1'=>$cart_itm['codigo1'], 'codigo2'=>$cart_itm['codigo2'],
+					 'id_categoria'=>$cart_itm['id_categoria'], 'doisSabor'=>$cart_itm['doisSabor']);
 				}
 			}
 
@@ -89,8 +129,8 @@ if(isset($_POST["type"]) && $_POST["type"]=='add')
 		}
 
 	header('Location:'.$return_url);
+  }
 }
-
 //remove o item escolhido no carrinho
 if(isset($_GET["removep"]) && isset($_GET["return_url"]) && isset($_SESSION["products"]))
 {
@@ -100,15 +140,16 @@ if(isset($_GET["removep"]) && isset($_GET["return_url"]) && isset($_SESSION["pro
 	foreach ($_SESSION["products"] as $cart_itm) //loop na session products
 	{
 		if($cart_itm["code"]!=$codigo){ //o item não existe na lista
+
 			$product[] = array('name'=>$cart_itm["name"], 'code'=>$cart_itm["code"],
-				'qtd'=>$cart_itm["qtd"], 'valor'=>$cart_itm["valor"],
+				'descricao'=>$cart_itm['descricao'], 'qtd'=>$cart_itm["qtd"], 'valor'=>$cart_itm["valor"],
 				'adicional'=>$cart_itm['adicional'],'valor_adicional'=>$cart_itm['valor_adicional'],
 				'cod_adicional'=>$cart_itm['cod_adicional'],
 				'borda'=>$cart_itm['borda'], 'valor_borda'=>$cart_itm['valor_borda'], 
-				'cod_borda'=>$cart_itm['cod_borda'], 'obs'=>$cart_itm['obs']);
+				'cod_borda'=>$cart_itm['cod_borda'], 'obs'=>$cart_itm['obs'], 'codigo1'=>$cart_itm['codigo1'],
+				'codigo2'=>$cart_itm['codigo2'], 'id_categoria'=>$cart_itm['id_categoria'],'doisSabor'=>$cart_itm['doisSabor']);
 		}
 
-		//cria um produto novo em session
 		$_SESSION["products"] = $product;
 	}
 

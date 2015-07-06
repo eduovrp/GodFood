@@ -153,9 +153,8 @@ try{
 		} else{
 
 		$_SESSION['diaAnt'] = date('d/m', strtotime("-1 days",strtotime($_SESSION['diaAnt'])));
-		$countDia = (date('d/m') - $_SESSION['diaAnt']);	
-
-			if($countDia <= 10){
+		
+		if($_SESSION['diaAnt'] <= date('d/m', strtotime("-10 days"))){
 				verificaDiaUltimoPedido($_SESSION['diaAnt']);
 			} else {
 				return $cmd->fetch();
@@ -190,9 +189,8 @@ try{
 		} else{
 
 		$_SESSION['diaAnt'] = date('d/m', strtotime("-1 days",strtotime($_SESSION['diaAnt'])));
-		$countDia = (date('d/m') - $_SESSION['diaAnt']);
 
-			if($countDia <= 10){
+			if($_SESSION['diaAnt'] <= date('d/m', strtotime("-10 days"))){
 				verificaDiaUltimoPedidoR($_SESSION['diaAnt'],$id_restaurante);
 			} else {
 				return $cmd->fetch();
@@ -1316,22 +1314,22 @@ function mostraDadosRelatorioVendas($data1,$data2,$id_restaurante)
 	global $pdo;
 try{
 	$sql = "SELECT SUM(ip.qtd) AS qtd,
-			      ip.id_produto AS id_produto,
-			      p.data AS data,
-			      pr.nome AS nome,
-      			  SUM(ip.valor_unit*ip.qtd) as sub_total
+			    ip.produto AS produto,
+			    p.data AS data,
+            	c.nome as categoria,
+      			SUM(ip.valor_unit*ip.qtd) as sub_total
 
-			FROM itens_pedido ip
-				INNER JOIN pedidos p
-					ON ip.id_pedido = p.id_pedido
-				INNER JOIN produtos pr
-					ON ip.id_produto = pr.id
+		FROM itens_pedido ip
+		INNER JOIN pedidos p
+		ON ip.id_pedido = p.id_pedido
+        INNER JOIN categorias c
+        ON ip.id_categoria = c.id_categoria
 
 			WHERE p.data >= :data1 and p.data <= :data2
 				AND p.id_restaurante = :id_restaurante AND p.id_status = 7
 
-			GROUP BY id_produto
-				ORDER BY qtd desc";
+			GROUP BY produto
+				ORDER BY qtd DESC";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('data1',$data1);
@@ -1342,28 +1340,6 @@ try{
 	return $cmd->fetchAll();
 
 }catch(PDOExceptiON $e){
- 	 echo $e->getMessage();
-	}
-}
-
-function mostraCategoriaProduto($id_produto)
-{
-	global $pdo;
-try{
-	$sql = "SELECT p.id as id_produto,
-			       c.nome as categoria
-
-			FROM produtos p
-			INNER JOIN categorias c
-			ON p.id_categoria = c.id_categoria WHERE id = :id_produto";
-
-	$cmd = $pdo->prepare($sql);
-	$cmd->bindParam('id_produto',$id_produto);
-	$cmd->execute();
-
-	return $cmd->fetch();
-
-}catch(PDOException $e){
  	 echo $e->getMessage();
 	}
 }

@@ -23,6 +23,24 @@ try{
 	}
 }
 
+function buscaCategoriaSelecionada($id_categoria)
+{
+	global $pdo;
+try{
+	$sql = "SELECT * FROM categorias WHERE id_categoria = :id_categoria";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('id_categoria',$id_categoria);
+	$cmd->execute();
+
+	return $cmd->fetchAll();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}
+
+
 function lista_produtos($id_categoria)
 {
 	global $pdo;
@@ -49,13 +67,40 @@ try {
 	}
 }
 
+function listaProdutos2Sabor($id_categoria,$id_produto)
+{
+	global $pdo;
+try {
+	$sql = "SELECT	p.nome AS nome_produto,
+		 			p.descricao AS descricao,
+		      		p.id AS codigo,
+					p.valor AS valor_unit,
+		     		c.nome AS categoria,
+          			c.id_categoria AS cod_categoria
+
+			FROM produtos p
+		  	INNER JOIN categorias c
+		  	ON p.id_categoria = c.id_categoria WHERE p.id_categoria = :id_categoria 
+		  		AND p.status = 1 AND p.id != :id_produto";
+
+	 $cmd = $pdo->prepare($sql);
+	 $cmd->bindParam('id_categoria',$id_categoria);
+	 $cmd->bindParam('id_produto',$id_produto);
+	 $cmd->execute();
+
+	 return $cmd->fetchAll();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}
+
 function select_add_produto($product_code)
 {
 	global $pdo;
 try{
-	$sql = "SELECT nome, valor FROM produtos
-			WHERE id = :product_code
-			LIMIT 1";
+	$sql = "SELECT nome, valor, descricao FROM produtos
+			WHERE id = :product_code";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('product_code', $product_code);
@@ -73,14 +118,32 @@ function select_resumo_pedido($product_code)
 	global $pdo;
 try{
 	$sql = "SELECT nome,descricao, valor FROM produtos
-			WHERE id = :product_code
-			LIMIT 1";
+			WHERE id = :product_code";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('product_code', $product_code);
 	$cmd->execute();
 
 	return $cmd->fetch();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}
+
+function buscaDesc($product_code)
+{
+	global $pdo;
+try{
+	$sql = "SELECT descricao FROM produtos
+			WHERE id = :product_code";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('product_code', $product_code);
+	$cmd->execute();
+
+	return $cmd->fetch();
+	
 }catch(PDOException $e){
  	 echo $e->getMessage();
 	}
@@ -212,8 +275,8 @@ function insere_itens_pedido($id_pedido,$itens_pedido)
 	global $pdo;
 
 try{
-	$sql = "INSERT INTO itens_pedido (id_pedido, id_produto, qtd, id_adicional, adicional, id_borda, borda, obs, valor_unit)
-	        VALUES (:id_pedido, :id_produto, :qtd, :id_adicional, :adicional, :id_borda, :borda, :obs, :valor_unit)";
+	$sql = "INSERT INTO itens_pedido (id_pedido, id_categoria, produto, qtd, id_adicional, adicional, id_borda, borda, obs, valor_unit)
+	        VALUES (:id_pedido, :id_categoria, :produto, :qtd, :id_adicional, :adicional, :id_borda, :borda, :obs, :valor_unit)";
 
 	$cmd = $pdo->prepare($sql);
 
@@ -221,16 +284,18 @@ try{
 
 	foreach ($itens_pedido as $item)
 	{
-			$cmd->bindParam('id_produto', $item['itm_code']);
-			$cmd->bindParam('qtd', $item['itm_qty']);
-			$cmd->bindParam('id_adicional',	$item['cod_adic']);
-			$cmd->bindParam('adicional', $item['itm_adic']);
-			$cmd->bindParam('id_borda',	$item['cod_borda']);
-			$cmd->bindParam('borda', $item['itm_borda']);
-			$cmd->bindParam('obs', $item['itm_obs']);
-			$cmd->bindParam('valor_unit', $item['itm_valor']);
+			$cmd->bindParam('id_categoria', $item['id_categoria']);
+			$cmd->bindParam('produto', $item['produto']);
+			$cmd->bindParam('qtd', $item['qtd']);
+			$cmd->bindParam('id_adicional',	$item['id_adicional']);
+			$cmd->bindParam('adicional', $item['adicional']);
+			$cmd->bindParam('id_borda',	$item['id_borda']);
+			$cmd->bindParam('borda', $item['borda']);
+			$cmd->bindParam('obs', $item['obs']);
+			$cmd->bindParam('valor_unit', $item['valor']);
 			$cmd->execute();
 	}
+
 }catch(PDOException $e){
  	 echo $e->getMessage();
 	}
@@ -307,23 +372,21 @@ function lista_itens_pedido($id_pedido)
 {
 	global $pdo;
 try{
-	$sql = "SELECT  p.nome as nome,
+	$sql = "SELECT  ip.produto as produto,
         			c.nome as categoria,
 	       			ip.qtd as qtd,
 	       			ip.adicional as adicional,
 	       			ip.borda as borda,
 	       			ip.obs as obs,
 			       	ip.valor_unit as valor,
-			       	(ip.qtd * ip.valor_unit) as subtotal,
-			       	p.descricao as descricao
+			       	(ip.qtd * ip.valor_unit) as subtotal
 
-			FROM produtos p
-      		INNER JOIN categorias c
-      		ON p.id_categoria = c.id_categoria
-			INNER JOIN itens_pedido ip
-			ON ip.id_produto = p.id where id_pedido = :id_pedido
+		FROM itens_pedido ip
+      	INNER JOIN categorias c
+      	ON ip.id_categoria = c.id_categoria 
+        WHERE id_pedido = :id_pedido
 
-      		ORDER BY c.nome";
+      		ORDER BY ip.id_item_pedido";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('id_pedido',$id_pedido);
@@ -439,6 +502,24 @@ try{
  	 echo $e->getMessage();
 	}
 }
+
+function buscaCategoria2Sabor($id_categoria)
+{
+	global $pdo;
+try{
+	$sql = "SELECT nome FROM categorias WHERE id_categoria = :id_categoria";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('id_categoria',$id_categoria);
+	$cmd->execute();
+
+	return $cmd->fetch();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}
+
 function busca_adicionais($id_categoria)
 {
 	global $pdo;

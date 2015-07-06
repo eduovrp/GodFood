@@ -135,6 +135,12 @@ span.erro{
 .form-index{
 	z-index: 5;
 }
+ul.descricao{
+	padding: 8px 0 0 15px;
+}
+ul.descricao li{
+	font-size: 13px;
+}
 .margin{
 	padding-left: 15px;
 }
