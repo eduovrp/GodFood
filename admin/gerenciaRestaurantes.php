@@ -117,6 +117,8 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
             </ul>
         </div>
     </nav>
+
+        <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
@@ -134,13 +136,12 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
             </div> 
     
 <?php
-  if(isset($_SESSION['restaurante'])){
+  if($_SESSION['id_nivel'] < 5){
     $restaurantes = gerenciaDadosRestaurante($_SESSION['restaurante']);
   } else {
       $restaurantes = mostraRestaurantesCadastrados();
   }
 ?>
-        <div id="page-wrapper" class="gray-bg">
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Gerenciar Restaurantes</h1>

@@ -41,18 +41,17 @@ include 'includes/menu-top.php';
 include 'mensagens.php';
 require '../functions/registro.php';
 
+	$current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    $_SESSION['return_url'] = $current_url;
+
 if($_GET){
 	$dados = buscaDadosCadastraisGET($_GET['cod'],$_GET['hash']);
 	$_SESSION['cod_usuario'] = $_GET['cod'];
 
-	$current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-    $_SESSION['return_url'] = $current_url;
 } else {
 	$dados = buscaDadosCadastrais($_SESSION['id_usuario'],$_SESSION['login']);
 	$_SESSION['cod_usuario'] = $dados['id_usuario'];
 
-	$current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-    $_SESSION['return_url'] = $current_url;
 }
 
 

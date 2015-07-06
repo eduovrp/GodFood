@@ -111,6 +111,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
         </div>
     </nav>
 
+        <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
@@ -129,7 +130,6 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 
 <?php $categorias = mostra_categorias($_SESSION['restaurante']); ?>
 
-        <div id="page-wrapper" class="gray-bg">
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Categorias</h1>

@@ -114,6 +114,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
         </div>
     </nav>
     
+        <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
@@ -136,7 +137,7 @@ $funcionarios = buscaFuncionarios($_SESSION['restaurante']);
 $niveis = buscaNiveisUsuarios();
 
  ?>
-        <div id="page-wrapper" class="gray-bg">
+
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Gerenciar Funcionarios</h1>

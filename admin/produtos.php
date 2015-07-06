@@ -37,28 +37,20 @@ if ($login->usuarioLogado() == true) {
 </head>
 
 <body>
-    <div id="wrapper">
-
-             <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element">
-                    <span><h2 class="admin">Administração</h2></span>
-<?php 
-
-if(isset($_SESSION['restaurante'])){
+<?php if(isset($_SESSION['restaurante'])){
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
 } else {
     $restaurante_ativo = null;
 }
 $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 ?>
-
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold nome_fantasia"><?=$restaurante_ativo['nome_fantasia']?></strong>
-                             </span> <span class="text-muted text-xs block">&nbsp;&nbsp;<?= $_SESSION['nome'];?> </span>
-                            <span class="admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$nivelUsuario['sub_nome']?><br></span>
-                             </span>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                    <img src="css/logo-branca.png" height="163" width="190" alt="GodFoo">
                     </div>
                 </li>
                 <li>
@@ -73,11 +65,11 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                 <?php } ?>
                 </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="#"><i class="fa fa-plus"></i> <span class="nav-label">Gerenciar</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="categorias.php">Categorias</a></li>
-                        <li class="active"><a href="produtos.php">Produtos</a></li>
+                        <li><a href="produtos.php">Produtos</a></li>
                         <li><a href="adicionais.php">Adicionais</a></li>
                         <li><a href="bordas.php">Bordas Recheadas</a></li>
                     </ul>
@@ -116,22 +108,29 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
             </ul>
         </div>
     </nav>
-
     
-<?php
-
-$produtos = lista_produtos($_SESSION['restaurante']);
-$categorias = mostra_categorias($_SESSION['restaurante']);
-
- ?>
         <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
+            <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                     </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="welcome-message">
+                            <span class="m-r-sm text-muted welcome-message">Seja bem-vindo, <?=$_SESSION['nome']?></span>
+                        </li>
+                        <li class="logout">
+                            <a href="login.php?logout"><i class="fa fa-sign-out"></i> Sair</a>
+                        </li>
+                    </ul>
                 </nav>
-            </div>
+            </div> 
+
+    
+<?php
+$produtos = lista_produtos($_SESSION['restaurante']);
+$categorias = mostra_categorias($_SESSION['restaurante']);
+ ?>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Produtos</h1>

@@ -111,7 +111,8 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
             </ul>
         </div>
     </nav>
-        
+
+        <div id="page-wrapper" class="gray-bg">        
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
@@ -133,7 +134,6 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 $cidades_entrega = busca_cidades_entregas_cadastradas($_SESSION['restaurante']);
 $busca_cidades = mostra_cidades();
  ?>
-        <div id="page-wrapper" class="gray-bg">
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h1>Entregas</h1>
