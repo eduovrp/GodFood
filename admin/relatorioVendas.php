@@ -219,12 +219,12 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
                                     <tr>
                                         <td class="left"><strong><?=$venda['produto']." (".$venda['categoria'].")"; ?></strong></td>
                                         <td><?=$venda['qtd']?></td>
-                                    <?php $countAdic = buscaDadosAdicVendidos($data1, $data2, $venda['id_produto']);
+                                    <?php $countAdic = buscaDadosAdicVendidos($data1, $data2, $venda['produto']);
                                         if($countAdic['qtd'] < 1){
                                             $countAdic['qtd'] = 0;
                                         } ?>
                                         <td><?=$countAdic['qtd']?></td>
-                                    <?php $countBorda = buscaDadosBordaVendidos($data1, $data2, $venda['id_produto']);
+                                    <?php $countBorda = buscaDadosBordaVendidos($data1, $data2, $venda['produto']);
                                         if($countBorda['qtd'] < 1){
                                             $countBorda['qtd'] = 0;
                                         } ?>

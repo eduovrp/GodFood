@@ -88,7 +88,7 @@ if($_GET){
 					 <div class="col-md-6">
 					 <div class="wow fadeInRight" data-wow-delay="0.4s">
 						 <label for="login">USUARIO</label>
-						 <input type="text" name="login" id="login" value="<?=$dados['login']?>" disabled required>
+						 <input type="text" name="login" id="login" value="<?=$dados['login']?>" required disabled >
 					 </div>
 					 </div>
 					 <div class="col-md-6">
@@ -108,19 +108,20 @@ if($_GET){
 					 	<p class="text-muted margin"><strong>Atenção:</strong> Você pode alterar seus dados sem alterar sua senha, assim como pode alterar sua senha sem alterar seus dados cadastrais. <br>
 					 	<strong>obs: </strong>A senha precisa ter 6 ou mais caracteres.</p>
 					 	<br>
-					  <div class="col-md-6">
-					 <div class="wow fadeInLeft" data-wow-delay="0.4s">
-						 <label for="senha">NOVA SENHA</label>
-						 <input type="password" name="senha" id="senha">
-					 </div>
-					 </div>
-					  <div class="col-md-6">
-					 <div class="wow fadeInRight" data-wow-delay="0.4s">
-						 <label for="confirma_senha">CONFIRME A NOVA SENHA</label>
-						 <input type="password" name="confirma_senha" id="confirma_senha">
-					 </div>
-					 </div>
+				<div class="col-md-6">
+					<div class="wow fadeInRight" data-wow-delay="0.4s">
+					<label for="senha"> NOVA SENHA</label>
+					<input type="password" name="senha" id="senha">
+					</div>
 				</div>
+				<div class="col-md-6">
+					<div class="wow fadeInRight" data-wow-delay="0.4s">
+					<label for="confirma_senha"> NOVA SENHA</label>
+					<input type="password" name="confirma_senha" id="confirma_senha">
+					</div>
+				</div>
+				</div>
+			</div>
 			<div class="wow fadeInLeft" data-wow-delay="0.4s">
 				<div class="row">
 					<div class="register-but">
@@ -133,7 +134,7 @@ if($_GET){
 		   </div>
 	     </div>
 	    </div>
-
+		<br><br>
 <div class="clearfix"></div>
 		<div class="contact-section" id="contact">
 			<div class="container">
@@ -293,14 +294,14 @@ if($_GET){
 </script>
 
 	<!--Mascaras -->
-	<script type="text/JavaScript" src="../web/js/jquery.mask.js"></script>
+<script type="text/JavaScript" src="../web/js/jquery.mask.js"></script>
 <script type="text/javascript">
-  $(document).ready(function(){
-  $('#cep').mask('99999-999');
-  $('#cpf').mask('999.999.999-99');
-  $('#telefone').mask('(99) - 9999-9999');
-  $('#celular').mask('(99) - 99999-9999');
-});
-   </script>
+	$(document).ready(function(){
+	  	$('#cep').mask('99999-999');
+	  	$('#cpf').mask('999.999.999-99');
+	  	$('#telefone').mask('(99) - 9999-9999');
+	  	$('#celular').mask('(99) - 99999-9999');
+	});
+</script>
 </body>
 </html>

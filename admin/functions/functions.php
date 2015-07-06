@@ -1009,20 +1009,14 @@ try{
 	}
 }
 
-function verificaProdutoVendido($id_produto)
+function verificaProdutoVendido($produto)
 {
 	global $pdo;
 try{
-	$sql = "SELECT p.id AS id,
-	        p.nome AS nome,
-	        ip.id_pedido AS id_pedido
-
-		FROM itens_pedido ip
-		INNER JOIN produtos p
-		ON p.id = ip.id_produto WHERE p.id = :id_produto";
+	$sql = "SELECT produto FROM itens_pedido WHERE produto = :produto";
 
 	$cmd = $pdo->prepare($sql);
-	$cmd->bindParam('id_produto',$id_produto);
+	$cmd->bindParam('produto',$produto);
 	$cmd->execute();
 
 	if($cmd->rowCount() > 0){
@@ -1385,7 +1379,7 @@ try{
 	}
 }
 
-function buscaDadosAdicVendidos($data1, $data2, $id_produto)
+function buscaDadosAdicVendidos($data1, $data2, $produto)
 {
 	global $pdo;
 try{
@@ -1395,12 +1389,12 @@ try{
 		INNER JOIN pedidos p
 		ON ip.id_pedido = p.id_pedido
       	WHERE data >= :data1 AND data <= :data2
-      	AND id_produto = :id_produto AND ip.id_adicional > 0 AND p.id_status = 7";
+      	AND ip.produto = :produto AND ip.id_adicional > 0 AND p.id_status = 7";
 
     $cmd = $pdo->prepare($sql);
 	$cmd->bindParam('data1',$data1);
 	$cmd->bindParam('data2',$data2);
-	$cmd->bindParam('id_produto',$id_produto);
+	$cmd->bindParam('produto',$produto);
 	$cmd->execute();
 
 	return $cmd->fetch();
@@ -1410,7 +1404,7 @@ try{
 	}
 }
 
-function buscaDadosBordaVendidos($data1, $data2, $id_produto)
+function buscaDadosBordaVendidos($data1, $data2, $produto)
 {
 	global $pdo;
 try{
@@ -1420,12 +1414,12 @@ try{
 		INNER JOIN pedidos p
 		ON ip.id_pedido = p.id_pedido
       	WHERE data >= :data1 AND data <= :data2
-      	AND id_produto = :id_produto AND ip.id_borda > 0 AND p.id_status = 7";
+      	AND ip.produto = :produto AND ip.id_borda > 0 AND p.id_status = 7";
 
     $cmd = $pdo->prepare($sql);
 	$cmd->bindParam('data1',$data1);
 	$cmd->bindParam('data2',$data2);
-	$cmd->bindParam('id_produto',$id_produto);
+	$cmd->bindParam('produto',$produto);
 	$cmd->execute();
 
 	return $cmd->fetch();

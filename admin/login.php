@@ -6,6 +6,8 @@ if(!isset($_SESSION))
 header("Content-Type: text/html; charset=utf-8", true);
 require 'classes/Login.php';
 
+unset($_SESSION['return_url']);
+
 $login = new Login();
 
 // ... verifica se o usuario está logado

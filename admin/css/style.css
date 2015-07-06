@@ -183,7 +183,7 @@ span.admin{
   font-size: 12px;
 }
 .nav-header {
-  padding: 33px 13px;
+  padding: 10px 10px 30px 10px;
   background: url("patterns/header-profile.png") no-repeat;
 }
 .pace-done .nav-header {
@@ -6461,8 +6461,25 @@ body.skin-3 {
   }
 }
 /* Only demo */
-@media (max-width: 1000px) {
-  .welcome-message {
+@media (max-width: 770px) {
+  li.welcome-message {
+    display: inline;
+  }
+  ul.navbar-right{
+    float: right;
+  }
+}
+@media (max-width: 400px) {
+  li.logout {
+    display: none;
+  }
+  ul.navbar-right{
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 320px) {
+  li.welcome-message {
     display: none;
   }
 }

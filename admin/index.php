@@ -40,14 +40,6 @@ verifica_post();
 </head>
 
 <body>
-    <div id="wrapper">
-
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <ul class="nav" id="side-menu">
-                <li class="nav-header">
-                    <div class="dropdown profile-element">
-                    <span><h2 class="admin">Administração</h2></span>
 <?php if(isset($_SESSION['restaurante'])){
 $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
 } else {
@@ -55,11 +47,13 @@ $restaurante_ativo = mostra_restaurante_ativo($_SESSION['restaurante']);
 }
 $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 ?>
-
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="nome_fantasia"><?=$restaurante_ativo['nome_fantasia']?></strong>
-                             </span> <span class="text-muted text-xs block">&nbsp;&nbsp;<?= $_SESSION['nome'];?> </span>
-                            <span class="admin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$nivelUsuario['sub_nome']?><br></span>
-                             </span>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                    <img src="css/logo-branca.png" height="163" width="190" alt="GodFoo">
                     </div>
                 </li>
                 <li class="active">
@@ -118,10 +112,6 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
         </div>
     </nav>
 
-<?php
-include 'includes/function_index.php';
-?>
-
         <div id="page-wrapper" class="gray-bg">
         
             <div class="row border-bottom">
@@ -129,9 +119,20 @@ include 'includes/function_index.php';
                     <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                     </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="welcome-message">
+                            <span class="m-r-sm text-muted welcome-message">Seja bem-vindo, <?=$_SESSION['nome']?></span>
+                        </li>
+                        <li class="logout">
+                            <a href="login.php?logout"><i class="fa fa-sign-out"></i> Sair</a>
+                        </li>
+                    </ul>
                 </nav>
-            </div>    
+            </div> 
 
+<?php
+include 'includes/function_index.php';
+?>
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
                     <div class="col-lg-3">
@@ -151,16 +152,16 @@ include 'includes/function_index.php';
                                     $pValorTotalRecebido = 0; ?>
 
                                 <div class="tooltip-demo">
-                                    <a href="#" data-toggle="tooltip" data-placement="right" title="Nenhum pedido foi confirmado ainda, aguarde.">
-                                <div class="stat-percent font-bold text-success">0% <i class="fa fa-eye-slash"></i></div> </a> </div>
+                                <div class="stat-percent font-bold text-success">
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="Nenhum pedido foi confirmado ainda, aguarde.">0% <i class="fa fa-eye-slash"></i></div> </a> </div>
 
                                 <?php } else {
                                 $pValorTotalRecebido = (($rendaConfirmada['confirmada'] / $valorTotal['total']) * 100);
                                  ?>
 
                                 <div class="tooltip-demo">
-                                 <a href="#" data-toggle="tooltip" data-placement="right" title="R$ <?=number_format($valorTotal['total'],2,",",".");?> Receita bruta do total de Pedidos">
-                                <div class="stat-percent font-bold text-success"><?=round($pValorTotalRecebido)."% ";?> <i class="fa fa-usd"></i></div></a></div>
+                                <div class="stat-percent font-bold text-success">
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="R$ <?=number_format($valorTotal['total'],2,",",".");?> Receita bruta do total de Pedidos"><?=round($pValorTotalRecebido)."% ";?> <i class="fa fa-usd"></i></div></a></div>
                                 <?php } ?>
                                 <small>Total Bruto</small>
                             </div>
@@ -180,14 +181,14 @@ include 'includes/function_index.php';
                                     $porcentPedConfirmados = 0; ?>
 
                                 <div class="tooltip-demo">
-                                    <a href="#" data-toggle="tooltip" data-placement="right" title="Nenhum pedido foi confirmado ainda, aguarde.">
-                                <div class="stat-percent font-bold text-info">0% <i class="fa fa-eye-slash"></i></div> </a> </div>
+                                <div class="stat-percent font-bold text-info">
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="Nenhum pedido foi confirmado ainda, aguarde.">0% <i class="fa fa-eye-slash"></i></div> </a> </div>
                                 <?php } else {
                                 $porcentPedConfirmados = (($pedConfirmados['confirmado'] / $totalPedidos['numero_pedido']) * 100);
                                  ?>
                                  <div class="tooltip-demo">
-                                 <a href="#" data-toggle="tooltip" data-placement="right" title="<?=$pedConfirmados['confirmado'] ." de ". $totalPedidos['numero_pedido'];?>  pedidos foram confirmados">
-                                <div class="stat-percent font-bold text-info"><?=round($porcentPedConfirmados)."% ";?><i class="fa fa-bolt"></i></div></a></div>
+                                <div class="stat-percent font-bold text-info">
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="<?=$pedConfirmados['confirmado'] ." de ". $totalPedidos['numero_pedido'];?>  pedidos foram confirmados"><?=round($porcentPedConfirmados)."% ";?><i class="fa fa-bolt"></i></div></a></div>
                                 <?php } ?>
                                 <small>em 2015</small>
                             </div>
@@ -212,8 +213,8 @@ include 'includes/function_index.php';
                                 if($pedAnt == 0) {
                             ?>
                             <div class="tooltip-demo">
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="Nenhum pedido encontrado nos ultimos 10 dias">
-                            <div class="stat-percent font-bold text-navy">0% <i class="fa fa-eye-slash"></i></div> </a> </div>
+                            <div class="stat-percent font-bold text-navy">
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Nenhum pedido encontrado nos ultimos 10 dias">0% <i class="fa fa-eye-slash"></i></div> </a> </div>
 
                             <?php
                             } else {
@@ -229,12 +230,12 @@ include 'includes/function_index.php';
                                 if ($porcent >= 0){
                                 ?>
                                 <div class="tooltip-demo">
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="<?= round($porcent)."% ";?> de crescimento referente o ultimo dia">
-                                <div class="stat-percent font-bold text-navy"><?= round($porcent)."% ";?><i class="fa fa-level-up"></i></div></a></div>
+                                <div class="stat-percent font-bold text-navy">
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="<?= round($porcent)."% ";?> de crescimento referente o ultimo dia"><?= round($porcent)."% ";?><i class="fa fa-level-up"></i></div></a></div>
                                 <?php } else if($porcent < 0 ){ ?>
                                 <div class="tooltip-demo">
-                                <a href="#" data-toggle="tooltip" data-placement="right" title="<?= round($porcent)."% ";?> de redução referente o ultimo dia">
-                                <div class="stat-percent font-bold text-danger"><?= round($porcent)."% ";?><i class="fa fa-level-down"></i></div></a></div>
+                                <div class="stat-percent font-bold text-danger">
+                                <a href="#" data-toggle="tooltip" data-placement="top" title="<?= round($porcent)."% ";?> de redução referente o ultimo dia"><?= round($porcent)."% ";?><i class="fa fa-level-down"></i></div></a></div>
                                 <?php }
                                 } ?>
                                 <small>Pedidos realizados hoje</small>

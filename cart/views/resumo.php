@@ -73,7 +73,7 @@ Senha: 12345678 </strong></h4>
 	$restaurante = mostra_infos_restaurante($_SESSION['id_restaurante'],$_SESSION['cep']);
 
     $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-var_dump($_SESSION);
+
 	if(isset($_SESSION["products"]))
     {
 	    $total = 0;

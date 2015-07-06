@@ -57,20 +57,18 @@ function produtos_mais_vendidosR($id_restaurante)
 {
 	global $pdo;
 try{
-	$sql = "SELECT COUNT(p.id) AS qtd,
-			      CONCAT(LEFT(p.nome,13),' (',c.nome,')') AS nome,
+	$sql = "SELECT COUNT(ip.produto) AS qtd,
+			      CONCAT(LEFT(ip.produto,13),' (',c.nome,')') AS nome,
 			      r.nome_fantasia AS nome_restaurante
 
 			FROM itens_pedido ip
-			INNER JOIN produtos p
-			ON ip.id_produto = p.id
 			INNER JOIN categorias c
-			ON p.id_categoria = c.id_categoria
+			ON ip.id_categoria = c.id_categoria
 			INNER JOIN restaurantes r
-			ON p.id_restaurante = r.id_restaurante WHERE r.id_restaurante = :id_restaurante
+			ON c.id_restaurante = r.id_restaurante WHERE r.id_restaurante = :id_restaurante
 
 
-		group by nome
+		group by ip.produto
 			order by qtd DESC
 				LIMIT 10";
 

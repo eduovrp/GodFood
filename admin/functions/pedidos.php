@@ -56,23 +56,21 @@ function lista_itens_pedido($id_pedido)
 {
 	global $pdo;
 try{
-	$sql = "SELECT  p.nome as nome,
+	$sql = "SELECT  ip.produto as produto,
         			c.nome as categoria,
 	       			ip.qtd as qtd,
 	       			ip.adicional as adicional,
 	       			ip.borda as borda,
 	       			ip.obs as obs,
 			       	ip.valor_unit as valor,
-			       	(ip.qtd * ip.valor_unit) as subtotal,
-			       	p.descricao as descricao
+			       	(ip.qtd * ip.valor_unit) as subtotal
 
-			FROM produtos p
-      		INNER JOIN categorias c
-      		ON p.id_categoria = c.id_categoria
-			INNER JOIN itens_pedido ip
-			ON ip.id_produto = p.id where id_pedido = :id_pedido
+		FROM itens_pedido ip
+      	INNER JOIN categorias c
+      	ON ip.id_categoria = c.id_categoria 
+        WHERE id_pedido = :id_pedido
 
-      		ORDER BY c.nome";
+      		ORDER BY ip.id_item_pedido";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('id_pedido',$id_pedido);
