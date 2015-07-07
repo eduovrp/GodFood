@@ -159,12 +159,12 @@ if(isset($id_restaurante)){
                     <br>
                 <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-4">
+                    <div class="col-md-4 radio-borda">
                     <label class="radio-i">
                         <input type="radio" name="borda" class="i-checks" checked="" value="0"> Borda sem recheio</input></div>
                     </label>
                 <?php foreach ($bordas as $borda): ?>
-                    <div class="col-md-4">
+                    <div class="col-md-4 radio-borda">
                     <label class="radio-i">
                         <input type="radio" name="borda" class="i-checks" value="<?=$borda['id_borda'];?>"> <?=$borda['nome'];?> + R$ <?=number_format($borda['valor'],2,",",".");?></input>
                     </label>
@@ -174,17 +174,18 @@ if(isset($id_restaurante)){
                 </div>
             <?php }
                 if($verificaAdicional == true){ ?>
+                <br>
                     <h3>Adicionais</h3>
                         <p>Escolha sabiamente seu adicional jovem padawan, pois você pode escolher apenas <strong>01</strong></p>
                     <br>
                 <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-4">
+                    <div class="col-md-4 radio-borda">
                     <label class="radio-i">
                         <input type="radio" name="adicional" class="i-checks" checked="" value="0"> Nenhum Adicional</input></div>
                     </label>
                 <?php foreach ($adicionais as $adicional): ?>
-                    <div class="col-md-4">
+                    <div class="col-md-4 radio-borda">
                     <label class="radio-i">
                         <input type="radio" name="adicional" class="i-checks" value="<?=$adicional['id_adicional'];?>"> <?=$adicional['nome'];?> + R$ <?=number_format($adicional['valor'],2,",",".");?></input>
                     </label>
@@ -215,8 +216,8 @@ if(isset($id_restaurante)){
         <input type="hidden" name="type" value="add" />
         <input type="hidden" name="return_url" value="<?=$current_url?>" />
         <input type="hidden" name="categoria_in" value="<?=$cat['id_categoria'];?>">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close fa-1x"></i> Cancelar</button>
-                        <button type="submit" class="ladda-button btn btn-primary" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Adcionar ao Carrinho</button>
+                        <button type="button" class="btn btn-danger btn-mobile" data-dismiss="modal"><i class="fa fa-close fa-1x"></i> Cancelar</button>
+                        <button type="submit" class="ladda-button btn btn-primary btn-mobile" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Adcionar ao Carrinho</button>
                     </div>
                 </div>
             </div>
@@ -235,8 +236,14 @@ if(isset($id_restaurante)){
 </div>
 </div>
 
+<div id="page">
+    <header>
+        <a href="#" id="toggle-menu"><i class="fa fa-shopping-cart fa-3x"></i></a>
+    </header>
+ </div>
+
 <div class="animated shake">
-  <div class="shopping-cart">
+  <div class="shopping-cart" id="menu">
     <h2>Seu Pedido <i class="fa fa-shopping-cart"></i></h2>
     <?php
     if(isset($_SESSION["products"]))
@@ -458,6 +465,8 @@ if(isset($id_restaurante)){
     <!-- Custom and plugin javascript -->
     <script src="inspinia/js/inspinia.js"></script>
     <script src="../web/js/pace.min.js"></script>
+
+    <script src="js/menu.js"></script>
 
     <script src="inspinia/js/plugins/ladda/spin.js"></script>
     <script src="inspinia/js/plugins/ladda/ladda.js"></script>

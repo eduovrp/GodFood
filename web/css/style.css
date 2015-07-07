@@ -3581,6 +3581,7 @@ address {
 	.contact-section-grid {
 		width: 50%;
 		margin:0 0 2em 0;
+		padding-bottom: 15px;
 	}
 	.contact-section-grid p {
 		display: block;
@@ -3876,12 +3877,26 @@ address {
 		margin: 0 0 0 0.8em;
 	}
 }
+ @media screen and (max-width:385px){
+ 	.top-menu ul li{
+		display:inline-block;
+		margin: 0;
+	}
+	.menu-bar .container{
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+ }
  @media screen and (max-width:360px){
  	 .form-control{
 		margin-top: 20px;
 	}
 	.ordering-section {
 		margin-top: -14.5%;
+	}
+	.top-menu ul li{
+		display:inline-block;
+		margin: 0;
 	}
 }
  @media screen and (max-width:320px){

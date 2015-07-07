@@ -43,7 +43,7 @@ h4.panel-title{
 .shopping-cart input[type="button"]{
 	outline: none;
 	border:none;
-	background:#5BBD50;
+	background:#1ab394;
 	color:#fff;
 	font-size:15px;
 	font-weight:600;
@@ -51,7 +51,7 @@ h4.panel-title{
 	border-radius:5px;
 }
 .shopping-cart input[type="button"]:hover{
-	background:#5BDD4C;
+	background:#17987e;
 }
 .shopping-cart .taxa p{
 	padding-top: 4px;
@@ -195,6 +195,14 @@ h4.panel-title{
 	font-size: 16px;
 	font-weight: bold;
 }
+.btn-success{
+	background-color: #1ab394;
+	border: 1px #1ab394 solid;
+}
+.btn-success:hover{
+	background-color: #17987e;
+	border: 1px #17987e solid;
+}
 
 /*** view cart **/
 .view-cart {
@@ -240,16 +248,16 @@ h4.panel-title{
 	margin-left: 26%;
 	outline: none;
 	cursor: pointer;
-	border:none;
-	background:#5BBD50;
-	color:#fff;
-	font-size:18px;
-	font-weight:600;
-	padding:1em 1.2em;
-	border-radius:5px;
+	border: none;
+	background: #1ab394;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 1em 1.2em;
+	border-radius: 5px;
 }
 .view-cart input[type="submit"]:hover{
-	background:#5BDD4C;
+	background: #17987e;
 }
 
 .view-cart input[type="button"]{
@@ -367,12 +375,12 @@ h4.panel-title{
 	box-shadow: #fff 0px 0px 0px;
 	width: 60px;
 	height: 55px;
-	color: #5BBD50;
+	color: #1ab394;
 	border: #fff 0px;
 	border-radius: 50px;
 }
 .adicionar button :hover{
-	color: #6AF558;
+	color: #17987e;
 }
 .product-desc{
 	max-width: 70%;
@@ -446,8 +454,11 @@ h4.panel-title{
 .icon-info i{
 	margin-bottom: -10px;
 }
+#page{
+	display: none;
+}
 
-@media screen and (max-width:1000px){
+@media screen and (max-width:1366px){
 	.shopping-cart{
 		width: 43%;
 	}
@@ -467,11 +478,97 @@ h4.panel-title{
 		text-align: right;
 	}
 	.adicionar{
-		margin-top: -11%;
+		margin-top: -9%;
 	}
 }
 @media screen and (max-width:900px){
 	.adicionar{
-		margin-top: -13%;
+		margin-top: -6%;
 	}
-	.
+	.products{
+		width: 100%;
+	}
+	.shopping-cart{
+		width: 100%;
+	}
+	.radio-borda{
+		display: inline;
+	}
+	.view-cart {
+		width: 100%;
+		min-height: 400px;
+		float: none;
+		padding-left: 20px;
+		border-right: none;
+		background: #FFF;
+	}
+	.view-cart h1{
+		font-size: 3em;
+	}
+	.enderecos{
+		width: 100%;
+		min-height: 400px;
+		float: none;
+		background: #FFF;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.enderecos h1{
+		font-size: 3em;
+	}
+}
+@media screen and (max-width:660px){
+	.adicionar{
+		margin-top: -9%;
+	}
+	.adicionar strong{
+		margin-left: -50px;
+	}
+	.product-desc{
+		max-width: 65%;
+	}
+	#products-wrapper h1{
+		font-size: 3em;
+	}
+}
+@media screen and (max-width:460px){
+	.adicionar{
+		margin-top: -11%;
+	}
+	.adicionar strong{
+		margin-left: -50px;
+	}
+	.view-cart-final button{
+		width: 100%;
+		font-size: 16px;
+	}
+	.enderecos h3{
+		font-size: 18px;
+		font-weight: 600;
+	}
+}
+@media screen and (max-width:410px){
+	.view-cart-final button{
+		font-size: 14px;
+	}
+}
+@media screen and (max-width:380px){
+	.view-cart-final button{
+		font-size: 13px;
+	}
+}
+@media screen and (max-width:360px){
+	.radio-borda{
+		display: block;
+	}
+	.btn-mobile{
+		width: 100%;
+		margin: 8px 0 2px 0;
+	}
+	.modal-footer button .btn-mobile{
+		margin-left: 0;
+	}
+	.view-cart-final button{
+		font-size: 12px;
+	}
+}
