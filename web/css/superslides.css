@@ -39,11 +39,13 @@
 }
 .slides-navigation a.prev {
   left: 5px;
-  color: #3E3F59;
+  font-size: 24px;
+  color: #fff;
 }
 .slides-navigation a.next {
   right: 10px;
-  color: #3E3F59;
+  font-size: 24px;
+  color: #fff;
 }
 .slides-navigation a.prev:hover {
   color: #9a2529;
@@ -60,7 +62,7 @@
   width: 100%;
 }
 .slides-pagination a {
-  border: 2px solid #222;
+  border: 2px solid #000;
   border-radius: 15px;
   width: 10px;
   height: 10px;
@@ -76,5 +78,5 @@
   text-indent: -100%;
 }
 .slides-pagination a.current {
-  background: #222;
+  background: #000;
 }

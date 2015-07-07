@@ -160,13 +160,13 @@ if(isset($id_restaurante)){
                 <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-4">
-                    <label>
-                        <input type="radio" name="borda" checked="" value="0"> Borda sem recheio</input></div>
+                    <label class="radio-i">
+                        <input type="radio" name="borda" class="i-checks" checked="" value="0"> Borda sem recheio</input></div>
                     </label>
                 <?php foreach ($bordas as $borda): ?>
                     <div class="col-md-4">
-                    <label>
-                        <input type="radio" name="borda" value="<?=$borda['id_borda'];?>"> <?=$borda['nome'];?> + R$ <?=number_format($borda['valor'],2,",",".");?></input>
+                    <label class="radio-i">
+                        <input type="radio" name="borda" class="i-checks" value="<?=$borda['id_borda'];?>"> <?=$borda['nome'];?> + R$ <?=number_format($borda['valor'],2,",",".");?></input>
                     </label>
                     </div>
                 <?php endforeach; ?>
@@ -180,13 +180,13 @@ if(isset($id_restaurante)){
                 <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-4">
-                    <label>
-                        <input type="radio" name="adicional" checked="" value="0"> Nenhum Adicional</input></div>
+                    <label class="radio-i">
+                        <input type="radio" name="adicional" class="i-checks" checked="" value="0"> Nenhum Adicional</input></div>
                     </label>
                 <?php foreach ($adicionais as $adicional): ?>
                     <div class="col-md-4">
-                    <label>
-                        <input type="radio" name="adicional" value="<?=$adicional['id_adicional'];?>"> <?=$adicional['nome'];?> + R$ <?=number_format($adicional['valor'],2,",",".");?></input>
+                    <label class="radio-i">
+                        <input type="radio" name="adicional" class="i-checks" value="<?=$adicional['id_adicional'];?>"> <?=$adicional['nome'];?> + R$ <?=number_format($adicional['valor'],2,",",".");?></input>
                     </label>
                     </div>
                 <?php endforeach; ?>

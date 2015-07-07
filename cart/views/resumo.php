@@ -34,6 +34,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--Animation-->
 <script src="../web/js/wow.min.js"></script>
 <link href="../web/css/animate.css" rel='stylesheet' type='text/css' />
+<link href="inspinia/css/iCheck/custom.css" rel="stylesheet">
 <script>
     new WOW().init();
 </script>
@@ -203,13 +204,13 @@ Senha: 12345678 </strong></h4>
 	<div class="radio">
   	<label>
   		<h3>
-	    <input type="radio" name="endereco" value="<?= $endereco['id_endereco']; ?>" id="<?= $endereco['id_endereco']; ?>" required>
+	    <input type="radio" name="endereco" class="i-checks" value="<?= $endereco['id_endereco']; ?>" id="<?= $endereco['id_endereco']; ?>" required>
 		<?php
 		echo $endereco['logradouro'].', '.$endereco['numero'].' - '.$endereco['bairro'];
-		echo "<h4>".$endereco['cidade']." - ".$endereco['estado']." - ".$endereco['cep']."</h4>";
+		echo "<h4 class='padding-left'>".$endereco['cidade']." - ".$endereco['estado']." - ".$endereco['cep']."</h4>";
 
 		if(strlen($endereco['complemento']) > 2 || strlen($endereco['referencia']) > 2){
-			echo "<h5>".$endereco['complemento']." - ".$endereco['referencia']."</h5>";
+			echo "<h5 class='padding-left'>".$endereco['complemento']." - ".$endereco['referencia']."</h5>";
 		}
 		?>
 		</h3>
@@ -385,6 +386,17 @@ Senha: 12345678 </strong></h4>
     <script src="inspinia/js/plugins/ladda/ladda.js"></script>
 
     <script src="../web/js/pace.min.js"></script>
+
+        <!-- iCheck -->
+    <script src="js/icheck.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
 
     <script type="text/javascript">
         // Bind progress buttons and simulate loading progress

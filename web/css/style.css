@@ -43,6 +43,10 @@ ul{
 label{
 	margin:0;
 }
+.padding-left{
+	padding-left: 30px;
+	padding-top: 2px; 
+}
 .cep{
 	height: 40px;
 	font-size: 20px;

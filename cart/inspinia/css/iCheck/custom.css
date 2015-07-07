@@ -34,6 +34,9 @@
 .iradio_square-green {
     background-position: -120px 0;
 }
+label.radio-i{
+    margin-top: 7px;
+}
 .iradio_square-green.hover {
     background-position: -144px 0;
 }
