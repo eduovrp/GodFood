@@ -7,7 +7,8 @@
     zoom: 1;
     -webkit-user-select: none;
     -moz-user-select: none;
-    user-select: none
+    user-select: none;
+    font-size: 20px;
 }
 .chosen-container * {
     -webkit-box-sizing: border-box;
@@ -23,7 +24,8 @@
     border: 1px solid #aaa;
     border-top: 0;
     background: #fff;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, .15)
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+    font-size: 17px;
 }
 .chosen-container.chosen-with-drop .chosen-drop {
     left: 0

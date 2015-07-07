@@ -446,3 +446,32 @@ h4.panel-title{
 .icon-info i{
 	margin-bottom: -10px;
 }
+
+@media screen and (max-width:1000px){
+	.shopping-cart{
+		width: 43%;
+	}
+	.products{
+		padding-left: 0;
+	}
+	.panel-body .col-lg-12{
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.form-control{
+		margin-top: 5px;
+	}
+	.qtd-add{
+		margin-top: 0;
+		font-size: 16px;
+		text-align: right;
+	}
+	.adicionar{
+		margin-top: -11%;
+	}
+}
+@media screen and (max-width:900px){
+	.adicionar{
+		margin-top: -13%;
+	}
+	.

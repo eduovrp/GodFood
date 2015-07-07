@@ -132,7 +132,7 @@ if(isset($id_restaurante)){
                 <div class="product-desc"><?= $produto['descricao'] ?></div>
                     <div class="adicionar"><strong>
                         <?= "R$ ".number_format($produto['valor_unit'],2,",","."); ?></strong>
-                        <button type="button" class="add_to_cart" data-toggle="modal" data-target="#myModa<?= $produto['codigo']?>"><i class="fa fa-plus-circle fa-3x"></i></button>
+                        <button type="button" class="add_to_cart" data-toggle="modal" data-target="#myModa<?= $produto['codigo']?>"><i class="fa fa-cart-plus fa-2x"></i></button>
                     </div> <!-- Fim dos Protuso -->
 
 
@@ -148,7 +148,7 @@ if(isset($id_restaurante)){
                         <small><strong><?= $produto['nome_produto'];?></strong> <br> <?= $produto['descricao'] ?></small>
                     </div>
                     <div class="modal-body">
-                        <div class="adicionar">
+                        <div class="adicionar qtd-add">
                         Quantidade
                         <input type="number" min="1" name="qtd" value="1" />
                         </div>
