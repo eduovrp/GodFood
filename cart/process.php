@@ -80,10 +80,8 @@ if(!isset($_POST['endereco'])){
 						  'borda'=>$itm['borda'],
 						  'obs'=>$itm['obs'],
 						  'valor'=>$valor);
-
     }
 
-   
     $GrandTotal = ($ItemTotalPrice + $TotalTaxAmount + $HandalingCost + $InsuranceCost + $ShippinCost + $ShippinDiscount);
 
     $cidade_entrega = select_id_cidade_entrega($_SESSION['cep']);
@@ -110,6 +108,7 @@ if(!isset($_POST['endereco'])){
 
 	tarifas($_SESSION['id_restaurante'],$id_pedido,$vPedido,$taxa_pgto,$taxa_adm,$HandalingCost,$ShippinCost);
 		unset($_SESSION["products"]);
+
 
 	$paypal_product['assets'] = array('tax_total'=>$TotalTaxAmount,
 								'handaling_cost'=>$HandalingCost,

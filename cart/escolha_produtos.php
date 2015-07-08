@@ -150,7 +150,7 @@ if(isset($id_restaurante)){
                     <div class="modal-body">
                         <div class="adicionar qtd-add">
                         Quantidade
-                        <input type="number" min="1" name="qtd" value="1" />
+                        <input type="number" min="1" name="qtd" value="1" required/>
                         </div>
             <?php if($verificaBorda == true){ ?>
             <br>
@@ -236,14 +236,8 @@ if(isset($id_restaurante)){
 </div>
 </div>
 
-<div id="page">
-    <header>
-        <a href="#" id="toggle-menu"><i class="fa fa-shopping-cart fa-3x"></i></a>
-    </header>
- </div>
-
 <div class="animated shake">
-  <div class="shopping-cart" id="menu">
+  <div class="shopping-cart">
     <h2>Seu Pedido <i class="fa fa-shopping-cart"></i></h2>
     <?php
     if(isset($_SESSION["products"]))

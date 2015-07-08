@@ -16,6 +16,10 @@ if(isset($_POST["type"]) && $_POST["type"]=='add')
 	$return_url 	= base64_decode($_POST["return_url"]); //return url
 	$_SESSION['categoria_in'] = $_POST['categoria_in']; //categoria escolhida
 
+if($qtd <= 0){
+	header('Location:'.$return_url);
+} else {
+
 	if(strlen($_POST['obs']) > 5){
 		$obs = filter_var($_POST['obs'], FILTER_SANITIZE_STRING); // observação
 	} else {
@@ -128,8 +132,9 @@ if(isset($_POST["type"]) && $_POST["type"]=='add')
 			$_SESSION["products"] = $new_product;
 		}
 
-	header('Location:'.$return_url);
-  }
+			header('Location:'.$return_url);
+  		}
+	}
 }
 //remove o item escolhido no carrinho
 if(isset($_GET["removep"]) && isset($_GET["return_url"]) && isset($_SESSION["products"]))

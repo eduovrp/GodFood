@@ -78,7 +78,6 @@ Senha: 12345678 </strong></h4>
 	if(isset($_SESSION["products"]))
     {
 	    $total = 0;
-		echo '<form method="post" action="process.php">';
 		echo '<ul>';
 		$cart_items = 0;
 		foreach ($_SESSION["products"] as $cart_itm) :
@@ -200,7 +199,7 @@ Senha: 12345678 </strong></h4>
 	 foreach($enderecos as $endereco):
 	 	if($endereco['cep'] == $_SESSION['cep']){
 	 ?>
-
+    <form method="post" action="process.php">
 	<div class="radio">
   	<label>
   		<h3>

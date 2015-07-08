@@ -4,6 +4,12 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php 
+if(!isset($_SESSION))
+ {
+   session_start();
+ }
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,6 +43,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div class="header">
 <?php
 include 'includes/menu-top.php';
+
+if(isset($_SESSION['return_url'])){
+
+    $return_url = base64_decode($_SESSION["return_url"]);
+    unset($_SESSION['return_url']);
+
+}else{
+    $return_url = "index.php";
+}
  ?>
 	<!-- header-section-ends -->
 	<!-- content-section-starts -->
@@ -71,7 +86,7 @@ include 'mensagens.php';
 			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 			  	<h3>INFORMAÇÕES DE LOGIN</h3>
 				<p>Se você ja possui uma conta, insira seu usuario e senha para acessar sua conta</p>
-				<form action="index.php" method="POST">
+				<form action="<?=$return_url?>" method="POST">
 				  <div>
 					<label for="login">Usuario</label> <br>
 					<input type="text" name="login" id="login" required>
