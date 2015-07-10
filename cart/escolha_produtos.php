@@ -294,7 +294,7 @@ if(isset($id_restaurante)){
 
         <?php } else { ?>
         <br>
-            <a href="checkout.php" class="btn btn-lg btn-success btn-block">Ver resumo do pedido <i class="fa fa-check"></i></a>
+            <a href="view_cart.php" class="btn btn-lg btn-success btn-block">Ver resumo do pedido <i class="fa fa-check"></i></a>
         <?php } ?>
 
     <?php }else{ ?>
