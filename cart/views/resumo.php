@@ -6,6 +6,7 @@ if(!isset($_SESSION))
 }
 
 require 'config.php';
+if(isset($_SESSION['id_restaurante'])){
 ?>
 <!--
 Author: W3layouts
@@ -164,7 +165,8 @@ Senha: 12345678 </strong></h4>
 
         Valor Minimo: R$ <?=number_format($restaurante['compra_minima'],2,",",".");?> <br><br>
 
-      <?php } $grandTotal = $total + $restaurante['taxa'] + $restaurante['taxa_servico']; ?>
+      <?php } $grandTotal = $total + $restaurante['taxa'] + $restaurante['taxa_servico']; 
+             $_SESSION['grandTotal'] = $grandTotal; ?>
 
             <strong>Sub-total: R$ <?=number_format($total,2,",",".");?> <br></strong>
             Taxa de entrega: R$ <?=number_format($restaurante['taxa'],2,",",".");?> <br>
@@ -175,7 +177,7 @@ Senha: 12345678 </strong></h4>
             <?php } ?>
 
             <p><strong>Total: R$ <?=number_format($grandTotal,2,",",".");?></strong> <br></p>
-
+       
     </div>
 		<br><br><br>
 		<a href="escolha_produtos.php" class="btn btn-danger btn-lg"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
@@ -199,7 +201,7 @@ Senha: 12345678 </strong></h4>
 	 foreach($enderecos as $endereco):
 	 	if($endereco['cep'] == $_SESSION['cep']){
 	 ?>
-    <form method="post" action="process.php">
+
 	<div class="radio">
   	<label>
   		<h3>
@@ -225,13 +227,18 @@ Senha: 12345678 </strong></h4>
   </div>
 </div>
 <div class="view-cart-final" align="center">
- <?php if($restaurante['compra_minima'] > $_SESSION['total']){ ?>
-            <button type="button" class="btn btn-warning btn-lg" disabled>Valor do pedido inferior ao valor minimo de R$ <?=number_format($restaurante['compra_minima'],2,",",".");?> <i class="fa fa-exclamation-triangle"></i></button>
-        <?php } else { ?>
-            <button type="submit" class="ladda-button btn btn-primary" data-color="mint" data-size="m" data-style="expand-left" name"ok"><i class="fa fa-credit-card"></i> Confirmar Pedido e seguir com o Pagamento</button>
-        <?php } ?>
 
-		</form>
+<form method="POST" action="confirma-pagamento.php">
+    <script type="text/javascript"
+        src="https://pagar.me/assets/checkout/checkout.js"
+        data-button-text="Confirmar Pedido e Seguir com o Pagamento"
+        data-ui-color="#9a2529"
+        data-payment-methods="credit_card"
+        data-customer-data="false"
+        data-encryption-key="ek_test_YL0gTuW5wGR5BNLXePXSP52ieHogfD"
+        data-amount="<?=$grandTotal*100?>">
+    </script>
+</form>
 </div>
 
 <div class="clearfix"> </div>
@@ -414,5 +421,8 @@ Senha: 12345678 </strong></h4>
                 }
             } );
 </script>
+<?php } else {  
+    header('Location: ../index.php');
+} ?>
 </body>
 </html>

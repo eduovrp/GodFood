@@ -1,5 +1,11 @@
 <?php
 
+if(!isset($_SESSION))
+ {
+   session_start();
+ }
+
+
 $dsn = "mysql:host=localhost;dbname=u288492055_food;charset=utf8;TIME_ZONE='-03:00'";
 $usuario = "root";
 $pass = "";
