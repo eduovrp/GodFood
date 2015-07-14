@@ -175,7 +175,7 @@ include 'includes/timeline_verif.php';
                                 </div>
                                 <div class="col-md-2">
                                 <label for="">Valor Pago</label>
-                                <h4><?=$detalhes['valor_pago']?></h4>
+                                <h4>R$ <?=number_format($$detalhes['valor_pago'],2,",",".")?></h4>
                                </div>
                         </div>
                       </div>

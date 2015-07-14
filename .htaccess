@@ -1,0 +1,17 @@
+# Do not remove this line or mod_rewrite rules and search engine friendly URLs will stop working
+RewriteBase /GodFood/
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/]+)/$ $1.php
+
+ErrorDocument 404 /error/404.html
+
+Options -Indexes
+
+RewriteRule ^$                      index.php [L]
+RewriteRule ^cart/pedido$           cart/escolha_produtos.php [L]
+RewriteRule ^resumo$                cart/view_cart.php [L]
+RewriteRule ^sucesso$               cart/success.php [L]
+RewriteRule ^erro\-no\-pagamento$   confirmation.php?pagina=confirmacao&status=1 [L]

@@ -9,7 +9,7 @@ require 'config.php';
 if(isset($_SESSION['id_restaurante'])){
     if($_SESSION['compra_minima'] <= $_SESSION['grandTotal']){
         if(isset($_POST['endereco']) || isset($_SESSION['endereco'])){
-            $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+            $current_url = base64_encode($url="//".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 ?>
 <!--
 Author: W3layouts

@@ -5,6 +5,7 @@ if(!isset($_SESSION))
    session_start();
  }
 
+date_default_timezone_set('America/Sao_Paulo');
 
 $dsn = "mysql:host=localhost;dbname=u288492055_food;charset=utf8;TIME_ZONE='-03:00'";
 $usuario = "root";
@@ -174,13 +175,14 @@ try{
 function inserir_pedido($ItemTotalPrice, $total_pago, $taxa_entrega, $id_usuario, $id_restaurante, $id_cidade_entrega,$endereco)
 {
 	$data =  date("Y-m-d H:i:s");
+	$data_pgto = date("Y-m-d H:i:s", strtotime("+30 seconds"));
 	global $pdo;
 	
 try{
-	$sql = "INSERT INTO pedidos (data,valor_total,valor_pago,taxa_entrega,id_usuario,id_restaurante,id_status,id_cidade_entrega,endereco)
+	$sql = "INSERT INTO pedidos (data,valor_total,valor_pago,taxa_entrega,id_usuario,id_restaurante,id_status,id_cidade_entrega,endereco,data_pgto)
 			VALUES(:data, :ItemTotalPrice, :total_pago, :taxa_entrega, :id_usuario,
 					:id_restaurante, 4,
-				   	:id_cidade_entrega,:endereco)";
+				   	:id_cidade_entrega,:endereco,:data_pgto)";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('data', $data);
@@ -191,6 +193,7 @@ try{
 	$cmd->bindParam('id_restaurante', $id_restaurante);
 	$cmd->bindParam('id_cidade_entrega', $id_cidade_entrega);
 	$cmd->bindParam('endereco',$endereco);
+	$cmd->bindParam('data_pgto',$data_pgto);
 	$cmd->execute();
 
 $_SESSION['last_id'] = $pdo->lastInsertId();
