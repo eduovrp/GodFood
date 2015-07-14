@@ -10,8 +10,8 @@ ErrorDocument 404 /error/404.html
 
 Options -Indexes
 
-RewriteRule ^$                      index.php [L]
-RewriteRule ^cart/pedido$           cart/escolha_produtos.php [L]
-RewriteRule ^resumo$                cart/view_cart.php [L]
-RewriteRule ^sucesso$               cart/success.php [L]
-RewriteRule ^erro\-no\-pagamento$   confirmation.php?pagina=confirmacao&status=1 [L]
+RewriteRule ^$                      			index.php [L]
+RewriteRule ^pedido/escolha-restaurante$        cart/busca_restaurantes.php [L]
+RewriteRule ^pedido/produtos$           		cart/escolha_produtos.php [L]
+RewriteRule ^pedido/resumo$           			cart/view_cart.php [L]
+RewriteRule ^pedido/sucesso$          			cart/success.php [L]

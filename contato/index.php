@@ -10,11 +10,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title>GodFood - Contato</title>
 <link rel="icon" type="image/png" href="web/images/plate.png" />
 <meta charset="UTF-8">
-<link href="web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
-<link rel="stylesheet" href="cart/inspinia/css/ladda.min.css">
+<link rel="stylesheet" href="../cart/inspinia/css/ladda.min.css">
 <!-- Custom Theme files -->
-<link href="web/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -22,19 +22,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <!--Animation-->
-<script src="web/js/wow.min.js"></script>
-<link href="web/css/animate.css" rel='stylesheet' type='text/css' />
+<script src="../web/js/wow.min.js"></script>
+<link href="../web/css/animate.css" rel='stylesheet' type='text/css' />
 <script>
 	new WOW().init();
 </script>
-<link rel="stylesheet" href="web/font-awesome-4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="web/css/pace.css">
+<link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../web/css/pace.css">
 </head>
 <body>
     <!-- header-section-starts -->
 	<div class="header">
 <?php
-include 'includes/menu-top.php';
+include '../includes/menu-top.php';
 ?>
 	<!-- header-section-ends -->
 	<div class="contact-section-page">
@@ -112,13 +112,13 @@ include 'includes/menu-top.php';
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="web/js/jquery.min.js"></script>
-<script type="text/javascript" src="web/js/easing.js"></script>
-<script src="web/js/bootstrap.min.js"></script>
-<script src="web/js/pace.min.js"></script>
+<script src="../web/js/jquery.min.js"></script>
+<script type="text/javascript" src="../web/js/easing.js"></script>
+<script src="../web/js/bootstrap.min.js"></script>
+<script src="../web/js/pace.min.js"></script>
 
-    <script src="cart/inspinia/js/plugins/ladda/spin.js"></script>
-    <script src="cart/inspinia/js/plugins/ladda/ladda.js"></script>
+    <script src="../cart/inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="../cart/inspinia/js/plugins/ladda/ladda.js"></script>
 
     <script type="text/javascript">
                 // Bind normal buttons

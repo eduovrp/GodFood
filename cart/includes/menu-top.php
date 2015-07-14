@@ -5,7 +5,7 @@
 						<li class="active"><a href="../">Inicio</a></li>|
 						<li><a href="../termos.php">Termos de Uso</a></li>|
 						<li><a href="../minhaconta/pedidos.php">Pedidos</a></li>|
-						<li><a href="../contato.php">Contato</a></li>
+						<li><a href="../contato/">Contato</a></li>
 						<div class="clearfix"></div>
 					</ul>
 				</div>

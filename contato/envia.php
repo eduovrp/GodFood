@@ -8,7 +8,7 @@
 <?php
 if($_POST)
 {
-require "contato/PHPMailer.php"; //Importa a class php mailer
+require "PHPMailer.php"; //Importa a class php mailer
 $phpmail = new PHPMailer(); // faz uma instância da classe PHPMailer
 $erros = "";
 
