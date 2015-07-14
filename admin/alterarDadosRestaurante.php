@@ -28,18 +28,18 @@ if ($login->usuarioLogado() == true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>GodFood - Alterar Dados</title>
-    <link rel="icon" type="image/png" href="../web/images/plate.png" />
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../web/images/plate.png" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/ladda.min.css">
+    <link rel="stylesheet" href="../css/ladda.min.css">
     
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 
-    <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.maskMoney.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -56,14 +56,14 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                    <img src="css/logo-branca.png" height="163" width="190" alt="GodFoo">
+                    <img src="../css/logo-branca.png" height="163" width="190" alt="GodFoo">
                     </div>
                 </li>
                 <li>
-                    <a href="index.php"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
+                    <a href="../"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
                 </li>
                 <li>
-                    <a href="timeline.php"><i class="fa fa-cutlery"></i> <span class="nav-label">Pedidos</span> </span>
+                    <a href="../pedidos"><i class="fa fa-cutlery"></i> <span class="nav-label">Pedidos</span> </span>
                 <?php
                     if(isset($_SESSION['restaurante'])){
                         $count = verificaQtdPedidosNav($_SESSION['restaurante']); ?>
@@ -74,48 +74,48 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                 <li>
                     <a href="#"><i class="fa fa-plus"></i> <span class="nav-label">Gerenciar</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="categorias.php">Categorias</a></li>
-                        <li><a href="produtos.php">Produtos</a></li>
-                        <li><a href="adicionais.php">Adicionais</a></li>
-                        <li><a href="bordas.php">Bordas Recheadas</a></li>
+                        <li><a href="../categorias">Categorias</a></li>
+                        <li><a href="../gerenciar/produtos">Produtos</a></li>
+                        <li><a href="../adicionais">Adicionais</a></li>
+                        <li><a href="../bordas">Bordas Recheadas</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">Relatórios</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="relatorioVendas.php">Vendas</a></li>
+                        <li><a href="../relatorios/vendas">Vendas</a></li>
                     </ul>
                 </li>
 
-                 <li>
+                 <li class="active">
                     <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Administrar</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="gerenciaRestaurantes.php">Restaurante</a></li>
-                        <li><a href="gerenciaFuncionarios.php">Funcionarios</a></li>
+                        <li class="active"><a href="../gerenciar/restaurantes">Restaurante</a></li>
+                        <li><a href="../gerenciar/funcionarios">Funcionarios</a></li>
                     </ul>
                 </li>
                 <li>
-                   <a href="cidade_entrega.php"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
+                   <a href="../gerenciar/cidade-entrega"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
                 </li>
                 <?php if($_SESSION['id_nivel'] == 5){ ?>
                 <li>
-                    <a href="pesquisa-pedidos.php"><i class="fa fa-search"></i> <span class="nav-label">Pesquisar Pedido </span></a>
+                    <a href="../pesquisa/pedidos"><i class="fa fa-search"></i> <span class="nav-label">Pesquisar Pedido </span></a>
                 </li>
                 <li>
-                    <a href="cadastrar_cidade.php"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
+                    <a href="../cadastrar-cidade"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
                 </li>
                 <li>
-                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Restaurante</span></a>
+                    <a href="../restaurantes"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Restaurante</span></a>
                 </li>
                 <?php } ?>
                 <li>
-                    <a href="login.php?logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Sair</span></a>
+                    <a href="../entrar?logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Sair</span></a>
                 </li>
             </ul>
         </div>
     </nav>
     
-          <div id="page-wrapper" class="gray-bg">
+        <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
@@ -126,7 +126,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                             <span class="m-r-sm text-muted welcome-message">Seja bem-vindo, <?=$_SESSION['nome']?></span>
                         </li>
                         <li class="logout">
-                            <a href="login.php?logout"><i class="fa fa-sign-out"></i> Sair</a>
+                            <a href="../entrar?logout"><i class="fa fa-sign-out"></i> Sair</a>
                         </li>
                     </ul>
                 </nav>
@@ -147,7 +147,7 @@ if($restaurante['fav'] > 0){
                     <h1>Alterar Dados</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="./">Inicio</a>
+                            <a href="../">Inicio</a>
                         </li>
                         <li class="active">
                             <strong>Alterar Dados</strong>
@@ -172,7 +172,7 @@ if($restaurante['fav'] > 0){
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
 
-                    <form action="updates.php" method="POST">
+                    <form action="../updates.php" method="POST">
                       <h2>Alteração de dados
                         <label class="checkb">
                           <input type="checkbox" class="i-checks" name="fav" <?=$checked?> <?=$disabled?>> Favorito </label>
@@ -271,7 +271,7 @@ if($restaurante['fav'] > 0){
                           <br>
                         <div align="right">
                           <input type="hidden" name="alterarDadosRestaurante" value="alterar">
-                            <a href="./gerenciar/restaurantes" type="button" class="btn btn-danger btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+                            <a href="../gerenciar/restaurantes" type="button" class="btn btn-danger btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
                             &nbsp;&nbsp;
                             <button type="submit" class="btn ladda-button btn-primary btn-lg btn-outline" data-size="m" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Atualizar</button>
                           </form>
@@ -296,13 +296,13 @@ if($restaurante['fav'] > 0){
  </div>
 
     <!-- Mainly scripts -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../js/jquery-2.1.1.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <script src="js/plugins/ladda/spin.js"></script>
-    <script src="js/plugins/ladda/ladda.js"></script>
+    <script src="../js/plugins/ladda/spin.js"></script>
+    <script src="../js/plugins/ladda/ladda.js"></script>
 
     <!-- Scripts JS -->
 
@@ -312,7 +312,7 @@ if($restaurante['fav'] > 0){
 </script>
 
         <!--Mascaras -->
-    <script type="text/JavaScript" src="js/jquery.mask.js"></script>
+    <script type="text/JavaScript" src="../js/jquery.mask.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
         $('#cnpj').mask('99.999.999/9999-99');
@@ -327,11 +327,11 @@ if($restaurante['fav'] > 0){
     </script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="../js/inspinia.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
 
     <!-- iCheck -->
-    <script src="js/icheck.min.js"></script>
+    <script src="../js/icheck.min.js"></script>
         <script>
             $(document).ready(function () {
                 $('.i-checks').iCheck({
@@ -346,10 +346,10 @@ if($restaurante['fav'] > 0){
 </html>
 <?php
   } else {
-      header('Location: ./gerenciar/restaurantes');
+      header('Location: ../gerenciar/restaurantes');
   }
 } else {
-    header('Location: ./entrar');
+    header('Location: ../entrar');
 }
  ?>
 

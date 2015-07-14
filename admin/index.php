@@ -57,10 +57,10 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                     </div>
                 </li>
                 <li class="active">
-                    <a href="index.php"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
+                    <a href="./"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
                 </li>
                 <li>
-                    <a href="timeline.php"><i class="fa fa-cutlery"></i> <span class="nav-label">Pedidos</span> </span>
+                    <a href="./pedidos"><i class="fa fa-cutlery"></i> <span class="nav-label">Pedidos</span> </span>
                 <?php
                     if(isset($_SESSION['restaurante'])){
                         $count = verificaQtdPedidosNav($_SESSION['restaurante']); ?>
@@ -71,49 +71,48 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                 <li>
                     <a href="#"><i class="fa fa-plus"></i> <span class="nav-label">Gerenciar</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="categorias.php">Categorias</a></li>
-                        <li><a href="produtos.php">Produtos</a></li>
-                        <li><a href="adicionais.php">Adicionais</a></li>
-                        <li><a href="bordas.php">Bordas Recheadas</a></li>
+                        <li><a href="./categorias">Categorias</a></li>
+                        <li><a href="./gerenciar/produtos">Produtos</a></li>
+                        <li><a href="./adicionais">Adicionais</a></li>
+                        <li><a href="./bordas">Bordas Recheadas</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">Relatórios</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="relatorioVendas.php">Vendas</a></li>
+                        <li><a href="./relatorios/vendas">Vendas</a></li>
                     </ul>
                 </li>
 
                  <li>
                     <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Administrar</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="gerenciaRestaurantes.php">Restaurante</a></li>
-                        <li><a href="gerenciaFuncionarios.php">Funcionarios</a></li>
+                        <li><a href="./gerenciar/restaurantes">Restaurante</a></li>
+                        <li><a href="./gerenciar/funcionarios">Funcionarios</a></li>
                     </ul>
                 </li>
                 <li>
-                   <a href="cidade_entrega.php"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
+                   <a href="./gerenciar/cidade-entrega"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
                 </li>
                 <?php if($_SESSION['id_nivel'] == 5){ ?>
                 <li>
-                    <a href="pesquisa-pedidos.php"><i class="fa fa-search"></i> <span class="nav-label">Pesquisar Pedido </span></a>
+                    <a href="./pesquisa/pedidos"><i class="fa fa-search"></i> <span class="nav-label">Pesquisar Pedido </span></a>
                 </li>
                 <li>
-                    <a href="cadastrar_cidade.php"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
+                    <a href="./cadastrar-cidade"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
                 </li>
                 <li>
-                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Restaurante</span></a>
+                    <a href="./restaurantes"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Restaurante</span></a>
                 </li>
                 <?php } ?>
                 <li>
-                    <a href="login.php?logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Sair</span></a>
+                    <a href="./entrar?logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Sair</span></a>
                 </li>
             </ul>
         </div>
     </nav>
-
+    
         <div id="page-wrapper" class="gray-bg">
-        
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
@@ -124,7 +123,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                             <span class="m-r-sm text-muted welcome-message">Seja bem-vindo, <?=$_SESSION['nome']?></span>
                         </li>
                         <li class="logout">
-                            <a href="login.php?logout"><i class="fa fa-sign-out"></i> Sair</a>
+                            <a href="./entrar?logout"><i class="fa fa-sign-out"></i> Sair</a>
                         </li>
                     </ul>
                 </nav>

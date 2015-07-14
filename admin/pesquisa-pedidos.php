@@ -27,19 +27,19 @@ if ($login->usuarioLogado() == true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>GodFood - Pesquisa de Pedidos</title>
-    <link rel="icon" type="image/png" href="../web/images/plate.png" />
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../web/images/plate.png" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/ladda.min.css">
+    <link rel="stylesheet" href="../css/ladda.min.css">
     
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style_alternative.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style_alternative.css" rel="stylesheet">
     
-    <script src="js/jquery-2.1.1.js"></script>
-    <script src="js/jquery.maskMoney.js" type="text/javascript"></script>
+    <script src="../js/jquery-2.1.1.js"></script>
+    <script src="../js/jquery.maskMoney.js" type="text/javascript"></script>
 
-    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="../css/plugins/datapicker/datepicker3.css" rel="stylesheet">
 </head>
 
 <body>
@@ -56,14 +56,14 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                    <img src="css/logo-branca.png" height="163" width="190" alt="GodFoo">
+                    <img src="../css/logo-branca.png" height="163" width="190" alt="GodFoo">
                     </div>
                 </li>
                 <li>
-                    <a href="index.php"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
+                    <a href="../"><i class="fa fa-home"></i> <span class="nav-label">Inicio</span></a>
                 </li>
                 <li>
-                    <a href="timeline.php"><i class="fa fa-cutlery"></i> <span class="nav-label">Pedidos</span> </span>
+                    <a href="../pedidos"><i class="fa fa-cutlery"></i> <span class="nav-label">Pedidos</span> </span>
                 <?php
                     if(isset($_SESSION['restaurante'])){
                         $count = verificaQtdPedidosNav($_SESSION['restaurante']); ?>
@@ -74,42 +74,42 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                 <li>
                     <a href="#"><i class="fa fa-plus"></i> <span class="nav-label">Gerenciar</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="categorias.php">Categorias</a></li>
-                        <li><a href="produtos.php">Produtos</a></li>
-                        <li><a href="adicionais.php">Adicionais</a></li>
-                        <li><a href="bordas.php">Bordas Recheadas</a></li>
+                        <li><a href="../categorias">Categorias</a></li>
+                        <li><a href="../gerenciar/produtos">Produtos</a></li>
+                        <li><a href="../adicionais">Adicionais</a></li>
+                        <li><a href="../bordas">Bordas Recheadas</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">Relatórios</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="relatorioVendas.php">Vendas</a></li>
+                        <li><a href="../relatorios/vendas">Vendas</a></li>
                     </ul>
                 </li>
 
                  <li>
                     <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Administrar</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="gerenciaRestaurantes.php">Restaurante</a></li>
-                        <li><a href="gerenciaFuncionarios.php">Funcionarios</a></li>
+                        <li><a href="../gerenciar/restaurantes">Restaurante</a></li>
+                        <li><a href="../gerenciar/funcionarios">Funcionarios</a></li>
                     </ul>
                 </li>
                 <li>
-                   <a href="cidade_entrega.php"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
+                   <a href="../gerenciar/cidade-entrega"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
                 </li>
                 <?php if($_SESSION['id_nivel'] == 5){ ?>
-                <li>
-                    <a href="pesquisa-pedidos.php"><i class="fa fa-search"></i> <span class="nav-label">Pesquisar Pedido </span></a>
+                <li class="active">
+                    <a href="../pesquisa/pedidos"><i class="fa fa-search"></i> <span class="nav-label">Pesquisar Pedido </span></a>
                 </li>
                 <li>
-                    <a href="cadastrar_cidade.php"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
+                    <a href="../cadastrar-cidade"><i class="fa fa-globe"></i> <span class="nav-label">Cadastrar Cidade</span></a>
                 </li>
                 <li>
-                    <a href="restaurantes.php"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Restaurante</span></a>
+                    <a href="../restaurantes"><i class="fa fa-building-o"></i> <span class="nav-label">Alterar Restaurante</span></a>
                 </li>
                 <?php } ?>
                 <li>
-                    <a href="login.php?logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Sair</span></a>
+                    <a href="../entrar?logout"><i class="fa fa-sign-out"></i> <span class="nav-label">Sair</span></a>
                 </li>
             </ul>
         </div>
@@ -126,7 +126,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                             <span class="m-r-sm text-muted welcome-message">Seja bem-vindo, <?=$_SESSION['nome']?></span>
                         </li>
                         <li class="logout">
-                            <a href="login.php?logout"><i class="fa fa-sign-out"></i> Sair</a>
+                            <a href="../entrar?logout"><i class="fa fa-sign-out"></i> Sair</a>
                         </li>
                     </ul>
                 </nav>
@@ -143,7 +143,7 @@ include 'includes/verificaDatasRelatorio.php';
                     <h1>Pedidos</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="./">Inicio</a>
+                            <a href="../">Inicio</a>
                         </li>
                         <li class="active">
                             <strong>Pesquisar Pedidos</strong>
@@ -169,12 +169,12 @@ include 'includes/verificaDatasRelatorio.php';
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                     <div class="row">
-                        <form name="form_pesquisa" id="form_pesquisa" method="post" action="updates.php">
+                        <form name="form_pesquisa" id="form_pesquisa" method="post" action="../updates.php">
                             <div class="col-lg-6">
                                 <input type="text" class="form-control pesquisa" name="pesquisaPedido" id="pesquisaPedido" value="" placeholder="Pesquise por numero, status ou restaurante" tabindex="1">
                             </div>
                         </form>
-                        <form action="pesquisa-pedidos.php" method="POST">
+                        <form action="./pedidos" method="POST">
                         <div class="col-md-4">
                             <div class="form-group" id="data">
                                 <div class="input-daterange input-group" id="datepicker">
@@ -213,16 +213,16 @@ include 'includes/verificaDatasRelatorio.php';
  </div>
 
     <!-- Mainly scripts -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="../js/inspinia.js"></script>
+    <script src="../js/plugins/pace/pace.min.js"></script>
 
-    <script src="js/plugins/ladda/spin.js"></script>
-    <script src="js/plugins/ladda/ladda.js"></script>
+    <script src="../js/plugins/ladda/spin.js"></script>
+    <script src="../js/plugins/ladda/ladda.js"></script>
 
     <!-- Scripts JS -->
 
@@ -232,7 +232,7 @@ include 'includes/verificaDatasRelatorio.php';
 </script>
 
     <!-- Data picker -->
-   <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+   <script src="../js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
    <script type="text/javascript">
         $('#data .input-daterange').datepicker({
@@ -249,7 +249,7 @@ $(document).ready(function(){
 
     //Aqui a ativa a imagem de load
     function loading_show(){
-        $('#loading').html("<img src='css/loading.gif'/>").fadeIn('fast');
+        $('#loading').html("<img src='../css/loading.gif'/>").fadeIn('fast');
     }
 
     //Aqui desativa a imagem de loading
@@ -279,7 +279,7 @@ $(document).ready(function(){
     }
 
     //Aqui eu chamo o metodo de load pela primeira vez sem parametros para pode exibir todos
-    load_dados(null, 'PesqPedidos.php', '#MostraPesq');
+    load_dados(null, '../PesqPedidos.php', '#MostraPesq');
 
 
     //Aqui uso o evento key up para começar a pesquisar, se valor for maior q 0 ele faz a pesquisa
@@ -293,10 +293,10 @@ $(document).ready(function(){
 
         if($parametro.length >= 1)
         {
-            load_dados(valores, 'PesqPedidos.php', '#MostraPesq');
+            load_dados(valores, '../PesqPedidos.php', '#MostraPesq');
         }else
         {
-            load_dados(null, 'PesqPedidos.php', '#MostraPesq');
+            load_dados(null, '../PesqPedidos.php', '#MostraPesq');
         }
     });
 
@@ -308,6 +308,6 @@ $(document).ready(function(){
 </html>
 <?php
 } else {
-    header('Location: ./entrar');
+    header('Location: ../entrar');
 }
  ?>

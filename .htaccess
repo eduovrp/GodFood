@@ -33,15 +33,20 @@ RewriteRule ^admin/adicionais$          		admin/adicionais.php [NC,L]
 RewriteRule ^admin/bordas$          			admin/bordas.php [NC,L]
 RewriteRule ^admin/cadastrar-cidade$          	admin/cadastrar_cidade.php [NC,L]
 RewriteRule ^admin/categorias$          		admin/categorias.php [NC,L]
+RewriteRule ^admin/restaurantes$                admin/restaurantes.php [NC,L]
+RewriteRule ^admin/pedidos$                     admin/timeline.php [NC,L]
+
 RewriteRule ^admin/gerenciar/cidade-entrega$ 	admin/cidade_entrega.php [NC,L]
 RewriteRule ^admin/gerenciar/funcionarios$    	admin/gerenciaFuncionarios.php [NC,L]
 RewriteRule ^admin/gerenciar/restaurantes$    	admin/gerenciaRestaurantes.php [NC,L]
-RewriteRule ^admin/gerenciar/produtos$    		admin/gerenciaRestaurantes.php [NC,L]
+RewriteRule ^admin/gerenciar/produtos$    		admin/produtos.php [NC,L]
+
 RewriteRule ^admin/detalhes/pedido$          	admin/detalhesPedido.php [NC,L]
+
 RewriteRule ^admin/pesquisa/pedidos$     		admin/pesquisa-pedidos.php [NC,L]
+
 RewriteRule ^admin/relatorios/vendas$         	admin/relatorioVendas.php [NC,L]
-RewriteRule ^admin/restaurantes$          		admin/restaurantes.php [NC,L]
-RewriteRule ^admin/pedidos$     	 			admin/timeline.php [NC,L]
+
 RewriteRule ^admin/alterar/adicional$			admin/alterarDadosAdicional.php [NC,L]
 RewriteRule ^admin/alterar/borda$          		admin/alterarDadosBorda.php [NC,L]
 RewriteRule ^admin/alterar/funcionario$         admin/alterarDadosFuncionario.php [NC,L]

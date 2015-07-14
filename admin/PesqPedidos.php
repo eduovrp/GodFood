@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	   
-    <link href="css/style_alternative.css" rel="stylesheet">
+    <link href="../css/style_alternative.css" rel="stylesheet">
 
     <!-- FooTable -->
-    <link href="css/plugins/footable/footable.core.css" rel="stylesheet">
+    <link href="../css/plugins/footable/footable.core.css" rel="stylesheet">
     
-    <script src="js/plugins/footable/footable.all.min.js"></script>
+    <script src="../js/plugins/footable/footable.all.min.js"></script>
 
     <!-- Page-Level Scripts -->
 <script type="text/javascript">
@@ -96,7 +96,7 @@ if($res['status'] == 2 || $res['status'] == 3 || $res['status'] == 9){
 	echo $msg;
 ?>
 
-      <form action="./detalhes/pedido" method="POST" id="detalhesPedido">
+      <form action="../detalhes/pedido" method="POST" id="detalhesPedido">
         <input type="hidden" name="id_pedido">
       </form>
 
