@@ -377,9 +377,9 @@ if(isset($_SESSION['id_restaurante'])){
     $_SESSION['acesso_invalido'] = "Desculpe,
                 Você não tem permissão para ver está pagina!
                 <br>";
-    header('Location: error.php');
+    header('Location: ./erro');
    }
 } else {
-    header('Location: escolha_produtos.php');
+    header('Location: ./produtos');
 }
 ?>

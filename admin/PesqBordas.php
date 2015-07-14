@@ -85,7 +85,7 @@ if($res['status'] == 0){
 	echo $msg;
 ?>
 
-      <form action="alterarDadosBorda.php" method="POST" id="alterarDadosBorda">
+      <form action="./alterar/borda" method="POST" id="alterarDadosBorda">
         <input type="hidden" name="id_borda">
       </form>
 

@@ -22,15 +22,15 @@ require 'functions/functions.php';
 
 					altera_categoria($_POST['nome_categoria'],$_POST['id_categoria'],$_SESSION['restaurante'],$DoisSabor);
 					$_SESSION['msg_sucesso'] = "Categoria alterada com sucesso!";
-					header('Location: categorias.php');
+					header('Location: ./categorias');
 
 				} else{
 					$_SESSION['erros'] = "Essa categoria não pertence ao seu restaurante, por favor, pare de alterar o input type hidden";
-					header('Location: categorias.php');
+					header('Location: ./categorias');
 				}
 		} else {
 			$_SESSION['erros'] = "Restaurante não selecionado, por favor, selecione o restaurante";
-			header('Location: restaurantes.php');
+			header('Location: ./restaurantes');
 		}
 	}
 
@@ -68,8 +68,6 @@ require 'functions/functions.php';
 		$taxa_adm = $tarifas['taxa_adm'];
 	}
 
-	var_dump($taxa_adm);
-
 		if(isset($_POST['fav'])){
 			$fav = 1;
 		} else {
@@ -95,7 +93,7 @@ require 'functions/functions.php';
 							$taxa_adm
 							);
 		$_SESSION['msg_sucesso'] = "Alteração concluida com sucesso!";
-		header('Location: gerenciaRestaurantes.php');
+		header('Location: ./gerenciar/restaurantes');
 	}
 
 	/* Altera dados do funcionario */
@@ -115,7 +113,7 @@ require 'functions/functions.php';
 
 		$_SESSION['msg_sucesso'] = "Dados Alterados com Sucesso!";
 		unset($_SESSION['id_funcionario']);
-		header('Location: gerenciaFuncionarios.php');
+		header('Location: ./gerenciar/restaurantes');
 	}
 
 	/* Altera dados do Produto */
@@ -131,7 +129,7 @@ require 'functions/functions.php';
 						   $_POST['status']);
 		$_SESSION['msg_sucesso'] = "Produto alterado com sucesso!";
 		unset($_SESSION['id_produto']);
-		header('Location: produtos.php');
+		header('Location: ./gerenciar/produtos');
 	}
 	
 	/* Alterar Dados da Borda */
@@ -146,7 +144,7 @@ require 'functions/functions.php';
 						 $_POST['status']);
 		$_SESSION['msg_sucesso'] = "Alterações realizadas com sucesso!";
 		unset($_SESSION['id_borda']);
-		header('Location: bordas.php');
+		header('Location: ./bordas');
 	}
 	
 	/* Alterar Dados do Adicional */
@@ -161,7 +159,7 @@ require 'functions/functions.php';
 						 $_POST['status']);
 		$_SESSION['msg_sucesso'] = "Adicional alterado com sucesso!";
 		unset($_SESSION['id_adicional']);
-		header('Location: adicionais.php');
+		header('Location: ./adicionais');
 	}
 
 	/* Altera Status do Produto usando o campo de pesquisa de produtos.php */
@@ -176,10 +174,10 @@ require 'functions/functions.php';
 		if(strlen($_POST['pesquisaProduto']) > 1){
 			alteraStatusVariosProdutos($_POST['pesquisaProduto'], $_POST['status'], $_SESSION['restaurante']);
 			$_SESSION['msg_sucesso'] = "Todos os produtos com o termo <strong>".$_POST['pesquisaProduto']."</strong> foram <strong>".$status."</strong>";
-			header('Location: produtos.php');
+			header('Location: ./gerenciar/produtos');
 		} else {
 			$_SESSION['mensagem'] = "Para ativar/desativar varios produtos você precisa pesquisar pelo nome, categoria ou descrição no campo de pesquisa. Para alterar o status de apenas um produto clique em EDITAR na linha do produto desejado.";
-			header('Location: produtos.php');
+			header('Location: ./gerenciar/produtos');
 		}
 	}
 
@@ -195,10 +193,10 @@ require 'functions/functions.php';
 		if(strlen($_POST['pesquisaBorda']) > 1){
 			alteraStatusVariasBordas($_POST['pesquisaBorda'], $_POST['status'], $_SESSION['restaurante']);
 			$_SESSION['msg_sucesso'] = "Todos os itens com o termo <strong>".$_POST['pesquisaBorda']."</strong> foram <strong>".$status."</strong>";
-			header('Location: bordas.php');
+			header('Location: ./bordas');
 		} else {
 			$_SESSION['mensagem'] = "Para ativar/desativar varios itens você precisa pesquisar pelo nome ou categoria no campo de pesquisa abaixo. Para alterar o status de apenas um item clique em EDITAR na linha do item desejado.";
-			header('Location: bordas.php');
+			header('Location: ./bordas');
 		}
 	}
 	
@@ -214,12 +212,12 @@ require 'functions/functions.php';
 		if(strlen($_POST['pesquisaAdicional']) > 1){
 			alteraStatusVariosAdicionais($_POST['pesquisaAdicional'], $_POST['status'], $_SESSION['restaurante']);
 			$_SESSION['msg_sucesso'] = "Todos os itens com o termo <strong>".$_POST['pesquisaAdicional']."</strong> foram <strong>".$status."</strong>";
-			header('Location: adicionais.php');
+			header('Location: ./adicionais');
 		} else {
 			$_SESSION['mensagem'] = "Para ativar/desativar varios itens você precisa pesquisar pelo nome ou categoria no campo de pesquisa abaixo. Para alterar o status de apenas um item clique em EDITAR na linha do item desejado.";
-			header('Location: adicionais.php');
+			header('Location: ./adicionais');
 		}
 	}
 } else {
-	header('Location: index.php');
+	header('Location: ../');
 }

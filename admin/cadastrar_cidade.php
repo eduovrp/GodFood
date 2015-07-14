@@ -134,7 +134,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                     <h1>Cadastrar Cidades</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li class="active">
                             <strong>Cadastrar Cidades</strong>
@@ -235,9 +235,9 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 <?php
     } else {
         $_SESSION['erros'] = "Você não tem permissão para acessar essa pagina!";
-        header('Location: index.php');
+        header('Location: ./');
     }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

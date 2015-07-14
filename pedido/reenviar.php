@@ -7,6 +7,6 @@ $dados = buscaCodAtivacao($cod);
 
 reenviaEmailConfirmacao($cod, $dados['email'], $dados['hash_ativar_conta']);
 
-header('Location: view_cart.php');
+header('Location: ./produtos');
 }
 ?>

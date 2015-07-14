@@ -77,6 +77,6 @@
 		unsets();
 
 		$_SESSION['sucesso_pgto'] = 'Seu pagamento foi aceito e seu pedido foi encaminhado ao restaurante responsavel.';
-		header('Location: success.php');
+		header('Location: ./sucesso');
 
 ?>

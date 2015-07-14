@@ -41,7 +41,7 @@ if(isset($_SESSION['erro_pgto']) || isset($_SESSION['acesso_invalido'])){
         <h3 class="font-bold"><?= $_SESSION['acesso_invalido'];?></h3>
 
         <div class="error-desc">
-            Você deveria estar vendo ela? entre em contato conosco <a href="../contato.php">clicando aqui!</a><br/>
+            Você deveria estar vendo ela? entre em contato conosco <a href="../contato/">clicando aqui!</a><br/>
             <br><a href="../" type="button" class="btn btn-outline btn-danger">Voltar ao Inicio</a>
         </div>
     <?php } ?>

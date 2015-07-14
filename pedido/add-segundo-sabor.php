@@ -3,7 +3,6 @@ if(!isset($_SESSION))
  {
    session_start();
  }
-require 'config.php';
 require '../functions/pedidos.php';
 
 //add item in shopping cart
@@ -71,7 +70,7 @@ if(isset($_POST["type"]) && $_POST["type"]=='add_segundo_sabor')
 			unset($_SESSION['doisSabores']);
 			unset($_SESSION['id_categoria']);
 
-	header('Location: escolha_produtos.php');
+	header('Location: ./produtos');
 
 
   		}	

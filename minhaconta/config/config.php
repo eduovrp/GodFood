@@ -72,7 +72,7 @@ define("EMAIL_SMTP_ENCRYPTION", "ssl");
  * Configuration for: password reset email data
  * Set the absolute URL to password_reset.php, necessary for email password reset links
  */
-define("EMAIL_PASSWORDRESET_URL", "http://godfood.com.br/minhaconta/reset_pass.php");
+define("EMAIL_PASSWORDRESET_URL", "http://godfood.com.br/minhaconta/esqueci-minha-senha");
 define("EMAIL_PASSWORDRESET_FROM", "cadastro@godfood.com.br");
 define("EMAIL_PASSWORDRESET_FROM_NAME", "Recuperação de Senha");
 define("EMAIL_PASSWORDRESET_SUBJECT", "Recurerar Senha - GodFood");

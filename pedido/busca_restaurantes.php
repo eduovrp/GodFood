@@ -78,7 +78,7 @@ $restAbertFav = lista_restaurantes_abert_fav($cep);
                 <div class="contact-box-fav">
                     <a href="javascript:verCardapio(<?= $abertFav['id_restaurante']; ?>)">
                     <div class="col-md-4">
-                            <img alt="image" class="img-responsive" src="images/logos/default-logo.png" height="200" width="200">
+                            <img alt="image" class="img-responsive" src="./images/logos/default-logo.png" height="200" width="200">
                     </div>
                     <div class="col-md-8">
                         <h3><strong><?= $abertFav['nome_fantasia']; ?></strong></h3>
@@ -165,7 +165,7 @@ $restAbertFav = lista_restaurantes_abert_fav($cep);
                 <div class="contact-box">
                     <a href="#" onClick='alert("Desculpe, o restaurante está fechado")'>
                     <div class="col-md-4">
-                            <img alt="image" class="img-responsive" src="images/logos/default-logo.png" height="200" width="200">
+                            <img alt="image" class="img-responsive" src="./images/logos/default-logo.png" height="200" width="200">
                     </div>
                     <div class="col-md-8">
                         <h3><strong><?= $restauranteFechado['nome_fantasia']; ?></strong></h3>
@@ -196,7 +196,7 @@ $restAbertFav = lista_restaurantes_abert_fav($cep);
 			</h3>
 				<h4>Conhece algum restaurante que nos aceitaria como parceiros?
 					<br>
-					<a href='../contato.php'>Clica aqui e conta pra gente!</a>
+					<a href='../contato/'>Clica aqui e conta pra gente!</a>
 				</h4>
 		</div>
 <?php } ?>
@@ -343,7 +343,7 @@ $restAbertFav = lista_restaurantes_abert_fav($cep);
 			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
 	</div>
-	<form action="escolha_produtos.php" method="POST" id="formVerCardapio">
+	<form action="./produtos" method="POST" id="formVerCardapio">
 		<input type="hidden" name="id_restaurante">
 	</form>
 <script>

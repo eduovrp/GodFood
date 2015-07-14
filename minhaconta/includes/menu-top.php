@@ -3,8 +3,8 @@
 				<div class="top-menu">
 					<ul>
 						<li class="active"><a href="../">Inicio</a></li>|
-						<li><a href="../termos.php">Termos de Uso</a></li>|
-						<li><a href="pedidos.php">Pedidos</a></li>|
+						<li><a href="../termos-de-uso">Termos de Uso</a></li>|
+						<li><a href="./pedidos">Pedidos</a></li>|
 						<li><a href="../contato/">Contato</a></li>
 						<div class="clearfix"></div>
 					</ul>
@@ -20,7 +20,7 @@ if ($login->usuarioLogado() == true) {
 				<div class="login-section">
 					<ul>
 						<li><a href="#">Bem-vindo, <?=$_SESSION['login']?></a></li>
-						<li><a href="../minhaconta/">Minha Conta</a></li> |
+						<li><a href="./">Minha Conta</a></li> |
 						<?php
 
 						if(isset($_SESSION['products'])){
@@ -33,7 +33,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="../cart/escolha_produtos.php">
+						<li><a href="../pedido/produtos">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php
@@ -57,7 +57,7 @@ if ($login->usuarioLogado() == true) {
 							} ?>
 
 						</a></li> |
-						<li><a href="../minhaconta/index.php?logout">Sair</a></li>
+						<li><a href="../minhaconta/?logout">Sair</a></li>
 						<div class="clearfix"></div>
 					</ul>
 				</div>
@@ -69,8 +69,8 @@ if ($login->usuarioLogado() == true) {
 
 				<div class="login-section">
 					<ul>
-						<li><a href="../minhaconta/">Login</a>  </li> |
-						<li><a href="../minhaconta/cadastrar.php">Registre-se</a> </li> |
+						<li><a href="./">Login</a>  </li> |
+						<li><a href="../minhaconta/cadastrar">Registre-se</a> </li> |
 						
 						<?php
 						if(isset($_SESSION['products'])){
@@ -83,7 +83,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="../cart/escolha_produtos.php">
+						<li><a href="../pedido/produtos">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php

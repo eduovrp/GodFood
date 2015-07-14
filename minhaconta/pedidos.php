@@ -68,14 +68,14 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
 				<ul>
 					<h3>PEDIDOS</h3>
 					<li><a href="../minhaconta/">Ultimo pedido</a></li>
-					<li><a href="pedidos.php">Ver todos</a></li>
+					<li><a href="pedidos">Ver todos</a></li>
 
 					<h3>ENDEREÇOS</h3>
-					<li><a href="cadastrar_enderecos.php">Cadastrar novo endereço</a></li>
+					<li><a href="cadastrar-endereco">Cadastrar novo endereço</a></li>
 					<li><a href="#">Meus endereços</a></li>
 
 					<h3>MEU CADASTRO</h3>
-					<li><a href="alterarDadosCadastrais.php">Alterar dados cadastrais</a></li>
+					<li><a href="alterarDadosCadastrais">Alterar dados cadastrais</a></li>
 				</ul>
 				</div>
 		</div>
@@ -312,7 +312,7 @@ $todos_pedidos = lista_todos_pedidos($_SESSION['id_usuario']);
 	<script type="text/javascript" src="../web/js/easing.js"></script>
 	<script src="../web/js/pace.min.js"></script>
 
-	<form action="detalhes_pedido.php" method="POST" id="formEnviarId">
+	<form action="detalhes/pedido" method="POST" id="formEnviarId">
 		<input type="hidden" name="id_pedido">
 	</form>
 

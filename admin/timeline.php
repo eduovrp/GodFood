@@ -402,9 +402,9 @@ $pedidosConcluidos = mostraPedidosConcluidos($id_restaurante);
 <?php
     }else{
         $_SESSION['erros'] = "Para ver os pedidos é preciso selecionar um restaurante";
-        header('Location: restaurantes.php');
+        header('Location: ./restaurantes');
     }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
 ?>

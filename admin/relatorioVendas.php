@@ -144,7 +144,7 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
                     <h1>Relatório de Vendas</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li>
                             Relatórios
@@ -188,7 +188,7 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
                                         <?=$dadosR['cidade']?><br>
                                         <?=$dadosR['fone']?>
                                     </address>
-                    <form action="relatorioVendas.php" method="POST">
+                    <form action="./relatorios/vendas" method="POST">
                         <div class="col-md-offset-4">
                             <div class="form-group" id="data">
                                 <div class="input-daterange input-group" id="datepicker">
@@ -314,10 +314,10 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
 </html>
 <?php
     } else {
-        $_SESSION['mensagem'] = "Você precisa escolher um restaurante ver o relatório";
-        header('Location: restaurantes.php');
+        $_SESSION['mensagem'] = "Você precisa escolher um restaurante para ver o relatório";
+        header('Location: ./restaurantes');
     }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

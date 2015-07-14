@@ -73,12 +73,12 @@ include 'mensagens.php';
 			   <div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
 			  	 <h3>NOVO POR AQUI?</h3>
 				 <p>Começe criando sua conta é rápido e fácil, após isso você ja podera pedir varios pratos no conforto da sua casa.</p>
-				 <a class="acount-btn" href="../minhaconta/cadastrar.php"><i class="fa fa-user-plus"></i> &nbsp;&nbsp;Cadastre-se</a>
+				 <a class="acount-btn" href="../minhaconta/cadastrar"><i class="fa fa-user-plus"></i> &nbsp;&nbsp;Cadastre-se</a>
 			   </div>
 			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 			  	<h3>INFORMAÇÕES DE LOGIN</h3>
 				<p>Se você ja possui uma conta, insira seu usuario e senha para acessar sua conta</p>
-				<form action="view_cart.php" method="POST">
+				<form action="./resumo" method="POST">
 				  <div>
 					<label for="login">Usuario</label> <br>
 					<input type="text" name="login" id="login" required>
@@ -91,7 +91,7 @@ include 'mensagens.php';
 			<div class="col-sm-6 col-md-offset-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 				  <button type="submit" class="ladda-button btn-login" data-size="m" data-style="zoom-in"><i class="fa fa-lock fa-1x"></i> &nbsp;&nbsp;Entrar</button> 
 				  <br>
-				  <a class="forgot" href="reset_pass.php">Esqueceu sua Senha?</a>
+				  <a class="forgot" href="../minhaconta/esqueci-minha-senha">Esqueceu sua Senha?</a>
 			    </form>
 			 </div>
 			   <div class="clearfix"> </div>

@@ -385,6 +385,6 @@ include 'includes/graficos.php';
 </html>
 <?php
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

@@ -139,7 +139,7 @@ $busca_cidades = mostra_cidades();
                     <h1>Entregas</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li class="active">
                             <strong>Entregas</strong>
@@ -244,9 +244,9 @@ $busca_cidades = mostra_cidades();
 <?php
     } else {
         $_SESSION['mensagem'] = "Você precisa escolher um restaurante para gerenciar as Entregas";
-        header('Location: restaurantes.php');
+        header('Location: ./restaurantes');
     }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

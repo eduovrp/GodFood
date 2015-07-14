@@ -135,7 +135,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                     <h1>Categorias</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li>
                             Gerenciar
@@ -292,9 +292,9 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 <?php
     } else {
         $_SESSION['mensagem'] = "Você precisa escolher um restaurante para gerenciar as categorias";
-        header('Location: restaurantes.php');
+        header('Location: ./restaurantes');
     }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

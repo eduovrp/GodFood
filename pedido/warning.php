@@ -33,7 +33,7 @@ if(isset($_SESSION['aviso_pgto'])){
         <br>
         <h3 class="font-bold"><?= $_SESSION['aviso_pgto'];?></h3>
         <div class="error-desc">
-            Houve problemas com seu pagamento, caso tenha alguma duvida entre em contato conosco <a href="../contato.php">clicando aqui!</a><br/>
+            Houve problemas com seu pagamento, caso tenha alguma duvida entre em contato conosco <a href="../contato/">clicando aqui!</a><br/>
             <br><a href="../" type="button" class="btn btn-outline btn-warning">Voltar ao Inicio</a>
         </div>
     </div>

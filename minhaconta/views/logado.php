@@ -66,14 +66,14 @@ include 'mensagens.php';
 				<ul>
 					<h3>PEDIDOS</h3>
 					<li><a href="../minhaconta/">Ultimo pedido</a></li>
-					<li><a href="pedidos.php">Ver todos</a></li>
+					<li><a href="pedidos">Ver todos</a></li>
 
 					<h3>ENDEREÇOS</h3>
-					<li><a href="cadastrar_enderecos.php">Cadastrar novo endereço</a></li>
+					<li><a href="cadastrar-endereco">Cadastrar novo endereço</a></li>
 					<li><a href="#">Meus endereços</a></li>
 
 					<h3>MEU CADASTRO</h3>
-					<li><a href="alterarDadosCadastrais.php">Alterar dados cadastrais</a></li>
+					<li><a href="alterarDadosCadastrais">Alterar dados cadastrais</a></li>
 				</ul>
 				</div>
 		</div>

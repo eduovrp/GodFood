@@ -19,7 +19,7 @@ if($_POST){
 		
 		cadastra_categoria($_POST['nome_categoria'],$_SESSION['restaurante'],$DoisSabor);
 		$_SESSION['msg_sucesso'] = "Categoria cadastrada com sucesso";
-		header('Location: categorias.php');
+		header('Location: ./categorias');
 	}
 
 	/* Cadastra Produto */
@@ -40,14 +40,14 @@ if($_POST){
 			 						 $_SESSION['restaurante'],$_POST['categoria'],$_POST['status']);
 
 			 	$_SESSION['msg_sucesso'] = "Produto cadastrado com sucesso";
-			 	header('Location: produtos.php');
+			 	header('Location: ./gerenciar/produtos');
 			 	} else{
 					$_SESSION['mensagem'] = "Categoria Não Selecionada, por favor, selecione a categoria";
-	 				header('Location: produtos.php');
+	 				header('Location: ./gerenciar/produtos');
 			 	}
 	 		} else{
 	 			$_SESSION['mensagem'] = "Categoria Não Selecionada, por favor, selecione a categoria";
-	 			header('Location: restaurantes.php');
+	 			header('Location: ./restaurantes');
 	 		}
 	 	}
 
@@ -61,17 +61,17 @@ if($_POST){
 
 		if($verifica == false){
 			$_SESSION['mensagem'] = "A cidade escolhida já está cadastrada.";
-	 		header('Location: cidade_entrega.php');
+	 		header('Location: ./gerenciar/cidade-entrega');
 		} else{
 
 			cadastra_cidade_entrega($_POST['cidade'],$_SESSION['restaurante'], $taxa);
 			$_SESSION['msg_sucesso'] = "Cidade cadastrada com sucesso";
-			header('Location: cidade_entrega.php');
+			header('Location: ./gerenciar/cidade-entrega');
 		}
 
 		} else {
 			$_SESSION['mensagem'] = "Restaurante Não Selecionado, por favor, selecione a restaurante desejado";
-	 		header('Location: restaurantes.php');
+	 		header('Location: ./restaurantes');
 	 	}
 	}
 
@@ -94,7 +94,7 @@ if($_POST){
 							$compra_min
 							);
 		$_SESSION['msg_sucesso'] = "Restaurante cadastrado com sucesso!";
-		header('Location: gerenciaRestaurantes.php');
+		header('Location: ./gerenciar/restaurantes');
 	}
 
 	/* Cadastra Funcionario */
@@ -107,7 +107,7 @@ if($_POST){
 							 $_POST['usuario'],
 							 $_POST['senha'],
 							 $_SESSION['restaurante']);
-		header('Location: gerenciaFuncionarios.php');
+		header('Location: ./gerenciar/funcionarios');
 	}
 
 	/* Cadastra Adicional */
@@ -126,14 +126,14 @@ if($_POST){
 			 		$_SESSION['categoria'] = $_POST['categoria'];
 			 		$_SESSION['msg_sucesso'] = "Adicional cadastrado com sucesso";
 			 		
-			 	header('Location: adicionais.php');
+			 	header('Location: ./adicionais');
 			 	} else{
 					$_SESSION['mensagem'] = "Categoria Não Selecionada, por favor, selecione a categoria";
-	 				header('Location: adicionais.php');
+	 				header('Location: ./adicionais');
 			 	}
 	 		} else{
 	 			$_SESSION['mensagem'] = "Por favor, escolha um restaurante para cadastrar o adicional";
-	 			header('Location: restaurantes.php');
+	 			header('Location: ./restaurantes');
 	 		}
 	 	}
 
@@ -153,14 +153,14 @@ if($_POST){
 			 		$_SESSION['categoria'] = $_POST['categoria'];
 			 		$_SESSION['msg_sucesso'] = "Borda recheada cadastrado com sucesso";
 			 		
-			 	header('Location: bordas.php');
+			 	header('Location: ./bordas');
 			 	} else{
 					$_SESSION['mensagem'] = "Categoria Não Selecionada, por favor, selecione a categoria";
-	 				header('Location: bordas.php');
+	 				header('Location: ./bordas');
 			 	}
 	 		} else{
 	 			$_SESSION['mensagem'] = "Por favor, escolha um restaurante para cadastrar o adicional";
-	 			header('Location: restaurantes.php');
+	 			header('Location: ./restaurantes');
 	 		}
 	 	}
 
@@ -169,14 +169,14 @@ if($_POST){
 	 	if(isset($_POST['cadastrarCidade'])){
 	 		if($_SESSION['id_nivel'] == 5){
 	 			cadastraCidade($_POST['cidade'],$_POST['cep']);
-	 			header('Location: cadastrar_cidade.php');
+	 			header('Location: ./cadastrar-cidade');
 	 		} else {
 	 			$_SESSION['mensagem'] = "Você não tem permissão para acessar essa pagina!";
-	 			header('Location: index.php');
+	 			header('Location: ./');
 	 		}
 	 	}
 	
 
 } else {
-	header('Location: index.php');
+	header('Location: ./');
 }

@@ -17,7 +17,7 @@ unset($_SESSION['return_url']);
         unset($_SESSION['return_url']);
 
 }else{
-    $return_url = "index.php";
+    $return_url = "./";
 }
 
 $login = new Login();
@@ -97,7 +97,7 @@ $restaurantes = busca_restaurantes();
                 </div>
                 <button type="submit" class="ladda-button btn btn-primary block full-width m-b" data-size="s" data-style="zoom-in">Prosseguir <i class="fa fa-arrow-right fa-1x"></i></button>
             </form>
-            <a href="index.php">ir para o inicio</a>
+            <a href="./">ir para o inicio</a>
             <p class="m-t"> <small>GodFood - Adminstração &copy; 2015</small> </p>
         </div>
     </div>
@@ -121,9 +121,9 @@ $restaurantes = busca_restaurantes();
 </html>
 <?php
     }else{
-        header('Location: index.php');
+        header('Location: ./');
     }
 } else{
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

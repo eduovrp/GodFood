@@ -137,7 +137,7 @@ include 'includes/timeline_verif.php';
                     <h1>Detalhes do Pedido</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li class="active">
                             <strong>Detalhar Pedido</strong>
@@ -267,7 +267,7 @@ include 'includes/timeline_verif.php';
                           <br>
                   <div class="col-md-6 col-md-offset-3">
                       <div align="center">
-                            <a href="pesquisa-pedidos.php" type="button" class="btn btn-default btn-lg btn-block btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+                            <a href="./pesquisa/pedidos" type="button" class="btn btn-default btn-lg btn-block btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
                       </div>
                   </div>
                         </div>
@@ -321,10 +321,10 @@ include 'includes/timeline_verif.php';
 </html>
 <?php
   } else {
-      header('Location: produtos.php');
+      header('Location: ./pesquisa/pedidos');
   }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>
 

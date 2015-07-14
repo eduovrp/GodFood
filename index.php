@@ -72,7 +72,7 @@ $banners = buscaBannersIndex();
 							<h2> Faça Pedidos Online</h2>
 						</div>
 					</div>
-						<form action="cart/busca_restaurantes.php" method="POST" name="fcep" id="fcep">
+						<form action="pedido/escolha-restaurante" method="POST" name="fcep" id="fcep">
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3">
 							<select data-placeholder="Pesquise sua cidade" class="chosen-select" name="cep" tabindex="1">

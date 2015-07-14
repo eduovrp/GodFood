@@ -136,7 +136,7 @@ $categorias = mostra_categorias($_SESSION['restaurante']);
                     <h1>Produtos</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li>
                             Gerenciar
@@ -347,9 +347,9 @@ $(document).ready(function(){
 <?php
     } else {
     $_SESSION['mensagem'] = "Você precisa escolher um restaurante para gerenciar os produtos";
-    header('Location: restaurantes.php');
+    header('Location: ./restaurantes');
     }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

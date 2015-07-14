@@ -12,7 +12,7 @@ $login = new Login();
 
 // ... verifica se o usuario está logado
 if ($login->usuarioLogado() == true) {
-    header('Location: index.php');
+    header('Location: ./');
 }
  ?>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ if ($login->usuarioLogado() == true) {
             <a href="#">clicando aqui </a>
             </p>
             <p>Entre, tem ar condicionado.</p>
-            <form class="m-t" role="form" action="restaurantes.php" method="POST">
+            <form class="m-t" role="form" action="./restaurantes" method="POST">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Usuario" name="login" required>
                 </div>

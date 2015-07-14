@@ -144,7 +144,7 @@ $niveis = buscaNiveisUsuarios();
                     <h1>Alterar Dados</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li class="active">
                             <strong>Alterar Dados</strong>
@@ -215,7 +215,7 @@ $niveis = buscaNiveisUsuarios();
                           <br>
                         <div align="right">
                           <input type="hidden" name="alterarDadosFuncionario" value="alterar">
-                            <a href="gerenciaFuncionarios.php" type="button" class="btn btn-danger btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+                            <a href="./gerenciar/funcionarios" type="button" class="btn btn-danger btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
                             &nbsp;&nbsp;
                             <button type="submit" class="btn btn-primary btn-lg btn-outline"><i class="fa fa-check fa-1x"></i> Atualizar</button>
                           </form>
@@ -234,9 +234,6 @@ $niveis = buscaNiveisUsuarios();
                     <strong>Copyright &copy;</strong> - GodFood - Delivery  2015
                 </div>
             </div>
-
-        
-
 
     <!-- Mainly scripts -->
     <script src="js/jquery-2.1.1.js"></script>
@@ -283,10 +280,10 @@ $niveis = buscaNiveisUsuarios();
 </html>
 <?php
   } else {
-      header('Location: gerenciaFuncionarios.php');
+      header('Location: ./gerenciar/funcionarios');
   }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>
 

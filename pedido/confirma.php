@@ -2,7 +2,7 @@
 require '../functions/registro.php';
 
 if(verifica_usuario($_GET['id'], $_GET['verification_code'])){
-    header("Location: view_cart.php");
+    header("Location: ./resumo");
 } else {
-    header("Location: view_cart.php");
+    header("Location: ./resumo");
 }

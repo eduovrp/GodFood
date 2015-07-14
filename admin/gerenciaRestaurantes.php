@@ -147,7 +147,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                     <h1>Gerenciar Restaurantes</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li>
                             Administrar
@@ -376,7 +376,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
 
-      <form action="alterarDadosRestaurante.php" method="POST" id="alterarDadosRestaurante">
+      <form action="./alterar/restaurante" method="POST" id="alterarDadosRestaurante">
         <input type="hidden" name="id_restaurante">
       </form>
 
@@ -411,6 +411,6 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
 </html>
 <?php
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

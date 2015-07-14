@@ -140,7 +140,7 @@ $categorias = busca_categorias($_SESSION['restaurante']);
                     <h1>Alterar Dados</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li class="active">
                             <strong>Alterar Dados</strong>
@@ -202,7 +202,7 @@ $categorias = busca_categorias($_SESSION['restaurante']);
                           <br>
                         <div align="right">
                           <input type="hidden" name="alterarDadosBorda" value="alterar">
-                            <a href="bordas.php" type="button" class="btn btn-default btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+                            <a href="./bordas" type="button" class="btn btn-default btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
                             &nbsp;&nbsp;
                             <button type="submit" class="btn btn-primary btn-lg btn-outline"><i class="fa fa-check fa-1x"></i> Atualizar</button>
                           </form>
@@ -264,10 +264,10 @@ $categorias = busca_categorias($_SESSION['restaurante']);
 </html>
 <?php
   } else {
-      header('Location: bordas.php');
+      header('Location: ./bordas');
   }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>
 

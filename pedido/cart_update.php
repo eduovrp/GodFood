@@ -3,7 +3,7 @@ if(!isset($_SESSION))
  {
    session_start();
  }
-require 'config.php';
+
 require '../functions/pedidos.php';
 
 //add item in shopping cart
@@ -59,7 +59,7 @@ if($qtd <= 0){
 				$_SESSION['doisSabores'] = $new_product;
 				$_SESSION['id_categoria'] = $_POST['categoria_in'];
 				$_SESSION['codigo1'] = $codigo;
-				header('Location: complete-product.php');
+				header('Location: completar-produto');
 		}
 			} else {
 

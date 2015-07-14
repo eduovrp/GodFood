@@ -52,7 +52,6 @@ if(!isset($_SESSION['doisSabores'])){ ?>
 <?php
 
 include 'includes/menu-top.php';
-require 'config.php';
 require '../functions/pedidos.php';
 require '../functions/restaurantes.php';
 
@@ -291,17 +290,22 @@ if(isset($id_restaurante)){
         <br>
             <a href="#" class="btn btn-lg btn-warning btn-block disabled">Valor inferior ao minimo <i class="fa fa-exclamation-triangle"></i></a>
 
-        <?php } else { ?>
+        <?php } else { 
+            if ($login->usuarioLogado() == false){?>
+        <br>
+            <a href="#" data-toggle="modal" data-target="#enderecos" class="btn btn-lg btn-info btn-block">Entre para Continuar <i class="fa fa-lock"></i></a>
+            <?php } else { ?>
         <br>
             <a href="#" data-toggle="modal" data-target="#enderecos" class="btn btn-lg btn-success btn-block">Concluir Pedido <i class="fa fa-check"></i></a>
-        <?php } ?>
-
-    <?php }else{ ?>
+        <?php 
+            } 
+        } 
+     } else { ?>
 
         <h4>:( Seu carrinho está vazio</h4>
             <h5 align="center">Que tal escolher algo gostoso para comer?</h5>
                 <br>
-<?php }?>
+<?php } ?>
     </div>
   </div>
 </div>
@@ -316,7 +320,7 @@ if(isset($id_restaurante)){
                                             <h4 class="modal-title"><strong>Bem-vindo!</strong> Faça seu login</h4>
                                         </div>
                                         <div class="modal-body">
-                                        <form action="escolha_produtos.php" method="POST">
+                                        <form action="./produtos" method="POST">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -335,7 +339,7 @@ if(isset($id_restaurante)){
                                         <button type="submit" class="ladda-button btn btn-primary btn-mobile btn-block" data-color="mint" data-size="s" data-style="zoom-in">Entrar <i class="fa fa-check fa-1x"></i></button>
                                         </div>
                                         <div class="modal-footer">
-                                            <h4><a href="../minhaconta/cadastrar.php"> Cadastre-se</a></h4>
+                                            <h4><a href="../minhaconta/cadastrar"> Cadastre-se</a></h4>
                                         </form>
                                         </div>
                                     </div>
@@ -353,7 +357,7 @@ if(isset($id_restaurante)){
                         <small class="font-bold"><strong>Atenção:</strong> O(s) endereço(s) listado(s) abaixo correspondem ao CEP <strong><?=$_SESSION['cep']?>.</strong> Caso não esteja visualizando algum endereço, verifique se ele não esta cadastrado em outro CEP. </small>
                 </div>
                 <div class="modal-body">
-                <form method="POST" action="view_cart.php">
+                <form method="POST" action="./resumo">
                     <?php
                          $enderecos = mostra_enderecos($_SESSION['id_usuario']);
                          foreach($enderecos as $endereco):
@@ -377,7 +381,7 @@ if(isset($id_restaurante)){
                     <?php }
                      endforeach; ?>
                 <div class="pull-right">
-                    <a href="../minhaconta/cadastrar_enderecos.php" class="btn btn-default btn-lg">Cadastrar Novo Endereço <i class="fa fa-plus"></i></a>
+                    <a href="../minhaconta/cadastrar-endereco" class="btn btn-default btn-lg">Cadastrar Novo Endereço <i class="fa fa-plus"></i></a>
                 </div>
                 <br><br>
                 </div>
@@ -585,9 +589,9 @@ if(isset($id_restaurante)){
     $_SESSION['acesso_invalido'] = "Desculpe,
                 Você não tem permissão para ver está pagina!
                 <br>";
-    header('Location: error.php');
+    header('Location: ./erro');
    }
 } else {
-    header('Location: complete-product.php');
+    header('Location: completar-produto');
 }
 ?>

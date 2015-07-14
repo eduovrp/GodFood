@@ -147,7 +147,7 @@ if($restaurante['fav'] > 0){
                     <h1>Alterar Dados</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li class="active">
                             <strong>Alterar Dados</strong>
@@ -271,7 +271,7 @@ if($restaurante['fav'] > 0){
                           <br>
                         <div align="right">
                           <input type="hidden" name="alterarDadosRestaurante" value="alterar">
-                            <a href="gerenciaRestaurantes.php" type="button" class="btn btn-danger btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+                            <a href="./gerenciar/restaurantes" type="button" class="btn btn-danger btn-lg btn-outline"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
                             &nbsp;&nbsp;
                             <button type="submit" class="btn ladda-button btn-primary btn-lg btn-outline" data-size="m" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Atualizar</button>
                           </form>
@@ -346,10 +346,10 @@ if($restaurante['fav'] > 0){
 </html>
 <?php
   } else {
-      header('Location: gerenciaRestaurantes.php');
+      header('Location: ./gerenciar/restaurantes');
   }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>
 

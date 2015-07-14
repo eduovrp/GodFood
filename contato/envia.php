@@ -69,12 +69,12 @@ $phpmail->ClearAttachments();
 if ($enviado) {
 echo ("<SCRIPT LANGUAGE='JavaScript'>
     window.alert('E-mail enviado com sucesso, responderemos assim que possivel.')
-    window.location.href='index.php';
+    window.location.href='../';
     </SCRIPT>");
 } else {
 echo ("<SCRIPT LANGUAGE='JavaScript'>
     window.alert('Ocorreu um erro ao enviar o e-mail, tente novamente mais tarde.')
-    window.location.href='index.php';
+    window.location.href='../';
     </SCRIPT>");}
 } else {
 echo $erros;

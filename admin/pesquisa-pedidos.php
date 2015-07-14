@@ -143,7 +143,7 @@ include 'includes/verificaDatasRelatorio.php';
                     <h1>Pedidos</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li class="active">
                             <strong>Pesquisar Pedidos</strong>
@@ -308,6 +308,6 @@ $(document).ready(function(){
 </html>
 <?php
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

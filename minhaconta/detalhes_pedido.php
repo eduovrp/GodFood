@@ -25,12 +25,12 @@ if ($login->usuarioLogado() == true) {
 <head>
 <meta charset="UTF-8">
 <title>GodFood - Delivery</title>
-<link rel="icon" type="image/png" href="../web/images/plate.png" />
+<link rel="icon" type="image/png" href="../../web/images/plate.png" />
 
-<link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
 <!-- Custom Theme files -->
-<link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -38,14 +38,14 @@ if ($login->usuarioLogado() == true) {
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <!--Animation-->
-<script src="../web/js/wow.min.js"></script>
-<link href="../web/css/animate.css" rel='stylesheet' type='text/css' />
+<script src="../../web/js/wow.min.js"></script>
+<link href="../../web/css/animate.css" rel='stylesheet' type='text/css' />
 <script>
 	new WOW().init();
 </script>
 
-<link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
-<link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="../../web/font-awesome-4.3.0/css/font-awesome.min.css">
+<link href="../../web/css/pace.css" rel='stylesheet' type='text/css' />
 </head>
 <body>
     <!-- header-section-starts -->
@@ -55,7 +55,6 @@ if ($login->usuarioLogado() == true) {
 $current_url = base64_encode($url="//".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 $_SESSION['return_url'] = $current_url;
 
-include 'includes/menu-top.php';
 require '../functions/account.php';
 require '../functions/pedidos.php';
 $data = buscaDatasPedido($_POST['id_pedido']);
@@ -65,8 +64,118 @@ $detalhes = detalhes_pedido($_POST['id_pedido']);
 $itens = lista_itens_pedido($_POST['id_pedido']);
 
 include 'includes/account_verif.php';
-
  ?>
+ <div class="menu-bar">
+			<div class="container">
+				<div class="top-menu">
+					<ul>
+						<li class="active"><a href="../../">Inicio</a></li>|
+						<li><a href="../../termos-de-uso">Termos de Uso</a></li>|
+						<li><a href="../pedidos">Pedidos</a></li>|
+						<li><a href="../../contato/">Contato</a></li>
+						<div class="clearfix"></div>
+					</ul>
+				</div>
+
+<?php
+if ($login->usuarioLogado() == true) {
+?>
+				<div class="login-section">
+					<ul>
+						<li><a href="#">Bem-vindo, <?=$_SESSION['login']?></a></li>
+						<li><a href="../../minhaconta/">Minha Conta</a></li> |
+						<?php
+
+						if(isset($_SESSION['products'])){
+						$total = 0;
+
+					    foreach ($_SESSION["products"] as $cart_itm)
+					    {
+					        $valorTotalProduto = ($cart_itm['valor']+$cart_itm['valor_adicional']+$cart_itm['valor_borda']);
+					        $subtotal = ($valorTotalProduto*$cart_itm["qtd"]);
+					        $total = ($total + $subtotal);
+					    }
+						 ?>
+						<li><a href="../../cart/produtos">
+						<i class="fa fa-shopping-cart"></i>
+						
+						<?php
+						if($_SESSION['compra_minima'] > $total){
+        					$_SESSION['taxa_servico'] = 0;}
+
+							$total = $total + $_SESSION['taxa_servico'] + $_SESSION['taxa'];
+
+						 echo count($_SESSION['products']).' Item  ';
+
+						 echo '[ R$ '. number_format($total,2,",",".").' ]';
+
+						 } else { ?>
+
+						 <li><a href="#" class="popover-bottom" data-toggle="popover"
+						 data-content="Seu carrinho está vazio, por favor insira seu cep para escolher seus produtos.">
+						<i class="fa fa-shopping-cart"></i>
+						
+						<?php
+							echo 'Carrinho Vazio';
+							} ?>
+
+						</a></li> |
+						<li><a href="../../minhaconta/?logout">Sair</a></li>
+						<div class="clearfix"></div>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+<?php } else { ?>
+
+				<div class="login-section">
+					<ul>
+						<li><a href="../../minhaconta/">Login</a>  </li> |
+						<li><a href="../../minhaconta/cadastrar">Registre-se</a> </li> |
+						
+						<?php
+						if(isset($_SESSION['products'])){
+						$total = 0;
+						
+					    foreach ($_SESSION["products"] as $cart_itm)
+					    {
+					        $valorTotalProduto = ($cart_itm['valor']+$cart_itm['valor_adicional']+$cart_itm['valor_borda']);
+					        $subtotal = ($valorTotalProduto*$cart_itm["qtd"]);
+					        $total = ($total + $subtotal);
+					    }
+						 ?>
+						<li><a href="../cart/produtos">
+						<i class="fa fa-shopping-cart"></i>
+						
+						<?php
+						if($_SESSION['compra_minima'] > $total){
+        					$_SESSION['taxa_servico'] = 0;}
+
+							$total = $total + $_SESSION['taxa_servico'] + $_SESSION['taxa'];
+
+						 echo count($_SESSION['products']).' Item  ';
+
+						 echo '[ R$ '. number_format($total,2,",",".").' ]';
+
+						 } else { ?>
+						
+						 <li><a href="#" class="popover-bottom" data-toggle="popover"
+						 data-content="Seu carrinho está vazio, por favor insira seu cep para escolher seus produtos.">
+						<i class="fa fa-shopping-cart"></i>
+						
+						<?php
+							echo 'Carrinho Vazio';
+							} ?>
+						</a></li>
+						<div class="clearfix"></div>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+<?php } ?>
 <div class="wow fadeInLeft" data-wow-delay="0.4s">
 	<div class="container">
 		<div class="login-page">
@@ -75,15 +184,15 @@ include 'includes/account_verif.php';
 				<div class="row">
 				<ul>
 					<h3>PEDIDOS</h3>
-					<li><a href="../minhaconta/">Ultimo pedido</a></li>
-					<li><a href="pedidos.php">Ver todos</a></li>
+					<li><a href="../../minhaconta/">Ultimo pedido</a></li>
+					<li><a href="../pedidos">Ver todos</a></li>
 
 					<h3>ENDEREÇOS</h3>
-					<li><a href="cadastrar_enderecos.php">Cadastrar novo endereço</a></li>
+					<li><a href="../cadastrar-endereco">Cadastrar novo endereço</a></li>
 					<li><a href="#">Meus endereços</a></li>
 
 					<h3>MEU CADASTRO</h3>
-					<li><a href="alterarDadosCadastrais.php">Alterar dados cadastrais</a></li>
+					<li><a href="../alterarDadosCadastrais">Alterar dados cadastrais</a></li>
 				</ul>
 				</div>
 		</div>
@@ -157,7 +266,7 @@ include 'includes/account_verif.php';
 	  	<div class="detalhes-pedido-footer">
 	  		<p>Total dos itens: R$ <?=number_format($total,2,",",".");?></p>
 	  	</div>
-	  	<a href="pedidos.php" class="btn btn-default btn-lg"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+	  	<a href="../pedidos" class="btn btn-default btn-lg"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
 	  	<br><br>
 		</div>
       </div>
@@ -287,7 +396,7 @@ include 'includes/account_verif.php';
 					<div class="col-md-3 contact-section-grid nth-grid wow fadeInRight" data-wow-delay="0.4s">
 						<h4>Inscreva-se na nossa Newsletter</h4>
 						<p>E receba todas as Novidades no seu E-mail</p>
-						<form action="../subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
+						<form action="../../subscribe.php" method="POST" accept-charset="utf-8" onsubmit="return sucesso()">
 						<input type="text" class="text" value="" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 						<input type="submit" value="Cadastrar">
 						</form>
@@ -306,15 +415,15 @@ include 'includes/account_verif.php';
 	</div>
 
 
-	<script src="../web/js/jquery.min.js"></script>
-	<script src="../web/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../web/js/easing.js"></script>
-	<script src="../web/js/pace.min.js"></script>
+	<script src="../../web/js/jquery.min.js"></script>
+	<script src="../../web/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../web/js/easing.js"></script>
+	<script src="../../web/js/pace.min.js"></script>
 </body>
 </html>
 <?php
 } else {
-    header('Location: index.php');
+    header('Location: ../../');
   }
 }
 ?>

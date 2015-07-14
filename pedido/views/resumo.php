@@ -5,7 +5,6 @@ if(!isset($_SESSION))
     session_start();
 }
 
-require 'config.php';
 if(isset($_SESSION['id_restaurante'])){
     if($_SESSION['compra_minima'] <= $_SESSION['grandTotal']){
         if(isset($_POST['endereco']) || isset($_SESSION['endereco'])){
@@ -158,7 +157,7 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
         </div>
 </div>
 <div class="animated fadeInUp">
-        <a href="escolha_produtos.php" class="btn btn-danger btn-lg pull-right"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+        <a href="./produtos" class="btn btn-danger btn-lg pull-right"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
     </div>
 <div class="view-cart-final" align="center">
 <form method="POST" action="confirma-pagamento.php">
@@ -326,13 +325,13 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
 
 <?php 
         } else {
-            header('Location: escolha_produtos.php');
+            header('Location: ./produtos');
         }
     } else {
-        header('Location: escolha_produtos.php');
+        header('Location: ./produtos');
     }
 } else {  
-    header('Location: ../index.php');
+    header('Location: ../');
 } ?>
 </body>
 </html>

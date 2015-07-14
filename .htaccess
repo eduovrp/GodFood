@@ -10,8 +10,44 @@ ErrorDocument 404 /error/404.html
 
 Options -Indexes
 
-RewriteRule ^$                      			index.php [L]
-RewriteRule ^pedido/escolha-restaurante$        cart/busca_restaurantes.php [L]
-RewriteRule ^pedido/produtos$           		cart/escolha_produtos.php [L]
-RewriteRule ^pedido/resumo$           			cart/view_cart.php [L]
-RewriteRule ^pedido/sucesso$          			cart/success.php [L]
+RewriteRule ^$                      			index.php [NC,L]
+RewriteRule ^termos-de-uso$          			termos.php [NC,L]
+
+RewriteRule ^pedido/escolha-restaurante$        pedido/busca_restaurantes.php [NC,L]
+RewriteRule ^pedido/produtos$           		pedido/escolha_produtos.php [NC,L]
+RewriteRule ^pedido/completar-produto$     		pedido/complete-product.php [NC,L]
+RewriteRule ^pedido/resumo$           			pedido/view_cart.php [NC,L]
+RewriteRule ^pedido/sucesso$          			pedido/success.php [NC,L]
+RewriteRule ^pedido/erro$          				pedido/error.php [NC,L]
+
+RewriteRule ^minhaconta/pedidos$          		minhaconta/pedidos.php [NC,L]
+RewriteRule ^minhaconta/cadastrar-endereco$		minhaconta/cadastrar_enderecos.php [NC,L]
+RewriteRule ^minhaconta/cadastrar$          	minhaconta/cadastrar.php [NC,L]
+RewriteRule ^minhaconta/alterarDadosCadastrais$	minhaconta/alterarDadosCadastrais.php [NC,L]
+RewriteRule ^minhaconta/detalhes/pedido$   		minhaconta/detalhes_pedido.php [NC,L]
+RewriteRule ^minhaconta/esqueci-minha-senha$	minhaconta/reset_pass.php [NC,L]
+
+RewriteRule ^admin/$                   			admin/index.php [NC,L]
+RewriteRule ^admin/entrar$             			admin/login.php [NC,L]
+RewriteRule ^admin/adicionais$          		admin/adicionais.php [NC,L]
+RewriteRule ^admin/bordas$          			admin/bordas.php [NC,L]
+RewriteRule ^admin/cadastrar-cidade$          	admin/cadastrar_cidade.php [NC,L]
+RewriteRule ^admin/categorias$          		admin/categorias.php [NC,L]
+RewriteRule ^admin/gerenciar/cidade-entrega$ 	admin/cidade_entrega.php [NC,L]
+RewriteRule ^admin/gerenciar/funcionarios$    	admin/gerenciaFuncionarios.php [NC,L]
+RewriteRule ^admin/gerenciar/restaurantes$    	admin/gerenciaRestaurantes.php [NC,L]
+RewriteRule ^admin/gerenciar/produtos$    		admin/gerenciaRestaurantes.php [NC,L]
+RewriteRule ^admin/detalhes/pedido$          	admin/detalhesPedido.php [NC,L]
+RewriteRule ^admin/pesquisa/pedidos$     		admin/pesquisa-pedidos.php [NC,L]
+RewriteRule ^admin/relatorios/vendas$         	admin/relatorioVendas.php [NC,L]
+RewriteRule ^admin/restaurantes$          		admin/restaurantes.php [NC,L]
+RewriteRule ^admin/pedidos$     	 			admin/timeline.php [NC,L]
+RewriteRule ^admin/alterar/adicional$			admin/alterarDadosAdicional.php [NC,L]
+RewriteRule ^admin/alterar/borda$          		admin/alterarDadosBorda.php [NC,L]
+RewriteRule ^admin/alterar/funcionario$         admin/alterarDadosFuncionario.php [NC,L]
+RewriteRule ^admin/alterar/produto$          	admin/alterarDadosProduto.php [NC,L]
+RewriteRule ^admin/alterar/restaurante$      	admin/alterarDadosRestaurante.php [NC,L]
+
+
+
+

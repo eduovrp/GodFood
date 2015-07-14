@@ -10,14 +10,14 @@ require 'functions/functions.php';
 
 				if($verifica != null ){
 					exclui_categoria($_POST['excluir_categoria'],$_SESSION['restaurante']);
-					header('Location: categorias.php');
+					header('Location: ./categorias');
 				} else{
 					$_SESSION['erros'] = "Essa categoria não pertence ao seu restaurante, por favor, pare de alterar o input type hidden";
-					header('Location: categorias.php');
+					header('Location: ./categorias');
 				}
 			} else{
 				$_SESSION['erros'] = "Restaurante não selecionado, por favor, selecione o restaurante";
-				header('Location: restaurantes.php');
+				header('Location: ./restaurantes');
 			}
 	}
 
@@ -28,11 +28,11 @@ require 'functions/functions.php';
 
 		if($verifica == true){
 			$_SESSION['erros'] = "Você não pode excluir um produto que ja foi vendido, desculpe.";
-			header('Location: produtos.php');
+			header('Location: ./gerenciar/produtos');
 		} else {
 			excluiProduto($_POST['id_produto'],$_SESSION['restaurante']);
 			$_SESSION['msg_sucesso'] = "Produto excluido com sucesso";
-			header('Location: produtos.php');
+			header('Location: ./gerenciar/produtos');
 		}
 	}
 
@@ -43,9 +43,9 @@ require 'functions/functions.php';
 	 		if($_SESSION['id_nivel'] == 5){
 	 			deletaCidadeEntrega($_GET['id_cidade']);
 	 			$_SESSION['msg_sucesso'] = "Cidade excluida com sucesso";
-	 			header('Location: cadastrar_cidade.php');
+	 			header('Location: ./cadastrar-cidade');
 	 		} else {
 	 			$_SESSION['mensagem'] = "Você não tem permissão para acessar essa pagina!";
-	 			header('Location: index.php');
+	 			header('Location: ./');
 	 		}
 	 	}

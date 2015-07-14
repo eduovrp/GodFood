@@ -143,7 +143,7 @@ $niveis = buscaNiveisUsuarios();
                     <h1>Gerenciar Funcionarios</h1>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="index.php">Inicio</a>
+                            <a href="./">Inicio</a>
                         </li>
                         <li>
                             Administrar
@@ -313,7 +313,7 @@ $niveis = buscaNiveisUsuarios();
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
 
-      <form action="alterarDadosFuncionario.php" method="POST" id="alterarDadosFuncionario">
+      <form action="./alterar/funcionario" method="POST" id="alterarDadosFuncionario">
         <input type="hidden" name="id_funcionario">
       </form>
 
@@ -330,9 +330,9 @@ $niveis = buscaNiveisUsuarios();
 <?php
   } else {
     $_SESSION['mensagem'] = "Você precisa escolher um restaurante para gerenciar seus funcionarios";
-    header('Location: restaurantes.php');
+    header('Location: ./restaurantes');
   }
 } else {
-    header('Location: login.php');
+    header('Location: ./entrar');
 }
  ?>

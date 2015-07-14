@@ -96,7 +96,7 @@ if($res['status'] == 2 || $res['status'] == 3 || $res['status'] == 9){
 	echo $msg;
 ?>
 
-      <form action="detalhesPedido.php" method="POST" id="detalhesPedido">
+      <form action="./detalhes/pedido" method="POST" id="detalhesPedido">
         <input type="hidden" name="id_pedido">
       </form>
 

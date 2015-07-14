@@ -79,7 +79,7 @@ require '../functions/registro.php';
 						<label for="email">INSIRA SEU EMAIL *</label>
 						<input type="text" name="email" id="email" required>
 						<br><br>
-						<a href="index.php" class="btn btn-default btn-lg" title="voltar">Voltar</a>
+						<a href="../minhaconta/" class="btn btn-default btn-lg" title="voltar">Voltar</a>
 						<button type="submit" tabindex="10" class="ladda-button btn btn-cadastrar" data-size="m" data-style="zoom-in"><i class="fa fa-envelope fa-1x"></i> Enviar</button>
 					</div>
 					</div>
