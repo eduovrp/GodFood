@@ -1,0 +1,22 @@
+.resumo{
+	min-height: 400px;
+	padding-top: 40px;
+}
+.section-resumo{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: #f9f5f6;
+	border-bottom: 5px solid #DDD;
+	padding: 30px 30px 10px 30px;
+}
+.resumo table{
+	background: #fff;
+	margin-top: 15px;
+	font-size: 14px;
+}
+.section-resumo p{
+	margin-top: 20px;
+	padding: 15px;
+	font-size: 16px;
+	background: #fff;
+}

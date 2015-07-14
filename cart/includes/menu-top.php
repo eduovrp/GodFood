@@ -13,6 +13,12 @@
 <?php
 require_once '../minhaconta/classes/Login.php';
 
+if(isset($_SESSION["return_url"])){
+	$return_url = base64_decode($_SESSION["return_url"]);
+} else {
+	$return_url = '../';
+}
+
 $login = new Login();
 
 if ($login->usuarioLogado() == true) {
@@ -33,7 +39,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="view_cart.php">
+						<li><a href="escolha_produtos.php">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php
@@ -57,7 +63,7 @@ if ($login->usuarioLogado() == true) {
 							} ?>
 
 						</a></li> |
-						<li><a href="../minhaconta/index.php?logout">Sair</a></li>
+						<li><a href="<?=$return_url?>?logout">Sair</a></li>
 						<div class="clearfix"></div>
 					</ul>
 				</div>
@@ -83,7 +89,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="view_cart.php">
+						<li><a href="escolha_produtos.php">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php

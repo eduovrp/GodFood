@@ -33,7 +33,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="cart/view_cart.php">
+						<li><a href="cart/escolha_produtos.php">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php
@@ -83,7 +83,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="cart/view_cart.php">
+						<li><a href="cart/escolha_produtos.php">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php

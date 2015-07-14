@@ -83,6 +83,7 @@ public function usuarioLogado()
             && isset($_SESSION['usr_ativo']) AND $_SESSION['usr_ativo'] == 1
             && isset($_SESSION['id_nivel']) AND $_SESSION['id_nivel'] == 5) {
             return true;
+            $_SESSION['msg_sucesso'] = "Logado com Sucesso.";
         } else if (isset($_SESSION['id_nivel']) AND $_SESSION['id_nivel'] < 5) {
             $_SESSION['mensagem'] = " Você não tem permissão para acessar esta pagina.";
         } else {

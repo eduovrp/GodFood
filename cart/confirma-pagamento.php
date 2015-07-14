@@ -52,7 +52,7 @@
 
     $id_cidade_entrega = $cidade_entrega['id_cidade_entrega'];
 
-    	$endereco = select_endereco_entrega(14);
+    	$endereco = select_endereco_entrega($_SESSION['endereco']);
 
 		$endereco_entrega = $endereco['logradouro'].', '.$endereco['numero'].' - '.
 	        $endereco['bairro'].' / '. $endereco['cidade'].' - '.$endereco['estado'];
@@ -73,11 +73,9 @@
 	tarifas($_SESSION['id_restaurante'],$id_pedido,$vPedido,$taxa_pgto,$taxa_adm,$HandalingCost,$ShippinCost);
 		
 		unset($_SESSION["products"]);
-
-		$lastid = $_SESSION['last_id'];
-		update_pedido_sucess($lastid);
-		updateStatusTarifa($lastid);
+		
 		unsets();
+
 		$_SESSION['sucesso_pgto'] = 'Seu pagamento foi aceito e seu pedido foi encaminhado ao restaurante responsavel.';
 		header('Location: success.php');
 

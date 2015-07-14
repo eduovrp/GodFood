@@ -50,7 +50,7 @@ if(isset($_SESSION['return_url'])){
     unset($_SESSION['return_url']);
 
 }else{
-    $return_url = "index.php";
+    $return_url = "../minhaconta/";
 }
  ?>
 	<!-- header-section-ends -->

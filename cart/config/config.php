@@ -12,10 +12,10 @@
  *          by the way, it's bad style to use "root", but for development it will work.
  * DB_PASS: the password of the above user
  */
-define("DB_HOST", "localhost");
+define("DB_HOST", "mysql.hostinger.com.br");
 define("DB_NAME", "u288492055_food");
-define("DB_USER", "root");
-define("DB_PASS", "");
+define("DB_USER", "u288492055_admin");
+define("DB_PASS", "3eomu7hl69");
 
 /**
  * Configuration for: Cookies

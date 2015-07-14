@@ -53,6 +53,9 @@ h4.panel-title{
 .shopping-cart input[type="button"]:hover{
 	background:#17987e;
 }
+.shopping-cart input[type="button"]:focus{
+	background:#17987e;
+}
 .shopping-cart .taxa p{
 	padding-top: 4px;
 	padding-bottom: 4px;
@@ -287,12 +290,9 @@ h4.panel-title{
 	padding: 8px;
 	margin: -10px -10px 5px;
 }
-
-.view-cart-final {
+.view-cart-final{
 	width: 100%;
-	float: left;
-	background: #FFF;
-	padding: 20px;
+	margin-left: 10%;
 }
 .view-cart-final input[type="submit"]{
 	outline: none;
@@ -328,6 +328,13 @@ h4.panel-title{
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left: 25px; 
+	margin-bottom: 15px;
+}
+.radio h3{
+	font-size: 20px;
+}
+.radio h4{
+	font-size: 17px;
 }
 .enderecos h1{
 	font-family: 'Lobster Two', cursive;

@@ -43,14 +43,7 @@ if(!isset($_SESSION))
 	<div class="header">
 <?php
 include 'includes/menu-top.php';
-if(isset($_SESSION['return_url'])){
 
-    $return_url = base64_decode($_SESSION["return_url"]);
-    unset($_SESSION['return_url']);
-
-}else{
-    $return_url = "index.php";
-}
  ?>
 	<!-- header-section-ends -->
 	<!-- content-section-starts -->
@@ -85,7 +78,7 @@ include 'mensagens.php';
 			   <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 			  	<h3>INFORMAÇÕES DE LOGIN</h3>
 				<p>Se você ja possui uma conta, insira seu usuario e senha para acessar sua conta</p>
-				<form action="<?=$return_url?>" method="POST">
+				<form action="view_cart.php" method="POST">
 				  <div>
 					<label for="login">Usuario</label> <br>
 					<input type="text" name="login" id="login" required>

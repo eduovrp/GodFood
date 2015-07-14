@@ -243,3 +243,21 @@ try{
     echo $e->getMessage();
 	}
 }
+
+function buscaDadosRestaurante($id_restaurante)
+{
+	global $pdo;
+try{
+	$sql = "SELECT tipo, tempo_entrega, nome_fantasia, fone, cidade FROM restaurantes
+				WHERE id_restaurante = :id_restaurante";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam(':id_restaurante', $id_restaurante);
+	$cmd->execute();
+
+	return $cmd->fetch();
+
+}catch(PDOException $e){
+    echo $e->getMessage();
+	}
+}

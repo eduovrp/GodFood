@@ -74,7 +74,7 @@ if($qtd <= 0){
 		if(isset($_SESSION["products"])) //if we have the session
 		{
 			$found = false; //set found item to false
-
+			$total = 0;
 			foreach ($_SESSION["products"] as $cart_itm) //loop through session array
 			{
 				if($cart_itm["code"] == $codigo){ //the item exist in array

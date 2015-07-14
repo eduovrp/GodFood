@@ -9,6 +9,9 @@ if(!isset($_SESSION))
 {
     session_start();
 }
+$current_url = base64_encode($url="//".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+$_SESSION['return_url'] = $current_url;
+
 if(!isset($_SESSION['doisSabores'])){ ?>
 <!DOCTYPE html>
 <html>
@@ -47,17 +50,12 @@ if(!isset($_SESSION['doisSabores'])){ ?>
     <div class="header">
 
 <?php
-if(!isset($_SESSION))
- {
-   session_start();
- }
-include 'includes/menu-top.php';
 
+include 'includes/menu-top.php';
 require 'config.php';
 require '../functions/pedidos.php';
 require '../functions/restaurantes.php';
 
-$current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 if(isset($_POST['id_restaurante'])){
 
 if(isset($_SESSION['id_restaurante'])){
@@ -90,10 +88,10 @@ if(isset($id_restaurante)){
     <br>
 <div class="alert alert-danger alert-dismissible" role="alert">
       <h4>Você está em um ambiente de teste, nenhum pedido será registrado oficialmente nem entregue, caso encontre algum problema, bug ou erro, por favor, entre em contato conosco. Agradecemos sua compreensão.</h4>
-    </div>
-     <div class="products">
-
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!-- Collapse das Categorias -->
+</div>
+<?php include 'mensagens.php'; ?>
+<div class="products">
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> <!-- Collapse das Categorias -->
     <?php foreach ($categorias as $cat): ?>
 <!-- Header das Categorias -->
   <div class="panel panel-default">
@@ -272,7 +270,8 @@ if(isset($id_restaurante)){
 
             Valor Minimo: R$ <?=number_format($restaurante['compra_minima'],2,",",".");?> <br><br>
 
-          <?php } $grandTotal = $total + $restaurante['taxa'] + $restaurante['taxa_servico']; ?>
+          <?php } $grandTotal = $total + $restaurante['taxa'] + $restaurante['taxa_servico']; 
+                $_SESSION['grandTotal'] = $grandTotal;?>
 
                 <strong>Sub-total: R$ <?=number_format($total,2,",",".");?> <br></strong>
                 Taxa de entrega: R$ <?=number_format($restaurante['taxa'],2,",",".");?> <br>
@@ -294,7 +293,7 @@ if(isset($id_restaurante)){
 
         <?php } else { ?>
         <br>
-            <a href="view_cart.php" class="btn btn-lg btn-success btn-block">Ver resumo do pedido <i class="fa fa-check"></i></a>
+            <a href="#" data-toggle="modal" data-target="#enderecos" class="btn btn-lg btn-success btn-block">Concluir Pedido <i class="fa fa-check"></i></a>
         <?php } ?>
 
     <?php }else{ ?>
@@ -306,6 +305,92 @@ if(isset($id_restaurante)){
     </div>
   </div>
 </div>
+<?php if ($login->usuarioLogado() == false) { ?>
+
+                            <div class="modal inmodal" id="enderecos" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                <div class="modal-content animated bounceInDown">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <i class="fa fa-lock modal-icon"></i>
+                                            <h4 class="modal-title"><strong>Bem-vindo!</strong> Faça seu login</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                        <form action="escolha_produtos.php" method="POST">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="login">Usuario</label> 
+                                                    <input type="text" name="login" id="login" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="senha">Senha</label> 
+                                                    <input type="password" name="senha" id="senha" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="ladda-button btn btn-primary btn-mobile btn-block" data-color="mint" data-size="s" data-style="zoom-in">Entrar <i class="fa fa-check fa-1x"></i></button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <h4><a href="../minhaconta/cadastrar.php"> Cadastre-se</a></h4>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+<?php } else { ?>
+<div class="modal inmodal" id="enderecos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <i class="fa fa-home modal-icon"></i>
+                        <h4 class="modal-title">Selecione o Endereço para Entrega</h4>
+                        <small class="font-bold"><strong>Atenção:</strong> O(s) endereço(s) listado(s) abaixo correspondem ao CEP <strong><?=$_SESSION['cep']?>.</strong> Caso não esteja visualizando algum endereço, verifique se ele não esta cadastrado em outro CEP. </small>
+                </div>
+                <div class="modal-body">
+                <form method="POST" action="view_cart.php">
+                    <?php
+                         $enderecos = mostra_enderecos($_SESSION['id_usuario']);
+                         foreach($enderecos as $endereco):
+                            if($endereco['cep'] == $_SESSION['cep']){
+                         ?>
+                        <div class="radio">
+                        <label>
+                            <h3>
+                            <input type="radio" name="endereco" class="i-checks" value="<?= $endereco['id_endereco']; ?>" id="<?= $endereco['id_endereco']; ?>" required>
+                            <?php
+                            echo $endereco['logradouro'].', '.$endereco['numero'].' - '.$endereco['bairro'];
+                            echo "<h4 class='padding-left'>".$endereco['cidade']." - ".$endereco['estado']." - ".$endereco['cep']."</h4>";
+
+                            if(strlen($endereco['complemento']) > 2 || strlen($endereco['referencia']) > 2){
+                                echo "<h5 class='padding-left'>".$endereco['complemento']." - ".$endereco['referencia']."</h5>";
+                            }
+                            ?>
+                            </h3>
+                        </label>
+                        </div>
+                    <?php }
+                     endforeach; ?>
+                <div class="pull-right">
+                    <a href="../minhaconta/cadastrar_enderecos.php" class="btn btn-default btn-lg">Cadastrar Novo Endereço <i class="fa fa-plus"></i></a>
+                </div>
+                <br><br>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Fechar</button>
+                <button type="submit" class="ladda-button btn btn-primary btn-mobile" data-size="s" data-style="zoom-in">Prosseguir <i class="fa fa-check fa-1x"></i></button>
+            </form>
+             </div>
+          </div>
+      </div>
+       <?php } ?>  
+ </div>   
+           
 <div class="clearfix"> </div>
 <br>
     <div class="contact-section" id="contact">
@@ -467,7 +552,7 @@ if(isset($id_restaurante)){
 
     <script type="text/javascript">
                 // Bind normal buttons
-            Ladda.bind( 'button[type=submit]', { timeout: 15000 } );
+            Ladda.bind( 'button[type=submit]', { timeout: 10000 } );
 </script>
 
     <!-- iCheck -->

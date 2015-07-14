@@ -1,2 +1,2 @@
 <?php
-header('Location: view_cart.php');
+header('Location: escolha_produtos.php');

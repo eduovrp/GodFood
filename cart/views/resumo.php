@@ -7,6 +7,9 @@ if(!isset($_SESSION))
 
 require 'config.php';
 if(isset($_SESSION['id_restaurante'])){
+    if($_SESSION['compra_minima'] <= $_SESSION['grandTotal']){
+        if(isset($_POST['endereco']) || isset($_SESSION['endereco'])){
+            $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 ?>
 <!--
 Author: W3layouts
@@ -26,6 +29,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Shopping Cart Custon CSS -->
 <link href="style/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="style/resumo.css" rel="stylesheet" type="text/css" media="all" />
+
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -35,15 +40,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--Animation-->
 <script src="../web/js/wow.min.js"></script>
 <link href="../web/css/animate.css" rel='stylesheet' type='text/css' />
-<link href="inspinia/css/iCheck/custom.css" rel="stylesheet">
-<script>
-    new WOW().init();
-</script>
+<script> new WOW().init(); </script>
 
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
-
-<link rel="stylesheet" href="inspinia/css/ladda.min.css">
-
 <link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
 </head>
 <body>
@@ -53,185 +52,119 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
 include 'includes/menu-top.php';
 include 'mensagens.php';
+require '../functions/pedidos.php';
+require '../functions/restaurantes.php';
+
+if(isset($_POST['endereco'])){
+    $_SESSION['endereco'] = $_POST['endereco'];
+}
+
+$rest = buscaDadosRestaurante($_SESSION['id_restaurante']);
+$endereco = select_endereco_entrega($_SESSION['endereco']);
 ?>
-
- <div class="alert alert-danger alert-dismissible" role="alert">
-      <h4>Você está em um ambiente de teste, nenhum pedido será registrado oficialmente nem entregue, caso encontre algum problema, bug ou erro, por favor, entre em contato conosco. Agradecemos sua compreensão. <br> <br>
-Para pagamentos no PayPal, utilize nossa conta teste:
-<br><br> <strong>
-Email: teste@godfood.com.br <br>
-Senha: 12345678 </strong></h4>
-    </div>
-<div id="products-wrapper">
- <br>
- <div class="animated fadeInLeft">
- 	<div class="view-cart">
-  	<h1 align="center">Resumo do Pedido</h1>
-  		<br>
- 	<?php
-	require '../functions/pedidos.php';
-	require '../functions/restaurantes.php';
-
-	$restaurante = mostra_infos_restaurante($_SESSION['id_restaurante'],$_SESSION['cep']);
-
-    $current_url = base64_encode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-
-	if(isset($_SESSION["products"]))
-    {
-	    $total = 0;
-		echo '<ul>';
-		$cart_items = 0;
-		foreach ($_SESSION["products"] as $cart_itm) :
-
-        if(isset($cart_itm['doisSabor']) && $cart_itm['doisSabor']=='sim'){ 
-            $categoria = buscaCategoria2Sabor($cart_itm['id_categoria']);
-            $produto1 = buscaDesc($cart_itm['codigo1']);
-            $produto2 = buscaDesc($cart_itm['codigo2']);
-            ?>
-
-            <li class="cart-itm">
-                <div class="product-info">
-                    <h3><?=$cart_itm['name']?> (<?= $categoria['nome'];  ?>)</h3>
-                    <span class="remove-itm"><a href="cart_update.php?removep=<?=$cart_itm['code']?>&return_url=<?=$current_url?>" class="btn btn-default btn-sm"><i class="fa fa-trash-o fa-1x"></i></a></span>
-                        <h4>Quantidade : <?=$cart_itm["qtd"]?></h4>
-                        <h4>1/2 <?=$produto1['descricao']?></h4>
-                        <h4>1/2 <?=$produto2['descricao']?></h4>
-                        <h4><strong>Adicional : <?=$cart_itm['adicional'];?></strong></h4>
-                        <h4><strong>Borda Recheada : <?=$cart_itm['borda'];?></strong></h4>
-
-            <?php if(strlen($cart_itm['obs'])>5){ ?>
-                        <h4>Obs: <?=$cart_itm['obs'];?>;</h4>
-            <?php } $valorTotalProduto = ($cart_itm['valor']+$cart_itm['valor_adicional']+$cart_itm['valor_borda']); ?>
-
-                    <div class="unitario">Valor Unit: R$ <?=number_format($valorTotalProduto,2,",",".");?></div>
-                </div>
-        <?php
-            $subtotal = ($valorTotalProduto*$cart_itm["qtd"]);
-     
-        ?>
-
-            <div class="p-price">R$ <?=number_format($subtotal,2,",",".")?></div><br>
-            </li>
-
-        <?php
-            $total = ($total + $subtotal);
-
-        } else{
-
-           	$product_code = $cart_itm["code"];
-			$produtos = select_resumo_pedido($product_code);
-			$categoria = mostra_categoria($product_code);
-		?>
-		    <li class="cart-itm">
-            	<div class="product-info">
-					<h3><?=$produtos['nome']?> (<?= $categoria['categoria'];  ?>)</h3>
-					<span class="remove-itm"><a href="cart_update.php?removep=<?=$cart_itm['code']?>&return_url=<?=$current_url?>" class="btn btn-default btn-sm"><i class="fa fa-trash-o fa-1x"></i></a></span>
-            			<h4>Quantidade : <?=$cart_itm["qtd"]?></h4>
-               		<?php if(strlen($produtos['descricao']) > 3){ ?>
-            			<h4><?=$produtos['descricao']?></h4>
-            		<?php } ?>
-            			<h4><strong>Adicional : <?=$cart_itm['adicional'];?></strong></h4>
-            			<h4><strong>Borda Recheada : <?=$cart_itm['borda'];?></strong></h4>
-
-            <?php if(strlen($cart_itm['obs'])>5){ ?>
-        				<h4>Obs: <?=$cart_itm['obs'];?>;</h4>
-            <?php } $valorTotalProduto = ($cart_itm['valor']+$cart_itm['valor_adicional']+$cart_itm['valor_borda']); ?>
-
-            		<div class="unitario">Valor Unit: R$ <?=number_format($valorTotalProduto,2,",",".");?></div>
-				</div>
-        <?php
-			$subtotal = ($valorTotalProduto*$cart_itm["qtd"]);
-	 
-		?>
-
-			<div class="p-price">R$ <?=number_format($subtotal,2,",",".")?></div><br>
-			</li>
-
-		<?php
-			$total = ($total + $subtotal);
-
-        }
-        endforeach;
-
-        $_SESSION['total'] = $total;
-        ?>
-
-    	</ul>
-    	<div>
-	<div class="taxas">
-      <p>
-      <?php if($restaurante['compra_minima'] > $total){
-        $restaurante['taxa_servico'] = 0; ?>
-
-        Valor Minimo: R$ <?=number_format($restaurante['compra_minima'],2,",",".");?> <br><br>
-
-      <?php } $grandTotal = $total + $restaurante['taxa'] + $restaurante['taxa_servico']; 
-             $_SESSION['grandTotal'] = $grandTotal; ?>
-
-            <strong>Sub-total: R$ <?=number_format($total,2,",",".");?> <br></strong>
-            Taxa de entrega: R$ <?=number_format($restaurante['taxa'],2,",",".");?> <br>
-
-            <?php if($restaurante['compra_minima'] < $total){ ?>
-            Serviços: R$ <?=number_format($restaurante['taxa_servico'],2,",",".");?> <br>
-        </p>
-            <?php } ?>
-
-            <p><strong>Total: R$ <?=number_format($grandTotal,2,",",".");?></strong> <br></p>
-       
-    </div>
-		<br><br><br>
-		<a href="escolha_produtos.php" class="btn btn-danger btn-lg"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
-		</div>
-<?php
-    }else{
-	echo '<h2> :( Seu carrinho está vazio</h2>';
-	echo '<br><br><br>';
-	echo '<a href="escolha_produtos.php" class="btn btn-danger btn-lg"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>';
-	}
-
-    ?>
-    </div>
-</div>
+ <div class="container">
+    <div class="resumo">
+        <h1>Efetuar Pagamento</h1>
 <div class="animated fadeInRight">
-  <div class="enderecos">
-	<h1 align="center">Selecione o Endereço para Entrega</h1>
-    <br>
-	<?php
-	 $enderecos = mostra_enderecos($_SESSION['id_usuario']);
-	 foreach($enderecos as $endereco):
-	 	if($endereco['cep'] == $_SESSION['cep']){
-	 ?>
+        <div class="section-resumo">
+            <h3>Resumo do Pedido</h3>
+            <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Nome do Produto</th>
+            <th>Qtd</th>
+            <th>Adicional</th>
+            <th>Borda Recheada</th>
+            <th>Subtotal</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+         <?php
+         $total = 0;
+    if(isset($_SESSION['products'])){
+        foreach($_SESSION['products'] as $cart_itm): 
+            $categoria = buscaCategoria2Sabor($cart_itm['id_categoria']);
+            ?>
+          <tr>
+            <td><strong><?=$cart_itm['name']?> (<?= $categoria['nome'];  ?>)</strong></td>
+            <td><?=$cart_itm['qtd'];?></td>
+            <td><?=$cart_itm['adicional'];?></td>
+            <td><?=$cart_itm['borda'];?></td>
 
-	<div class="radio">
-  	<label>
-  		<h3>
-	    <input type="radio" name="endereco" class="i-checks" value="<?= $endereco['id_endereco']; ?>" id="<?= $endereco['id_endereco']; ?>" required>
-		<?php
-		echo $endereco['logradouro'].', '.$endereco['numero'].' - '.$endereco['bairro'];
-		echo "<h4 class='padding-left'>".$endereco['cidade']." - ".$endereco['estado']." - ".$endereco['cep']."</h4>";
+        <?php $valorTotalProduto = ($cart_itm['valor']+$cart_itm['valor_adicional']+$cart_itm['valor_borda']); 
+              $subtotal = $valorTotalProduto*$cart_itm["qtd"];?>
 
-		if(strlen($endereco['complemento']) > 2 || strlen($endereco['referencia']) > 2){
-			echo "<h5 class='padding-left'>".$endereco['complemento']." - ".$endereco['referencia']."</h5>";
-		}
-		?>
-		</h3>
-  	</label>
+            <td>R$ <?=number_format($subtotal,2,",",".");?></td>
+            <td><a href="cart_update.php?removep=<?=$cart_itm['code']?>&return_url=<?=$current_url?>"><i class="fa fa-trash-o fa-1x"></i> Excluir</a></td>
+        <?php $total = $total + $subtotal; ?>
+          </tr>
+        <?php endforeach;
+    }   
+    if($total < $_SESSION['compra_minima']){
+        header( "refresh:0.1;url=escolha_produtos.php" ); 
+    }
+         ?>
+         <tr>
+            <td>Serviço + Taxa de Entrega</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>R$ <?=number_format(($_SESSION['taxa_servico']+$_SESSION['taxa']),2,",",".");?></td>
+            <td></td>
+        </tr>
+        <?php $grandTotal = $total + $_SESSION['taxa_servico'] + $_SESSION['taxa'];
+        $_SESSION['grandTotal'] = $grandTotal; ?>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>Total</strong></td>
+            <td>R$ <?=number_format($grandTotal,2,",",".");?></td>
+            <td></td>
+        </tr>
+        </tbody>
+      </table>
+        </div>
 </div>
-<?php }
- endforeach; ?>
-		<div align="right">
-		<br><br>
-				<a href="../minhaconta/cadastrar_enderecos.php" class="btn btn-default btn-lg">Cadastrar Novo Endereço <i class="fa fa-home"></i></a>
-		</div>
-	</div>
-  </div>
+<div class="animated fadeInLeft">
+        <div class="section-resumo">
+            <h3>Endereço para Entrega</h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><strong>Endereço:</strong> <?= $endereco['logradouro'].', '.$endereco['numero'].' - '.$endereco['bairro']?></td>
+                        <td><strong>Complemento/Referencia:</strong> <?=$endereco['complemento'].' / '.$endereco['referencia']?></td>
+                        <td><strong>Cidade:</strong> <?=$endereco['cidade'].' - '.$endereco['estado'];?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 </div>
+<div class="animated fadeInDown">
+        <div class="section-resumo">
+            <h3>Dados do Restaurante</h3>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><strong><?=$rest['nome_fantasia']?></strong> </td>
+                        <td><strong>Tipo:</strong> <?=$rest['tipo']?></td>
+                        <td><strong>Tempo de Entrega:</strong> <?=$rest['tempo_entrega']?></td>
+                        <td><strong>Contato:</strong> <?=$rest['fone']?></td>
+                        <td><strong>Cidade:</strong> <?=$rest['cidade']?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
+<div class="animated fadeInUp">
+        <a href="escolha_produtos.php" class="btn btn-danger btn-lg pull-right"><i class="fa fa-arrow-left fa-1x"></i> Voltar</a>
+    </div>
 <div class="view-cart-final" align="center">
-
 <form method="POST" action="confirma-pagamento.php">
     <script type="text/javascript"
         src="https://pagar.me/assets/checkout/checkout.js"
-        data-button-text="Confirmar Pedido e Seguir com o Pagamento"
+        data-button-text="Pagar com cartão de crédito"
         data-ui-color="#9a2529"
         data-payment-methods="credit_card"
         data-customer-data="false"
@@ -240,7 +173,8 @@ Senha: 12345678 </strong></h4>
     </script>
 </form>
 </div>
-
+</div>     
+</div>             
 <div class="clearfix"> </div>
 <br>
     <div class="contact-section" id="contact">
@@ -388,40 +322,16 @@ Senha: 12345678 </strong></h4>
     <script src="../web/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../web/js/easing.js"></script>
 
-    <script src="inspinia/js/plugins/ladda/spin.js"></script>
-    <script src="inspinia/js/plugins/ladda/ladda.js"></script>
-
     <script src="../web/js/pace.min.js"></script>
 
-        <!-- iCheck -->
-    <script src="js/icheck.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('.i-checks').iCheck({
-                    checkboxClass: 'icheckbox_square-green',
-                    radioClass: 'iradio_square-green',
-                });
-            });
-        </script>
-
-    <script type="text/javascript">
-        // Bind progress buttons and simulate loading progress
-            Ladda.bind( 'button[type=submit]', {
-                callback: function( instance ) {
-                    var progress = 0;
-                    var interval = setInterval( function() {
-                        progress = Math.min( progress + Math.random() * 0.1, 1 );
-                        instance.setProgress( progress );
-
-                        if( progress === 1 ) {
-                            instance.stop();
-                            clearInterval( interval );
-                        }
-                    }, 500 );
-                }
-            } );
-</script>
-<?php } else {  
+<?php 
+        } else {
+            header('Location: escolha_produtos.php');
+        }
+    } else {
+        header('Location: escolha_produtos.php');
+    }
+} else {  
     header('Location: ../index.php');
 } ?>
 </body>
