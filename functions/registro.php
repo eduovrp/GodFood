@@ -19,7 +19,6 @@ function sendVerificationEmail($id_usuario, $email, $hash_ativar_conta)
 {
         $mail = new PHPMailer;
 
-
         if (EMAIL_USE_SMTP) {
 
             $mail->IsSMTP();
@@ -47,32 +46,37 @@ function sendVerificationEmail($id_usuario, $email, $hash_ativar_conta)
         $link = EMAIL_VERIFICATION_URL.'?id='.urlencode($id_usuario).'&verification_code='.urlencode($hash_ativar_conta);
 
         // the link to your register.php, please set this value in config/email_verification.php
-  $mail->Body = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<head></head>
-<body style="-webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; background: #f6f6f6; box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; height: 100%; line-height: 1.6; margin: 0; padding: 0; width: 100% !important" bgcolor="#f6f6f6">
-<style type="text/css">
+  $mail->Body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml" style="box-sizing: border-box; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0">
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body itemscope="" itemtype="http://schema.org/EmailMessage" style="-webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; background: #f6f6f6; box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; height: 100%; line-height: 1.6em; margin: 0; width: 100% !important" bgcolor="#f6f6f6"><style type="text/css">
 img {
 max-width: 100%;
 }
 body {
--webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6;
+-webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em;
 }
 body {
 background-color: #f6f6f6;
 }
 @media only screen and (max-width: 640px) {
+  body {
+    padding: 0 !important;
+  }
   h1 {
-    font-weight: 600 !important; margin: 20px 0 5px !important;
+    font-weight: 800 !important; margin: 20px 0 5px !important; font-size: 26px !important;
   }
   h2 {
-    font-weight: 600 !important; margin: 20px 0 5px !important;
+    font-weight: 800 !important; margin: 20px 0 5px !important;
   }
   h3 {
-    font-weight: 600 !important; margin: 20px 0 5px !important;
+    font-weight: 800 !important; margin: 20px 0 5px !important;
   }
   h4 {
-    font-weight: 600 !important; margin: 20px 0 5px !important;
+    font-weight: 800 !important; margin: 20px 0 5px !important;
   }
   h1 {
     font-size: 22px !important;
@@ -84,10 +88,10 @@ background-color: #f6f6f6;
     font-size: 16px !important;
   }
   .container {
-    width: 100% !important;
+    padding: 0 !important; width: 100% !important;
   }
   .content {
-    padding: 10px !important;
+    padding: 0 !important;
   }
   .content-wrap {
     padding: 10px !important;
@@ -97,55 +101,39 @@ background-color: #f6f6f6;
   }
 }
 </style>
-<table class="body-wrap" style="background: #f6f6f6; box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0; width: 100%" bgcolor="#f6f6f6"><tr style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<td style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0; vertical-align: top" valign="top"></td>
-        <td class="container" width="600" style="box-sizing: border-box; clear: both !important; display: block !important; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0 auto; max-width: 600px !important; padding: 0; vertical-align: top" valign="top">
-            <div class="content" style="box-sizing: border-box; display: block; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0 auto; max-width: 600px; padding: 20px">
-                <table class="main" width="100%" cellpadding="0" cellspacing="0" style="background: #fff; border-radius: 3px; border: 1px solid #e9e9e9; box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0" bgcolor="#fff"><tr style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<td class="content-wrap" style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 20px; vertical-align: top" valign="top">
-                            <table cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<tr style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<td style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0; vertical-align: top" valign="top">
-                                        <img class="img-responsive" src="https://www.godfood.com.br/minhaconta/css/email/img/header.jpg" style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; max-width: 100%; padding: 0">
-</td>
-                                </tr>
-<tr style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<td class="content-block" style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0 0 20px; vertical-align: top" valign="top">
-                                        <h3 style="box-sizing: border-box; color: #000; font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; font-size: 18px; font-weight: 400; line-height: 1.2; margin: 40px 0 0; padding: 0">Bem-vindo ao GodFood</h3>
-                                    </td>
-                                </tr>
-<tr style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<td class="content-block" style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0 0 20px; vertical-align: top" valign="top">
-                                        Obrigado por fazer parte do nosso site, esperamos que voc&ecirc; seja muito bem atendido pelos nossos restaurantes parceiros.  
-                                    </td>
-                                </tr>
-<tr style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<td class="content-block" style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0 0 20px; vertical-align: top" valign="top">
-                                        Para que possa desfrutar de todos os nossos servi&ccedil;os, por favor, confirme sua conta clicando no bot&atilde;o abaixo.
-                                    </td>
-                                </tr>
-<tr style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<td class="content-block aligncenter" style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0 0 20px; text-align: center; vertical-align: top" align="center" valign="top">
-                                        <a href="'.$link.'" class="btn-primary" style="background: #9a2529; border-color: #9a2529; border-radius: 5px; border-style: solid; border-width: 5px 10px; box-sizing: border-box; color: #FFF; cursor: pointer; display: inline-block; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; font-weight: bold; line-height: 2; margin: 0; padding: 0; text-align: center; text-decoration: none; text-transform: capitalize">CONFIRME SUA CONTA</a>
-                                    </td>
-                                </tr>
-</table>
-</td>
-                    </tr></table>
-<div class="footer" style="box-sizing: border-box; clear: both; color: #999; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 20px; width: 100%">
-                    <table width="100%" style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0"><tr style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0">
-<td class="aligncenter content-block" style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 12px; margin: 0; padding: 0 0 20px; text-align: center; vertical-align: top" align="center" valign="top">N&atilde;o deixe de nos acompanhar no <a href="https://facebook.com/godfooddelivery" target="_blank" style="box-sizing: border-box; color: #999; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 12px; margin: 0; padding: 0; text-decoration: underline">Facebook clicando aqui</a>
-</td>
-                        </tr></table>
-</div>
-</div>
-        </td>
-        <td style="box-sizing: border-box; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; font-size: 14px; margin: 0; padding: 0; vertical-align: top" valign="top"></td>
-    </tr></table>
-</body>
-</html>
-';
 
+<table class="body-wrap" style="background: #f6f6f6; box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0; width: 100%" bgcolor="#f6f6f6"><tr style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><td style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0; vertical-align: top" valign="top"></td>
+        <td class="container" width="600" style="box-sizing: border-box; clear: both !important; display: block !important; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0 auto; max-width: 600px !important; vertical-align: top" valign="top">
+            <div class="content" style="box-sizing: border-box; display: block; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0 auto; max-width: 600px; padding: 20px">
+                <table class="main" width="100%" cellpadding="0" cellspacing="0" style="background: #fff; border-radius: 3px; border: 1px solid #e9e9e9; box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0" bgcolor="#fff"><tr style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><td class="alert alert-warning" style="background: #9A2526; border-radius: 3px 3px 0 0; box-sizing: border-box; color: #fff; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 16px; font-weight: 500; margin: 0; padding: 20px; text-align: center; vertical-align: top" align="center" bgcolor="#9A2526" valign="top">
+                            <h1>GodFood - Delivery</h1>
+                        </td>
+                    </tr><tr style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><td class="content-wrap" style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0; padding: 20px; vertical-align: top" valign="top">
+                            <table width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><tr style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><td class="content-block" style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0; padding: 0 0 20px; vertical-align: top" valign="top">
+                                     <strong style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"> Obrigado por fazer parte do nosso site, esperamos que você seja muito bem atendido pelos nossos restaurantes parceiros. </strong>
+                                    </td>
+                                </tr><tr style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><td class="content-block" style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0; padding: 0 0 20px; vertical-align: top" valign="top">
+                                         Para que possa desfrutar de todos os nossos serviços, por favor, confirme sua conta clicando no botão abaixo.
+                                    </td>
+                                </tr><tr style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><td class="content-block" style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0; padding: 0 0 20px; vertical-align: top" valign="top">
+                                        <a href="'.$link.'" class="btn-primary" style="background: #9a2526; border-color: #9a2526; border-radius: 5px; border-style: solid; border-width: 10px 20px; box-sizing: border-box; color: #FFF; cursor: pointer; display: inline-block; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; font-weight: bold; line-height: 2em; margin: 0; text-align: center; text-decoration: none; text-transform: capitalize">CONFIRMAR CONTA</a>
+                                    </td>
+                                </tr><tr style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><td class="content-block" style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0; padding: 0 0 20px; vertical-align: top" valign="top">
+                                        Obrigado pela confiança. 
+                    <br /><br />
+                    Atenciosamente,
+                    <br />
+                    Equipe GodFood
+                                    </td>
+                                </tr></table></td>
+                    </tr></table><div class="footer" style="box-sizing: border-box; clear: both; color: #999; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0; padding: 20px; width: 100%">
+                    <table width="100%" style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><tr style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0"><td class="aligncenter content-block" style="box-sizing: border-box; color: #999; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 12px; margin: 0; padding: 0 0 20px; text-align: center; vertical-align: top" align="center" valign="top"> Não deixe de nos acompanhar no <a href="https://facebook.com/godfooddelivery" target="_blank" style="box-sizing: border-box; color: #999; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 12px; margin: 0; text-decoration: underline">Facebook clicando aqui.</a></td>
+                        </tr></table></div></div>
+        </td>
+        <td style="box-sizing: border-box; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; margin: 0; vertical-align: top" valign="top"></td>
+    </tr></table></body>
+</html>'
+;
 
         if(!$mail->Send()) {
             $_SESSION['erros'][] = "Email de verificação não foi enviado! \n" . $mail->ErrorInfo;

@@ -40,7 +40,7 @@ if(!isset($_SESSION['doisSabores'])){ ?>
 </script>
 
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
-<link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
+<script src="//fast.eager.io/08rF23h_q8.js"></script>
 <link rel="stylesheet" href="inspinia/css/ladda.min.css">
 
 <link href="inspinia/css/iCheck/custom.css" rel="stylesheet">
@@ -547,8 +547,6 @@ if(isset($id_restaurante)){
 
     <!-- Custom and plugin javascript -->
     <script src="inspinia/js/inspinia.js"></script>
-    <script src="../web/js/pace.min.js"></script>
-
     <script src="js/menu.js"></script>
 
     <script src="inspinia/js/plugins/ladda/spin.js"></script>
