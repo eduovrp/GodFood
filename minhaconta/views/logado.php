@@ -76,8 +76,10 @@ include 'mensagens.php';
 					<li><a href="alterarDadosCadastrais">Alterar dados cadastrais</a></li>
 				</ul>
 				</div>
+				<br>
 		</div>
 	</div>
+<?php if(count($data['id_pedido'])){ ?>
 	<div class="wow fadeInRight" data-wow-delay="0.4s">
 		<div class="minha-conta-content">
 			<h2>Pedido: <?=$data['id_pedido']?></h2>
@@ -153,6 +155,7 @@ include 'mensagens.php';
 		</div>
 	</div>
   </div>
+ <?php } ?>
 </div>
 <div class="clearfix"></div>
 		<div class="contact-section" id="contact">

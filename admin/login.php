@@ -47,7 +47,7 @@ if ($login->usuarioLogado() == true) {
             </div>
             <h3>Bem vindo a area de admin do GodFood - Delivery</h3>
             <p>Se você possui um usuario e senha, insira nos campos a baixo para entrar. Caso você tenha problemas para logar, por favor entre em contato conosco o mais rapido possivel <br>
-            <a href="#">clicando aqui </a>
+            <a href="../contato/">clicando aqui </a>
             </p>
             <p>Entre, tem ar condicionado.</p>
             <form class="m-t" role="form" action="./restaurantes" method="POST">

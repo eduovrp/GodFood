@@ -269,7 +269,7 @@ $banners = buscaBannersIndex();
 						<h4>Siga-me os bons</h4>
 						<ul>
 							<li>
-								<a href="#">
+								<a href="https://facebook.com/godfooddelivery" target="_blank">
 									<span class="fa-stack fa-lg">
 						 			<i class="fa fa-facebook fa-inverse"></i>
 									</span>Facebook
@@ -278,7 +278,7 @@ $banners = buscaBannersIndex();
 						</ul>
 							<ul>
 							<li>
-								<a href="#">
+								<a href="https://instagram.com/god.food" target="_blank">
 									<span class="fa-stack fa-lg">
 						 			<i class="fa fa-instagram fa-inverse"></i>
 									</span>Instagram
@@ -289,17 +289,17 @@ $banners = buscaBannersIndex();
 							<li>
 								<a href="#">
 									<span class="fa-stack fa-lg">
-						 			<i class="fa fa-twitter fa-inverse"></i>
-									</span>Twitter
+						 			<i class="fa fa-google-plus fa-inverse"></i>
+									</span>Google +
 								</a>
 							</li>
 						</ul>
 							<ul>
 							<li>
-								<a href="#">
+								<a href="https://twitter.com/GodFoodDelivery">
 									<span class="fa-stack fa-lg">
-						 			<i class="fa fa-youtube fa-inverse"></i>
-									</span>Youtube
+						 			<i class="fa fa-twitter fa-inverse"></i>
+									</span>Twitter
 								</a>
 							</li>
 						</ul>
