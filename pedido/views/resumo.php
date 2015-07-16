@@ -72,8 +72,8 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
           <tr>
             <th>Nome do Produto</th>
             <th>Qtd</th>
-            <th>Adicional</th>
-            <th>Borda Recheada</th>
+            <th class="mob-disp">Adicional</th>
+            <th class="mob-disp">Borda Recheada</th>
             <th>Subtotal</th>
             <th>Ação</th>
           </tr>
@@ -88,8 +88,8 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
           <tr>
             <td><strong><?=$cart_itm['name']?> (<?= $categoria['nome'];  ?>)</strong></td>
             <td><?=$cart_itm['qtd'];?></td>
-            <td><?=$cart_itm['adicional'];?></td>
-            <td><?=$cart_itm['borda'];?></td>
+            <td class="mob-disp"><?=$cart_itm['adicional'];?></td>
+            <td class="mob-disp"><?=$cart_itm['borda'];?></td>
 
         <?php $valorTotalProduto = ($cart_itm['valor']+$cart_itm['valor_adicional']+$cart_itm['valor_borda']); 
               $subtotal = $valorTotalProduto*$cart_itm["qtd"];?>
@@ -107,8 +107,8 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
          <tr>
             <td>Serviço + Taxa de Entrega</td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="mob-disp"></td>
+            <td class="mob-disp"></td>
             <td>R$ <?=number_format(($_SESSION['taxa_servico']+$_SESSION['taxa']),2,",",".");?></td>
             <td></td>
         </tr>
@@ -116,8 +116,8 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
         $_SESSION['grandTotal'] = $grandTotal; ?>
         <tr>
             <td></td>
-            <td></td>
-            <td></td>
+            <td class="mob-disp"></td>
+            <td class="mob-disp"></td>
             <td><strong>Total</strong></td>
             <td>R$ <?=number_format($grandTotal,2,",",".");?></td>
             <td></td>
@@ -133,7 +133,7 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
                 <tbody>
                     <tr>
                         <td><strong>Endereço:</strong> <?= $endereco['logradouro'].', '.$endereco['numero'].' - '.$endereco['bairro']?></td>
-                        <td><strong>Complemento/Referencia:</strong> <?=$endereco['complemento'].' / '.$endereco['referencia']?></td>
+                        <td class="mob-disp"><strong>Complemento/Referencia:</strong> <?=$endereco['complemento'].' / '.$endereco['referencia']?></td>
                         <td><strong>Cidade:</strong> <?=$endereco['cidade'].' - '.$endereco['estado'];?></td>
                     </tr>
                 </tbody>
@@ -150,7 +150,7 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
                         <td><strong>Tipo:</strong> <?=$rest['tipo']?></td>
                         <td><strong>Tempo de Entrega:</strong> <?=$rest['tempo_entrega']?></td>
                         <td><strong>Contato:</strong> <?=$rest['fone']?></td>
-                        <td><strong>Cidade:</strong> <?=$rest['cidade']?></td>
+                        <td class="mob-disp"><strong>Cidade:</strong> <?=$rest['cidade']?></td>
                     </tr>
                 </tbody>
             </table>
