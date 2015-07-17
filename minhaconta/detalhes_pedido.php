@@ -96,7 +96,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="../../cart/produtos">
+						<li><a href="../../pedido/produtos">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php
@@ -146,7 +146,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="../cart/produtos">
+						<li><a href="../pedido/produtos">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php

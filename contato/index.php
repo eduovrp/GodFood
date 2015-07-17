@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta charset="UTF-8">
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
-<link rel="stylesheet" href="../cart/inspinia/css/ladda.min.css">
+<link rel="stylesheet" href="../pedido/inspinia/css/ladda.min.css">
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
@@ -68,7 +68,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="../cart/produtos">
+						<li><a href="../pedido/produtos">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php
@@ -118,7 +118,7 @@ if ($login->usuarioLogado() == true) {
 					        $total = ($total + $subtotal);
 					    }
 						 ?>
-						<li><a href="../cart/produtos">
+						<li><a href="../pedido/produtos">
 						<i class="fa fa-shopping-cart"></i>
 						
 						<?php
@@ -229,8 +229,8 @@ if ($login->usuarioLogado() == true) {
 <script src="../web/js/bootstrap.min.js"></script>
 <script src="../web/js/pace.min.js"></script>
 
-    <script src="../cart/inspinia/js/plugins/ladda/spin.js"></script>
-    <script src="../cart/inspinia/js/plugins/ladda/ladda.js"></script>
+    <script src="../pedido/inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="../pedido/inspinia/js/plugins/ladda/ladda.js"></script>
 
     <script type="text/javascript">
                 // Bind normal buttons

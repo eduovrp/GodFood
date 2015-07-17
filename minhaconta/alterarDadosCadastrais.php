@@ -10,9 +10,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta charset="UTF-8">
 <title>GodFood - Delivery</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
-<link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../web/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 
-<link rel="stylesheet" href="../cart/inspinia/css/ladda.min.css">
+<link rel="stylesheet" href="../pedido/inspinia/css/ladda.min.css">
 
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -282,8 +282,8 @@ if($_GET){
 	<script type="text/javascript" src="../web/js/easing.js"></script>
 	<script src="../web/js/bootstrap.min.js"></script>
 
-	<script src="../cart/inspinia/js/plugins/ladda/spin.js"></script>
-    <script src="../cart/inspinia/js/plugins/ladda/ladda.js"></script>
+	<script src="../pedido/inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="../pedido/inspinia/js/plugins/ladda/ladda.js"></script>
 
     <script src="../web/js/pace.min.js"></script>
 

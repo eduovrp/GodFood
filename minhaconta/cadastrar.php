@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
 <link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
 
-<link rel="stylesheet" href="../cart/inspinia/css/ladda.min.css">
+<link rel="stylesheet" href="../pedido/inspinia/css/ladda.min.css">
 
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -282,8 +282,8 @@ include 'mensagens_cad.php';
 
 	<script src="../web/js/pace.min.js"></script>
 
-	<script src="../cart/inspinia/js/plugins/ladda/spin.js"></script>
-    <script src="../cart/inspinia/js/plugins/ladda/ladda.js"></script>
+	<script src="../pedido/inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="../pedido/inspinia/js/plugins/ladda/ladda.js"></script>
 
 <script type="text/javascript">
                 // Bind normal buttons

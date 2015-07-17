@@ -17,7 +17,7 @@ if(isset($_SESSION['doisSabores'])){ ?>
 <title>GodFood - Pedido</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
 
-<link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../web/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Shopping Cart Custon CSS -->

@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta charset="UTF-8">
 <title>GodFood - Restaurantes</title>
 <link rel="icon" type="image/png" href="../web/images/plate.png" />
-<link href="../web/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="../web/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 
 <link href="../web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../web/css/contact-box.css" rel="stylesheet" type="text/css" media="all" />

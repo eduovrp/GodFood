@@ -18,9 +18,9 @@ if(!isset($_SESSION))
 <title>GodFood - Delivery</title>
 <link rel="icon" type="image/png" href="web/images/plate.png" />
 
-<link rel="stylesheet" href="cart/inspinia/css/ladda.min.css">
+<link rel="stylesheet" href="pedido/inspinia/css/ladda.min.css">
 
-	<link href="web/css/bootstrap.css" rel="stylesheet">	
+	<link href="web/css/bootstrap.min.css" rel="stylesheet">	
 
 <!-- Custom Theme files -->
 <link href="web/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -326,8 +326,8 @@ $banners = buscaBannersIndex();
 	<script type="text/javascript" src="web/js/easing.js"></script>
 	<script type="text/javascript" src="web/js/pace.min.js"></script>
 
-    <script src="cart/inspinia/js/plugins/ladda/spin.js"></script>
-    <script src="cart/inspinia/js/plugins/ladda/ladda.js"></script>
+    <script src="pedido/inspinia/js/plugins/ladda/spin.js"></script>
+    <script src="pedido/inspinia/js/plugins/ladda/ladda.js"></script>
 
     		<!--Mascaras -->
 	<script type="text/JavaScript" src="web/js/jquery.mask.js"></script>
