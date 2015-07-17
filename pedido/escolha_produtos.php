@@ -44,6 +44,17 @@ if(!isset($_SESSION['doisSabores'])){ ?>
 <link rel="stylesheet" href="inspinia/css/ladda.min.css">
 
 <link href="inspinia/css/iCheck/custom.css" rel="stylesheet">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-65249437-1', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+
+</script>
 </head>
 <body>
     <!--  -->
@@ -70,11 +81,14 @@ if(isset($_SESSION['id_restaurante'])){
         $id_restaurante = $_SESSION['id_restaurante'];
     }
 }
-
 if(isset($id_restaurante)){
         $categorias = mostra_categorias($id_restaurante);
         $restaurante = mostra_infos_restaurante($id_restaurante,$_SESSION['cep']);
-        $_SESSION['taxa_servico'] = $restaurante['taxa_servico']; // taxa de serviço
+
+        if(!isset($_SESSION['godshield'])){
+            $_SESSION['taxa_servico'] = $restaurante['taxa_servico']; // taxa de serviço
+        }
+
         $_SESSION['taxa'] = $restaurante['taxa']; // entrega
         $_SESSION['compra_minima'] = $restaurante['compra_minima']; // valor da compra minima
 ?>
@@ -234,7 +248,7 @@ if(isset($id_restaurante)){
 </div>
 
 <div class="animated shake">
-  <div class="shopping-cart">
+  <div class="shopping-cart" id="shopping-cart">
     <h2>Seu Pedido <i class="fa fa-shopping-cart"></i></h2>
     <?php
     if(isset($_SESSION["products"]))
@@ -276,12 +290,34 @@ if(isset($id_restaurante)){
                 Taxa de entrega: R$ <?=number_format($restaurante['taxa'],2,",",".");?> <br>
              </p>
                 <?php if($restaurante['compra_minima'] < $total){ ?>
-                <p class="saibamais"><label><input type="checkbox" name="taxa_adm" checked> God Shield. </label><a href="#" data-container="body" data-toggle="popover" data-placement="bottom"
-                         data-content="Taxa de administração de risco, caso ocorra algum problema com o seu pedido, nós intermediaremos para que seja encontrada uma solução. Caso o cliente não opte por essa opção, ele declara estar ciente de que qualquer problema ocorrido com o pedido será de sua inteira responsabilidade.">
-                         Saiba mais <i class="fa fa-question-circle"></i></a> R$ <?=number_format($restaurante['taxa_servico'],2,",",".");?> <br>
-                <?php } ?>
+                <form action="update.php" method="POST" id="taxa">
+            <?php if(isset($_SESSION['checked']) && $_SESSION['checked'] = 'checked'){ 
+                 $checked = 'checked';   ?>
+                <input type="hidden" name="godshield" value="no">
+            <?php  } else { 
+                $checked = '';   ?>
+                <input type="hidden" name="godshield" value="yes">
+            <?php } 
+                if(!isset($_SESSION['godshield'])){
+                    $checked = 'checked';
+                    echo '<input type="hidden" name="godshield" value="no">';
+                }
+            ?>
+                <p>
+                    <label><input type="checkbox" name="taxa_adm" id="taxa" <?=$checked?> onclick="document.getElementById('taxa').submit();"> GodShield. </label><a href="#shopping-cart" data-container="body" data-toggle="popover" data-placement="bottom"
+                    data-content="Taxa de administração de risco, caso ocorra algum problema com o seu pedido, nós intermediaremos para que seja encontrada uma solução. Caso o cliente não opte por essa opção, ele declara estar ciente de que qualquer problema ocorrido com o pedido será de sua inteira responsabilidade.">
+                    Saiba mais <i class="fa fa-question-circle"></i></a> R$ <?=number_format($restaurante['taxa_servico'],2,",",".");?> <br>
                 </p>
-                <p><strong>Total: R$ <?=number_format($grandTotal,2,",",".");?></strong> <br></p>
+                </form>
+                <?php } 
+                    if(isset($_SESSION['godshield']) && $_SESSION['godshield'] == 'no'){ ?>
+                    <p><strong>Total: R$ <?=number_format(($grandTotal-$restaurante['taxa_servico']),2,",",".");?></strong> <br></p>
+                    
+                    <?php } else { ?>
+                    
+                    <p><strong>Total: R$ <?=number_format($grandTotal,2,",",".");?></strong> <br></p>
+                    
+                    <?php } ?>
 
         </div>
             <br>
