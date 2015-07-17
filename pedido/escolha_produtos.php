@@ -274,12 +274,13 @@ if(isset($id_restaurante)){
 
                 <strong>Sub-total: R$ <?=number_format($total,2,",",".");?> <br></strong>
                 Taxa de entrega: R$ <?=number_format($restaurante['taxa'],2,",",".");?> <br>
-
+             </p>
                 <?php if($restaurante['compra_minima'] < $total){ ?>
-                Serviços: R$ <?=number_format($restaurante['taxa_servico'],2,",",".");?> <br>
-            </p>
+                <p class="saibamais"><label><input type="checkbox" name="taxa_adm" checked> God Shield. </label><a href="#" data-container="body" data-toggle="popover" data-placement="bottom"
+                         data-content="Taxa de administração de risco, caso ocorra algum problema com o seu pedido, nós intermediaremos para que seja encontrada uma solução. Caso o cliente não opte por essa opção, ele declara estar ciente de que qualquer problema ocorrido com o pedido será de sua inteira responsabilidade.">
+                         Saiba mais <i class="fa fa-question-circle"></i></a> R$ <?=number_format($restaurante['taxa_servico'],2,",",".");?> <br>
                 <?php } ?>
-
+                </p>
                 <p><strong>Total: R$ <?=number_format($grandTotal,2,",",".");?></strong> <br></p>
 
         </div>

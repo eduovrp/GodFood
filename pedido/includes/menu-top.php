@@ -54,8 +54,8 @@ if ($login->usuarioLogado() == true) {
 
 						 } else { ?>
 
-						 <li><a href="#" class="popover-bottom" data-toggle="popover"
-						 data-content="Seu carrinho está vazio, por favor insira seu cep para escolher seus produtos.">
+						 <li><a href="#" data-container="body" data-toggle="popover" data-placement="bottom"
+						 data-content="Seu carrinho está vazio, que tal escolher algo para comer?">
 						 <i class="fa fa-shopping-cart"></i>
 						
 						<?php
@@ -104,8 +104,8 @@ if ($login->usuarioLogado() == true) {
 
 						 } else { ?>
 						
-						 <li><a href="#" class="popover-bottom" data-toggle="popover"
-						 data-content="Seu carrinho está vazio, por favor insira seu cep para escolher seus produtos.">
+						 <li><a href="#" data-container="body" data-toggle="popover" data-placement="bottom"
+						 data-content="Seu carrinho está vazio, que tal escolher algo para comer?">
 						 <i class="fa fa-shopping-cart"></i>
 						
 						<?php
