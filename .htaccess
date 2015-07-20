@@ -35,6 +35,7 @@ RewriteRule ^admin/cadastrar-cidade$          	admin/cadastrar_cidade.php [NC,L]
 RewriteRule ^admin/categorias$          		admin/categorias.php [NC,L]
 RewriteRule ^admin/restaurantes$                admin/restaurantes.php [NC,L]
 RewriteRule ^admin/pedidos$                     admin/timeline.php [NC,L]
+RewriteRule ^admin/configuracoes$               admin/configuracoes.php [NC,L]
 
 RewriteRule ^admin/gerenciar/cidade-entrega$ 	admin/cidade_entrega.php [NC,L]
 RewriteRule ^admin/gerenciar/funcionarios$    	admin/gerenciaFuncionarios.php [NC,L]

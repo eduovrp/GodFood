@@ -29,7 +29,7 @@ if ($login->usuarioLogado() == true) {
     <link rel="icon" type="image/png" href="../web/images/plate.png" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/plugins/switchery/switchery.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/ladda.min.css">
 
@@ -128,22 +128,33 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                 </nav>
             </div> 
 
-<?php $categorias = mostra_categorias($_SESSION['restaurante']); 
-$config = mostra_configs($_SESSION['restaurante']);
+<?php $config = mostra_configs($_SESSION['restaurante']); 
+    if($config['conf_borda'] > 0){
+        $checked = 'checked';
+    } else {
+        $checked = '';
+    }
+    if($config['conf_adic'] > 0){
+        $checked2 = 'checked';
+    } else {
+        $checked2 = '';
+    }
+    if($config['conf_2sabores'] > 0){
+        $checked3 = 'checked';
+    } else {
+        $checked3 = '';
+    }
 ?>
 
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h1>Categorias</h1>
+                    <h1>Configurações</h1>
                     <ol class="breadcrumb">
                         <li>
                             <a href="./">Inicio</a>
                         </li>
-                        <li>
-                            Gerenciar
-                        </li>
                         <li class="active">
-                            <strong>Categorias</strong>
+                            Configurações
                         </li>
                     </ol>
                 </div>
@@ -162,98 +173,56 @@ $config = mostra_configs($_SESSION['restaurante']);
                 <div class="col-lg-7">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <form action="cadastrar.php" method="POST" accept-charset="utf-8">
-                        <div class="row">
-                            <div class="col-md-6">
-                            <label for="nome_categoria">Nome da Categoria</label>
-                            <input type="text" class="form-control" name="nome_categoria" id="nome_categoria" placeholder="Nome da Categoria" required>
-                            </div>
-                        <?php if($config['conf_2sabores'] == 1){ ?>
-                            <div class="col-md-3">
-                            <label for="2sabores">Aceitar 2 Sabores?</label>
-                            <select name="2sabores" id="2sabores" class="form-control">
-                                <option value="0">Não</option>
-                                <option value="1">Sim</option>
-                            </select>
-                            </div>
-                        <?php } ?>
-                            <div class="col-md-2">
-                            <label>&nbsp;</label>
-                            <button type="submit" class="ladda-button btn btn-primary btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-check fa-1x"></i> Cadastrar</button>
-                            </div>
-                            </div>
-                        </form>
                     </div>
                     <div class="ibox-content">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                            <tr>
-                                <th>Cód</th>
-                                <th>Nome</th>
-                            <?php if($config['conf_2sabores'] == 1){ ?>
-                                <th>2 Sabores</th>
-                            <?php } ?>
-                                <th>#</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach($categorias as $categoria): ?>
-                            <tr>
-                                <td><?=$categoria['id_categoria'];?></td>
-                                <td><?=$categoria['nome'];?></td>
-                            <?php if($config['conf_2sabores'] == 1){ ?>
-                                <td><?=$categoria['2sabores'];?></td>
-                            <?php } ?>
-                                <td><strong><a data-toggle="tab" href="#categoria-<?=$categoria['id_categoria'];?>" class="client-link-details"><i class="fa fa-pencil-square-o fa-1x"></i> Editar</a></td></strong>
-                            </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-
+                        <form action="updates.php" method="POST">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-10">
+                                    <h4> Aceitar borda recheada? (para pizzas, mini-pizzas, etc).</h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="checkbox" class="js-switch pull-right" name="conf_borda" <?=$checked?> />
+                                </div>
+                            </div>
+                        </div>  
+                        <br>
+                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-10">
+                                    <h4> Aceitar adicionais?</h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="checkbox" class="js-switch_1 pull-right" name="conf_adic" <?=$checked2?> />
+                                </div>
+                            </div>
+                        </div> 
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-10">
+                                    <h4> Aceitar dois sabores em um produto? (geralmente usados em pizzas meio a meio).</h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="checkbox" class="js-switch_2 pull-right" name="conf_2sabores" <?=$checked3?> />
+                                </div>
+                            </div>
+                        </div> 
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="hidden" name="altera_configs" value="yep">
+                                <button type="submit" class="btn btn-primary btn-block btn-outline">Salvar Configurações</button>
+                            </div>
                         </div>
+                        </form>
+                    </div>
                     </div>
                 </div>
-
-                                <div class="col-sm-4">
-                    <div class="ibox ">
-                        <div class="ibox-content">
-                            <div class="tab-content">
-                            <?php foreach($categorias as $categoria): ?>
-                                <div id="categoria-<?=$categoria['id_categoria'];?>" class="tab-pane">
-                                    <div class="m-b-lg">
-                                            <h2>Alterar Categoria <?=$categoria['id_categoria'] . "<br> (".$categoria['nome'].")";?></h2>
-                                            <form action="updates.php" method="post" accept-charset="utf-8">
-                                            <br>
-                                        <?php if($config['conf_2sabores'] == 1){ ?>
-                                             <h3>
-                                            <label class="checkb">
-                                                <input type="checkbox" class="i-checks" name="2sabores" <?php if($categoria['2sabores']=='Sim'){ echo 'checked'; }else{ echo'';}?> > Aceitar 2 sabores? </label>
-                                            </h3>
-                                        <?php } ?>
-                                            <label for="nome_categoria"></label>
-                                                <div class="input-group"><input type="text" class="form-control" name="nome_categoria" id="nome_categoria" value="<?=$categoria['nome'];?>"> <span class="input-group-btn"> <button type="submit" class="btn btn-primary"><i class="fa fa-check fa-1x"></i> Alterar</button></span></div>
-                                                <input type="hidden" name="id_categoria" value="<?=$categoria['id_categoria'];?>">
-                                            </form>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <form action="delete.php" method="POST" accept-charset="utf-8">
-                                         <input type="hidden" name="excluir_categoria" value="<?=$categoria['id_categoria'];?>">
-                                            <div class="col-md-offset-4">
-                                            <div class="input-group"><button type="submit" class="ladda-button btn btn-danger btn-outline" data-size="s" data-style="zoom-in"><i class="fa fa-close fa-1x"></i> Excluir Categoria</button></div></div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
-        </div>
-     </div>
      </div>
             <div class="footer">
                 <div>
@@ -284,16 +253,19 @@ $config = mostra_configs($_SESSION['restaurante']);
             Ladda.bind( 'button[type=submit]', { timeout: 8000 } );
 </script>
 
-        <!-- iCheck -->
-    <script src="js/icheck.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('.i-checks').iCheck({
-                    checkboxClass: 'icheckbox_square-green',
-                    radioClass: 'iradio_square-green',
-                });
-            });
-        </script>
+    <!-- Switchery -->
+   <script src="js/plugins/switchery/switchery.js"></script>
+
+   <script type="text/javascript">
+        var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, { color: '#1AB394' });
+
+        var elem = document.querySelector('.js-switch_1');
+        var switchery = new Switchery(elem, { color: '#1AB394' });
+
+        var elem = document.querySelector('.js-switch_2');
+        var switchery = new Switchery(elem, { color: '#1AB394' });
+   </script>
 
 
 </body>

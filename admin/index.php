@@ -85,7 +85,7 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                 </li>
 
                  <li>
-                    <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">Administrar</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-cog fa-spin"></i> <span class="nav-label">Administrar</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="./gerenciar/restaurantes">Restaurante</a></li>
                         <li><a href="./gerenciar/funcionarios">Funcionarios</a></li>
@@ -93,6 +93,9 @@ $nivelUsuario = verificaNivelUsuario($_SESSION['id_nivel']);
                 </li>
                 <li>
                    <a href="./gerenciar/cidade-entrega"><i class="fa fa-truck"></i> <span class="nav-label">Entregas</span></a>
+                </li>
+                 <li>
+                   <a href="./configuracoes"><i class="fa fa-cogs"></i> <span class="nav-label">Configurações</span></a>
                 </li>
                 <?php if($_SESSION['id_nivel'] == 5){ ?>
                 <li>

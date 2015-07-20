@@ -692,6 +692,14 @@ try{
 	$cmd->bindParam('compra_minima',$compra_minima);
 	$cmd->execute();
 
+	$id_restaurante = $pdo->lastInsertId();
+
+	$sql2 = "INSERT INTO configs (id_restaurante) VALUES (:id_restaurante)";
+
+	$cmd2 = $pdo->prepare($sql2);
+	$cmd2->bindParam('id_restaurante',$id_restaurante);
+	$cmd2->execute();
+
 }catch(PDOException $e){
  	 echo $e->getMessage();
 	}
@@ -1583,4 +1591,41 @@ try{
 }catch(PDOException $e){
  	 echo $e->getMessage();
 	}
+}
+
+function mostra_configs($id_restaurante)
+{
+	global $pdo;
+try{
+	$sql = "SELECT * FROM configs WHERE id_restaurante = :id_restaurante";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('id_restaurante',$id_restaurante);
+	$cmd->execute();
+
+	return $cmd->fetch();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}
+
+function altera_configs($conf_borda, $conf_adic, $conf_2sabores, $id_restaurante)
+{
+	global $pdo;
+try{
+	$sql = "UPDATE configs SET conf_borda = :conf_borda, conf_adic = :conf_adic, 
+					conf_2sabores = :conf_2sabores
+				WHERE id_restaurante = :id_restaurante";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('conf_borda',$conf_borda);
+	$cmd->bindParam('conf_adic',$conf_adic);
+	$cmd->bindParam('conf_2sabores',$conf_2sabores);
+	$cmd->bindParam('id_restaurante',$id_restaurante);
+	$cmd->execute();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}	
 }

@@ -218,6 +218,31 @@ require 'functions/functions.php';
 			header('Location: ./adicionais');
 		}
 	}
+
+	/* Configurações */
+	
+	if(isset($_POST['altera_configs'])){
+		if(isset($_POST['conf_borda'])){
+			$conf_borda = 1;
+		} else {
+			$conf_borda = 0;
+		}
+		if(isset($_POST['conf_adic'])){
+			$conf_adic = 1;
+		} else {
+			$conf_adic = 0;
+		}
+		if(isset($_POST['conf_2sabores'])){
+			$conf_2sabores = 1;
+		} else {
+			$conf_2sabores = 0;
+		}
+
+		altera_configs($conf_borda, $conf_adic, $conf_2sabores, $_SESSION['restaurante']);
+		$_SESSION['msg_sucesso'] = "Alterações realizadas com sucesso!";
+		header('Location: ./configuracoes');
+	}
+
 } else {
-	header('Location: ../');
+	header('Location: ./');
 }

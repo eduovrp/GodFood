@@ -61,7 +61,6 @@ if(!isset($_SESSION['doisSabores'])){ ?>
     <div class="header">
 
 <?php
-
 include 'includes/menu-top.php';
 require '../functions/pedidos.php';
 require '../functions/restaurantes.php';
@@ -84,6 +83,7 @@ if(isset($_SESSION['id_restaurante'])){
 if(isset($id_restaurante)){
         $categorias = mostra_categorias($id_restaurante);
         $restaurante = mostra_infos_restaurante($id_restaurante,$_SESSION['cep']);
+        $config = mostra_configs($id_restaurante);
 
         if(!isset($_SESSION['godshield'])){
             $_SESSION['taxa_servico'] = $restaurante['taxa_servico']; // taxa de serviço
@@ -163,7 +163,9 @@ if(isset($id_restaurante)){
                         Quantidade
                         <input type="number" min="1" name="qtd" value="1" required/>
                         </div>
-            <?php if($verificaBorda == true){ ?>
+            <?php 
+            if($config['conf_borda'] == 1){
+                if($verificaBorda == true){ ?>
             <br>
                  <h3>Bordas Recheadas</h3>
                         <p>Se você quer aproveitar cada centimetro da sua pizza, porque não rechear as bordas? Assim você evita o desperdicio e vamos combinar, fica bem mais saboroso *o*</p>
@@ -184,6 +186,8 @@ if(isset($id_restaurante)){
                  </div>
                 </div>
             <?php }
+                }
+            if($config['conf_adic'] == 1){
                 if($verificaAdicional == true){ ?>
                 <br>
                     <h3>Adicionais</h3>
@@ -205,7 +209,8 @@ if(isset($id_restaurante)){
                  </div>
                 </div>
                  <br>
-            <?php } ?>
+            <?php } 
+            } ?>
                  <div class="row">
                      <div class="col-md-12">
                      <label for="obs"><h3>Observação</h3></label>
@@ -213,12 +218,15 @@ if(isset($id_restaurante)){
                          <input type="text" class="form-control" id="obs" name="obs" placeholder="Ex: Retirar Tomate, Retirar Milho, etc">
                      </div>
                  </div>
-            <?php if($cat['2sabores'] == 'Sim'){ ?>
+            <?php 
+            if($config['conf_2sabores'] == 1){
+                if($cat['2sabores'] == 'Sim'){ ?>
                  <br><br>
                 <h4>
                     <label class="checkb"><input type="checkbox" class="i-checks" name="doisSabores"> Quero <?=$produto['categoria']?> com 02 Sabores!</label>
                 </h4>  
-            <?php } ?> 
+            <?php } 
+            }  ?> 
                  </div>
                     
                     <div class="modal-footer">
@@ -255,10 +263,11 @@ if(isset($id_restaurante)){
     {
         $total = 0;
         echo '<ol class="shopping-cart-itens">';
-        foreach ($_SESSION["products"] as $cart_itm): ?>
+        foreach ($_SESSION["products"] as $cart_itm): 
+            $categoria = buscaCategoria2Sabor($cart_itm['id_categoria']); ?>
             <li class="cart-itm">
                 <span class="remove-itm"><a href="cart_update.php?removep=<?=$cart_itm['code']?>&return_url=<?=$current_url?>" class="btn btn-default btn-sm"><i class="fa fa-trash-o fa-1x"></i></a></span>
-                <h3><?=$cart_itm['name']?></h3>
+                <h3><?=$cart_itm['name']?> (<?= $categoria['nome'];  ?>)</h3>
                     <div class="p-qty">Quantidade : <?=$cart_itm['qtd']?></div>
                     <div class="p-adic"><strong>Adicional</strong> : <?=$cart_itm['adicional']?> , <strong>Borda</strong> : <?=$cart_itm['borda']?></div>
 
@@ -304,9 +313,9 @@ if(isset($id_restaurante)){
                 }
             ?>
                 <p>
-                    <label><input type="checkbox" name="taxa_adm" id="taxa" <?=$checked?> onclick="document.getElementById('taxa').submit();"> GodShield. </label><a href="#shopping-cart" data-container="body" data-toggle="popover" data-placement="bottom"
+                    <input type="checkbox" name="taxa_adm" id="taxa" <?=$checked?> onclick="document.getElementById('taxa').submit();"><strong>GodShield. <a href="#shopping-cart" style="color: #9a2526" data-container="body" data-toggle="popover" data-placement="bottom"
                     data-content="Taxa de administração de risco, caso ocorra algum problema com o seu pedido, nós intermediaremos para que seja encontrada uma solução. Caso o cliente não opte por essa opção, ele declara estar ciente de que qualquer problema ocorrido com o pedido será de sua inteira responsabilidade.">
-                    Saiba mais <i class="fa fa-question-circle"></i></a> R$ <?=number_format($restaurante['taxa_servico'],2,",",".");?> <br>
+                    Saiba mais <i class="fa fa-question-circle"></i></a></strong>  R$ <?=number_format($restaurante['taxa_servico'],2,",",".");?> <br>
                 </p>
                 </form>
                 <?php } 

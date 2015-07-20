@@ -734,3 +734,20 @@ try{
  	 echo $e->getMessage();
 	}
 }
+
+function mostra_configs($id_restaurante)
+{
+	global $pdo;
+try{
+	$sql = "SELECT * FROM configs WHERE id_restaurante = :id_restaurante";
+
+	$cmd = $pdo->prepare($sql);
+	$cmd->bindParam('id_restaurante',$id_restaurante);
+	$cmd->execute();
+
+	return $cmd->fetch();
+
+}catch(PDOException $e){
+ 	 echo $e->getMessage();
+	}
+}

@@ -138,6 +138,8 @@ include 'includes/verificaDatasRelatorio.php';
 $vendas = mostraDadosRelatorioVendas($data1,$data2,$_SESSION['restaurante']);
 $taxa_entrega = buscaTaxaEntregaRelatorio($data1,$data2,$_SESSION['restaurante']);
 $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
+
+$config = mostra_configs($_SESSION['restaurante']);
  ?>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
@@ -210,8 +212,12 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
                                     <tr>
                                         <th class="left">Item</th>
                                         <th>Total Vendidos</th>
+                                    <?php if($config['conf_adic'] == 1){ ?>
                                         <th>Com adicionais</th>
+                                    <?php } 
+                                    if($config['conf_borda'] == 1){?>
                                         <th>Com bordas</th>
+                                    <?php } ?>
                                         <th style="text-align: right">Valor Total</th>
                                     </tr>
                                     </thead>
@@ -224,13 +230,17 @@ $tarifas = buscaTarifasRestauranteAdmin($data1,$data2,$_SESSION['restaurante']);
                                     <?php $countAdic = buscaDadosAdicVendidos($data1, $data2, $venda['produto']);
                                         if($countAdic['qtd'] < 1){
                                             $countAdic['qtd'] = 0;
-                                        } ?>
+                                        }
+                                     if($config['conf_adic'] == 1){ ?>
                                         <td><?=$countAdic['qtd']?></td>
-                                    <?php $countBorda = buscaDadosBordaVendidos($data1, $data2, $venda['produto']);
+                                    <?php }
+                                    $countBorda = buscaDadosBordaVendidos($data1, $data2, $venda['produto']);
                                         if($countBorda['qtd'] < 1){
                                             $countBorda['qtd'] = 0;
-                                        } ?>
+                                        } 
+                                    if($config['conf_borda'] == 1){?>
                                         <td><?=$countBorda['qtd']?></td>
+                                    <?php } ?>
                                         <td style="text-align: right">R$ <?= number_format($venda['sub_total'],2,",",".");?></td>
                                     </tr>
                                 <?php $subtotal = $subtotal + $venda['sub_total'];

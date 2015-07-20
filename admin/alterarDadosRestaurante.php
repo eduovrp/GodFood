@@ -250,6 +250,7 @@ if($restaurante['fav'] > 0){
                                     <input type="text" class="form-control" name="compra_min" id="compra_min" value="<?=$compra_min?>" required>
                                     <script type="text/javascript">$("#compra_min").maskMoney({prefix:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false});</script>
                                </div>
+                        <?php if($_SESSION['id_nivel'] == 5){ ?>
                                <div class="col-md-3">
                                    <label for="taxa_servico">Taxa de Serviço</label>
                                    <?php $taxa_servico = str_replace(".",",", $restaurante['taxa_servico']);?>
@@ -257,7 +258,7 @@ if($restaurante['fav'] > 0){
                                     <script type="text/javascript">$("#taxa_servico").maskMoney({prefix:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false});</script>
                                </div>
                            </div>
-                              <?php if($_SESSION['id_nivel'] == 5){ ?>
+                              
                               <br>
                             <div class="row">
                               <div class="col-md-3">
@@ -267,7 +268,9 @@ if($restaurante['fav'] > 0){
                                     <script type="text/javascript">$("#taxa_adm").maskMoney({prefix:'% ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false});</script>
                                </div>
                             </div>
-                            <?php } ?> 
+                            <?php } else { ?> 
+                          </div>
+                          <?php } ?>
                           <br>
                         <div align="right">
                           <input type="hidden" name="alterarDadosRestaurante" value="alterar">

@@ -11,13 +11,17 @@ if($_POST){
 
 	if(isset($_SESSION['restaurante']) && isset($_POST['nome_categoria'])) {
 
-		if($_POST['2sabores'] == 1){
-			$DoisSabor = 'Sim';
+		if(isset($_POST['2sabores'])){
+			if($_POST['2sabores'] == 1){
+				$doisSabor = 'Sim';
+			} else {
+				$doisSabor = 'Não';
+			}
 		} else {
-			$DoisSabor = 'Não';
+			$doisSabor = 'Não';
 		}
 		
-		cadastra_categoria($_POST['nome_categoria'],$_SESSION['restaurante'],$DoisSabor);
+		cadastra_categoria($_POST['nome_categoria'],$_SESSION['restaurante'],$doisSabor);
 		$_SESSION['msg_sucesso'] = "Categoria cadastrada com sucesso";
 		header('Location: ./categorias');
 	}
