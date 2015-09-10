@@ -1,10 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-
 <?php 
 if(!isset($_SESSION))
     {
@@ -203,10 +196,10 @@ $banners = buscaBannersIndex();
 						<h4>A Empresa</h4>
 						<ul>
 							<li>
-								<a href="#">
+								<a href="https://www.godfood.com.br/contato">
 									<span class="fa-stack fa-lg">
 						 			<i class="fa fa-long-arrow-right fa-inverse"></i>
-									</span>Sobre
+									</span>Contato
 								</a>
 							</li>
 						</ul>
@@ -221,7 +214,7 @@ $banners = buscaBannersIndex();
 						</ul>
 						<ul>
 							<li>
-								<a href="#">
+								<a href="https://www.godfood.com.br/termos-de-uso">
 									<span class="fa-stack fa-lg">
 						 			<i class="fa fa-long-arrow-right fa-inverse"></i>
 									</span>Termos de Uso
@@ -230,7 +223,7 @@ $banners = buscaBannersIndex();
 						</ul>
 						<ul>
 							<li>
-								<a href="#">
+								<a href="#Order">
 									<span class="fa-stack fa-lg">
 						 			<i class="fa fa-long-arrow-right fa-inverse"></i>
 									</span>Entenda como funciona
@@ -299,7 +292,7 @@ $banners = buscaBannersIndex();
 						</ul>
 							<ul>
 							<li>
-								<a href="#">
+								<a href="https://plus.google.com/u/0/109781837218722392654/" target="_blank">
 									<span class="fa-stack fa-lg">
 						 			<i class="fa fa-google-plus fa-inverse"></i>
 									</span>Google +
@@ -308,7 +301,7 @@ $banners = buscaBannersIndex();
 						</ul>
 							<ul>
 							<li>
-								<a href="https://twitter.com/GodFoodDelivery">
+								<a href="https://twitter.com/GodFoodDelivery" target="_blank">
 									<span class="fa-stack fa-lg">
 						 			<i class="fa fa-twitter fa-inverse"></i>
 									</span>Twitter
@@ -327,13 +320,6 @@ $banners = buscaBannersIndex();
 					<div class="clearfix"></div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- content-section-ends -->
-	<!-- footer-section-starts -->
-	<div class="footer">
-		<div class="container">
-			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
 		</div>
 	</div>
 

@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
@@ -161,12 +155,6 @@ if ($login->usuarioLogado() == true) {
 <?php } ?>
 	<!-- header-section-ends -->
 	<div class="contact-section-page">
-		<div class="contact-head">
-		    <div class="container">
-				<h3>Contato</h3>
-				<p>Home/Contato</p>
-			</div>
-		</div>
 		<div class="contact_top">
 			 		<div class="container">
 			 			<div class="col-md-6 contact_left wow fadeInRight" data-wow-delay="0.4s">
@@ -194,8 +182,8 @@ if ($login->usuarioLogado() == true) {
 					        	<div class="company_ad">
 							     		<h3>contato</h3>
 				      						<address>
-											 <p><strong>email: </strong> <a href="mail-to: suporte@godfood.com.br">suporte@godfood.com.br</a></p>
-											 <p><strong>Telefone: </strong> +55 17 - 997640291</p>
+											 <p><strong>Email: </strong> <a href="mail-to: contato@godfood.com.br">contato@godfood.com.br</a></p>
+											 <p><strong>Telefone: </strong> (17) 99764-0291</p>
 									   		<p>Santa Fé do Sul - SP</p>
 
 							   			</address>
@@ -204,35 +192,160 @@ if ($login->usuarioLogado() == true) {
 									<div class="follow-us">
 										<h3>Siga-me os bons</h3>
 										<br>
-										<a href="#">
+										<a href="https://facebook.com/godfooddelivery">
 											<span class="fa-stack fa-lg">
 											  <i class="fa fa-facebook fa-stack-2x"></i>
 											</span>
 										</a>
-										<a href="#">
+										<a href="https://instagram.com/god.food">
 											<span class="fa-stack fa-lg">
 											  <i class="fa fa-instagram fa-stack-2x"></i>
 											</span>
 										</a>
-										<a href="#">
+										<a href="https://twitter.com/GodFoodDelivery">
 											<span class="fa-stack fa-lg">
 											  <i class="fa fa-twitter fa-stack-2x"></i>
 											</span>
 										</a>
 									</div>
-
-
 							 </div>
 						</div>
 					</div>
+	</div>
 
-	</div>
-	<!-- footer-section-starts -->
-	<div class="footer">
-		<div class="container">
-			<p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved | Template by &nbsp;<a href="http://w3layouts.com" target="target_blank">W3Layouts</a></p>
-		</div>
-	</div>
+	 <!--Contatos e Footer Section-->
+        <div class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-section-grids">
+                    <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+                        <h4>A Empresa</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.godfood.com.br/contato">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Contato
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Politica de Privacidade
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="https://www.godfood.com.br/termos-de-uso">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Termos de Uso
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#Order">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Entenda como funciona
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 contact-section-grid wow fadeInLeft" data-wow-delay="0.4s">
+                        <h4>Nossos Parceiros</h4>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Empresa 1
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Empresa 2
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Empresa 3
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-long-arrow-right fa-inverse"></i>
+                                    </span>Empresa 4
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 contact-section-grid wow fadeInRight" data-wow-delay="0.4s">
+                        <h4>Siga-me os bons</h4>
+                        <ul>
+                            <li>
+                                <a href="https://facebook.com/godfooddelivery" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-facebook fa-inverse"></i>
+                                    </span>Facebook
+                                </a>
+                            </li>
+                        </ul>
+                            <ul>
+                            <li>
+                                <a href="https://instagram.com/god.food" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-instagram fa-inverse"></i>
+                                    </span>Instagram
+                                </a>
+                            </li>
+                        </ul>
+                            <ul>
+                            <li>
+                                <a href="https://plus.google.com/u/0/109781837218722392654/" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-google-plus fa-inverse"></i>
+                                    </span>Google +
+                                </a>
+                            </li>
+                        </ul>
+                            <ul>
+                            <li>
+                                <a href="https://twitter.com/GodFoodDelivery" target="_blank">
+                                    <span class="fa-stack fa-lg">
+                                    <i class="fa fa-twitter fa-inverse"></i>
+                                    </span>Twitter
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 contact-section-grid nth-grid wow fadeInRight" data-wow-delay="0.4s">
+                        <h4>Inscreva-se na nossa Newsletter</h4>
+                        <p>E receba todas as Novidades no seu E-mail</p>
+                        <form action="../subscribe.php" method="POST" accept-charset="utf-8">
+                        <input type="text" class="text" value="" name="email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+                        <input type="submit" value="Cadastrar">
+                        </form>
+                        </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="../web/js/jquery.min.js"></script>

@@ -12,6 +12,7 @@ Options -Indexes
 
 RewriteRule ^$                      			index.php [NC,L]
 RewriteRule ^termos-de-uso$          			termos.php [NC,L]
+RewriteRule ^mobile$          					mindex.php [NC,L]
 
 RewriteRule ^pedido/escolha-restaurante$        pedido/busca_restaurantes.php [NC,L]
 RewriteRule ^pedido/produtos$           		pedido/escolha_produtos.php [NC,L]
