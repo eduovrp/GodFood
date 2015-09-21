@@ -14,6 +14,7 @@ if (isset($_POST["nome"]) && isset($_POST['cpf']) && isset($_POST['email'])
                      $_POST['telefone'],
                      $_POST['celular'],
                      $_POST['usuario'],
+                     $_POST['alcunha'],
                      $_POST['senha'],
                      $_POST['confirma_senha']
                     );

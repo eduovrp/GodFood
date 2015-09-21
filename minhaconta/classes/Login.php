@@ -49,7 +49,7 @@ private function login($login,$senha)
 
         if($this->conexao()){
 
-        $sql = "SELECT id_usuario, login, senha, usr_ativo, email FROM usuarios WHERE login = :login AND senha = :senha";
+        $sql = "SELECT id_usuario, login, alcunha, senha, usr_ativo, email FROM usuarios WHERE login = :login AND senha = :senha";
 
         $cmd = $this->conexao->prepare($sql);
         $cmd->bindParam('login',$login);
@@ -62,6 +62,7 @@ private function login($login,$senha)
         if($cmd->rowCount() == 1){
                 $_SESSION['id_usuario'] = $result->id_usuario;
         	    $_SESSION['login'] = $result->login;
+                $_SESSION['alcunha'] = $result->alcunha;
                 $_SESSION['email'] = $result->email;
                 $_SESSION['login_status'] = 1;
                 $_SESSION['usr_ativo'] = $result->usr_ativo;
@@ -74,7 +75,7 @@ private function login($login,$senha)
 public function logout()
 {
         unset($_SESSION['logado'],$_SESSION['login_status'],$_SESSION['id_usuario'],
-            $_SESSION['login'],$_SESSION['email'],$_SESSION['usr_ativo']);
+            $_SESSION['login'],$_SESSION['email'],$_SESSION['usr_ativo'],$_SESSION['alcunha']);
 
         $_SESSION['msg_sucesso'] = "Sessão Encerrada com Sucesso.";
 }

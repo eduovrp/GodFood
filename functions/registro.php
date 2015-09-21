@@ -143,12 +143,12 @@ background-color: #f6f6f6;
         }
 }
 
-function registra_usuario($nome,$cpf,$email,$telefone,$celular,$usuario,$senha,$confirma_senha)
+function registra_usuario($nome,$cpf,$email,$telefone,$celular,$usuario,$alcunha,$senha,$confirma_senha)
 {
 
-	$usuario  = trim($usuario);
-    $email = trim($email);
-    $cpf = trim($cpf);
+      $usuario  = trim($usuario);
+      $email = trim($email);
+      $cpf = trim($cpf);
 
     global $pdo;
 
@@ -188,11 +188,12 @@ function registra_usuario($nome,$cpf,$email,$telefone,$celular,$usuario,$senha,$
             $hash_ativar_conta = sha1(uniqid(mt_rand(), true));
             $data =  date("Y-m-d H:i:s");
 
-	$sql = "INSERT INTO usuarios (login,senha,email,nome,cpf,telefone,celular,hash_ativar_conta,ip_registro,data_registro)
-				 VALUES (:login,:senha,:email,:nome,:cpf,:telefone,:celular,:hash_ativar_conta,:ip_registro,:data)";
+	$sql = "INSERT INTO usuarios (login,alcunha,senha,email,nome,cpf,telefone,celular,hash_ativar_conta,ip_registro,data_registro)
+				 VALUES (:login,:alcunha,:senha,:email,:nome,:cpf,:telefone,:celular,:hash_ativar_conta,:ip_registro,:data)";
 
 	$cmd = $pdo->prepare($sql);
 	$cmd->bindParam('login',$usuario);
+  $cmd->bindParam('alcunha',$alcunha);
 	$cmd->bindParam('senha',$senha_hash);
 	$cmd->bindParam('email',$email);
 	$cmd->bindParam('nome',$nome);

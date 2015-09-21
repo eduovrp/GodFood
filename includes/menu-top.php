@@ -19,7 +19,7 @@ if ($login->usuarioLogado() == true) {
 ?>
 				<div class="login-section">
 					<ul>
-						<li><a href="#">Bem-vindo, <?=$_SESSION['login']?></a></li>
+						<li><a href="minhaconta/">Bem-vindo <?=$_SESSION['alcunha']?></a></li>
 						<li><a href="minhaconta/">Minha Conta</a></li> |
 						<?php
 
