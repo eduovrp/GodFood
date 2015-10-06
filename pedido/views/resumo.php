@@ -37,7 +37,7 @@ if(isset($_SESSION['id_restaurante'])){
 <script> new WOW().init(); </script>
 
 <link rel="stylesheet" href="../web/font-awesome-4.3.0/css/font-awesome.min.css">
-<link href="../web/css/pace.css" rel='stylesheet' type='text/css' />
+<script src="//fast.eager.io/08rF23h_q8.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -107,7 +107,7 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
         <?php endforeach;
     }   
     if($total < $_SESSION['compra_minima']){
-        header( "refresh:0.1;url=escolha_produtos.php" ); 
+        header( "refresh:0.1;url=./produtos" ); 
     }
          ?>
          <tr>
@@ -320,8 +320,6 @@ $endereco = select_endereco_entrega($_SESSION['endereco']);
     <script src="../web/js/jquery.min.js"></script>
     <script src="../web/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../web/js/easing.js"></script>
-
-    <script src="../web/js/pace.min.js"></script>
 
 <?php 
         } else {
